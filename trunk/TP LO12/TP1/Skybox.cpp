@@ -53,14 +53,14 @@ void Skybox::dessine_box(Scene::MCOORD coord)
 	 // test
    
 	glPushMatrix();
-	glLoadIdentity();
-    gluLookAt(
-        0,0,0,
-        coord.x, coord.y, coord.z,
-        0,1,0);
+	//glLoadIdentity();
+    //gluLookAt(
+     //   0,0,0,
+     //   coord.x, coord.y, coord.z,
+      //  0,1,0);
 	
 
-	//glTranslated(coord.x, coord.y, coord.z);
+	glTranslated(coord.x, coord.y, coord.z);
 
 	glColor4f(1,1,1,1);
 	// dessin de la box
