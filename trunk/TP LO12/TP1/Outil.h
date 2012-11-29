@@ -2,9 +2,11 @@
 #define _OUTIL_H
 
 
+#include "const.h"
 #include "Scene.h"
 #include "Pngloader.h"
 #include "Singleton.h"
+
 
 class Outil : public Singleton<Outil>
 {
