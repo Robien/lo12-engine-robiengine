@@ -27,6 +27,11 @@ Material::Material(Material const& c)
 
 Material::~Material(void)
 {
+	delete _ambiante;
+	delete _diffuse;
+	delete _emission;
+	delete _speculaire;
+
 }
 
 bool Material::isTextured()
