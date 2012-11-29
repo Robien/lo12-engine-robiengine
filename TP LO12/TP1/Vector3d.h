@@ -8,9 +8,9 @@ public:
 	Vector3d(){}
 	Vector3d(const Vector3d<T>& c)
 	{
-		_x = c.getX();
-		_y = c.getY();
-		_z = c.getZ();
+		_x = c._x;
+		_y = c._y;
+		_z = c._z;
 	}
 	Vector3d(T x, T y, T z) :_x(x), _y(y), _z(z)
 	{
