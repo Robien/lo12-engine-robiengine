@@ -1,11 +1,77 @@
 #include "Face.h"
 
 
-Face::Face(void)
+Face::Face(GLuint texture)
 {
+	_texture = texture;
+	_normale = NULL;
 }
 
 
-Face::~Face(void)
+Face::~Face()
 {
+	for (unsigned int i = 0; i < _listePoints.size(); ++i)
+	{
+		delete (_listePoints.at(i));
+	}
+
+	for (unsigned int i = 0; i < _listeCoordonneesTextures.size(); ++i)
+	{
+		if (_listeCoordonneesTextures.at(i) != NULL)
+		{
+			delete (_listeCoordonneesTextures.at(i));
+		}
+	}
+	if (_normale != NULL)
+	{
+		delete _normale;
+	}
+
+}
+
+void Face::affiche()
+{
+
+	if (_listeCoordonneesTextures.at(0) != NULL)
+	{
+		glBindTexture(GL_TEXTURE_2D, _texture);
+	}
+
+	//glBegin(GL_LINE_LOOP); // affichage fils de fer
+
+	glBegin(GL_POLYGON);
+	//_eclairage->def_matiere(_scene->tabface[iface].imat);
+
+	glNormal3d(_normale->getX(), _normale->getY(),_normale->getZ());
+
+	float coordTex[4][2] = {{1,1},{0,1},{0,0},{1,0}} ;
+
+	//glColor3f(scene->tabmat[scene->tabface[iface].imat].ambiante.r,scene->tabmat[scene->tabface[iface].imat].ambiante.g,scene->tabmat[scene->tabface[iface].imat].ambiante.b); 
+	for (unsigned i = 0 ; i < _listePoints.size(); i++)/* boucle sur les points */
+	{
+		//glColor3f(0.0,(i+1.0)/scene->tabface[iface].nbpt,(scene->tabface[iface].nbpt-i+0.0)/scene->tabface[iface].nbpt); 
+		if (_listeCoordonneesTextures.at(i) != NULL)
+		{
+			glTexCoord2d(_listeCoordonneesTextures.at(i)->getX(), _listeCoordonneesTextures.at(i)->getY());
+		}	
+		glVertex3d(_listePoints.at(i)->getX(), _listePoints.at(i)->getY(), _listePoints.at(i)->getZ());
+
+
+	}
+	glEnd();
+
+}
+
+	void Face::calculeNormales()
+	{
+		if (_listePoints.size() >= 3)
+		{
+			_normale = Outil::get()->produitVectoriel<GLdouble>(*_listePoints.at(1) - *_listePoints.at(0), *_listePoints.at(2) - *_listePoints.at(0));
+		}
+	}
+
+void Face::addPoint(Vector3d<GLdouble>* coordonnees, Vector2d<GLdouble>* coordonnneesTexture)
+{
+	_listePoints.push_back(coordonnees);
+	_listeCoordonneesTextures.push_back(coordonnneesTexture);
 }
