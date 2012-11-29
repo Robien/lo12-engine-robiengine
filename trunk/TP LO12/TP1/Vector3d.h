@@ -29,7 +29,7 @@ public:
 	}
 	const T getZ()
 	{
-		return _Z;
+		return _z;
 	}
 	void setX(T x)
 	{
