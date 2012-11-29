@@ -95,12 +95,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AbstractObjet.cpp" />
     <ClCompile Include="affiche.cpp" />
     <ClCompile Include="DatUtils.cpp" />
     <ClCompile Include="eclairage.cpp" />
     <ClCompile Include="Interactions.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Matrice.cpp" />
+    <ClCompile Include="Objet.cpp" />
     <ClCompile Include="Observateur.cpp" />
     <ClCompile Include="Outil.cpp" />
     <ClCompile Include="Pngloader.cpp" />
@@ -113,12 +115,14 @@
     <ClCompile Include="Vector3d.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AbstractObjet.h" />
     <ClInclude Include="affiche.h" />
     <ClInclude Include="const.h" />
     <ClInclude Include="DatUtils.h" />
     <ClInclude Include="eclairage.h" />
     <ClInclude Include="Interactions.h" />
     <ClInclude Include="Matrice.h" />
+    <ClInclude Include="Objet.h" />
     <ClInclude Include="Observateur.h" />
     <ClInclude Include="Outil.h" />
     <ClInclude Include="Pngloader.h" />

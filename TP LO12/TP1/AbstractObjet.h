@@ -7,7 +7,7 @@ public:
 	AbstractObjet();
 	virtual ~AbstractObjet();
 
-	void affiche() = 0;
+	virtual void affiche() = 0;
 
 };
 
