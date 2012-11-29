@@ -1,5 +1,5 @@
-#ifndef _VECTOR2D_H	
-#define _VECTOR2D_H
+#ifndef _VECTOR3D_H	
+#define _VECTOR3D_H
 
 template <typename T>
 class Vector3d
