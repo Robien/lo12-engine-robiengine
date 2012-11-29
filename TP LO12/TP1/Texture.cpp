@@ -17,6 +17,15 @@ GLint Texture::getHeight()
 {
 	return _height;
 }
+GLint* Texture::getPtWidth()
+{
+	return &_width;
+}
+GLint* Texture::getPtHeight()
+{
+	return &_height;
+}
+
 GLenum Texture::getFormat()
 {
 	return _format;

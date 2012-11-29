@@ -72,27 +72,27 @@
 
 
 
-void Pngloader::GetPNGtextureInfo (int color_type, Scene::MTEX *texinfo)
+void Pngloader::GetPNGtextureInfo (int color_type, Texture* texinfo)
 {
         switch (color_type) {
         case PNG_COLOR_TYPE_GRAY:
-                texinfo->format = GL_LUMINANCE;
-                texinfo->internalFormat = 1;
+                texinfo->setFormat(GL_LUMINANCE);
+                texinfo->setInternalFormat(1);
                 break;
 
         case PNG_COLOR_TYPE_GRAY_ALPHA:
-                texinfo->format = GL_LUMINANCE_ALPHA;
-                texinfo->internalFormat = 2;
+                texinfo->setFormat(GL_LUMINANCE_ALPHA);
+                texinfo->setInternalFormat(2);
                 break;
 
         case PNG_COLOR_TYPE_RGB:
-                texinfo->format = GL_RGB;
-                texinfo->internalFormat = 3;
+                texinfo->setFormat(GL_RGB);
+                texinfo->setInternalFormat(3);
                 break;
 
         case PNG_COLOR_TYPE_RGB_ALPHA:
-                texinfo->format = GL_RGBA;
-                texinfo->internalFormat = 4;
+                texinfo->setFormat( GL_RGBA);
+                texinfo->setInternalFormat(4);
                 break;
 
         default:
@@ -102,7 +102,7 @@ void Pngloader::GetPNGtextureInfo (int color_type, Scene::MTEX *texinfo)
 }
 
 
-int Pngloader::ReadPNGFromFile (Texture *texinfo)
+int Pngloader::ReadPNGFromFile (Texture* texinfo)
 {
 
         png_byte magic[8];
@@ -114,9 +114,9 @@ int Pngloader::ReadPNGFromFile (Texture *texinfo)
         int i;
 
         /* open image file */
-        fp = fopen (texinfo->filename, "rb");
+		fp = fopen (texinfo->getFilename().c_str(), "rb");
         if (!fp) {
-                printf( "error: couldn't open \"%s\"!\n", texinfo->filename);
+                printf( "error: couldn't open \"%s\"!\n", texinfo->getFilename().c_str());
 				system("PAUSE");
                 return -1;
         }
@@ -126,8 +126,7 @@ int Pngloader::ReadPNGFromFile (Texture *texinfo)
 
         /* check for valid magic number */
         if (!png_check_sig (magic, sizeof (magic))) {
-                printf( "error: \"%s\" is not a valid PNG image!\n",
-                        texinfo->filename);
+                printf( "error: \"%s\" is not a valid PNG image!\n",texinfo->getFilename().c_str());
                 fclose (fp);
 				system("PAUSE");
                 return -1;
@@ -205,8 +204,8 @@ int Pngloader::ReadPNGFromFile (Texture *texinfo)
 
         /* retrieve updated information */
         png_get_IHDR (png_ptr, info_ptr,
-                      (png_uint_32*)(&texinfo->width),
-                      (png_uint_32*)(&texinfo->height),
+                      (png_uint_32*)(texinfo->getPtWidth()),
+                      (png_uint_32*)(texinfo->getPtHeight()),
                       &bit_depth, &color_type,
                       NULL, NULL, NULL);
 
@@ -214,15 +213,14 @@ int Pngloader::ReadPNGFromFile (Texture *texinfo)
         GetPNGtextureInfo (color_type, texinfo);
 
         /* we can now allocate memory for storing pixel data */
-        texinfo->texels = (GLubyte *)malloc (sizeof (GLubyte) * texinfo->width
-                                             * texinfo->height * texinfo->internalFormat);
+        texinfo->setTexels((GLubyte *)malloc (sizeof (GLubyte) * texinfo->getWidth() * texinfo->getHeight() * texinfo->getInternalFormat()));
 
         /* setup a pointer array.  Each one points at the begening of a row. */
-        row_pointers = (png_bytep *)malloc (sizeof (png_bytep) * texinfo->height);
+        row_pointers = (png_bytep *)malloc (sizeof (png_bytep) * texinfo->getHeight());
 
-        for (i = 0; i < texinfo->height; ++i) {
-                row_pointers[i] = (png_bytep)(texinfo->texels +
-                                              ((texinfo->height - (i + 1)) * texinfo->width * texinfo->internalFormat));
+        for (i = 0; i < texinfo->getHeight(); ++i) {
+                row_pointers[i] = (png_bytep)(texinfo->getTexels() +
+                                              ((texinfo->getHeight() - (i + 1)) * texinfo->getWidth() * texinfo->getInternalFormat()));
         }
 
         /* read pixel data using row pointers */
@@ -243,7 +241,34 @@ int Pngloader::ReadPNGFromFile (Texture *texinfo)
 
 
 //TODO DELETE ->
+void GetPNGtextureInfo (int color_type, Scene::MTEX *texinfo)
+{
+        switch (color_type) {
+        case PNG_COLOR_TYPE_GRAY:
+                texinfo->format = GL_LUMINANCE;
+                texinfo->internalFormat = 1;
+                break;
 
+        case PNG_COLOR_TYPE_GRAY_ALPHA:
+                texinfo->format = GL_LUMINANCE_ALPHA;
+                texinfo->internalFormat = 2;
+                break;
+
+        case PNG_COLOR_TYPE_RGB:
+                texinfo->format = GL_RGB;
+                texinfo->internalFormat = 3;
+                break;
+
+        case PNG_COLOR_TYPE_RGB_ALPHA:
+                texinfo->format = GL_RGBA;
+                texinfo->internalFormat = 4;
+                break;
+
+        default:
+                /* Badness */
+                break;
+        }
+}
 int ReadPNGFromFile (Scene::MTEX *texinfo)
 {
 
