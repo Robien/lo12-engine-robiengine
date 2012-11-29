@@ -101,6 +101,7 @@
     <ClCompile Include="DatUtils.cpp" />
     <ClCompile Include="eclairage.cpp" />
     <ClCompile Include="Face.cpp" />
+    <ClCompile Include="Import.cpp" />
     <ClCompile Include="Interactions.cpp" />
     <ClCompile Include="Lumiere.cpp" />
     <ClCompile Include="main.cpp" />
@@ -126,6 +127,7 @@
     <ClInclude Include="DatUtils.h" />
     <ClInclude Include="eclairage.h" />
     <ClInclude Include="Face.h" />
+    <ClInclude Include="Import.h" />
     <ClInclude Include="Interactions.h" />
     <ClInclude Include="Lumiere.h" />
     <ClInclude Include="Material.h" />
