@@ -4,7 +4,7 @@
 #include "Affiche.h"
 #include "Scene.h"
 #include "Eclairage.h"
-#include "Texture.h"
+#include "Outil.h"
 
 class Tp 
 {
@@ -25,7 +25,7 @@ private:
 	Affiche* _affiche;
 	Scene* _scene;/* description de la scene */
 	Eclairage* _eclairage;
-	Texture* _gestionTexture;
+	Outil* _gestionTexture;
 
 };
 

@@ -1,55 +1,64 @@
 #include "Texture.h"
 #include "stdlib.h"
-#include "Pngloader.h"
 #include <iostream>
 
 
-void Texture::initManager(Scene* scene)
+
+
+std::string Texture::getFilename()
+{	
+	return _filename;
+}
+GLint Texture::getWidth()
 {
-	_scene = scene;
+	return _width;
+}
+GLint Texture::getHeight()
+{
+	return _height;
+}
+GLenum Texture::getFormat()
+{
+	return _format;
+}
+GLint Texture::getInternalFormat()
+{
+	return _internalFormat;
+}
+GLubyte* Texture::getTexels()
+{
+	return _texels;
+}
+GLuint Texture::getGlnum()
+{
+	return _glnum;
 }
 
-
-GLuint Texture::addTexture(char* filename)
+void Texture::setFilename(std::string f)
 {
-	Scene::MTEX * texture = (Scene::MTEX*) malloc (sizeof(Scene::MTEX));
-	texture->filename = filename;
-
-	bool exist = false;
-		unsigned int i;
-	for (i = 0; !exist && i < _scene->tabtex.size(); ++i)
-	{
-		
-		if (strcmp(_scene->tabtex.at(i).filename, filename) == 0)
-		{
-			exist = true;
-		}
-	}
-
-
-
-	if (exist)
-	{
-		return _scene->tabtex.at(i).glnum;
-	}
-
-	if(ReadPNGFromFile(texture))
-	{
-		std::cout << "Fichiers introuvables ! : " << filename << std::endl;
-	}
-	_scene->tabtex.push_back(*texture);
-	GLuint tmp;
-	glGenTextures(1, &tmp);
-	_scene->_tabTexture.push_back(tmp);
-	texture->glnum = tmp;
-
-	glBindTexture(GL_TEXTURE_2D,texture->glnum);
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexImage2D(GL_TEXTURE_2D, 0,texture->internalFormat, texture->width,texture->height,0, texture->format, GL_UNSIGNED_BYTE,texture->texels);
-
-	
-
-	return tmp;
+	_filename = f;
 }
-
+void Texture::setWidth(GLint w)
+{
+	_width = w;
+}
+void Texture::setHeight(GLint h)
+{
+	_height = h;
+}
+void Texture::setFormat(GLenum f)
+{
+	_format = f;
+}
+void Texture::setInternalFormat(GLint i)
+{
+	_internalFormat = i;
+}
+void Texture::setTexels(GLubyte* t)
+{
+	_texels = t;
+}
+void Texture::setGlnum(GLuint num)
+{
+	_glnum = num;
+}

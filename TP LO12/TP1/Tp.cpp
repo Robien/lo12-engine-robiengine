@@ -48,7 +48,7 @@ Tp::Tp()
 	_eclairage = new Eclairage(_scene);
 	_affiche = new Affiche(_scene, _eclairage);
 	_ob = new Observateur(_eclairage);
-	Texture::get()->initManager(_scene);
+	Outil::get()->initManager(_scene);
 
 }
 
@@ -100,7 +100,7 @@ void Tp::init()
 			_scene->tabsource[i].allume = true;
 		}
 
-		Texture::get()->addTexture("textures\\bois.png");
+		Outil::get()->addTexture("textures\\bois.png");
 		_scene->_skybox->charger();
 		
 

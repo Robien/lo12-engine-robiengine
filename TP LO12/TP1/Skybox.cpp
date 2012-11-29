@@ -1,5 +1,5 @@
 #include "const.h"
-#include "Texture.h"
+#include "Outil.h"
 #include "Skybox.h"
 
 //*****************************************************************************************************************************
@@ -18,12 +18,12 @@ Skybox::~Skybox()
 void Skybox::charger()
 {
 	
-	_tabText.push_back(Texture::get()->addTexture("textures/XN.png"));
-    _tabText.push_back(Texture::get()->addTexture("textures/XP.png"));
-    _tabText.push_back(Texture::get()->addTexture("textures/YN.png"));
-    _tabText.push_back(Texture::get()->addTexture("textures/YP.png"));
-    _tabText.push_back(Texture::get()->addTexture("textures/ZN.png"));
-    _tabText.push_back(Texture::get()->addTexture("textures/ZP.png"));
+	_tabText.push_back(Outil::get()->addTexture("textures/XN.png"));
+    _tabText.push_back(Outil::get()->addTexture("textures/XP.png"));
+    _tabText.push_back(Outil::get()->addTexture("textures/YN.png"));
+    _tabText.push_back(Outil::get()->addTexture("textures/YP.png"));
+    _tabText.push_back(Outil::get()->addTexture("textures/ZN.png"));
+    _tabText.push_back(Outil::get()->addTexture("textures/ZP.png"));
 }
 
 

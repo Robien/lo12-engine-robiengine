@@ -1,14 +1,14 @@
 #pragma once
 /*
- 
-        Universite de Technologie de Compiegne
-        
-        UV: LO12
-        
-        FICHIER: Observateur.c
- 
-        COMMENTAIRE:
-                Routines d'affichage
+
+Universite de Technologie de Compiegne
+
+UV: LO12
+
+FICHIER: Observateur.c
+
+COMMENTAIRE:
+Routines d'affichage
 
 */
 
@@ -27,13 +27,13 @@
 #endif
 
 #if defined(__APPLE__) && defined(__MACH__)
-        #include <GLUT/glut.h>
-        #include <OpenGL/gl.h>
-        #include <OpenGL/glu.h>
+#include <GLUT/glut.h>
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
 #else
-        #include <glut.h>
-        #include <GL/gl.h>
-        #include <GL/glu.h>
+#include <glut.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
 #endif
 
 #include "Eclairage.h"
@@ -74,7 +74,7 @@ public:
 		double upx;
 		double upy;
 		double upz;
-		
+
 	};
 
 
@@ -92,7 +92,7 @@ public:
 	//void rotateHead(GLdouble angleLR, GLdouble angleUD);
 	//void zoom(GLdouble facteur);
 	//void translate (GLdouble x, GLdouble y, GLdouble z);
-	
+
 public :
 	void polar_view(double azimut, double elevation, double distance, double twist);
 	void pilot_view(double posx, double posy, double posz, double roulis, double tangage, double lacet);
