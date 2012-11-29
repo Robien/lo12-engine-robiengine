@@ -43,7 +43,13 @@ public:
 		return Vector2d<T>(other._x - _x, other._y - _y);
 	}
 	
-
+	T* getCStyle() //attention aux free !
+	{
+		T* tmp = (T*) (malloc(3*sizeof(T)));
+		tmp[0] = _x;
+		tmp[1] = _y;
+		return tmp;
+	}
 public:
 	virtual void print()
 	{

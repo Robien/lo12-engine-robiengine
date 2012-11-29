@@ -52,7 +52,14 @@ public:
 	{
 		return Vector3d<T>(other._x - _x, other._y - _y, other._z - _z);
 	}
-	
+	T* getCStyle() //attention aux free !
+	{
+		T* tmp = (T*) (malloc(3*sizeof(T)));
+		tmp[0] = _x;
+		tmp[1] = _y;
+		tmp[2] = _z;
+		return tmp;
+	}
 
 public:
 	virtual void print()

@@ -12,36 +12,39 @@ public:
 	virtual ~Material();
 
 	bool isTextured();
-	GLdouble getAlpha();
-	Vector3d<GLdouble>*    getAmbiante();
-	Vector3d<GLdouble>*    getDiffuse();
-	Vector3d<GLdouble>*    getEmission();
-	Vector3d<GLdouble>*    getSpeculaire();
-	GLdouble getBrillance();      
+	GLfloat getAlpha();
+	Vector3d<GLfloat>*    getAmbiante();
+	Vector3d<GLfloat>*    getDiffuse();
+	Vector3d<GLfloat>*    getEmission();
+	Vector3d<GLfloat>*    getSpeculaire();
+	GLfloat getBrillance();      
 	GLint getIndiceTex(); 
 
 	void setTextured(bool ist);
-	void getAlpha(GLdouble al);
-	void getAmbiante(Vector3d<GLdouble>* am);
-	void getAmbiante(GLdouble r, GLdouble g, GLdouble b);
-	void getDiffuse(Vector3d<GLdouble>* di);
-	void getDiffuse(GLdouble r, GLdouble g, GLdouble b);
-	void getEmission(Vector3d<GLdouble>* em);
-	void getEmission(GLdouble r, GLdouble g, GLdouble b);
-	void getSpeculaire(Vector3d<GLdouble>* sp);
-	void getSpeculaire(GLdouble r, GLdouble g, GLdouble b);
-	void getBrillance(GLdouble br);      
+	void getAlpha(GLfloat al);
+	void getAmbiante(Vector3d<GLfloat>* am);
+	void getAmbiante(GLfloat r, GLfloat g, GLfloat b);
+	void getDiffuse(Vector3d<GLfloat>* di);
+	void getDiffuse(GLfloat r, GLfloat g, GLfloat b);
+	void getEmission(Vector3d<GLfloat>* em);
+	void getEmission(GLfloat r, GLfloat g, GLfloat b);
+	void getSpeculaire(Vector3d<GLfloat>* sp);
+	void getSpeculaire(GLfloat r, GLfloat g, GLfloat b);
+	void getBrillance(GLfloat br);      
 	void getIndiceTex(GLint num); 
 
+	void appliqueTexture();
+	void appliqueMatiere();
+	
 
 private:
 	bool _textured;
-	GLdouble _alpha;							/* coeff. de transparence */
-	Vector3d<GLdouble>*    _ambiante;		/* couleur de la reflectance ambiante */
-	Vector3d<GLdouble>*    _diffuse;			/* couleur de la reflectance diffuse */
-	Vector3d<GLdouble>*    _emission;		/* couleur de la reflectance emise */
-	Vector3d<GLdouble>*    _speculaire;		/* couleur de la reflectance speculaire */
-	GLdouble _brillance;						/* coeff. de brillance */
+	GLfloat _alpha;							/* coeff. de transparence */
+	Vector3d<GLfloat>*    _ambiante;		/* couleur de la reflectance ambiante */
+	Vector3d<GLfloat>*    _diffuse;			/* couleur de la reflectance diffuse */
+	Vector3d<GLfloat>*    _emission;		/* couleur de la reflectance emise */
+	Vector3d<GLfloat>*    _speculaire;		/* couleur de la reflectance speculaire */
+	GLfloat _brillance;						/* coeff. de brillance */
 	GLint _indiceTex;						/* indice de la texture */
 };
 
