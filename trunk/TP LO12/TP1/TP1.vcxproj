@@ -97,11 +97,14 @@
   <ItemGroup>
     <ClCompile Include="AbstractObjet.cpp" />
     <ClCompile Include="affiche.cpp" />
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="DatUtils.cpp" />
     <ClCompile Include="eclairage.cpp" />
     <ClCompile Include="Face.cpp" />
     <ClCompile Include="Interactions.cpp" />
+    <ClCompile Include="Lumiere.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Material.cpp" />
     <ClCompile Include="Matrice.cpp" />
     <ClCompile Include="Objet.cpp" />
     <ClCompile Include="Observateur.cpp" />
@@ -118,11 +121,14 @@
   <ItemGroup>
     <ClInclude Include="AbstractObjet.h" />
     <ClInclude Include="affiche.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="const.h" />
     <ClInclude Include="DatUtils.h" />
     <ClInclude Include="eclairage.h" />
     <ClInclude Include="Face.h" />
     <ClInclude Include="Interactions.h" />
+    <ClInclude Include="Lumiere.h" />
+    <ClInclude Include="Material.h" />
     <ClInclude Include="Matrice.h" />
     <ClInclude Include="Objet.h" />
     <ClInclude Include="Observateur.h" />

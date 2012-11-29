@@ -1,8 +1,16 @@
-#pragma once
-class Objet
+#ifndef _OBJET_H	
+#define _OBJET_H
+
+#include "AbstractObjet.h"
+
+class Objet : AbstractObjet
 {
 public:
-	Objet(void);
-	virtual ~Objet(void);
+	Objet();
+	virtual ~Objet();
+
+	virtual void affiche();
 };
 
+
+#endif

@@ -1,11 +1,17 @@
 #include "Objet.h"
 
 
-Objet::Objet(void)
+Objet::Objet()
 {
 }
 
 
-Objet::~Objet(void)
+Objet::~Objet()
 {
+}
+
+void Objet::affiche()
+{
+
+
 }
