@@ -1,7 +1,6 @@
 #ifndef _OUTIL_H	
 #define _OUTIL_H
 
-
 #include "const.h"
 #include "Scene.h"
 #include "Pngloader.h"
