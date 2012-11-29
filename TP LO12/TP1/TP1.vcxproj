@@ -101,6 +101,7 @@
     <ClCompile Include="Interactions.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Observateur.cpp" />
+    <ClCompile Include="Outil.cpp" />
     <ClCompile Include="Pngloader.cpp" />
     <ClCompile Include="scene.cpp" />
     <ClCompile Include="SceneUtils.cpp" />
@@ -115,6 +116,7 @@
     <ClInclude Include="eclairage.h" />
     <ClInclude Include="Interactions.h" />
     <ClInclude Include="Observateur.h" />
+    <ClInclude Include="Outil.h" />
     <ClInclude Include="Pngloader.h" />
     <ClInclude Include="scene.h" />
     <ClInclude Include="SceneUtils.h" />
