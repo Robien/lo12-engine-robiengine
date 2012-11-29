@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="TP1">
+</Property><Property Name="Fichier solution" Value="Z:\TP LO12\TP LO12\TP1\TP1.sln">
+</Property><Property Name="Date" Value="lundi 24 septembre 2012">
+</Property><Property Name="Time" Value="14:31">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="TP1.sln" Description="Fichier correctement sauvegardé en tant que Z:\TP LO12\TP LO12\TP1\TP1.sln.old">
+</Event><Event ErrorLevel="0" Project="TP1" Source="TP1.vcproj" Description="Converting project file 'Z:\TP LO12\TP LO12\TP1\TP1.vcproj'.">
+</Event><Event ErrorLevel="1" Project="TP1" Source="TP1.vcproj" Description="This application has been updated to include settings related to the User Account Control (UAC) feature of Windows Vista. By default, when run on Windows Vista with UAC enabled, this application is marked to run with the same privileges as the process that launched it. This marking also disables the application from running with virtualization. You can change UAC related settings from the Property Pages of the project.">
+</Event><Event ErrorLevel="1" Project="TP1" Source="TP1.vcproj" Description="VCWebServiceProxyGeneratorTool is no longer supported. The tool has been removed from your project settings.">
+</Event><Event ErrorLevel="1" Project="TP1" Source="TP1.vcproj" Description="Attribute 'Detect64BitPortabilityProblems' of 'VCCLCompilerTool' is not supported in this version and has been removed during conversion.">
+</Event><Event ErrorLevel="0" Project="TP1" Source="TP1.vcproj" Description="Web deployment to the local IIS server is no longer supported. The Web Deployment build tool has been removed from your project settings.">
+</Event><Event ErrorLevel="1" Project="TP1" Source="TP1.vcproj" Description="Attribute 'Detect64BitPortabilityProblems' of 'VCCLCompilerTool' is not supported in this version and has been removed during conversion.">
+</Event><Event ErrorLevel="0" Project="TP1" Source="TP1.vcproj" Description="Done converting to new project file 'Z:\TP LO12\TP LO12\TP1\TP1.vcxproj'.">
+</Event><Event ErrorLevel="3" Project="TP1" Source="TP1.vcproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="TP1.sln" Description="Solution correctement convertie">
+</Event><Event ErrorLevel="3" Project="" Source="TP1.sln" Description="Converted">
+</Event></UpgradeLog>

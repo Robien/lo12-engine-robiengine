@@ -1,0 +1,119 @@
+###FICHIER SCENE - CUBE 6 FACES###
+13	#nb total de points dans la scene#
+2	#nb de matieres #
+11	#nb de faces  #
+2	#nb objets#
+2	#nb de sources de lumiere #
+##DEFINITON DES POINTS##
+1.0   1.0   1.0 #<point> 0#
+1.0   1.0   -1.0 #<point> 1#
+1.0   -1.0  -1.0 #<point> 2#
+1.0   -1.0  1.0 #<point> 3#
+-1.0   1.0   1.0 #<point> 4#
+-1.0   1.0   -1.0 #<point> 5#
+-1.0   -1.0  -1.0 #<point> 6#
+-1.0   -1.0  1.0 #<point> 7#
+0.0	0.0	0.7	#<point> 8#
+1.0	1.0	0.0	#<point> 9#
+-1.0	1.0	0.0	#<point> 10#
+-1.0	-1.0	0.0	#<point> 11#
+1.0	-1.0	0.0	#<point> 12#
+##DEFINITION DES MATIERES##
+#<matiere 0>#
+1.0 #alpha
+1.0	1.0	1.0			#reflectance ambiante #
+1.0	1.0	1.0			#reflectance diffuse #
+0.0	0.0	0.0			#reflectance emise #
+0.01	0.01	1.0			#reflectance speculaire #
+0.0					#brillance #
+#<matiere 1>#
+1.0 #alpha
+1.0	1.0	1.0			#reflectance ambiante #
+1.0	1.0	1.0			#reflectance diffuse #
+0.0	0.0	0.0			#reflectance emise #
+1.0	0.9	0.01			#reflectance speculaire #
+1.0					#brillance #
+##DEFINTION DES FACES##
+#<face 0>#
+#face droite#
+4					#nb de pts de la face 0
+0	1	2	3			#points
+0						#matiere
+#<face 1>#
+#face gauche
+4					#nb de pts de la face 1
+7	6	5	4			#points
+0						#matiere
+#<face 2>#
+#face haut
+4					#nb de pts de la face 2
+0	4	5	1			#points
+0						#matiere
+#<face 3>#
+#face bas
+4					#nb de pts de la face 3
+7	3	2	6			#points
+0						#matiere
+#<face 4>#
+#face avant
+4					#nb de pts de la face 4
+5	1	2	6			#points
+0						#matiere
+#<face 5>#
+#face arriere
+4					#nb de pts de la face 5
+0	4	7	3			#points
+0						#matiere
+#<face 6>#
+#face toit dessous
+4					#nb de pts de la face 5
+12	11	10	9			#points
+1						#matiere
+#<face 7>#
+#face toit
+3					#nb de pts de la face 5
+8	12	11			#points
+1						#matiere
+#<face 8>#
+#face toit
+3					#nb de pts de la face 5
+8	11	10			#points
+1						#matiere
+#<face 9>#
+#face toit
+3					#nb de pts de la face 5
+8	10	9			#points
+1						#matiere
+#<face 10>#
+#face toit
+3					#nb de pts de la face 5
+8	12	9			#points
+1						#matiere
+##DEFINTION DES OBJETS##
+#<objet 0>#
+6					#	nb de faces de la plate-forme
+0 1 2 3 4 5 #faces
+1.0	0.0	0.0	0.0  #Matrice de transformations
+0.0	1.0	0.0	0.0 #
+0.0	0.0	1.0	0.0 #
+0.0	0.0	0.0	1.0 #
+#<objet 1>#
+5					#	nb de faces de la plate-forme
+6 7 8 9 10 #faces
+1.0	0.0	0.0	0.0  #Matrice de transformations
+0.0	1.0	0.0	0.0 #
+0.0	0.0	1.0	1.0 #
+0.0	0.0	0.0	1.0 #
+##DEFINITION DES SOURCES##
+#<source 0>#
+0.4	0.1	0.1		#couleur ambiante
+0.1	0.1	0.1		#couleur source
+0.0	0.0	2.0	1.0	#position initiale
+5.0	5.0			#allure du faisceau
+0.0	0.0	-1.0		#direction du faisceau
+#<source 1>#
+0.2	0.2	0.2		#couleur ambiante
+0.5	0.5	0.5		#couleur source
+25.0	1.0	0.0	1.0	#position initiale
+2.0	180.0			#allure du faisceau
+-1.0	0.0	0.0		#direction du faisceau
