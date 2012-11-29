@@ -13,6 +13,8 @@ public:
 	std::string getFilename();
 	GLint getWidth();
 	GLint getHeight();
+	GLint* getPtWidth();
+	GLint* getPtHeight();
 	GLenum getFormat();
 	GLint getInternalFormat();
 	GLubyte* getTexels();

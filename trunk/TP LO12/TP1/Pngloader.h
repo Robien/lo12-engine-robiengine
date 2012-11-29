@@ -9,9 +9,9 @@ int ReadPNGFromFile (Scene::MTEX *texinfo);
 class Pngloader
 {
 public:
-	int ReadPNGFromFile (Texture *texinfo);
+	int ReadPNGFromFile (Texture* texinfo);
 private:
-	void GetPNGtextureInfo (int color_type, Scene::MTEX *texinfo);
+	void GetPNGtextureInfo (int color_type, Texture* texinfo);
 
 };
 
