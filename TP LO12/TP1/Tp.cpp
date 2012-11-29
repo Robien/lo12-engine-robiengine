@@ -103,8 +103,8 @@ void Tp::init()
 		Texture::get()->addTexture("textures\\bois.png");
 		_scene->_skybox->charger();
 		
-		Texture::get()->initTexture();
-		//_scene->_skybox->dessine_box(_ob->getPosition());
+
+		_scene->_skybox->dessine_box(_ob->getPosition());
 		
 }
 

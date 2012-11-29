@@ -12,10 +12,10 @@ public:
 	virtual ~Skybox();
 
 	void charger();
-	void dessine_box(Scene::MCOORD coord, std::vector<GLuint>* _tabTexture);
+	void dessine_box(Scene::MCOORD coord);
 
 private:
-	std::vector<GLuint*> _tabText;
+	std::vector<GLuint> _tabText;
 
 };
 

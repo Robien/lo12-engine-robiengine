@@ -30,7 +30,7 @@ void Skybox::charger()
 //*****************************************************************************************************************************
 void Skybox::dessine_box(Scene::MCOORD coord)
 {
-	float t=10.0;
+	float t=1.0;
 	// Désactivation de l'écriture dans le Z-buffer
 	 glDisable(GL_DEPTH_TEST);
 	 glDepthMask(GL_FALSE);
@@ -48,23 +48,23 @@ void Skybox::dessine_box(Scene::MCOORD coord)
     glDisable(GL_LIGHTING);
     glDisable(GL_BLEND);
 	*/
-	glPushMatrix();
-	glLoadIdentity();
+	//glPushMatrix();
+	//glLoadIdentity();
 	 // test
    
-	/*glPushMatrix();
+	glPushMatrix();
 	glLoadIdentity();
     gluLookAt(
         0,0,0,
         coord.x, coord.y, coord.z,
         0,1,0);
-	*/
+	
 
-	glTranslated(coord.x, coord.y, coord.z);
+	//glTranslated(coord.x, coord.y, coord.z);
 
 	glColor4f(1,1,1,1);
 	// dessin de la box
-    glBindTexture(GL_TEXTURE_2D, *_tabText[0]);
+    glBindTexture(GL_TEXTURE_2D, _tabText[0]);
 	glBegin(GL_QUADS);			// X Négatif		
 		glTexCoord2f(0.0, 0.0); glVertex3f(-t,-t,-t); 	
 		glTexCoord2f(1.0, 0.0); glVertex3f(-t,t,-t);
@@ -72,7 +72,7 @@ void Skybox::dessine_box(Scene::MCOORD coord)
 		glTexCoord2f(0.0, 1.0); glVertex3f(-t,-t,t); 
 	glEnd();
 
- glBindTexture(GL_TEXTURE_2D, *_tabText[1]);
+ glBindTexture(GL_TEXTURE_2D, _tabText[1]);
 	glBegin(GL_QUADS);			// X Positif
 		glTexCoord2f(0.0, 0.0); glVertex3f(t,t,-t); 	
 		glTexCoord2f(1.0, 0.0); glVertex3f(t,-t,-t);
@@ -80,7 +80,7 @@ void Skybox::dessine_box(Scene::MCOORD coord)
 		glTexCoord2f(0.0, 1.0); glVertex3f(t,t,t); 	
 	glEnd();
 
- glBindTexture(GL_TEXTURE_2D, *_tabText[2]);
+ glBindTexture(GL_TEXTURE_2D, _tabText[2]);
 	glBegin(GL_QUADS);			// Y Négatif	
 		glTexCoord2f(0.0, 0.0); glVertex3f(t,-t,-t);
 		glTexCoord2f(1.0, 0.0); glVertex3f(-t,-t,-t);
@@ -88,7 +88,7 @@ void Skybox::dessine_box(Scene::MCOORD coord)
 		glTexCoord2f(0.0, 1.0); glVertex3f(t,-t,t); 
 	glEnd();
 
- glBindTexture(GL_TEXTURE_2D, *_tabText[3]);
+ glBindTexture(GL_TEXTURE_2D, _tabText[3]);
 	glBegin(GL_QUADS);			// Y Positif		
 		glTexCoord2f(0.0, 0.0); glVertex3f(-t,t,-t);
 		glTexCoord2f(1.0, 0.0); glVertex3f(t,t,-t);
@@ -96,7 +96,7 @@ void Skybox::dessine_box(Scene::MCOORD coord)
 		glTexCoord2f(0.0, 1.0); glVertex3f(-t,t,t); 	
 	glEnd();
 
- glBindTexture(GL_TEXTURE_2D, *_tabText[4]);
+ glBindTexture(GL_TEXTURE_2D, _tabText[4]);
 	glBegin(GL_QUADS);			// Z Négatif		
 		glTexCoord2f(0.0, 0.0); glVertex3f(-t,t,-t);
 		glTexCoord2f(1.0, 0.0); glVertex3f(t,t,-t);
@@ -104,12 +104,12 @@ void Skybox::dessine_box(Scene::MCOORD coord)
 		glTexCoord2f(0.0, 1.0); glVertex3f(-t,-t,-t); 
 	glEnd();
 
- glBindTexture(GL_TEXTURE_2D, *_tabText[5]);
+ glBindTexture(GL_TEXTURE_2D, _tabText[5]);
 	glBegin(GL_QUADS);			// Z Positif	
-		glTexCoord2f(0.0, 0.0); glVertex3f(-t,t,t);
-		glTexCoord2f(1.0, 0.0); glVertex3f(t,t,t);
-		glTexCoord2f(1.0, 1.0); glVertex3f(t,-t,t);
-		glTexCoord2f(0.0, 1.0); glVertex3f(-t,-t,t);    
+		glTexCoord2f(0.0, 1.0); glVertex3f(-t,t,t);
+		glTexCoord2f(0.0, 0.0); glVertex3f(t,t,t);
+		glTexCoord2f(1.0, 0.0); glVertex3f(t,-t,t);
+		glTexCoord2f(1.0, 1.0); glVertex3f(-t,-t,t);    
 	glEnd();	
 	
 	glPopMatrix();

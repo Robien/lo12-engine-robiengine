@@ -9,9 +9,8 @@ class Texture : public Singleton<Texture>
 {
 public:
 	void initManager(Scene* scene);
-	void initTexture();
 	
-	GLuint* addTexture(char* filename);
+	GLuint addTexture(char* filename);
 
 private:
 	Scene* _scene;

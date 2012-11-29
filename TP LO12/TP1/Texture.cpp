@@ -10,35 +10,46 @@ void Texture::initManager(Scene* scene)
 }
 
 
-GLuint* Texture::addTexture(char* filename)
+GLuint Texture::addTexture(char* filename)
 {
 	Scene::MTEX * texture = (Scene::MTEX*) malloc (sizeof(Scene::MTEX));
 	texture->filename = filename;
+
+	bool exist = false;
+		unsigned int i;
+	for (i = 0; !exist && i < _scene->tabtex.size(); ++i)
+	{
+		
+		if (strcmp(_scene->tabtex.at(i).filename, filename) == 0)
+		{
+			exist = true;
+		}
+	}
+
+
+
+	if (exist)
+	{
+		return _scene->tabtex.at(i).glnum;
+	}
+
 	if(ReadPNGFromFile(texture))
 	{
 		std::cout << "Fichiers introuvables ! : " << filename << std::endl;
 	}
 	_scene->tabtex.push_back(*texture);
-	_scene->_tabTexture.push_back(texture->glnum);
-	return &texture->glnum;
-}
+	GLuint tmp;
+	glGenTextures(1, &tmp);
+	_scene->_tabTexture.push_back(tmp);
+	texture->glnum = tmp;
 
-void Texture::initTexture()
-{
+	glBindTexture(GL_TEXTURE_2D,texture->glnum);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexImage2D(GL_TEXTURE_2D, 0,texture->internalFormat, texture->width,texture->height,0, texture->format, GL_UNSIGNED_BYTE,texture->texels);
 
-	glGenTextures(_scene->tabtex.size(), _scene->_tabTexture.data());
+	
 
-	for (unsigned int i = 0; i < _scene->tabtex.size(); ++i)
-	{
-		_scene->tabtex[i].glnum = _scene->_tabTexture[i];
-	}
-
-	for (unsigned int i = 0; i < _scene->tabtex.size(); ++i)
-	{
-		glBindTexture(GL_TEXTURE_2D,_scene->tabtex[i].glnum);
-		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-		glTexImage2D(GL_TEXTURE_2D, 0, _scene->tabtex[i].internalFormat,_scene->tabtex[i].width,_scene->tabtex[i].height,0, _scene->tabtex[i].format, GL_UNSIGNED_BYTE, _scene->tabtex[i].texels);
-	}
+	return tmp;
 }
 
