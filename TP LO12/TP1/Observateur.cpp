@@ -406,10 +406,10 @@ Scene::MCOORD Observateur::getPosition()
 		pos.w = 0;
 		break;
 	case POLAR_VIEW://polar_view
-		pos.z =  _polarParam.distance* sin(_polarParam.elevation);
-		d = _polarParam.distance * cos(_polarParam.elevation);
-		pos.x = cos(_polarParam.azimut)*d;
-		pos.y = sin(_polarParam.azimut)*d;
+		pos.z =  _polarParam.distance* sin(_polarParam.elevation*PI/180);
+		d = _polarParam.distance * cos(_polarParam.elevation*PI/180);
+		pos.x = cos(_polarParam.azimut*PI/180)*d;
+		pos.y = sin(_polarParam.azimut*PI/180)*d;
 		pos.w = 0;
 		break;
 	case PILOT_VIEW://pilot_view				
