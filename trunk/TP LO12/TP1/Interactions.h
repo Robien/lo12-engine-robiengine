@@ -53,8 +53,8 @@ private:
 
 	Affiche* _affiche;
 	Scene* _scene;
-	Observateur* _ob;
-
+public :Observateur* _ob;
+private:
 	int _posCurseurX;
 	int _posCurseurY;
 	int _mouseState;

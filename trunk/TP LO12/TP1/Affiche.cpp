@@ -17,6 +17,8 @@
 
 #include "Affiche.h"
 #include "Skybox.h"
+#include "Interactions.h"
+#include "Observateur.h"
 
 
 /*******************************************************************************/
@@ -41,7 +43,7 @@ void Affiche::dessine_face(Scene::INDICE_FACE iface)
         int j;  /* indice  de point */
 		
 		glBindTexture(GL_TEXTURE_2D, _scene->_tabTexture[0]);
-      
+		
 		//glBegin(GL_LINE_LOOP); // affichage fils de fer
 
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -71,6 +73,7 @@ void Affiche::dessine_face(Scene::INDICE_FACE iface)
 void Affiche::dessine_repere()
 {
 	glDisable(GL_LIGHTING);
+
 	glBegin(GL_LINES);
 		glColor3f(1.0,0.0,0.0);
 		glVertex3d(0.0,0.0,0.0);
@@ -105,7 +108,7 @@ void Affiche::dessine_objet(Scene::OBJET objet)
 
 void Affiche::dessine_skybox(Scene::MCOORD pos)
 {
-	_scene->_skybox->dessine_box(pos, &_scene->_tabTexture);
+	_scene->_skybox->dessine_box(pos);
 }
 
 
@@ -114,11 +117,13 @@ void Affiche::dessine_scene()
         int i;  /* indice d'objet */
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  /*efface l'ecran */
 		
+		dessine_skybox(Interactions::get()->_ob->getPosition());
+
         dessine_repere();
         //glIndexi(2);		 /* couleur de la scene en mode index */
 		//  glColor3f(1, .5,.5);   /* couleur de la scene en mode RGB   */
 		
-		_eclairage->defAllSources(); //definition des source de lumiere
+		_eclairage->defAllSources(); //definition des sources de lumiere
         for (i = 0 ; i < _scene->nbobj ; i++)     	/* boucle sur les objets */
         {
 			//std::cout << scene->tabobj[i].transfo[0] << " - " << scene->tabobj[i].transfo[3] << " - " <<scene->tabobj[i].transfo[15] << std::endl;

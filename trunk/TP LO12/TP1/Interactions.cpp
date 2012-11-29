@@ -158,7 +158,7 @@ void Interactions::idle()
 					//  glRotated(i++,1, 0, 0);
 			// glGetDoublev(GL_MODELVIEW_MATRIX, scene->transfo);
 				
-				Interactions::get()->_affiche->dessine_skybox(Interactions::get()->_ob->getPosition());
+				
 			 	Interactions::get()->_affiche->dessine_scene();
 		//	glLoadIdentity();
 
@@ -182,6 +182,7 @@ void Interactions::reshape(int largeur, int hauteur)
 
 void Interactions::dessine_scene()
 {
+	
 	Interactions::get()->_affiche->dessine_scene();
 }
 
