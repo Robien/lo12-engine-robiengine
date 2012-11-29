@@ -1,9 +1,9 @@
 #include "Face.h"
 
 
-Face::Face(GLuint texture)
+Face::Face(Material* material)
 {
-	_texture = texture;
+	_material = material;
 	_normale = NULL;
 }
 
@@ -26,6 +26,7 @@ Face::~Face()
 	{
 		delete _normale;
 	}
+	delete _material;
 
 }
 
@@ -34,15 +35,22 @@ void Face::affiche()
 
 	if (_listeCoordonneesTextures.at(0) != NULL)
 	{
-		glBindTexture(GL_TEXTURE_2D, _texture);
+		_material->appliqueTexture();
 	}
 
 	//glBegin(GL_LINE_LOOP); // affichage fils de fer
 
 	glBegin(GL_POLYGON);
 	//_eclairage->def_matiere(_scene->tabface[iface].imat);
-
-	glNormal3d(_normale->getX(), _normale->getY(),_normale->getZ());
+	_material->appliqueMatiere();
+	if (_normale != NULL)
+	{
+		glNormal3d(_normale->getX(), _normale->getY(),_normale->getZ());
+	}
+	else
+	{
+		std::cout << "Les normales n ont pas ete calculees ! Il faut utiliser la methode calculnormales !" << std::endl;
+	}
 
 	float coordTex[4][2] = {{1,1},{0,1},{0,0},{1,0}} ;
 
@@ -74,4 +82,10 @@ void Face::addPoint(Vector3d<GLdouble>* coordonnees, Vector2d<GLdouble>* coordon
 {
 	_listePoints.push_back(coordonnees);
 	_listeCoordonneesTextures.push_back(coordonnneesTexture);
+}
+
+void Face::setTexture(GLuint texture)
+{
+	_material->setTextured(true);
+	_material->getIndiceTex(texture);
 }
