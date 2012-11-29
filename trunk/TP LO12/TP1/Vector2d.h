@@ -8,8 +8,8 @@ public:
 	Vector2d(){}
 	Vector2d(const Vector2d<T>& c)
 	{
-		_x = c.getX();
-		_y = c.getY();
+		_x = c._x
+		_y = c._y
 	}
 	Vector2d(T x, T y) :_x(x), _y(y)
 	{
