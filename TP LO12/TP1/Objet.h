@@ -8,6 +8,7 @@ class Objet : AbstractObjet
 {
 public:
 	Objet();
+	Objet(Matrice<GLdouble>* matrice);
 	virtual ~Objet();
 
 	virtual void affiche();
