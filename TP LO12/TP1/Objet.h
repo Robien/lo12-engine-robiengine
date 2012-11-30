@@ -2,6 +2,7 @@
 #define _OBJET_H
 
 #include "AbstractObjet.h"
+#include "Face.h"
 
 class Objet : AbstractObjet
 {
@@ -10,6 +11,12 @@ public:
 	virtual ~Objet();
 
 	virtual void affiche();
+
+	void addFace(Face* face);
+
+private:
+	std::vector<Face*> _listeFace;
+
 };
 
 
