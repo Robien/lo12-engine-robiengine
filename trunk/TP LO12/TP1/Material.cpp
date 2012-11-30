@@ -1,6 +1,6 @@
 #include "Material.h"
 #include "Outil.h"
-
+#include <string>
 
 Material::Material()
 {
@@ -82,7 +82,7 @@ GLfloat Material::getBrillance()
 {
 	return _brillance;
 }      
-GLint Material::getIndiceTex()
+GLuint Material::getIndiceTex()
 {
 	return _indiceTex;
 }
@@ -135,7 +135,7 @@ void Material::setBrillance(GLfloat br)
 {
 	_brillance = br;
 }    
-void Material::setIndiceTex(GLint num)
+void Material::setIndiceTex(GLuint num)
 {
 	_indiceTex = num;
 
@@ -156,5 +156,20 @@ void Material::appliqueMatiere()
 	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, _speculaire->getCStyle());
 	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, _brillance);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION,_emission->getCStyle());
+
+}
+
+void Material::afficheString()
+{
+
+	std::cout <<	"--------Material : " <<_nom << "--------"<<std::endl <<
+		"Texture : " << (_textured?"oui":"non") << std::endl <<
+		"Alpha : " << _alpha << std::endl << 
+		"Brillance : " << _brillance << std::endl << 
+		"Ambiante : " << _ambiante->getX() << " - "<< _ambiante->getY() << " - "<< _ambiante->getZ() << std::endl << 
+		"Diffuse : "  << _diffuse->getX() << " - "<< _diffuse->getY() << " - "<< _diffuse->getZ() << std::endl << 
+		"Emission : "  << _emission->getX() << " - "<< _emission->getY() << " - "<< _emission->getZ() << std::endl << 
+		"Speculaire : " <<  _speculaire->getX() << " - "<< _speculaire->getY() << " - "<< _speculaire->getZ() << std::endl <<
+		"------------------------------------" << std::endl;
 
 }

@@ -1,8 +1,16 @@
 #include "Texture.h"
-#include "stdlib.h"
+//#include "stdlib.h"
 #include <iostream>
 
+Texture::Texture()
+{
 
+}
+
+Texture::~Texture()
+{
+
+}
 
 
 std::string Texture::getFilename()
@@ -37,6 +45,10 @@ GLint Texture::getInternalFormat()
 GLubyte* Texture::getTexels()
 {
 	return _texels;
+}
+GLuint* Texture::getPtGlnum()
+{
+	return &_glnum;
 }
 GLuint Texture::getGlnum()
 {

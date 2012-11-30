@@ -21,7 +21,7 @@ public:
 	Vector3d<GLfloat>*    getEmission();
 	Vector3d<GLfloat>*    getSpeculaire();
 	GLfloat getBrillance();      
-	GLint getIndiceTex(); 
+	GLuint getIndiceTex(); 
 
 	void setTextured(bool ist);
 	void setNom(std::string n);
@@ -35,11 +35,12 @@ public:
 	void setSpeculaire(Vector3d<GLfloat>* sp);
 	void setSpeculaire(GLfloat r, GLfloat g, GLfloat b);
 	void setBrillance(GLfloat br);      
-	void setIndiceTex(GLint num); 
+	void setIndiceTex(GLuint num); 
 
 	void appliqueTexture();
 	void appliqueMatiere();
 	
+	void afficheString();
 
 private:
 	bool _textured;
@@ -50,7 +51,7 @@ private:
 	Vector3d<GLfloat>*    _emission;		/* couleur de la reflectance emise */
 	Vector3d<GLfloat>*    _speculaire;		/* couleur de la reflectance speculaire */
 	GLfloat _brillance;						/* coeff. de brillance */
-	GLint _indiceTex;						/* indice de la texture */
+	GLuint _indiceTex;						/* indice de la texture */
 };
 
 #endif
