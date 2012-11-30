@@ -23,10 +23,18 @@ void AbstractObjet::addFils(AbstractObjet* fils)
 	_fils.push_back(fils);
 }
 
-//void AbstractObjet::removeFils(AbstractObjet* fils)
-//{
-//	_fils.remove(fils);
-//}
+void AbstractObjet::removeFils(AbstractObjet* fils)
+{
+	for (unsigned int i = 0; i < getFils()->size(); ++i)
+	{
+		if (getFils()->at(i) == fils)
+		{
+			getFils()->at(i) = getFils()->at(getFils()->size() - 1); 
+			getFils()->pop_back();
+		}
+	}
+
+}
 
 std::vector<AbstractObjet*>* AbstractObjet::getFils()
 {
