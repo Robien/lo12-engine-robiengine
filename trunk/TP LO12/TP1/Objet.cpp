@@ -25,7 +25,7 @@ void Objet::affiche()
 	glMultMatrixd(getMatrice()->getMat());
    
 
-
+	
 
 	//on affiche les faces
 	for (unsigned int i = 0; i < _listeFace.size(); ++i)

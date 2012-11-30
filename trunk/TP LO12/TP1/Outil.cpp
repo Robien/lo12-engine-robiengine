@@ -22,6 +22,7 @@ GLuint Outil::addTexture(char* filename)
 		
 		if (strcmp(_scene->tabtex.at(i).filename, filename) == 0)
 		{
+
 			exist = true;
 		}
 	}
@@ -30,7 +31,8 @@ GLuint Outil::addTexture(char* filename)
 
 	if (exist)
 	{
-		return _scene->tabtex.at(i).glnum;
+		std::cout << "Texture "<< filename << " deja charge avec le numero :\t" <<  _scene->_tabTexture.at(i-1) << std::endl; 
+		return _scene->_tabTexture.at(i-1);
 	}
 
 	if(ReadPNGFromFile(texture))
@@ -42,7 +44,7 @@ GLuint Outil::addTexture(char* filename)
 	glGenTextures(1, &tmp);
 	_scene->_tabTexture.push_back(tmp);
 	texture->glnum = tmp;
-
+	std::cout << "Nouvelle texture : "<< filename << " numero :\t" << tmp << std::endl; 
 	glBindTexture(GL_TEXTURE_2D,texture->glnum);
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER, GL_NEAREST);

@@ -4,7 +4,7 @@
 #include "AbstractObjet.h"
 #include "Face.h"
 
-class Objet : AbstractObjet
+class Objet : public AbstractObjet
 {
 public:
 	Objet();

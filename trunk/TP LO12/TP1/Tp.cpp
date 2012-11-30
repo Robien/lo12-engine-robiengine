@@ -35,7 +35,9 @@
 #include "affiche.h"
 #include "Interactions.h"
 #include "Pngloader.h"
-
+#include "AbstractObjet.h"
+#include "Objet.h"
+#include <vector>
 
 
 
@@ -141,10 +143,45 @@ void Tp::run(char* filename, int verbose)
        
 		
 		
-        glutCreateWindow("TP1:cube");
-	     init();
+		glutCreateWindow("TP1:cube");
+		init();
+
+
+
+		std::vector<AbstractObjet*>* listeObjets = new std::vector<AbstractObjet*>();
+
+
+		for (int i = 0 ; i < _scene->nbobj ; i++)     	/* boucle sur les objets */
+		{
+			Objet* tmp = new Objet(new Matrice<GLdouble>(_scene->tabobj[i].transfo));
+
+			for (int j = 0 ; j < _scene->tabobj[i].nbface ; j++) 
+			{
+
+				Material* material = new Material();
+				Face* face = new Face(material);
+				face->setTexture(Outil::get()->addTexture("textures\\bois.png"));
+				float coordTex[4][2] = {{1,1},{0,1},{0,0},{1,0}} ;
+				for (int k = 0 ; k < _scene->tabface[_scene->tabobj[i].tabface[j]].nbpt ; k++)/* boucle sur les points */
+				{
+
+					int l = _scene->tabface[_scene->tabobj[i].tabface[j]].tabpt[k];
+					face->addPoint(new Vector3d<GLdouble>(_scene->tabpt[l].x, _scene->tabpt[l].y, _scene->tabpt[l].z), new Vector2d<GLdouble>(coordTex[k][0], coordTex[k][1]));
+
+				}
+
+				face->calculeNormales();
+				tmp->addFace(face);
+			}
+
+			listeObjets->push_back(tmp);
+		}
 		
-        glutMainLoop();
+		_affiche->setListeObjets(listeObjets);
+
+
+
+		glutMainLoop();
 
 }
 

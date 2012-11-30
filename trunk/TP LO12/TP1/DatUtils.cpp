@@ -46,7 +46,7 @@ char * readRawLine( FILE * file, int *num)
         return str;
 }
 
-/*Anleve les commentaires et les espaces inutiles d'une ligne du fichier texte*/
+/*Enleve les commentaires et les espaces inutiles d'une ligne du fichier texte*/
 char *cleanRawLine(char *line)
 {
         char *str=(char*)malloc(strlen(line)+1);
