@@ -2,11 +2,14 @@
 #define _ABSTRACT_OBJ_H
 
 #include <list>
+#include "Matrice.h"
+#include "Outil.h"
 
 class AbstractObjet
 {
 public:
 	AbstractObjet();
+	AbstractObjet(Matrice<GLdouble>* matrice);
 	virtual ~AbstractObjet();
 
 	virtual void affiche() = 0;
@@ -23,11 +26,16 @@ public:
 		removeFils(fils);
 	}
 
+public:
+	Matrice<GLdouble>* getMatrice();
+	void setMatrice(Matrice<GLdouble>* matrice);
+
 protected:
 	std::list<AbstractObjet*> getFils();
 
 private:
 	std::list<AbstractObjet*> _fils;
+	Matrice<GLdouble>* _matrice;
 
 };
 

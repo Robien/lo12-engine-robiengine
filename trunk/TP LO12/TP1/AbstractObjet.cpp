@@ -3,6 +3,13 @@
 
 AbstractObjet::AbstractObjet()
 {
+	//la matrice par défaut = matrice identitée
+	_matrice = new Matrice<GLdouble>();
+}
+
+AbstractObjet::AbstractObjet(Matrice<GLdouble>* matrice)
+{
+	_matrice = matrice;
 }
 
 
@@ -24,4 +31,14 @@ void AbstractObjet::removeFils(AbstractObjet* fils)
 std::list<AbstractObjet*> AbstractObjet::getFils()
 {
 	return _fils;
+}
+
+Matrice<GLdouble>* AbstractObjet::getMatrice()
+{
+	return _matrice;
+}
+
+void AbstractObjet::setMatrice(Matrice<GLdouble>* matrice)
+{
+	_matrice = matrice;
 }

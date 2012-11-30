@@ -2,7 +2,10 @@
 #include "AbstractObjet.h"
 
 
-Objet::Objet()
+Objet::Objet() : AbstractObjet()
+{
+}
+Objet::Objet(Matrice<GLdouble>* matrice):AbstractObjet(matrice)
 {
 }
 
@@ -18,6 +21,10 @@ void Objet::affiche()
 	glEnable(GL_TEXTURE_2D);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
+	glPushMatrix();
+	glMultMatrixd(getMatrice()->getMat());
+   
+
 
 
 	//on affiche les faces
@@ -31,6 +38,8 @@ void Objet::affiche()
 	{
 		(*lit)->affiche();
 	}
+
+	glPopMatrix();
 
 	glDisable(GL_TEXTURE_2D);
 	glDisable(GL_LIGHTING);
