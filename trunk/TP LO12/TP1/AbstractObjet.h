@@ -12,7 +12,7 @@ public:
 	AbstractObjet(Matrice<GLdouble>* matrice);
 	virtual ~AbstractObjet();
 
-	virtual void affiche() = 0;
+	virtual void affiche();
 
 public:
 	void addFils(AbstractObjet* fils);
@@ -20,21 +20,21 @@ public:
 	{
 		addFils(fils);
 	}
-	void removeFils(AbstractObjet* fils);
-	inline void dettache(AbstractObjet* fils)
-	{
-		removeFils(fils);
-	}
+	//void removeFils(AbstractObjet* fils);
+	//inline void dettache(AbstractObjet* fils)
+	//{
+	//	removeFils(fils);
+	//}
 
 public:
 	Matrice<GLdouble>* getMatrice();
 	void setMatrice(Matrice<GLdouble>* matrice);
 
 protected:
-	std::list<AbstractObjet*> getFils();
+	std::vector<AbstractObjet*>* getFils();
 
 private:
-	std::list<AbstractObjet*> _fils;
+	std::vector<AbstractObjet*> _fils;
 	Matrice<GLdouble>* _matrice;
 
 };

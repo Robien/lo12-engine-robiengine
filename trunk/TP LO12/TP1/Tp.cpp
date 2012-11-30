@@ -147,8 +147,9 @@ void Tp::run(char* filename, int verbose)
 		init();
 
 
+		AbstractObjet* root = new AbstractObjet();
 
-		std::vector<AbstractObjet*>* listeObjets = new std::vector<AbstractObjet*>();
+		//std::vector<AbstractObjet*>* listeObjets = new std::vector<AbstractObjet*>();
 
 
 		for (int i = 0 ; i < _scene->nbobj ; i++)     	/* boucle sur les objets */
@@ -174,10 +175,11 @@ void Tp::run(char* filename, int verbose)
 				tmp->addFace(face);
 			}
 
-			listeObjets->push_back(tmp);
+			root->attache(tmp);
+			
 		}
 		
-		_affiche->setListeObjets(listeObjets);
+		_affiche->setRoot(root);
 
 
 

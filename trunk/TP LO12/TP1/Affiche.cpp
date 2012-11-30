@@ -139,10 +139,7 @@ void Affiche::dessine_scene()
 		_eclairage->defAllSources(); //definition des sources de lumiere
 
 		
-		for (unsigned int i = 0; i < _listeObjets->size(); ++i)
-		{
-			_listeObjets->at(i)->affiche();
-		}
+		_root->affiche();
 
    //     for (i = 0 ; i < _scene->nbobj ; i++)     	/* boucle sur les objets */
      //   {
@@ -168,9 +165,9 @@ void Affiche::dessine_scene()
 /****************************************************************************/
 
 
-void Affiche::setListeObjets(std::vector<AbstractObjet*>* listeObjets)
+void Affiche::setRoot(AbstractObjet* root)
 {
 
-	_listeObjets = listeObjets;
+	_root = root;
 
 }

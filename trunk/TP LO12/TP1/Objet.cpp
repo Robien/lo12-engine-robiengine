@@ -34,10 +34,16 @@ void Objet::affiche()
 	}
 
 	//on affiche les objets fils
-	for(std::list<AbstractObjet*>::const_iterator lit = getFils().begin();lit != getFils().end();++lit) 
+	for (unsigned int i = 0; i < getFils()->size(); ++i)
 	{
-		(*lit)->affiche();
+		getFils()->at(i)->affiche();
 	}
+
+
+//	for(std::list<AbstractObjet*>::const_iterator lit = getFils().begin();lit != getFils().end();++lit) 
+	//{
+	//	(*lit)->affiche();
+//	}
 
 	glPopMatrix();
 
