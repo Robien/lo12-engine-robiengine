@@ -32,7 +32,8 @@ public:
 	Matrice(T* data)
 	{
 		//TODO : vérifier la taille
-		_data.assign(data, data + 16 - 1);
+		_data.assign(data, data + 16);
+		//std::cout << _data.size() << std::endl;
 	}
 	virtual ~Matrice(){}
 
