@@ -139,7 +139,7 @@ void Affiche::dessine_scene()
 		_eclairage->defAllSources(); //definition des sources de lumiere
 
 		
-		_root->affiche();
+		_scene->affiche();
 
    //     for (i = 0 ; i < _scene->nbobj ; i++)     	/* boucle sur les objets */
      //   {
@@ -165,9 +165,3 @@ void Affiche::dessine_scene()
 /****************************************************************************/
 
 
-void Affiche::setRoot(AbstractObjet* root)
-{
-
-	_root = root;
-
-}

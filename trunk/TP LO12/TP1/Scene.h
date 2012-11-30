@@ -25,8 +25,11 @@
         #include <GL/glu.h>
 #endif
 #include <vector>
+#include "AbstractObjet.h"
 
 class Skybox;
+
+
 
 class Scene
 {
@@ -221,7 +224,11 @@ SCENE;
 
 public:
 	Scene();
+	Scene(AbstractObjet* root);
 	virtual ~Scene();
+
+	void setRoot(AbstractObjet* root);
+	void affiche();
 
 public:
 
@@ -251,6 +258,9 @@ public:
 	int objetSelectionne;
 	std::vector<GLuint> _tabTexture;
 	Skybox* _skybox;
+	
+
+	AbstractObjet* _root;
 
 
 

@@ -25,9 +25,14 @@ Scene::~Scene()
 Scene::Scene()
 {
 	_skybox = new Skybox();
-	objetSelectionne = 0; 
+	objetSelectionne = 0;
+	_root = new AbstractObjet();
 }
-
+Scene::Scene(AbstractObjet* root) : _root(root)
+{
+	_skybox = new Skybox();
+	objetSelectionne = 0;
+}
 void Scene::resetObjet()
 {
 	glPushMatrix();
@@ -64,3 +69,12 @@ void Scene::rotateObjetSelectionne(GLdouble x,GLdouble y,GLdouble z, GLdouble an
 	glPopMatrix();
 }
 
+void Scene::setRoot(AbstractObjet* root)
+{
+	_root = root;
+}
+
+void Scene::affiche()
+{
+	_root->affiche();
+}

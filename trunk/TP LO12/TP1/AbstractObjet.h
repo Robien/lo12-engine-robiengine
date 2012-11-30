@@ -1,9 +1,11 @@
 #ifndef _ABSTRACT_OBJ_H	
 #define _ABSTRACT_OBJ_H
 
-#include <list>
+#include <vector>
 #include "Matrice.h"
-#include "Outil.h"
+#include "const.h"
+#include <iostream>
+
 
 class AbstractObjet
 {
