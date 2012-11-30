@@ -20,11 +20,11 @@ public:
 	{
 		addFils(fils);
 	}
-	//void removeFils(AbstractObjet* fils);
-	//inline void dettache(AbstractObjet* fils)
-	//{
-	//	removeFils(fils);
-	//}
+	void removeFils(AbstractObjet* fils);
+	inline void dettache(AbstractObjet* fils)
+	{
+		removeFils(fils);
+	}
 
 public:
 	Matrice<GLdouble>* getMatrice();
