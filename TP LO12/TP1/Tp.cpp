@@ -179,7 +179,7 @@ void Tp::run(char* filename, int verbose)
 			
 		}
 		
-		_affiche->setRoot(root);
+		_scene->setRoot(root);
 
 
 

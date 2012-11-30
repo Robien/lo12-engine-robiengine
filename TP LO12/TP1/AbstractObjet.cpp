@@ -1,6 +1,7 @@
 #include "AbstractObjet.h"
 
 
+
 AbstractObjet::AbstractObjet()
 {
 	//la matrice par défaut = matrice identitée

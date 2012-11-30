@@ -21,13 +21,8 @@ public:
 	void dessine_skybox(Scene::MCOORD pos);
 
 
-
-	void setRoot(AbstractObjet* root); 
-
-
 private:
 	void dessine_repere();
-	AbstractObjet* _root;
 	Scene* _scene;
 	Eclairage* _eclairage;
 

@@ -2,6 +2,7 @@
 #include "stdlib.h"
 #include "Pngloader.h"
 #include <iostream>
+#include "Scene.h"
 
 
 void Outil::initManager(Scene* scene)
