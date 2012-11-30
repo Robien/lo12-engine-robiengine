@@ -1,0 +1,13 @@
+# Blender MTL File: 'RobienSimpleLOP.blend'
+# Material Count: 1
+newmtl Material
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.542439 0.542439 0.542439
+Ks 0.174797 0.174797 0.174797
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd textureRobien2.png
+
+

@@ -1,0 +1,11 @@
+Import imp;
+	std::vector<Material* >* listmat = imp.importerMaterial("models/testExport/RobienSimpleLOP.mtl");
+	char d;
+	std::cout << "nb material :" << listmat->size() << std::endl;
+	for(unsigned int i =0; i < listmat->size(); i++)
+	{
+		listmat->at(i)->afficheString();
+	}
+	std::cin >> d;
+	
+	code test
