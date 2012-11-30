@@ -5,6 +5,20 @@
 Material::Material()
 {
 	_textured = false;
+	_nom = "";
+	_alpha = 1;
+	_ambiante = new Vector3d<GLfloat>(1, 1, 1);
+	_diffuse = new Vector3d<GLfloat>(0.8, 0.8, 0.8);
+	_emission = new Vector3d<GLfloat>(0, 0, 0);
+	_speculaire = new Vector3d<GLfloat>(0.8, 0.8, 0.8);
+	_brillance = 0;
+	_indiceTex =0;		
+}
+
+Material::Material(std::string nom)
+{
+	_textured = false;
+	_nom = nom;
 	_alpha = 1;
 	_ambiante = new Vector3d<GLfloat>(1, 1, 1);
 	_diffuse = new Vector3d<GLfloat>(0.8, 0.8, 0.8);
@@ -17,6 +31,7 @@ Material::Material()
 Material::Material(Material const& c)
 {
 	_textured = c._textured;
+	_nom = c._nom;
 	_alpha = c._alpha;
 	_ambiante = new Vector3d<GLfloat>(*(c._ambiante));
 	_diffuse = new Vector3d<GLfloat>(*(c._diffuse));
@@ -38,6 +53,10 @@ Material::~Material(void)
 bool Material::isTextured()
 {
 	return _textured;
+}
+std::string Material::getNom()
+{
+	return _nom;
 }
 GLfloat Material::getAlpha()
 {
@@ -72,47 +91,51 @@ void Material::setTextured(bool ist)
 {
 	_textured = ist;
 }
-void Material::getAlpha(GLfloat al)
+void Material::setNom(std::string n)
+{
+	_nom = n;
+}
+void Material::setAlpha(GLfloat al)
 {
 	_alpha = al;
 }
-void Material::getAmbiante(Vector3d<GLfloat>* am)
+void Material::setAmbiante(Vector3d<GLfloat>* am)
 {
 	_ambiante = am;
 }
-void Material::getAmbiante(GLfloat r, GLfloat g, GLfloat b)
+void Material::setAmbiante(GLfloat r, GLfloat g, GLfloat b)
 {
 	_ambiante = new Vector3d<GLfloat>(r, g, b);
 }
-void Material::getDiffuse(Vector3d<GLfloat>* di)
+void Material::setDiffuse(Vector3d<GLfloat>* di)
 {
 	_diffuse = di;
 }
-void Material::getDiffuse(GLfloat r, GLfloat g, GLfloat b)
+void Material::setDiffuse(GLfloat r, GLfloat g, GLfloat b)
 {
 	_diffuse = new Vector3d<GLfloat>(r, g, b);
 }
-void Material::getEmission(Vector3d<GLfloat>* em)
+void Material::setEmission(Vector3d<GLfloat>* em)
 {
 	_emission = em;
 }
-void Material::getEmission(GLfloat r, GLfloat g, GLfloat b)
+void Material::setEmission(GLfloat r, GLfloat g, GLfloat b)
 {
 	_emission = new Vector3d<GLfloat>(r, g, b);
 }
-void Material::getSpeculaire(Vector3d<GLfloat>* sp)
+void Material::setSpeculaire(Vector3d<GLfloat>* sp)
 {
 	_speculaire = sp;
 }
-void Material::getSpeculaire(GLfloat r, GLfloat g, GLfloat b)
+void Material::setSpeculaire(GLfloat r, GLfloat g, GLfloat b)
 {
 	_speculaire = new Vector3d<GLfloat>(r, g, b);
 }
-void Material::getBrillance(GLfloat br)
+void Material::setBrillance(GLfloat br)
 {
 	_brillance = br;
 }    
-void Material::getIndiceTex(GLint num)
+void Material::setIndiceTex(GLint num)
 {
 	_indiceTex = num;
 
