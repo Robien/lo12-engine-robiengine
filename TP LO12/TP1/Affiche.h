@@ -22,12 +22,12 @@ public:
 
 
 
-	void setListeObjets(std::vector<AbstractObjet*>* listeObjets); 
+	void setRoot(AbstractObjet* root); 
 
 
 private:
 	void dessine_repere();
-	std::vector<AbstractObjet*>* _listeObjets;
+	AbstractObjet* _root;
 	Scene* _scene;
 	Eclairage* _eclairage;
 

@@ -23,14 +23,14 @@ void AbstractObjet::addFils(AbstractObjet* fils)
 	_fils.push_back(fils);
 }
 
-void AbstractObjet::removeFils(AbstractObjet* fils)
-{
-	_fils.remove(fils);
-}
+//void AbstractObjet::removeFils(AbstractObjet* fils)
+//{
+//	_fils.remove(fils);
+//}
 
-std::list<AbstractObjet*> AbstractObjet::getFils()
+std::vector<AbstractObjet*>* AbstractObjet::getFils()
 {
-	return _fils;
+	return &_fils;
 }
 
 Matrice<GLdouble>* AbstractObjet::getMatrice()
@@ -41,4 +41,36 @@ Matrice<GLdouble>* AbstractObjet::getMatrice()
 void AbstractObjet::setMatrice(Matrice<GLdouble>* matrice)
 {
 	_matrice = matrice;
+}
+
+
+void AbstractObjet::affiche()
+{
+	glEnable(GL_LIGHTING);
+	glEnable(GL_TEXTURE_2D);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+	glPushMatrix();
+	glMultMatrixd(getMatrice()->getMat());
+
+	 
+
+	//on affiche les objets fils
+
+	 for (unsigned int i = 0; i < getFils()->size(); ++i)
+	 {
+		 getFils()->at(i)->affiche();
+	 }
+
+
+//	for(std::list<AbstractObjet*>::const_iterator lit = getFils().begin();lit != getFils().end();++lit) 
+//	{
+//		std::cout << lit._Ptr << std::endl;
+//		(*lit)->affiche();
+//	}
+
+	glPopMatrix();
+
+	glDisable(GL_TEXTURE_2D);
+	glDisable(GL_LIGHTING);
 }
