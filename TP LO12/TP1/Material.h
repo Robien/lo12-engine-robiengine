@@ -3,15 +3,18 @@
 
 #include "Vector3d.h"
 #include "Outil.h"
+#include <iostream>
 
 class Material
 {
 public:
 	Material();
+	Material(std::string nom);
 	Material(Material const& c);
 	virtual ~Material();
 
 	bool isTextured();
+	std::string getNom();
 	GLfloat getAlpha();
 	Vector3d<GLfloat>*    getAmbiante();
 	Vector3d<GLfloat>*    getDiffuse();
@@ -21,17 +24,18 @@ public:
 	GLint getIndiceTex(); 
 
 	void setTextured(bool ist);
-	void getAlpha(GLfloat al);
-	void getAmbiante(Vector3d<GLfloat>* am);
-	void getAmbiante(GLfloat r, GLfloat g, GLfloat b);
-	void getDiffuse(Vector3d<GLfloat>* di);
-	void getDiffuse(GLfloat r, GLfloat g, GLfloat b);
-	void getEmission(Vector3d<GLfloat>* em);
-	void getEmission(GLfloat r, GLfloat g, GLfloat b);
-	void getSpeculaire(Vector3d<GLfloat>* sp);
-	void getSpeculaire(GLfloat r, GLfloat g, GLfloat b);
-	void getBrillance(GLfloat br);      
-	void getIndiceTex(GLint num); 
+	void setNom(std::string n);
+	void setAlpha(GLfloat al);
+	void setAmbiante(Vector3d<GLfloat>* am);
+	void setAmbiante(GLfloat r, GLfloat g, GLfloat b);
+	void setDiffuse(Vector3d<GLfloat>* di);
+	void setDiffuse(GLfloat r, GLfloat g, GLfloat b);
+	void setEmission(Vector3d<GLfloat>* em);
+	void setEmission(GLfloat r, GLfloat g, GLfloat b);
+	void setSpeculaire(Vector3d<GLfloat>* sp);
+	void setSpeculaire(GLfloat r, GLfloat g, GLfloat b);
+	void setBrillance(GLfloat br);      
+	void setIndiceTex(GLint num); 
 
 	void appliqueTexture();
 	void appliqueMatiere();
@@ -39,6 +43,7 @@ public:
 
 private:
 	bool _textured;
+	std::string _nom;
 	GLfloat _alpha;							/* coeff. de transparence */
 	Vector3d<GLfloat>*    _ambiante;		/* couleur de la reflectance ambiante */
 	Vector3d<GLfloat>*    _diffuse;			/* couleur de la reflectance diffuse */

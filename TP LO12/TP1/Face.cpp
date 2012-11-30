@@ -87,5 +87,5 @@ void Face::addPoint(Vector3d<GLdouble>* coordonnees, Vector2d<GLdouble>* coordon
 void Face::setTexture(GLuint texture)
 {
 	_material->setTextured(true);
-	_material->getIndiceTex(texture);
+	_material->setIndiceTex(texture);
 }
