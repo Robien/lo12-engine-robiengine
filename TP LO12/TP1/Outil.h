@@ -12,7 +12,7 @@ class Outil : public Singleton<Outil>
 {
 public:
 	void initManager(Scene* scene);
-	GLuint addTexture(char* filename);
+	GLuint addTexture(char* filename); //TODO DELETE
 
 public:
 	template <typename T>

@@ -68,9 +68,12 @@
 #include "const.h"
 #include "Pngloader.h"
 
-#include "scene.h"
+#include "scene.h" //TODO DELETE
 
-
+Pngloader::Pngloader()
+{}
+ Pngloader::~Pngloader()
+{}
 
 void Pngloader::GetPNGtextureInfo (int color_type, Texture* texinfo)
 {

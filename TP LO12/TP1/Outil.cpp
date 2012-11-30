@@ -9,7 +9,7 @@ void Outil::initManager(Scene* scene)
 	_scene = scene;
 }
 
-
+/*TODO DELETE*/
 GLuint Outil::addTexture(char* filename)
 {
 	Scene::MTEX * texture = (Scene::MTEX*) malloc (sizeof(Scene::MTEX));

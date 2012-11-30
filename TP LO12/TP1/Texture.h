@@ -18,6 +18,7 @@ public:
 	GLenum getFormat();
 	GLint getInternalFormat();
 	GLubyte* getTexels();
+	GLuint* getPtGlnum();
 	GLuint getGlnum();
 
 	void setFilename(std::string f);
