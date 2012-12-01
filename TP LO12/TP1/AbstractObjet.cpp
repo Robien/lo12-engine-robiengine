@@ -16,6 +16,11 @@ AbstractObjet::AbstractObjet(Matrice<GLdouble>* matrice)
 
 AbstractObjet::~AbstractObjet()
 {
+	for (unsigned int i = 0; i < _fils.size(); ++i)
+	{
+		delete (_fils.at(i));
+	}
+	_fils.clear();
 }
 
 
