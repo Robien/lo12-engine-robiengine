@@ -150,7 +150,6 @@ void Material::appliqueTexture()
 
 void Material::appliqueMatiere()
 {
-	//TODO : free ...
 	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, _ambiante->getCStyle());
 	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE,_diffuse->getCStyle());
 	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, _speculaire->getCStyle());

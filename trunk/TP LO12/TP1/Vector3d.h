@@ -5,18 +5,25 @@ template <typename T>
 class Vector3d
 {
 public:
-	Vector3d(){}
+	Vector3d()
+	{
+		_test = (T*) (malloc(3*sizeof(T)));
+	}
 	Vector3d(const Vector3d<T>& c)
 	{
 		_x = c._x;
 		_y = c._y;
 		_z = c._z;
+		_test = (T*) (malloc(3*sizeof(T)));
 	}
 	Vector3d(T x, T y, T z) :_x(x), _y(y), _z(z)
 	{
-
+		_test = (T*) (malloc(3*sizeof(T)));
 	}
-	virtual ~Vector3d(){}
+	virtual ~Vector3d()
+	{
+		delete _test;
+	}
 
 public:
 	const T getX()
@@ -54,11 +61,11 @@ public:
 	}
 	T* getCStyle() //attention aux free !
 	{
-		T* tmp = (T*) (malloc(3*sizeof(T)));
-		tmp[0] = _x;
-		tmp[1] = _y;
-		tmp[2] = _z;
-		return tmp;
+		
+		_test[0] = _x;
+		_test[1] = _y;
+		_test[2] = _z;
+		return _test;
 	}
 
 public:
@@ -73,6 +80,7 @@ public:
 
 private:
 	T _x, _y, _z;
+	T* _test;
 
 };
 
