@@ -154,7 +154,7 @@ void Tp::run(char* filename, int verbose)
 
 
 		
-		for (int i = 0 ; i < _scene->nbobj ; i++)     	//boucle sur les objets 
+		/*for (int i = 0 ; i < _scene->nbobj ; i++)     	//boucle sur les objets 
 		{
 			Objet* tmp = new Objet(new Matrice<GLdouble>(_scene->tabobj[i].transfo));
 
@@ -179,15 +179,15 @@ void Tp::run(char* filename, int verbose)
 
 			root->attache(tmp);
 			
-		}
-		/*Import imp;
+		}*/
+		Import imp;
 		std::vector<Objet* >* listobj = imp.importer("models/testExport/RobienSimpleLOP.obj");
 		for(unsigned int i =0; i < listobj->size(); i++)
 		{
 			//listobj->at(i)->afficheString();
 			//listobj->at(i)->
 			root->attache(listobj->at(i));
-		}*/
+		}
 		
 		_scene->setRoot(root);
 
