@@ -206,6 +206,7 @@ void Eclairage::afficherSphereSpot(GLint i)
 	gluSphere(quadObj, 0.1, 10, 10);
 	glEnable(GL_LIGHTING);
 	glPopMatrix();
+	gluDeleteQuadric(quadObj);
 
 }
 
