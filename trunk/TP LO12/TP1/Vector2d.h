@@ -5,17 +5,24 @@ template <typename T>
 class Vector2d
 {
 public:
-	Vector2d(){}
+	Vector2d()
+	{
+		_test = (T*) (malloc(2*sizeof(T)));
+	}
 	Vector2d(const Vector2d<T>& c)
 	{
 		_x = c._x
 		_y = c._y
+		_test = (T*) (malloc(2*sizeof(T)));
 	}
 	Vector2d(T x, T y) :_x(x), _y(y)
 	{
-
+		_test = (T*) (malloc(2*sizeof(T)));
 	}
-	virtual ~Vector2d(){}
+	virtual ~Vector2d()
+	{
+		delete _test;
+	}
 
 public:
 	const T getX()
@@ -45,10 +52,9 @@ public:
 	
 	T* getCStyle() //attention aux free !
 	{
-		T* tmp = (T*) (malloc(3*sizeof(T)));
-		tmp[0] = _x;
-		tmp[1] = _y;
-		return tmp;
+		_test[0] = _x;
+		_test[1] = _y;
+		return _test;
 	}
 public:
 	virtual void print()
@@ -62,6 +68,7 @@ public:
 
 private:
 	T _x, _y;
+	T* _test;
 
 };
 
