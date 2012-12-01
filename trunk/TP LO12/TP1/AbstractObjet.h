@@ -10,7 +10,7 @@
 class AbstractObjet
 {
 public:
-	AbstractObjet();
+	AbstractObjet(std::string str = "nom_defaut");
 	AbstractObjet(Matrice<GLdouble>* matrice);
 	virtual ~AbstractObjet();
 
@@ -38,6 +38,7 @@ protected:
 private:
 	std::vector<AbstractObjet*> _fils;
 	Matrice<GLdouble>* _matrice;
+	std::string _nom;
 
 };
 

@@ -2,9 +2,10 @@
 
 
 
-AbstractObjet::AbstractObjet()
+AbstractObjet::AbstractObjet(std::string str)
 {
 	//la matrice par défaut = matrice identitée
+	_nom = str;
 	_matrice = new Matrice<GLdouble>();
 }
 

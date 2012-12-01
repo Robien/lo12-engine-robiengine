@@ -7,7 +7,7 @@
 class Objet : public AbstractObjet
 {
 public:
-	Objet();
+	Objet(std::string = "nom_defaut");
 	Objet(Matrice<GLdouble>* matrice);
 	virtual ~Objet();
 
@@ -17,7 +17,7 @@ public:
 
 private:
 	std::vector<Face*> _listeFace;
-
+	std::string name;
 };
 
 

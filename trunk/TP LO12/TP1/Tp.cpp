@@ -19,6 +19,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "Import.h"
 
 #if defined(__APPLE__) && defined(__MACH__)
         #include <GLUT/glut.h>
@@ -152,7 +153,8 @@ void Tp::run(char* filename, int verbose)
 		//std::vector<AbstractObjet*>* listeObjets = new std::vector<AbstractObjet*>();
 
 
-		for (int i = 0 ; i < _scene->nbobj ; i++)     	/* boucle sur les objets */
+		
+		for (int i = 0 ; i < _scene->nbobj ; i++)     	//boucle sur les objets 
 		{
 			Objet* tmp = new Objet(new Matrice<GLdouble>(_scene->tabobj[i].transfo));
 
@@ -163,7 +165,7 @@ void Tp::run(char* filename, int verbose)
 				Face* face = new Face(material);
 				face->setTexture(Outil::get()->addTexture("textures\\bois.png"));
 				float coordTex[4][2] = {{1,1},{0,1},{0,0},{1,0}} ;
-				for (int k = 0 ; k < _scene->tabface[_scene->tabobj[i].tabface[j]].nbpt ; k++)/* boucle sur les points */
+				for (int k = 0 ; k < _scene->tabface[_scene->tabobj[i].tabface[j]].nbpt ; k++) // boucle sur les points 
 				{
 
 					int l = _scene->tabface[_scene->tabobj[i].tabface[j]].tabpt[k];
@@ -178,6 +180,14 @@ void Tp::run(char* filename, int verbose)
 			root->attache(tmp);
 			
 		}
+		/*Import imp;
+		std::vector<Objet* >* listobj = imp.importer("models/testExport/RobienSimpleLOP.obj");
+		for(unsigned int i =0; i < listobj->size(); i++)
+		{
+			//listobj->at(i)->afficheString();
+			//listobj->at(i)->
+			root->attache(listobj->at(i));
+		}*/
 		
 		_scene->setRoot(root);
 
