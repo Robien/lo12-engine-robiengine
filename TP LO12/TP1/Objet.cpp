@@ -2,7 +2,7 @@
 #include "AbstractObjet.h"
 
 
-Objet::Objet() : AbstractObjet()
+Objet::Objet(std::string str) : AbstractObjet(str)
 {
 }
 Objet::Objet(Matrice<GLdouble>* matrice):AbstractObjet(matrice)
