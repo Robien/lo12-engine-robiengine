@@ -50,6 +50,8 @@ Material::~Material(void)
 
 }
 
+
+/*--------Getter-------*/
 bool Material::isTextured()
 {
 	return _textured;
@@ -87,6 +89,8 @@ GLuint Material::getIndiceTex()
 	return _indiceTex;
 }
 
+
+/*--------Setter-------*/
 void Material::setTextured(bool ist)
 {
 	_textured = ist;
@@ -105,7 +109,9 @@ void Material::setAmbiante(Vector3d<GLfloat>* am)
 }
 void Material::setAmbiante(GLfloat r, GLfloat g, GLfloat b)
 {
-	_ambiante = new Vector3d<GLfloat>(r, g, b);
+	_ambiante->setX(r);
+	_ambiante->setY(g);
+	_ambiante->setZ(b);
 }
 void Material::setDiffuse(Vector3d<GLfloat>* di)
 {
@@ -113,7 +119,9 @@ void Material::setDiffuse(Vector3d<GLfloat>* di)
 }
 void Material::setDiffuse(GLfloat r, GLfloat g, GLfloat b)
 {
-	_diffuse = new Vector3d<GLfloat>(r, g, b);
+	_diffuse->setX(r);
+	_diffuse->setY(g);
+	_diffuse->setZ(b);
 }
 void Material::setEmission(Vector3d<GLfloat>* em)
 {
@@ -121,7 +129,9 @@ void Material::setEmission(Vector3d<GLfloat>* em)
 }
 void Material::setEmission(GLfloat r, GLfloat g, GLfloat b)
 {
-	_emission = new Vector3d<GLfloat>(r, g, b);
+	_emission->setX(r);
+	_emission->setY(g);
+	_emission->setZ(b);
 }
 void Material::setSpeculaire(Vector3d<GLfloat>* sp)
 {
@@ -129,7 +139,9 @@ void Material::setSpeculaire(Vector3d<GLfloat>* sp)
 }
 void Material::setSpeculaire(GLfloat r, GLfloat g, GLfloat b)
 {
-	_speculaire = new Vector3d<GLfloat>(r, g, b);
+	_speculaire->setX(r);
+	_speculaire->setY(g);
+	_speculaire->setZ(b);
 }
 void Material::setBrillance(GLfloat br)
 {

@@ -9,7 +9,7 @@ Texture::Texture()
 
 Texture::~Texture()
 {
-
+	free(_texels);
 }
 
 
