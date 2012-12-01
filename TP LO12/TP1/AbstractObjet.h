@@ -31,6 +31,10 @@ public:
 public:
 	Matrice<GLdouble>* getMatrice();
 	void setMatrice(Matrice<GLdouble>* matrice);
+	Matrice<GLdouble>& matrice()
+	{
+		return *_matrice;
+	}
 
 protected:
 	std::vector<AbstractObjet*>* getFils();

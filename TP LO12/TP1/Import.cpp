@@ -109,7 +109,7 @@ std::vector<Objet* >* Import::importer(std::string namefile)
 					else 
 					{
 						int indice = atoi(listCoord.at(0).c_str())-1;
-						int indiceText = atoi(listCoord.at(0).c_str())-1;
+						int indiceText = atoi(listCoord.at(1).c_str())-1;
 						facette->addPoint(listSommet.at(indice),listPointUV.at(indiceText));
 					}
 				}

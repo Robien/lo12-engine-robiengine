@@ -40,7 +40,7 @@ Affiche::~Affiche()
 
 void Affiche::dessine_face(Scene::INDICE_FACE iface)
 {
-
+	std::cout << "IL NE FAUT PAS UTILISER CETTE METHODE !!!" << std::endl;
 		Face face(new Material());
 		face.setTexture( _scene->_tabTexture[0]);
         int i;  /* compteur de point */
@@ -102,6 +102,7 @@ void Affiche::dessine_repere()
 /*****************************************************************************/
 void Affiche::dessine_objet(Scene::OBJET objet)
 {
+		std::cout << "IL NE FAUT PAS UTILISER CETTE METHODE !!!" << std::endl;
         int  i;      /* compteur de faces */
 		glEnable(GL_LIGHTING);
 		glEnable(GL_TEXTURE_2D);
@@ -133,6 +134,7 @@ void Affiche::dessine_scene()
 		dessine_skybox(Interactions::get()->_ob->getPosition());
 
         dessine_repere();
+
         //glIndexi(2);		 /* couleur de la scene en mode index */
 		//  glColor3f(1, .5,.5);   /* couleur de la scene en mode RGB   */
 		
