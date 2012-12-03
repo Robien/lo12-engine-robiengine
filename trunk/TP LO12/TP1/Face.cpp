@@ -38,6 +38,10 @@ void Face::affiche()
 	{
 		_material->appliqueTexture();
 	}
+	else
+	{
+		glBindTexture(GL_TEXTURE_2D, 0);
+	}
 
 	if (_isFilted)
 	{
