@@ -3,12 +3,16 @@
 
 #include "AbstractObjet.h"
 #include "Vector3d.h"
+#include "Matrice.h"
 
 class AllureFaisceau
 {
 public:
 	AllureFaisceau(GLdouble k=2, GLdouble theta=180);
 	virtual ~AllureFaisceau();
+
+	GLdouble getCoefK();
+	GLdouble getAngle();
 private:
 	GLdouble _k;
     GLdouble _theta;
@@ -17,30 +21,32 @@ private:
 class Lumiere : public	AbstractObjet
 {
 public:
-	Lumiere();
+	Lumiere(std::string name = "lumiere_defaut");
+	Lumiere(Matrice<GLdouble>* mat, Vector3d<GLdouble> amb, Vector3d<GLdouble> cou, AllureFaisceau alf, std::string name = "lumiere_defaut");
+	Lumiere(Vector3d<GLdouble> amb, Vector3d<GLdouble> cou, AllureFaisceau alf, std::string name = "lumiere_defaut");
 	virtual ~Lumiere();
 	
-	void def_sources(int i);
-	void def_modele();
-	void def_matiere(int i);
-	void defAllSources();
-	void affiche();
-private :
-	//GLenum lumiere_i(int i);
+	void def_sources(GLenum source);
+	virtual void affiche();
+
+	void setAfficheSphere(bool aff);
+
+private:
+
 	//void rgb2rgbaf(Scene::RGB *rgb,GLfloat alpha,Scene::RGBAF *rgbaf);
 	//void mcoord2mcoordf(Scene::MCOORD *mcoord,Scene::MCOORDF *mcoordf);
 
 	
 
 private :
-	bool active;
+	bool _active;
 	Vector3d<GLdouble> _ambiante;         /* couleur "ambiente" */
     Vector3d<GLdouble> _couleur;          /* couleur de la source */
-    Vector3d<GLdouble> _position;         /* position de la source */
+   // Vector3d<GLdouble> _position;         /* position de la source */
     AllureFaisceau _allure_faisceau;  /* allure du faisceau lumineux */
-    Vector3d<GLdouble> _direction;        /* direction du faisceau lumineux */
+   // Vector3d<GLdouble> _direction;        /* direction du faisceau lumineux */
 
-	bool afficheSphere;
+	bool _afficheSphere;
 	GLUquadricObj* _sphere; //sphere
     //bool		allume;
 
