@@ -2,6 +2,7 @@
 #define _MATRICE_H
 
 #include <vector>
+#include "Vector3d.h"
 #include "const.h"
 
 template <typename T>
@@ -57,6 +58,26 @@ public:
 			}
 			std::cout << std::endl;
 		}
+	}
+
+	Vector3d<T> getPosition()
+	{
+		Vector3d<T> pos;
+		pos.setX(_data.at(12)/_data.at(15));
+		pos.setY(_data.at(13)/_data.at(15));
+		pos.setZ(_data.at(14)/_data.at(15));
+
+		return pos;
+	}
+
+	Vector3d<T> getDirection()
+	{
+		Vector3d<T> dir;
+		dir.setX(_data.at(0));
+		dir.setY(_data.at(5));
+		dir.setZ(_data.at(11));
+
+		return dir;
 	}
 
 	void rotate(GLdouble angle, GLdouble axeX, GLdouble axeY, GLdouble axeZ)

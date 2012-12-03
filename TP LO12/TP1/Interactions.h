@@ -1,36 +1,29 @@
 #pragma once
 
 #include <iostream>
-
-#ifdef _MSC_VER
-#define TEMPO_WIN32
-#else
-#define TEMPO_UNIX
-#endif
-
-#ifdef TEMPO_UNIX
-#include <unistd.h> /*Temporisation pour unix*/
-#endif
-
-#ifdef TEMPO_WIN32
-#include <windows.h> /*Temporisation pour windows*/
-#endif
-
-#if defined(__APPLE__) && defined(__MACH__)
-        #include <GLUT/glut.h>
-        #include <OpenGL/gl.h>
-        #include <OpenGL/glu.h>
-#else
-        #include <glut.h>
-        #include <GL/gl.h>
-        #include <GL/glu.h>
-#endif
-
-
 #include "Singleton.h"
 #include "Observateur.h"
 #include "Scene.h"
 #include "Affiche.h"
+#include "Outil.h"
+#include <vector>
+
+
+class CB_Interraction
+{
+public:
+	CB_Interraction(){}
+	virtual ~CB_Interraction(){}
+public:
+	virtual void eventsSpecialKey(int key, int x, int y){}
+	virtual void eventsKey(unsigned char key, int x, int y){}
+	virtual void eventsMouse(int boutton, int etat, int x, int y){}
+	virtual void eventsMotionMouse(int x, int y){}
+	virtual void idle(){}
+	virtual void reshape(int largeur, int hauteur){}
+	virtual void dessine_scene(){}
+
+};
 
 class Interactions : public Singleton<Interactions>
 {
@@ -39,6 +32,10 @@ public:
 	Interactions();
 	virtual ~Interactions();
 	void initInteraction(Observateur* ob, Scene* scene, Affiche* affiche);
+
+public:
+	void addEventCallBack(CB_Interraction* callBack);
+
 
 private:
 
@@ -53,11 +50,16 @@ private:
 
 	Affiche* _affiche;
 	Scene* _scene;
-public :Observateur* _ob;
+public:
+	Observateur* _ob;
 private:
 	int _posCurseurX;
 	int _posCurseurY;
 	int _mouseState;
+
+private:
+	std::vector<CB_Interraction*> _cb;
+
 };
 
 
