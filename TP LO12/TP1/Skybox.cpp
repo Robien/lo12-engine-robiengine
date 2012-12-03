@@ -1,6 +1,7 @@
 #include "const.h"
 #include "Outil.h"
 #include "Skybox.h"
+#include "Matrice.h"
 
 //*****************************************************************************************************************************
 Skybox::Skybox()
@@ -28,7 +29,7 @@ void Skybox::charger()
 
 
 //*****************************************************************************************************************************
-void Skybox::dessine_box(Scene::MCOORD coord)
+void Skybox::dessine_box(Scene::MCOORD /*coord*/)
 {
 	float t=1.0;
 	// Désactivation de l'écriture dans le Z-buffer
@@ -59,8 +60,21 @@ void Skybox::dessine_box(Scene::MCOORD coord)
      //   coord.x, coord.y, coord.z,
       //  0,1,0);
 	
+	GLdouble* newData = (GLdouble*) malloc(16*sizeof(GLdouble));
+	glGetDoublev(GL_MODELVIEW_MATRIX, newData);
+	newData[12] = 0;
+	newData[13] = 0;
+	newData[14] = 0;
+	newData[15] = 1;
+	glLoadMatrixd(newData);
+	delete newData;
 
-	glTranslated(coord.x, coord.y, coord.z);
+	//glTranslated(coord.x, coord.y, coord.z);
+
+		//	
+		
+
+
 
 	glColor4f(1,1,1,1);
 	// dessin de la box

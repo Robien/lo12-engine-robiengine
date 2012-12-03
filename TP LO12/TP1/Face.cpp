@@ -5,6 +5,7 @@ Face::Face(Material* material)
 {
 	_material = material;
 	_normale = NULL;
+	_isFilted = false;
 }
 
 
@@ -38,9 +39,14 @@ void Face::affiche()
 		_material->appliqueTexture();
 	}
 
-	//glBegin(GL_LINE_LOOP); // affichage fils de fer
-
-	glBegin(GL_POLYGON);
+	if (_isFilted)
+	{
+		glBegin(GL_LINE_LOOP); // affichage fils de fer
+	}
+	else
+	{
+		glBegin(GL_POLYGON);
+	}
 	//_eclairage->def_matiere(_scene->tabface[iface].imat);
 	_material->appliqueMatiere();
 	if (_normale != NULL)
@@ -50,6 +56,7 @@ void Face::affiche()
 	else
 	{
 		std::cout << "Les normales n ont pas ete calculees ! Il faut utiliser la methode calculnormales !" << std::endl;
+		calculeNormales();
 	}
 
 	float coordTex[4][2] = {{1,1},{0,1},{0,0},{1,0}} ;
@@ -88,4 +95,9 @@ void Face::setTexture(GLuint texture)
 {
 	_material->setTextured(true);
 	_material->setIndiceTex(texture);
+}
+
+void Face::toggleFilted()
+{
+	_isFilted = !_isFilted;
 }

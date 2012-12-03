@@ -4,13 +4,16 @@
 
 AbstractObjet::AbstractObjet(std::string str)
 {
-	//la matrice par défaut = matrice identitée
+	_isFilted = false;
 	_nom = str;
+	//la matrice par défaut = matrice identitée
 	_matrice = new Matrice<GLdouble>();
 }
 
-AbstractObjet::AbstractObjet(Matrice<GLdouble>* matrice)
+AbstractObjet::AbstractObjet(Matrice<GLdouble>* matrice, std::string str)
 {
+	_isFilted = false;
+	_nom = str;
 	_matrice = matrice;
 }
 
@@ -88,4 +91,13 @@ void AbstractObjet::affiche()
 
 	glDisable(GL_TEXTURE_2D);
 	glDisable(GL_LIGHTING);
+}
+
+void AbstractObjet::toggleFilted()
+{
+	_isFilted = !_isFilted;
+	for (unsigned int i = 0; i < getFils()->size(); ++i)
+	 {
+		 getFils()->at(i)->toggleFilted();
+	 }
 }

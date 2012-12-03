@@ -26,6 +26,7 @@
 #endif
 #include <vector>
 #include "AbstractObjet.h"
+#include "Camera.h"
 
 class Skybox;
 
@@ -223,12 +224,14 @@ SCENE;
 ---------------------------------------------------------------------------*/
 
 public:
-	Scene();
-	Scene(AbstractObjet* root);
+	Scene(Camera* mainCamera = NULL);
+	Scene(AbstractObjet* root, Camera* mainCamera = NULL);
 	virtual ~Scene();
 
 	void setRoot(AbstractObjet* root);
 	void affiche();
+
+	void toggleFilted();
 
 public:
 
@@ -237,6 +240,7 @@ public:
 
 	void translateObjetSelectionne(GLdouble x,GLdouble y,GLdouble z);
 	void rotateObjetSelectionne(GLdouble x,GLdouble y,GLdouble z, GLdouble angle);
+	AbstractObjet* getRoot();
 
 public:
 
@@ -261,6 +265,7 @@ public:
 	
 
 	AbstractObjet* _root;
+	Camera* _mainCamera;
 
 
 

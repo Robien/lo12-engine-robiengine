@@ -20,12 +20,14 @@ public:
 
 public:
 	virtual void affiche();
+	void toggleFilted();
 
 private:
 	std::vector<Vector3d<GLdouble>* > _listePoints;
 	std::vector<Vector2d<GLdouble>* > _listeCoordonneesTextures;
 	Vector3d<GLdouble>* _normale;
 	Material* _material;
+	bool _isFilted;
 };
 
 #endif

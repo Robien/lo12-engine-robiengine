@@ -182,6 +182,17 @@ void Tp::run(char* filename, int verbose)
 		}*/
 		Import imp;
 		std::vector<Objet* >* listobj = imp.importer("models/testExport/RobienSimpleLOP.obj");
+		
+		for(unsigned int i =0; i < listobj->size(); i++)
+		{
+			listobj->at(i)->matrice().rotate(90, 0, 0, 1);
+			//listobj->at(i)->afficheString();
+			//listobj->at(i)->
+			root->attache(listobj->at(i));
+		}
+		
+		listobj = imp.importer("models/testExport/RobienFinal.obj");
+		
 		for(unsigned int i =0; i < listobj->size(); i++)
 		{
 			listobj->at(i)->matrice().rotate(90, 0, 0, 1);

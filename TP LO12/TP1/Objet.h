@@ -11,9 +11,12 @@ public:
 	Objet(Matrice<GLdouble>* matrice);
 	virtual ~Objet();
 
+public:
 	virtual void affiche();
 
 	void addFace(Face* face);
+
+	virtual void toggleFilted();
 
 private:
 	std::vector<Face*> _listeFace;
