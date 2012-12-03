@@ -47,11 +47,14 @@ GLuint Outil::addTexture(char* filename)
 	texture->glnum = tmp;
 	std::cout << "Nouvelle texture : "<< filename << " numero :\t" << tmp << std::endl; 
 	glBindTexture(GL_TEXTURE_2D,texture->glnum);
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexImage2D(GL_TEXTURE_2D, 0,texture->internalFormat, texture->width,texture->height,0, texture->format, GL_UNSIGNED_BYTE,texture->texels);
-
 	
+	glTexImage2D(GL_TEXTURE_2D, 0,texture->internalFormat, texture->width,texture->height,0, texture->format, GL_UNSIGNED_BYTE,texture->texels);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, 0x812F);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, 0x812F);
+	glBindTexture(GL_TEXTURE_2D,0);
 
 	return tmp;
 }
