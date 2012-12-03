@@ -1,6 +1,8 @@
 #ifndef _CAMERA_H	
 #define _CAMERA_H
 
+#include "Matrice.h"
+
 class Camera
 {
 public:
@@ -9,7 +11,7 @@ public:
 
 	virtual void affiche();
 private:
-	int i;
+	Matrice<GLdouble> _matrice;
 };
 
 

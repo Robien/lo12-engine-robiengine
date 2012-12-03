@@ -17,13 +17,21 @@ Interactions::~Interactions()
 {
 }
 
-
+void Interactions::addEventCallBack(CB_Interraction* callBack)
+{
+	_cb.push_back(callBack);
+}
 
 
 
 
 void Interactions::eventsSpecialKey(int key, int x, int y)
 {
+	for (unsigned int i = 0; i < Interactions::get()->_cb.size(); ++i)
+	{
+		Interactions::get()->_cb.at(i)->eventsSpecialKey(key, x, y);
+	}
+
 	float mult = 0.1;
 	if (glutGetModifiers() == GLUT_ACTIVE_SHIFT)
 	{
@@ -80,6 +88,11 @@ void Interactions::eventsSpecialKey(int key, int x, int y)
 }
 void Interactions::eventsKey(unsigned char key, int x, int y)
 {
+	for (unsigned int i = 0; i < Interactions::get()->_cb.size(); ++i)
+	{
+		Interactions::get()->_cb.at(i)->eventsKey(key, x, y);
+	}
+
 	switch(key)
 	{
 		case 27:	exit(0);	break;
@@ -92,6 +105,12 @@ void Interactions::eventsKey(unsigned char key, int x, int y)
 }
 void Interactions::eventsMouse(int boutton, int etat, int x, int y)
 {
+
+	for (unsigned int i = 0; i < Interactions::get()->_cb.size(); ++i)
+	{
+		Interactions::get()->_cb.at(i)->eventsMouse(boutton, etat, x, y);
+	}
+
 	if(boutton == GLUT_LEFT_BUTTON)
 	{
 		if(etat == GLUT_DOWN)
@@ -121,6 +140,14 @@ void Interactions::eventsMouse(int boutton, int etat, int x, int y)
 
 void Interactions::eventsMotionMouse(int x, int y)
 {
+
+	
+	for (unsigned int i = 0; i < Interactions::get()->_cb.size(); ++i)
+	{
+		Interactions::get()->_cb.at(i)->eventsMotionMouse(x, y);
+	}
+
+
 	switch(Interactions::get()->_mouseState)
 	{
 	case GLUT_RIGHT_BUTTON:
@@ -149,6 +176,13 @@ void Interactions::eventsMotionMouse(int x, int y)
 
 void Interactions::idle()
 {
+		
+	for (unsigned int i = 0; i < Interactions::get()->_cb.size(); ++i)
+	{
+		Interactions::get()->_cb.at(i)->idle();
+	}
+
+
 
 	//scene->transfo[0]= ((int)scene->transfo[0]+1) %5;
 
@@ -167,6 +201,15 @@ void Interactions::idle()
 
 void Interactions::reshape(int largeur, int hauteur)
 {
+		
+	for (unsigned int i = 0; i < Interactions::get()->_cb.size(); ++i)
+	{
+		Interactions::get()->_cb.at(i)->reshape(largeur, hauteur);
+	}
+
+
+
+
 		if(hauteur < 1)
 		{ hauteur = 1;}
 	glViewport(0, 0, largeur, hauteur);
@@ -183,7 +226,14 @@ void Interactions::reshape(int largeur, int hauteur)
 
 void Interactions::dessine_scene()
 {
-	
+		
+	for (unsigned int i = 0; i < Interactions::get()->_cb.size(); ++i)
+	{
+		Interactions::get()->_cb.at(i)->dessine_scene();
+	}
+
+
+
 	Interactions::get()->_affiche->dessine_scene();
 }
 

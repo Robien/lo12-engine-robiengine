@@ -185,7 +185,7 @@ void Tp::run(char* filename, int verbose)
 		
 		for(unsigned int i =0; i < listobj->size(); i++)
 		{
-			listobj->at(i)->matrice().rotate(90, 0, 0, 1);
+			//listobj->at(i)->matrice().rotate(90, 0, 0, 1);
 			//listobj->at(i)->afficheString();
 			//listobj->at(i)->
 			root->attache(listobj->at(i));
@@ -195,7 +195,7 @@ void Tp::run(char* filename, int verbose)
 		
 		for(unsigned int i =0; i < listobj->size(); i++)
 		{
-			listobj->at(i)->matrice().rotate(90, 0, 0, 1);
+			//listobj->at(i)->matrice().rotate(0, 0, 90, 1);
 			//listobj->at(i)->afficheString();
 			//listobj->at(i)->
 			root->attache(listobj->at(i));

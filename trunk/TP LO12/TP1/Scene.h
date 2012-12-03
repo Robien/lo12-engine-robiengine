@@ -31,7 +31,6 @@
 class Skybox;
 
 
-
 class Scene
 {
 	public:
