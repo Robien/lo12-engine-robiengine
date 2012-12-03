@@ -215,9 +215,9 @@ void Eclairage::def_modele()
 {
         Scene::RGBAF propc;
 
-        propc.r = 0.2;
-        propc.g = 0.2;
-        propc.b = 0.2;
+        propc.r = 0.8;
+        propc.g = 0.8;
+        propc.b = 0.8;
         propc.a = 1.0;
         glLightModelfv(GL_LIGHT_MODEL_AMBIENT,propc.rgba);
 

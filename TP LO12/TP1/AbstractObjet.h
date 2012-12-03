@@ -36,7 +36,7 @@ public:
 		return *_matrice;
 	}
 
-protected:
+public:
 	std::vector<AbstractObjet*>* getFils();
 
 private:
