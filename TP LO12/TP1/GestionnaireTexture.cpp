@@ -40,8 +40,8 @@ GLuint GestionnaireTexture::addTexture(std::string filename)
 int GestionnaireTexture::exist(std::string* filename)
 {
 	int res = -1;
-	unsigned int i;
-	for (i = 0; (res==-1) && i < _listTexture.size(); ++i)
+
+	for (unsigned int i = 0; (res==-1) && i < _listTexture.size(); ++i)
 	{
 		if (_listTexture.at(i)->getFilename() == *filename)
 		{

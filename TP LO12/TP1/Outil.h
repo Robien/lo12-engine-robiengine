@@ -5,7 +5,7 @@
 #include "Pngloader.h"
 #include "Singleton.h"
 #include "Vector3d.h"
-
+#include <math.h>
 
 class Scene;
 
@@ -27,6 +27,12 @@ public:
 
 		return w;
 	}
+	template <typename T>
+	T norme( Vector3d<T>& u)
+	{
+		return sqrt(u.getX() * u.getX() + u.getY() * u.getY() + u.getZ() * u.getZ());
+	}
+
 
 	private:
 	Scene* _scene;

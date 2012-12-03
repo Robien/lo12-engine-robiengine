@@ -77,13 +77,14 @@ void Face::affiche()
 
 }
 
-	void Face::calculeNormales()
+void Face::calculeNormales()
+{
+	if (_listePoints.size() >= 3)
 	{
-		if (_listePoints.size() >= 3)
-		{
-			_normale = Outil::get()->produitVectoriel<GLdouble>(*_listePoints.at(1) - *_listePoints.at(0), *_listePoints.at(2) - *_listePoints.at(0));
-		}
+		_normale = Outil::get()->produitVectoriel<GLdouble>(*_listePoints.at(1) - *_listePoints.at(0), *_listePoints.at(2) - *_listePoints.at(0));
+		*_normale = (*_normale)/Outil::get()->norme(*_normale);
 	}
+}
 
 void Face::addPoint(Vector3d<GLdouble>* coordonnees, Vector2d<GLdouble>* coordonnneesTexture)
 {
