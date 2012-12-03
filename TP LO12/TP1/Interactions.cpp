@@ -42,15 +42,8 @@ void Interactions::eventsSpecialKey(int key, int x, int y)
 
 	switch(key)
 	{
-		case GLUT_KEY_F1:	Interactions::get()->_scene->translateObjetSelectionne(1*mult,0,0);	break;
-		case GLUT_KEY_F2:	Interactions::get()->_scene->translateObjetSelectionne(0,1*mult,0);	break;
-		case GLUT_KEY_F3:	Interactions::get()->_scene->translateObjetSelectionne(0,0,1*mult);	break;
-		case GLUT_KEY_F4:	Interactions::get()->_scene->rotateObjetSelectionne(1,0,0,90*mult);	break;
-		case GLUT_KEY_F5:	Interactions::get()->_scene->rotateObjetSelectionne(0,1,0,90*mult);	break;
-		case GLUT_KEY_F6:	Interactions::get()->_scene->rotateObjetSelectionne(0,0,1,90*mult);	break;
-		case GLUT_KEY_F7:	Interactions::get()->_scene->toggleFilted();	break;
-		case GLUT_KEY_F8:	Interactions::get()->_scene->tabsource[0].allume = !Interactions::get()->_scene->tabsource[0].allume; Interactions::get()->_ob->maj();	break;
-		case GLUT_KEY_F9:	Interactions::get()->_scene->tabsource[1].allume = !Interactions::get()->_scene->tabsource[1].allume; Interactions::get()->_ob->maj();	break;
+		case GLUT_KEY_F8:	 Interactions::get()->_ob->maj();	break;
+		case GLUT_KEY_F9:	 Interactions::get()->_ob->maj();	break;
 		case GLUT_KEY_F10:	Interactions::get()->_ob->rotationZ_obs(90*mult); break;
 		case GLUT_KEY_F12:  Interactions::get()->_ob->changeView();
 		/*case GLUT_KEY_DOWN:	Interactions::get()->_ob->tourner_tete(1, 90*mult); break;
@@ -95,12 +88,7 @@ void Interactions::eventsKey(unsigned char key, int x, int y)
 
 	switch(key)
 	{
-		case 27:	exit(0);	break;
-		case 32 :	Interactions::get()->_scene->changerObjetSelectionne();	break;
-		case 105 :  Interactions::get()->_scene->resetObjet();	break;
 		case 111 :	Interactions::get()->_ob->resetVue();	break;
-
-		default: std::cout << (int)key << std::endl;break;
 	}
 }
 void Interactions::eventsMouse(int boutton, int etat, int x, int y)
@@ -182,21 +170,6 @@ void Interactions::idle()
 		Interactions::get()->_cb.at(i)->idle();
 	}
 
-
-
-	//scene->transfo[0]= ((int)scene->transfo[0]+1) %5;
-
-			// glMatrixMode(GL_MODELVIEW);
-			 		//  gluLookAt(5,3,3,0,0,0,0,0,1);
-			//glLoadMatrixd(scene->transfo);
-					 // glMultMatrixf
-					//  glRotated(i++,1, 0, 0);
-			// glGetDoublev(GL_MODELVIEW_MATRIX, scene->transfo);
-				
-				
-			 	Interactions::get()->_affiche->dessine_scene();
-		//	glLoadIdentity();
-
 }
 
 void Interactions::reshape(int largeur, int hauteur)
@@ -232,16 +205,13 @@ void Interactions::dessine_scene()
 		Interactions::get()->_cb.at(i)->dessine_scene();
 	}
 
-
-
-	Interactions::get()->_affiche->dessine_scene();
 }
 
 
 
-void Interactions::initInteraction(Observateur* ob, Scene* scene, Affiche* affiche)
+void Interactions::initInteraction(Observateur* ob, Scene* /*scene*/, Affiche* affiche)
 {
-	_scene = scene;
+
 	_ob = ob;
 	_affiche = affiche;
 

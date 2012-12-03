@@ -3,7 +3,6 @@
 #include <iostream>
 #include "Singleton.h"
 #include "Observateur.h"
-#include "Scene.h"
 #include "Affiche.h"
 #include "Outil.h"
 #include <vector>
@@ -31,7 +30,7 @@ class Interactions : public Singleton<Interactions>
 public:
 	Interactions();
 	virtual ~Interactions();
-	void initInteraction(Observateur* ob, Scene* scene, Affiche* affiche);
+	void initInteraction(Observateur* ob, Scene* /*scene*/, Affiche* affiche);
 
 public:
 	void addEventCallBack(CB_Interraction* callBack);
@@ -48,9 +47,9 @@ private:
 	static void dessine_scene();
 
 
-	Affiche* _affiche;
-	Scene* _scene;
+	
 public:
+	Affiche* _affiche;
 	Observateur* _ob;
 private:
 	int _posCurseurX;
