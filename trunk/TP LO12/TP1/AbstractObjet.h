@@ -11,7 +11,7 @@ class AbstractObjet
 {
 public:
 	AbstractObjet(std::string str = "nom_defaut");
-	AbstractObjet(Matrice<GLdouble>* matrice);
+	AbstractObjet(Matrice<GLdouble>* matrice, std::string str = "nom_defaut");
 	virtual ~AbstractObjet();
 
 	virtual void affiche();
@@ -35,14 +35,19 @@ public:
 	{
 		return *_matrice;
 	}
+	virtual void toggleFilted();
 
 public:
 	std::vector<AbstractObjet*>* getFils();
 
+	protected:
+		bool _isFilted;
 private:
 	std::vector<AbstractObjet*> _fils;
 	Matrice<GLdouble>* _matrice;
 	std::string _nom;
+
+
 
 };
 

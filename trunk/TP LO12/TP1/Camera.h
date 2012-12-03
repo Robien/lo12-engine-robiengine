@@ -1,15 +1,15 @@
 #ifndef _CAMERA_H	
 #define _CAMERA_H
 
-#include "AbstractObjet.h"
-
-class Camera : AbstractObjet
+class Camera
 {
 public:
-	Camera(void);
-	virtual ~Camera(void);
+	Camera();
+	virtual ~Camera();
 
-	void affiche();
+	virtual void affiche();
+private:
+	int i;
 };
 
 

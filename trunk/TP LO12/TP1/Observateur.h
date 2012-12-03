@@ -46,7 +46,7 @@ public:
 	virtual ~Observateur();
 
 public:
-	enum TYPE_VIEW {POLAR_VIEW=1, PILOT_VIEW, LOOK_AT_VIEW };
+	enum TYPE_VIEW {POLAR_VIEW=1, PILOT_VIEW, LOOK_AT_VIEW,VIVE_LES_POMMES };
 	struct PolarParam
 	{
 		double azimut;

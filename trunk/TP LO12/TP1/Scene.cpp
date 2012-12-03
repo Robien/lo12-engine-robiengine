@@ -22,16 +22,24 @@
 Scene::~Scene()
 {
 }
-Scene::Scene()
+Scene::Scene(Camera* mainCamera) : _mainCamera(mainCamera)
 {
 	_skybox = new Skybox();
 	objetSelectionne = 0;
 	_root = new AbstractObjet();
+	if (_mainCamera == NULL)
+	{
+		_mainCamera = new Camera();
+	}
 }
-Scene::Scene(AbstractObjet* root) : _root(root)
+Scene::Scene(AbstractObjet* root, Camera* mainCamera) : _root(root), _mainCamera(mainCamera)
 {
 	_skybox = new Skybox();
 	objetSelectionne = 0;
+	if (_mainCamera == NULL)
+	{
+		_mainCamera = new Camera();
+	}
 }
 void Scene::resetObjet()
 {
@@ -46,7 +54,10 @@ void Scene::changerObjetSelectionne()
 {
 	objetSelectionne = (objetSelectionne+1)%_root->getFils()->size(); 
 }
-
+void Scene::toggleFilted()
+{
+	_root->toggleFilted();
+}
 
 void Scene::translateObjetSelectionne(GLdouble x,GLdouble y,GLdouble z)
 {
@@ -89,4 +100,8 @@ void Scene::affiche()
 	{
 		_root->affiche();
 	}
+}
+AbstractObjet* Scene::getRoot()
+{
+	return _root;
 }

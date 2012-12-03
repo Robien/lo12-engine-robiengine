@@ -2,7 +2,7 @@
 #include "math.h"
 #include "const.h"
 #include <iostream>
-
+#include "Camera.h"
 
 Observateur::Observateur(Eclairage* eclairage)
 {
@@ -76,7 +76,8 @@ void Observateur::resetVue()
 		 _lookAtParam.upy = 0;
 		 _lookAtParam.upz = 1;
 
-
+		 
+		 
 }
 
 
@@ -388,6 +389,8 @@ void Observateur::rotation3D(double angle, double* axeVect, double* axePt, doubl
 void Observateur::changeView()
 {
 	_typeView = (TYPE_VIEW) (((int) _typeView+1)%3+1);
+	std::cout << (int)_typeView << std::endl;
+	//_typeView = VIVE_LES_POMMES;
 	maj();
 }
 
@@ -397,6 +400,9 @@ Scene::MCOORD Observateur::getPosition()
 	Scene::MCOORD pos;
 	GLdouble d;
 	
+	pos.x = 0;
+	pos.y = 0;
+	pos.z = 0;
 	switch (_typeView)
 	{
 	case LOOK_AT_VIEW://gluLookAt()

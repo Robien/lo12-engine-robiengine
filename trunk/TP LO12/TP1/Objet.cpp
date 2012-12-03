@@ -56,3 +56,12 @@ void Objet::addFace(Face* face)
 {
 	_listeFace.push_back(face);
 }
+
+void Objet::toggleFilted()
+{
+	_isFilted = !_isFilted;
+	for (unsigned int i = 0; i < _listeFace.size(); ++i)
+	 {
+		 _listeFace.at(i)->toggleFilted();
+	 }
+}

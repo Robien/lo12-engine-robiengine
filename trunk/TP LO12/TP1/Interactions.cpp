@@ -1,5 +1,5 @@
 #include "Interactions.h"
-
+#include "Camera.h"
 
 
 
@@ -40,6 +40,7 @@ void Interactions::eventsSpecialKey(int key, int x, int y)
 		case GLUT_KEY_F4:	Interactions::get()->_scene->rotateObjetSelectionne(1,0,0,90*mult);	break;
 		case GLUT_KEY_F5:	Interactions::get()->_scene->rotateObjetSelectionne(0,1,0,90*mult);	break;
 		case GLUT_KEY_F6:	Interactions::get()->_scene->rotateObjetSelectionne(0,0,1,90*mult);	break;
+		case GLUT_KEY_F7:	Interactions::get()->_scene->toggleFilted();	break;
 		case GLUT_KEY_F8:	Interactions::get()->_scene->tabsource[0].allume = !Interactions::get()->_scene->tabsource[0].allume; Interactions::get()->_ob->maj();	break;
 		case GLUT_KEY_F9:	Interactions::get()->_scene->tabsource[1].allume = !Interactions::get()->_scene->tabsource[1].allume; Interactions::get()->_ob->maj();	break;
 		case GLUT_KEY_F10:	Interactions::get()->_ob->rotationZ_obs(90*mult); break;

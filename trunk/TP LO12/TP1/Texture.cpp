@@ -4,12 +4,16 @@
 
 Texture::Texture()
 {
+	_texels = NULL;
 
 }
 
 Texture::~Texture()
 {
-	free(_texels);
+	if (_texels != NULL)
+	{
+		free(_texels);
+	}
 }
 
 
