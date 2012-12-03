@@ -2,6 +2,7 @@
 #define _MATRICE_H
 
 #include <vector>
+#include "const.h"
 
 template <typename T>
 class Matrice
@@ -54,10 +55,9 @@ public:
 	}
 	virtual void println()
 	{
-		std::cout << "Attention ! le sens n a pas ete verifie !" << std::endl;
-		for (unsigned int i =0; i < 4; ++i)
+		for (unsigned int i = 0; i < 4; ++i)
 		{
-			for (unsigned int j =0; j < 4;++j)
+			for (unsigned int j = 0; j < 4;++j)
 			{
 				std::cout << _data.at(4*i+j);
 				if (j != 3)
@@ -69,6 +69,50 @@ public:
 		}
 	}
 
+	void rotate(GLdouble angle, GLdouble axeX, GLdouble axeY, GLdouble axeZ)
+	{
+		glMatrixMode(GL_MODELVIEW);
+		glPushMatrix();
+		//glLoadIdentity();
+		glLoadMatrixd(getMat());
+		glRotated(angle, axeX, axeY, axeZ);
+		//glTranslated(1.0,10.0, 0); 
+		T* newData = (T*) malloc(16*sizeof(T));
+		glGetDoublev(GL_MODELVIEW_MATRIX, newData);
+		_data.clear();
+		_data.assign(newData, newData + 16);
+		glPopMatrix();
+
+	}
+	void translate(GLdouble x, GLdouble y, GLdouble z)
+	{
+		glMatrixMode(GL_MODELVIEW);
+		glPushMatrix();
+		//glLoadIdentity();
+		glLoadMatrixd(getMat());
+		glTranslated(x,y,z); 
+		T* newData = (T*) malloc(16*sizeof(T));
+		glGetDoublev(GL_MODELVIEW_MATRIX, newData);
+		_data.clear();
+		_data.assign(newData, newData + 16);
+		glPopMatrix();
+
+	}
+
+	void scale(GLdouble x, GLdouble y, GLdouble z)
+	{
+		glMatrixMode(GL_MODELVIEW);
+		glPushMatrix();
+		//glLoadIdentity();
+		glLoadMatrixd(getMat());
+		glScaled(x,y,z); 
+		T* newData = (T*) malloc(16*sizeof(T));
+		glGetDoublev(GL_MODELVIEW_MATRIX, newData);
+		_data.clear();
+		_data.assign(newData, newData + 16);
+		glPopMatrix();
+
+	}
 private:
 	std::vector<T> _data;
 
