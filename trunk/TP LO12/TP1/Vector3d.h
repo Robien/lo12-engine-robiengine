@@ -59,6 +59,11 @@ public:
 	{
 		return Vector3d<T>(other._x - _x, other._y - _y, other._z - _z);
 	}
+	template <typename S>
+	Vector3d<T> operator/(const S& scalaire)
+	{
+		return Vector3d<T>(_x/scalaire, _y/scalaire, _z/scalaire);
+	}
 	T* getCStyle() //attention aux free !
 	{
 		
