@@ -27,10 +27,17 @@ GLuint GestionnaireTexture::addTexture(std::string filename)
 
 	std::cout << "Nouvelle texture : "<< filename << " numero :\t" << texture->getGlnum() << std::endl; 
 	glBindTexture(GL_TEXTURE_2D,texture->getGlnum());
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexImage2D(GL_TEXTURE_2D, 0,texture->getInternalFormat(), texture->getWidth(), texture->getHeight(), 0, texture->getFormat(), GL_UNSIGNED_BYTE, texture->getTexels());
+	/* filtre normal
+		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	*/
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
 
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, 0x812F);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, 0x812F);
+	glBindTexture(GL_TEXTURE_2D, 0);
 	_listTexture.push_back(texture);
 
 	return texture->getGlnum();
