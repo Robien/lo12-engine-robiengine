@@ -139,7 +139,7 @@ void Affiche::dessine_scene()
 		//  glColor3f(1, .5,.5);   /* couleur de la scene en mode RGB   */
 		
 		_eclairage->defAllSources(); //definition des sources de lumiere
-
+		
 		
 		_scene->affiche();
 

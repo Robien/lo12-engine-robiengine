@@ -10,17 +10,7 @@ class Matrice
 public:
 	Matrice()
 	{
-		for (unsigned int i = 0; i < 16; ++i)
-		{
-			if (i%4 == i/4)
-			{
-				_data.push_back(1);
-			}
-			else
-			{
-				_data.push_back(0);
-			}
-		}
+		reset();
 	}
 	Matrice(const Matrice<T>& c)
 	{
@@ -113,6 +103,22 @@ public:
 		glPopMatrix();
 
 	}
+	void reset()
+	{
+		_data.clear();
+		for (unsigned int i = 0; i < 16; ++i)
+		{
+			if (i%4 == i/4)
+			{
+				_data.push_back(1);
+			}
+			else
+			{
+				_data.push_back(0);
+			}
+		}
+	}
+
 private:
 	std::vector<T> _data;
 
