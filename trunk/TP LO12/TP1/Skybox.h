@@ -1,8 +1,6 @@
 #ifndef _SKYBOX_H	
 #define _SKYBOX_H
 
-#include "Scene.h"
-#include "Pngloader.h"
 #include <vector>
 
 class Skybox

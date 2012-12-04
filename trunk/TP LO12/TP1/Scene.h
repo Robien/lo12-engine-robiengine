@@ -15,20 +15,13 @@
 #ifndef SCENE_H
 #define SCENE_H
 
-#if defined(__APPLE__) && defined(__MACH__)
-        #include <GLUT/glut.h>
-        #include <OpenGL/gl.h>
-        #include <OpenGL/glu.h>
-#else
-        #include <glut.h>
-        #include <GL/gl.h>
-        #include <GL/glu.h>
-#endif
+#include "const.h"
 #include <vector>
 #include "AbstractObjet.h"
 #include "Camera.h"
+#include "Interactions.h"
+#include "Skybox.h"
 
-class Skybox;
 
 
 class Scene
@@ -271,6 +264,9 @@ public:
 
 
 };
+
+
+
 
 #endif
 

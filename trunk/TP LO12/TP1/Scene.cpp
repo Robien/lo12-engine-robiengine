@@ -18,10 +18,9 @@ variables globales
 #include "Texture.h"
 #include "Skybox.h"
 
-#include "Interactions.h"
 #include "GestionnaireLumiere.h"
 
-class Skybox;
+
 
 class DefautInteraction : public CB_Interraction
 {
@@ -78,6 +77,12 @@ public:
 	}
 };
 
+
+
+
+
+
+
 Scene::~Scene()
 {
 }
@@ -101,6 +106,7 @@ Scene::Scene(AbstractObjet* root, Camera* mainCamera) : _root(root), _mainCamera
 	{
 		_mainCamera = new Camera();
 	}
+	Interactions::get()->addEventCallBack(new DefautInteraction(this));
 }
 void Scene::resetObjet()
 {

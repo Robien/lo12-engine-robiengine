@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _INTERACTIONS_H	
+#define _INTERACTIONS_H
 
 #include <iostream>
 #include "Singleton.h"
@@ -59,6 +60,8 @@ private:
 
 };
 
+
+#endif;
 
 
 
