@@ -21,11 +21,15 @@ GLdouble AllureFaisceau::getAngle()
 /*----------------------Definition Lumiere-----------------------------*/
 Lumiere::Lumiere(std::string name) :AbstractObjet(name), _allure_faisceau()
 {
+	_afficheSphere = false;
+	_active = false;
+	_infini = false;
 	_sphere = gluNewQuadric();
 }
 
-Lumiere::Lumiere(Matrice<GLdouble>* mat, Vector3d<GLdouble> amb, Vector3d<GLdouble> cou, AllureFaisceau alf, std::string name) : AbstractObjet(mat,name)
+Lumiere::Lumiere(Matrice<GLdouble>* mat, Vector3d<GLdouble> amb, Vector3d<GLdouble> cou, AllureFaisceau alf, bool infini, std::string name) : AbstractObjet(mat,name)
 {
+	_infini = infini;
 	_sphere = gluNewQuadric();
 	_afficheSphere = true;
 	_active = true;
@@ -33,8 +37,9 @@ Lumiere::Lumiere(Matrice<GLdouble>* mat, Vector3d<GLdouble> amb, Vector3d<GLdoub
 	_couleur = cou;
 	_allure_faisceau = alf;
 }
-Lumiere::Lumiere(Vector3d<GLdouble> amb, Vector3d<GLdouble> cou, AllureFaisceau alf, std::string name) : AbstractObjet(name)
+Lumiere::Lumiere(Vector3d<GLdouble> amb, Vector3d<GLdouble> cou, AllureFaisceau alf, bool infini, std::string name) : AbstractObjet(name)
 {
+	_infini = infini;
 	_sphere = gluNewQuadric();
 	_afficheSphere = true;
 	_active = true;
@@ -56,7 +61,7 @@ void Lumiere::setAfficheSphere(bool aff)
 
 void Lumiere::def_sources(GLenum source)
 {            
-
+	
 	if(_active)
 	{
 		GLfloat propc[4];
@@ -71,26 +76,26 @@ void Lumiere::def_sources(GLenum source)
 		propc[2] = _couleur.getZ();
 		glLightfv(source,GL_DIFFUSE,propc);
 		glLightfv(source,GL_SPECULAR,propc);
-		Vector3d<GLdouble>* vect = new Vector3d<GLdouble>();
-		*vect = getMatrice()->getPosition();
+		_vect = getMatrice()->getPosition();
 		GLfloat propp[4]; 
-		propp[0] = vect->getX();
-		propp[1] = vect->getY();
-		propp[2] = vect->getZ();
-		propp[3] = 1;
+		propp[0] = _vect.getX();
+		propp[1] = _vect.getY();
+		propp[2] = _vect.getZ();
+		if(_infini)
+		{propp[3] = 0;}
+		else
+		{propp[3] = 1;}
+		
 		glLightfv(source,GL_POSITION,propp);
-		//vect = new Vector3d<GLdouble>();
-		*vect = getMatrice()->getDirection();
-		propp[0] = vect->getX();
-		propp[1] = vect->getY();
-		propp[2] = vect->getZ();
+		_vect = getMatrice()->getDirection();
+		propp[0] = _vect.getX();
+		propp[1] = _vect.getY();
+		propp[2] = _vect.getZ();
 		propp[3] = 1;
 		glLightfv(source,GL_SPOT_DIRECTION,propp);
 		glLightf(source,GL_SPOT_CUTOFF,_allure_faisceau.getAngle());
 		glLightf(source,GL_SPOT_EXPONENT,_allure_faisceau.getCoefK());
 		glEnable(source);
-		//TODO : y'a une fuite ici, je ne sais pas trop pourquoi comment, mais le delete fait crash
-		//delete vect;
 
 	}
 	else

@@ -34,6 +34,7 @@ Interface OpenGL (GLUT, GLU, GL)
 #include "Tp.h"
 #include "Interactions.h"
 #include "AbstractObjet.h"
+#include "SystemeParticules.h"
 #include "Objet.h"
 #include <vector>
 #include "GestionnaireLumiere.h"
@@ -83,7 +84,8 @@ void Tp::run()
 		//listobj->at(i)->
 		root->attache(listobj->at(i));
 	}
-
+	
+		
 	_scene->setRoot(root);
 
 	{
@@ -91,7 +93,7 @@ void Tp::run()
 		Vector3d<GLdouble> couleur(0.1, 0.1, 0.1);
 		Matrice<GLdouble> *m = new Matrice<GLdouble>();
 		m->translate(0, 0, 2);
-		m->getVector16().at(11) = -1;
+		m->getVector16().at(10) = -1;
 		root->attache(GestionnaireLumiere::get()->newLumiere(ambiante,couleur, 5.0, 5.0, m));
 	}
 
@@ -99,13 +101,15 @@ void Tp::run()
 		Vector3d<GLdouble> ambiante(0.2, 0.2, 0.2);
 		Vector3d<GLdouble> couleur(0.5, 0.5, 0.5);
 		Matrice<GLdouble> *m = new Matrice<GLdouble>();
-		m->translate(25, 1, 0);
+		m->translate(25, 0, 0);
 		m->getVector16().at(0) = -1;
 		root->attache(GestionnaireLumiere::get()->newLumiere(ambiante,couleur, 2.0, 180.0, m));
 	}
 
 
 	_scene->run();
+
+		
 
 
 }
