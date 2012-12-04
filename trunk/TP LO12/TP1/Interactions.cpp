@@ -209,11 +209,10 @@ void Interactions::dessine_scene()
 
 
 
-void Interactions::initInteraction(Observateur* ob, Scene* /*scene*/, Affiche* affiche)
+void Interactions::initInteraction(Observateur* ob, Scene* /*scene*/)
 {
 
 	_ob = ob;
-	_affiche = affiche;
 
 	glutKeyboardFunc(eventsKey);
 	glutMouseFunc(eventsMouse);

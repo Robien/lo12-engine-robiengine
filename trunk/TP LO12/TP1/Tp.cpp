@@ -33,7 +33,6 @@
 
 #include "Tp.h"
 #include "SceneUtils.h"
-#include "affiche.h"
 #include "Interactions.h"
 #include "Pngloader.h"
 #include "AbstractObjet.h"
@@ -49,9 +48,7 @@ Tp::Tp()
 	
 
 	_scene = new Scene();
-	_eclairage = new Eclairage(_scene);
-	_affiche = new Affiche(_scene, _eclairage);
-	_ob = new Observateur(_eclairage);
+	_ob = new Observateur();
 	Outil::get()->initManager(_scene);
 
 }
@@ -97,7 +94,7 @@ void Tp::init()
 		glShadeModel(GL_SMOOTH);
 		//glShadeModel(GL_FLAT);
 		//_eclairage->def_modele();
-		Interactions::get()->initInteraction(_ob, _scene, _affiche);
+		Interactions::get()->initInteraction(_ob, _scene);
 
 		for (int i = 0; i < _scene->nbsource; ++i)
 		{

@@ -5,10 +5,10 @@
 #include "Camera.h"
 #include "GestionnaireLumiere.h"
 
-Observateur::Observateur(Eclairage* eclairage)
+Observateur::Observateur()
 {
 	//_azimut = 0;
-	_eclairage = eclairage;
+
 	resetVue();
 	_typeView = LOOK_AT_VIEW;
 

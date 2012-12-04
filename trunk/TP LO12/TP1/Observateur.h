@@ -36,13 +36,12 @@ Routines d'affichage
 #include <GL/glu.h>
 #endif
 
-#include "Eclairage.h"
 #include "Skybox.h"
 
 class Observateur
 {
 public:
-	Observateur(Eclairage* eclairage);
+	Observateur();
 	virtual ~Observateur();
 
 public:
@@ -112,6 +111,5 @@ private:
 	PilotParam _pilotParam;
 	LookAtParam _lookAtParam;
 	TYPE_VIEW _typeView;
-	Eclairage* _eclairage;
 };
 
