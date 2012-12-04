@@ -16,7 +16,6 @@ public:
 
 private:
 
-	Observateur* _ob;
 	Scene* _scene;/* description de la scene */
 
 };

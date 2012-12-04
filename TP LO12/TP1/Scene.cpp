@@ -161,7 +161,7 @@ void Scene::setRoot(AbstractObjet* root)
 
 void Scene::affiche()
 {
-	//	_mainCamera->affiche();
+	_mainCamera->affiche();
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
 
@@ -227,8 +227,9 @@ void Scene::createWindows()
 
 
 	glutCreateWindow("TP1:cube");
+	Interactions::get()->initInteraction();
 
-	Interactions::get()->initInteraction(new Observateur());
+	_mainCamera->affiche();
 }
 
 /*******************************************************************************/

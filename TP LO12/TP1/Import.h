@@ -15,7 +15,7 @@ public:
 	Import(void);
 	virtual ~Import(void);
 
-	std::vector<Objet* >* importer(std::string namefile);
+	std::vector<AbstractObjet* >* importer(std::string namefile);
 	
 private : 
 	std::vector<Material* >* importerMaterial(std::string namefile);

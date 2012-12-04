@@ -1,11 +1,9 @@
 #ifndef _INTERACTIONS_H	
 #define _INTERACTIONS_H
 
-#include <iostream>
-#include "Singleton.h"
-#include "Observateur.h"
-#include "Outil.h"
+
 #include <vector>
+#include "Singleton.h"
 
 
 class CB_Interraction
@@ -30,7 +28,7 @@ class Interactions : public Singleton<Interactions>
 public:
 	Interactions();
 	virtual ~Interactions();
-	void initInteraction(Observateur* ob);
+	void initInteraction();
 
 public:
 	void addEventCallBack(CB_Interraction* callBack);
@@ -46,14 +44,6 @@ private:
 	static void reshape(int largeur, int hauteur);
 	static void dessine_scene();
 
-
-	
-public:
-	Observateur* _ob;
-private:
-	int _posCurseurX;
-	int _posCurseurY;
-	int _mouseState;
 
 private:
 	std::vector<CB_Interraction*> _cb;

@@ -39,14 +39,15 @@ Interface OpenGL (GLUT, GLU, GL)
 #include <vector>
 #include "GestionnaireLumiere.h"
 #include "GestionnaireTexture.h"
+#include "CameraLookAt.h"
 
 
 
 
 Tp::Tp()
 {
-	_scene = new Scene();
-	_ob = new Observateur();
+	_scene = new Scene(new CameraLookAt());
+
 }
 
 Tp::~Tp()
@@ -65,25 +66,9 @@ void Tp::run()
 	AbstractObjet* root = new AbstractObjet();
 
 	Import imp;
-	std::vector<Objet* >* listobj = imp.importer("models/testExport/RobienSimpleLOP.obj");
+	root->attache(imp.importer("models/testExport/RobienSimpleLOP.obj")); // manque un delete ... le faire dans attache ?
+	root->attache(imp.importer("models/testExport/RobienFinal.obj"));
 
-	for(unsigned int i =0; i < listobj->size(); i++)
-	{
-		//listobj->at(i)->matrice().rotate(90, 0, 0, 1);
-		//listobj->at(i)->afficheString();
-		//listobj->at(i)->
-		root->attache(listobj->at(i));
-	}
-
-	listobj = imp.importer("models/testExport/RobienFinal.obj");
-
-	for(unsigned int i =0; i < listobj->size(); i++)
-	{
-		//listobj->at(i)->matrice().rotate(0, 0, 90, 1);
-		//listobj->at(i)->afficheString();
-		//listobj->at(i)->
-		root->attache(listobj->at(i));
-	}
 		SystemeParticules* sp = new SystemeParticules(true);
 		sp->matrice().translate(0,0,-2);
 		sp->start();
