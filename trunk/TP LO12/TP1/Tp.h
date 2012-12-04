@@ -12,7 +12,7 @@ public:
 	virtual ~Tp();
 
 public:
-	void run(char* filename, int verbose);
+	void run();
 
 private:
 	void init();
@@ -21,7 +21,6 @@ private:
 
 	Observateur* _ob;
 	Scene* _scene;/* description de la scene */
-	Outil* _gestionTexture;
 
 };
 

@@ -32,9 +32,7 @@
 #endif
 
 #include "Tp.h"
-#include "SceneUtils.h"
 #include "Interactions.h"
-#include "Pngloader.h"
 #include "AbstractObjet.h"
 #include "Objet.h"
 #include <vector>
@@ -105,22 +103,10 @@ void Tp::init()
 
 
 /* ========================================================================= */
-void Tp::run(char* filename, int verbose)
+void Tp::run()
 {
 
 
-
-		if(SceneUtils().read_scene_file(_scene,filename)) {
-                printf("Il y a un probleme: je ne peux pas lire le fichier: %s\n",filename);
-				system("PAUSE");
-                exit(-1);
-        }
-
-        if(verbose) {
-                SceneUtils().print_scene_data(_scene);
-        }
-		
-		//_eclairage->calcule_normales();
 
         glutInitWindowSize(800, 600);   /* taille de la fenetre ecran */
 		glutInitWindowPosition(100, 100);
