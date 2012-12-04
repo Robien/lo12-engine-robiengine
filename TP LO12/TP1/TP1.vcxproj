@@ -110,8 +110,9 @@
     <ClCompile Include="Observateur.cpp" />
     <ClCompile Include="Outil.cpp" />
     <ClCompile Include="Pngloader.cpp" />
-    <ClCompile Include="scene.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Skybox.cpp" />
+    <ClCompile Include="SystemeParticules.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Tp.cpp" />
     <ClCompile Include="Vector2d.cpp" />
@@ -133,9 +134,10 @@
     <ClInclude Include="Observateur.h" />
     <ClInclude Include="Outil.h" />
     <ClInclude Include="Pngloader.h" />
-    <ClInclude Include="scene.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Skybox.h" />
+    <ClInclude Include="SystemeParticules.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Tp.h" />
     <ClInclude Include="Vector2d.h" />

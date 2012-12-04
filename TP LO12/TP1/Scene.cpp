@@ -257,6 +257,9 @@ void Scene::run()
 	choix de la couleur de fond 
 	glClearIndex(1.0);*/
 
+	glShadeModel(GL_SMOOTH);
+	//glShadeModel(GL_FLAT);
+
 	/* mode RGB : choix de la couleur de fond */
 	glClearColor(0.4,0.4,0.4,1);
 
@@ -264,10 +267,13 @@ void Scene::run()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHTING);
+	///*Permet d'amelioré pour le rendu
+	glHint(GL_PERSPECTIVE_CORRECTION_HINT,GL_NICEST);
+    glHint(GL_POINT_SMOOTH_HINT,GL_NICEST);
+	// */
 
-	glShadeModel(GL_SMOOTH);
-	//glShadeModel(GL_FLAT);
 
+    
 
 	_skybox->charger();
 
