@@ -96,10 +96,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AbstractObjet.cpp" />
-    <ClCompile Include="affiche.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="DatUtils.cpp" />
-    <ClCompile Include="eclairage.cpp" />
     <ClCompile Include="Face.cpp" />
     <ClCompile Include="GestionnaireLumiere.cpp" />
     <ClCompile Include="GestionnaireTexture.cpp" />
@@ -123,11 +121,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractObjet.h" />
-    <ClInclude Include="affiche.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="const.h" />
     <ClInclude Include="DatUtils.h" />
-    <ClInclude Include="eclairage.h" />
     <ClInclude Include="Face.h" />
     <ClInclude Include="GestionnaireLumiere.h" />
     <ClInclude Include="GestionnaireTexture.h" />

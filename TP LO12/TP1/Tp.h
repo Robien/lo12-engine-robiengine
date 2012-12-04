@@ -1,9 +1,7 @@
 #pragma once
 
 #include "Observateur.h"
-#include "Affiche.h"
 #include "Scene.h"
-#include "Eclairage.h"
 #include "Outil.h"
 
 class Tp 
@@ -22,9 +20,7 @@ private:
 private:
 
 	Observateur* _ob;
-	Affiche* _affiche;
 	Scene* _scene;/* description de la scene */
-	Eclairage* _eclairage;
 	Outil* _gestionTexture;
 
 };
