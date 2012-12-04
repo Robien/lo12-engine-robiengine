@@ -46,6 +46,24 @@ void AbstractObjet::removeFils(AbstractObjet* fils)
 
 }
 
+void AbstractObjet::addFils(std::vector<AbstractObjet*>* fils)
+{
+	for (unsigned int i = 0; i < fils->size(); ++i)
+	{
+		addFils(fils->at(i));
+	}
+
+}
+void AbstractObjet::removeFils(std::vector<AbstractObjet*>* fils)
+{
+	for (unsigned int i = 0; i < fils->size(); ++i)
+	{
+		removeFils(fils->at(i));
+	}
+
+}
+
+
 std::vector<AbstractObjet*>* AbstractObjet::getFils()
 {
 	return &_fils;
@@ -71,21 +89,21 @@ void AbstractObjet::affiche()
 	glPushMatrix();
 	glMultMatrixd(getMatrice()->getMat());
 
-	 
+
 
 	//on affiche les objets fils
 
-	 for (unsigned int i = 0; i < getFils()->size(); ++i)
-	 {
-		 getFils()->at(i)->affiche();
-	 }
+	for (unsigned int i = 0; i < getFils()->size(); ++i)
+	{
+		getFils()->at(i)->affiche();
+	}
 
 
-//	for(std::list<AbstractObjet*>::const_iterator lit = getFils().begin();lit != getFils().end();++lit) 
-//	{
-//		std::cout << lit._Ptr << std::endl;
-//		(*lit)->affiche();
-//	}
+	//	for(std::list<AbstractObjet*>::const_iterator lit = getFils().begin();lit != getFils().end();++lit) 
+	//	{
+	//		std::cout << lit._Ptr << std::endl;
+	//		(*lit)->affiche();
+	//	}
 
 	glPopMatrix();
 
@@ -97,7 +115,7 @@ void AbstractObjet::toggleFilted()
 {
 	_isFilted = !_isFilted;
 	for (unsigned int i = 0; i < getFils()->size(); ++i)
-	 {
-		 getFils()->at(i)->toggleFilted();
-	 }
+	{
+		getFils()->at(i)->toggleFilted();
+	}
 }

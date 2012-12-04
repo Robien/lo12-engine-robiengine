@@ -13,9 +13,9 @@ Import::~Import(void)
 {
 }
 
-std::vector<Objet* >* Import::importer(std::string namefile)
+std::vector<AbstractObjet* >* Import::importer(std::string namefile)
 {
-	std::vector<Objet* >* listObjet = new std::vector<Objet* >();
+	std::vector<AbstractObjet* >* listObjet = new std::vector<AbstractObjet* >();
 	std::vector<Material* >* listmat = NULL;
 	std::vector<Vector2d<GLdouble>* > listPointUV;
 	std::vector<Vector3d<GLdouble>* > listSommet;

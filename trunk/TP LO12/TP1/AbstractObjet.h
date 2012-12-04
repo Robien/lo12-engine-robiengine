@@ -28,6 +28,17 @@ public:
 		removeFils(fils);
 	}
 
+	void addFils(std::vector<AbstractObjet*>* fils);
+	inline void attache(std::vector<AbstractObjet*>* fils)
+	{
+		addFils(fils);
+	}
+	void removeFils(std::vector<AbstractObjet*>* fils);
+	inline void dettache(std::vector<AbstractObjet*>* fils)
+	{
+		removeFils(fils);
+	}
+
 public:
 	Matrice<GLdouble>* getMatrice();
 	void setMatrice(Matrice<GLdouble>* matrice);
