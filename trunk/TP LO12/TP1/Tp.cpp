@@ -1,16 +1,16 @@
 /*
- 
-        Universite de Technologie de Compiegne
-        
-        UV: LO12
-        
-        FICHIER: tp1.c
- 
-        COMMENTAIRE:
-                Fichier principal
-                Interface OpenGL (GLUT, GLU, GL)
- 
-              
+
+Universite de Technologie de Compiegne
+
+UV: LO12
+
+FICHIER: tp1.c
+
+COMMENTAIRE:
+Fichier principal
+Interface OpenGL (GLUT, GLU, GL)
+
+
 */
 
 //******************//
@@ -22,13 +22,13 @@
 #include "Import.h"
 
 #if defined(__APPLE__) && defined(__MACH__)
-        #include <GLUT/glut.h>
-        #include <OpenGL/gl.h>
-        #include <OpenGL/glu.h>
+#include <GLUT/glut.h>
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
 #else
-        #include <glut.h>
-        #include <GL/gl.h>
-        #include <GL/glu.h>
+#include <glut.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
 #endif
 
 #include "Tp.h"
@@ -60,42 +60,42 @@ Tp::~Tp()
 
 void Tp::init()
 {
-        glMatrixMode(GL_PROJECTION);
-        glLoadIdentity();
-        gluPerspective(90,1.0,0.1,100) ;
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluPerspective(90,1.0,0.1,100) ;
 
-		//Observateur().pilotView(2, 2, 2, -45,0, 15);
-		//ob->polarView(5, 45, 45, 0);
+	//Observateur().pilotView(2, 2, 2, -45,0, 15);
+	//ob->polarView(5, 45, 45, 0);
 
-/*
-        glMatrixMode(GL_MODELVIEW);
-        glLoadIdentity();
-        gluLookAt(5,3,3,0,0,0,0,0,1);
+	/*
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	gluLookAt(5,3,3,0,0,0,0,0,1);
 
-         initialise la table des couleurs : mode index
-         glutSetColor(1,0.0, 0.0, 0.0);
-         glutSetColor(2,1.0, 0.3, 0.3);
-         choix de la couleur de fond 
-         glClearIndex(1.0);*/
+	initialise la table des couleurs : mode index
+	glutSetColor(1,0.0, 0.0, 0.0);
+	glutSetColor(2,1.0, 0.3, 0.3);
+	choix de la couleur de fond 
+	glClearIndex(1.0);*/
 
-        /* mode RGB : choix de la couleur de fond */
-        glClearColor(0.4,0.4,0.4,1);
+	/* mode RGB : choix de la couleur de fond */
+	glClearColor(0.4,0.4,0.4,1);
 
-        /* applique la couleur de fond */
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		glEnable(GL_DEPTH_TEST);
-		glEnable(GL_LIGHTING);
-		
-		glShadeModel(GL_SMOOTH);
-		//glShadeModel(GL_FLAT);
-		//_eclairage->def_modele();
-		Interactions::get()->initInteraction(_ob);
+	/* applique la couleur de fond */
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_LIGHTING);
 
-		_scene->_skybox->charger();
-		
+	glShadeModel(GL_SMOOTH);
+	//glShadeModel(GL_FLAT);
+	//_eclairage->def_modele();
+	Interactions::get()->initInteraction(_ob);
 
-//		_scene->_skybox->dessine_box(_ob->getPosition());
-		
+	_scene->_skybox->charger();
+
+
+	//		_scene->_skybox->dessine_box(_ob->getPosition());
+
 }
 
 
@@ -108,90 +108,97 @@ void Tp::run()
 
 
 
-        glutInitWindowSize(800, 600);   /* taille de la fenetre ecran */
-		glutInitWindowPosition(100, 100);
-		glutInitDisplayMode ( GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);     /* mode rgb et zbuffer*/
-		/*glutInitDisplayMode ( GLUT_RGB | GLUT_DOUBLE);     /* mode rgb */
-		 /* glutInitDisplayMode(GLUT_INDEX | GLUT_SINGLE);  /* mode index*/
-
-		
-		//glDepthFunc(GL_LESS);
-       
-		
-		
-		glutCreateWindow("TP1:cube");
-		init();
+	glutInitWindowSize(800, 600);   /* taille de la fenetre ecran */
+	glutInitWindowPosition(100, 100);
+	glutInitDisplayMode ( GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);     /* mode rgb et zbuffer*/
+	/*glutInitDisplayMode ( GLUT_RGB | GLUT_DOUBLE);     /* mode rgb */
+	/* glutInitDisplayMode(GLUT_INDEX | GLUT_SINGLE);  /* mode index*/
 
 
-		AbstractObjet* root = new AbstractObjet();
-
-		//std::vector<AbstractObjet*>* listeObjets = new std::vector<AbstractObjet*>();
+	//glDepthFunc(GL_LESS);
 
 
-		
-		/*for (int i = 0 ; i < _scene->nbobj ; i++)     	//boucle sur les objets 
-		{
-			Objet* tmp = new Objet(new Matrice<GLdouble>(_scene->tabobj[i].transfo));
 
-			for (int j = 0 ; j < _scene->tabobj[i].nbface ; j++) 
-			{
-
-				Material* material = new Material();
-				Face* face = new Face(material);
-				face->setTexture(GestionnaireTexture::get()->addTexture("textures\\bois.png"));
-				float coordTex[4][2] = {{1,1},{0,1},{0,0},{1,0}} ;
-				for (int k = 0 ; k < _scene->tabface[_scene->tabobj[i].tabface[j]].nbpt ; k++) // boucle sur les points 
-				{
-
-					int l = _scene->tabface[_scene->tabobj[i].tabface[j]].tabpt[k];
-					face->addPoint(new Vector3d<GLdouble>(_scene->tabpt[l].x, _scene->tabpt[l].y, _scene->tabpt[l].z), new Vector2d<GLdouble>(coordTex[k][0], coordTex[k][1]));
-
-				}
-
-				face->calculeNormales();
-				tmp->addFace(face);
-			}
-
-			root->attache(tmp);
-			
-		}*/
-		Import imp;
-		std::vector<Objet* >* listobj = imp.importer("models/testExport/RobienSimpleLOP.obj");
-		
-		for(unsigned int i =0; i < listobj->size(); i++)
-		{
-			//listobj->at(i)->matrice().rotate(90, 0, 0, 1);
-			//listobj->at(i)->afficheString();
-			//listobj->at(i)->
-			root->attache(listobj->at(i));
-		}
-		
-		listobj = imp.importer("models/testExport/RobienFinal.obj");
-		
-		for(unsigned int i =0; i < listobj->size(); i++)
-		{
-			//listobj->at(i)->matrice().rotate(0, 0, 90, 1);
-			//listobj->at(i)->afficheString();
-			//listobj->at(i)->
-			root->attache(listobj->at(i));
-		}
-		
-		_scene->setRoot(root);
+	glutCreateWindow("TP1:cube");
+	init();
 
 
-		for (int i = 0; i < _scene->nbsource; ++i)
-		{
-			Vector3d<GLdouble> ambiante(_scene->tabsource[i].ambiante.r, _scene->tabsource[i].ambiante.g, _scene->tabsource[i].ambiante.b);
-			Vector3d<GLdouble> couleur(_scene->tabsource[i].couleur.r, _scene->tabsource[i].couleur.g, _scene->tabsource[i].couleur.b);
-			Matrice<GLdouble> *m = new Matrice<GLdouble>();
-			m->translate(_scene->tabsource[i].position.x, _scene->tabsource[i].position.y, _scene->tabsource[i].position.z);
-			
-			root->attache(GestionnaireLumiere::get()->newLumiere(ambiante,couleur, _scene->tabsource[i].allure_faisceau.k, _scene->tabsource[i].allure_faisceau.theta, m));
+	AbstractObjet* root = new AbstractObjet();
 
-		}
+	//std::vector<AbstractObjet*>* listeObjets = new std::vector<AbstractObjet*>();
 
-		GestionnaireLumiere::get()->def_modele();
-		glutMainLoop();
+
+
+	/*for (int i = 0 ; i < _scene->nbobj ; i++)     	//boucle sur les objets 
+	{
+	Objet* tmp = new Objet(new Matrice<GLdouble>(_scene->tabobj[i].transfo));
+
+	for (int j = 0 ; j < _scene->tabobj[i].nbface ; j++) 
+	{
+
+	Material* material = new Material();
+	Face* face = new Face(material);
+	face->setTexture(GestionnaireTexture::get()->addTexture("textures\\bois.png"));
+	float coordTex[4][2] = {{1,1},{0,1},{0,0},{1,0}} ;
+	for (int k = 0 ; k < _scene->tabface[_scene->tabobj[i].tabface[j]].nbpt ; k++) // boucle sur les points 
+	{
+
+	int l = _scene->tabface[_scene->tabobj[i].tabface[j]].tabpt[k];
+	face->addPoint(new Vector3d<GLdouble>(_scene->tabpt[l].x, _scene->tabpt[l].y, _scene->tabpt[l].z), new Vector2d<GLdouble>(coordTex[k][0], coordTex[k][1]));
+
+	}
+
+	face->calculeNormales();
+	tmp->addFace(face);
+	}
+
+	root->attache(tmp);
+
+	}*/
+	Import imp;
+	std::vector<Objet* >* listobj = imp.importer("models/testExport/RobienSimpleLOP.obj");
+
+	for(unsigned int i =0; i < listobj->size(); i++)
+	{
+		//listobj->at(i)->matrice().rotate(90, 0, 0, 1);
+		//listobj->at(i)->afficheString();
+		//listobj->at(i)->
+		root->attache(listobj->at(i));
+	}
+
+	listobj = imp.importer("models/testExport/RobienFinal.obj");
+
+	for(unsigned int i =0; i < listobj->size(); i++)
+	{
+		//listobj->at(i)->matrice().rotate(0, 0, 90, 1);
+		//listobj->at(i)->afficheString();
+		//listobj->at(i)->
+		root->attache(listobj->at(i));
+	}
+
+	_scene->setRoot(root);
+
+	{
+		Vector3d<GLdouble> ambiante(0.4,0.1, 0.1);
+		Vector3d<GLdouble> couleur(0.1, 0.1, 0.1);
+		Matrice<GLdouble> *m = new Matrice<GLdouble>();
+		m->translate(0, 0, 2);
+		m->getVector16().at(11) = -1;
+		root->attache(GestionnaireLumiere::get()->newLumiere(ambiante,couleur, 5.0, 5.0, m));
+	}
+
+	{
+		Vector3d<GLdouble> ambiante(0.2, 0.2, 0.2);
+		Vector3d<GLdouble> couleur(0.5, 0.5, 0.5);
+		Matrice<GLdouble> *m = new Matrice<GLdouble>();
+		m->translate(25, 1, 0);
+		m->getVector16().at(0) = -1;
+		root->attache(GestionnaireLumiere::get()->newLumiere(ambiante,couleur, 2.0, 180.0, m));
+	}
+
+
+	GestionnaireLumiere::get()->def_modele();
+	glutMainLoop();
 
 }
 
