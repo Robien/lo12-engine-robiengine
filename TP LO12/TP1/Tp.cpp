@@ -46,11 +46,8 @@
 
 Tp::Tp()
 {
-	
-
 	_scene = new Scene();
 	_ob = new Observateur();
-
 }
 
 Tp::~Tp()
@@ -96,12 +93,6 @@ void Tp::init()
 		//_eclairage->def_modele();
 		Interactions::get()->initInteraction(_ob);
 
-		for (int i = 0; i < _scene->nbsource; ++i)
-		{
-			_scene->tabsource[i].allume = true;
-		}
-
-		GestionnaireTexture::get()->addTexture("textures\\bois.png");
 		_scene->_skybox->charger();
 		
 

@@ -398,7 +398,7 @@ void Observateur::changeView()
 	maj();
 }
 
-
+/*
 Scene::MCOORD Observateur::getPosition()
 {
 	Scene::MCOORD pos;
@@ -431,7 +431,7 @@ Scene::MCOORD Observateur::getPosition()
 	}	
 	return pos;
 }
-
+*/
 /*
 void Observateur::polarView(GLdouble distance, GLdouble azimut, GLdouble elevation, GLdouble twist)
 {

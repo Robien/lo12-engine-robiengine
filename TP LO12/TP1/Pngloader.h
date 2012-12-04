@@ -5,7 +5,6 @@
 #include "Texture.h"
 
 
-int ReadPNGFromFile (Scene::MTEX *texinfo);
 class Pngloader
 {
 	Pngloader();

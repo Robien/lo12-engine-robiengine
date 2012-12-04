@@ -11,32 +11,9 @@ COMMENTAIRE:
 Routines d'affichage
 
 */
+#include "const.h"
 
-#ifdef _MSC_VER
-#define TEMPO_WIN32
-#else
-#define TEMPO_UNIX
-#endif
-
-#ifdef TEMPO_UNIX
-#include <unistd.h> /*Temporisation pour unix*/
-#endif
-
-#ifdef TEMPO_WIN32
-#include <windows.h> /*Temporisation pour windows*/
-#endif
-
-#if defined(__APPLE__) && defined(__MACH__)
-#include <GLUT/glut.h>
-#include <OpenGL/gl.h>
-#include <OpenGL/glu.h>
-#else
-#include <glut.h>
-#include <GL/gl.h>
-#include <GL/glu.h>
-#endif
-
-#include "Skybox.h"
+class Scene;
 
 class Observateur
 {
@@ -102,7 +79,6 @@ public :
 	void translation_obs(int dir, double pas);
 	void rotation3D(double angle, double* axeVect, double *axePt, double* monPt, double* result);
 	void changeView();
-	Scene::MCOORD getPosition();
 
 private:
 	//GLdouble _distance,  _azimut,  _elevation,  _twist;
