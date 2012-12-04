@@ -16,7 +16,7 @@ class GestionnaireLumiere : public Singleton<GestionnaireLumiere>
 public:
 	GestionnaireLumiere();
 
-	Lumiere* newLumiere(Vector3d<GLdouble> amb, Vector3d<GLdouble> cou, GLdouble coefk, GLdouble angle, Matrice<GLdouble>* mat = NULL, std::string name = "lumiere_defaut");
+	Lumiere* newLumiere(Vector3d<GLdouble> amb, Vector3d<GLdouble> cou, GLdouble coefk, GLdouble angle, Matrice<GLdouble>* mat = NULL, bool infini = false, std::string name = "lumiere_defaut");
 	void setLumiereAmbiante(GLfloat r, GLfloat g, GLfloat b, GLfloat alpha = 1);
 	void def_modele();
 	void defAllSources();

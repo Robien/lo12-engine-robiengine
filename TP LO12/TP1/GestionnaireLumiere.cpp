@@ -9,16 +9,16 @@ GestionnaireLumiere::GestionnaireLumiere() : _listLumiere()
 	Interactions::get()->addEventCallBack(new LumiereInterraction());
 }
 
-Lumiere* GestionnaireLumiere::newLumiere(Vector3d<GLdouble> amb, Vector3d<GLdouble> cou, GLdouble coefk, GLdouble angle, Matrice<GLdouble>* mat , std::string name )
+Lumiere* GestionnaireLumiere::newLumiere(Vector3d<GLdouble> amb, Vector3d<GLdouble> cou, GLdouble coefk, GLdouble angle, Matrice<GLdouble>* mat,  bool infini, std::string name )
 {
 	Lumiere* lu;
 	if(mat == NULL)
 	{
-		lu = new Lumiere(amb,cou, AllureFaisceau(coefk, angle),name);
+		lu = new Lumiere(amb,cou, AllureFaisceau(coefk, angle),infini,name);
 	}
 	else
 	{
-		lu = new Lumiere(mat,amb,cou,AllureFaisceau(coefk, angle), name);
+		lu = new Lumiere(mat,amb,cou,AllureFaisceau(coefk, angle),infini, name);
 	}
 	_listLumiere.push_back(lu);
 	return lu;
