@@ -64,7 +64,7 @@ public:
 	{
 		return Vector3d<T>(_x/scalaire, _y/scalaire, _z/scalaire);
 	}
-	T* getCStyle() //attention aux free !
+	T* getCStyle()
 	{
 		
 		_test[0] = _x;

@@ -23,6 +23,7 @@
 #include "Material.h"
 #include "Vector2d.h"
 #include "Vector3d.h"
+#include "GestionnaireLumiere.h"
 
 
 /*******************************************************************************/
@@ -138,8 +139,9 @@ void Affiche::dessine_scene()
         //glIndexi(2);		 /* couleur de la scene en mode index */
 		//  glColor3f(1, .5,.5);   /* couleur de la scene en mode RGB   */
 		
-		_eclairage->defAllSources(); //definition des sources de lumiere
+		//_eclairage->defAllSources(); //definition des sources de lumiere
 		
+
 		
 		_scene->affiche();
 

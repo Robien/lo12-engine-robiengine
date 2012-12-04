@@ -3,8 +3,8 @@
 /*----------------------Definition Allure Faisceau-----------------------------*/
 AllureFaisceau::AllureFaisceau(GLdouble k, GLdouble theta)
 {
-	_k=k;
-	_theta=theta;
+	_k = k;
+	_theta = theta;
 }
 AllureFaisceau::~AllureFaisceau()
 {
@@ -63,7 +63,7 @@ void Lumiere::def_sources(GLenum source)
 		propc[0] = _ambiante.getX();
 		propc[1] = _ambiante.getY();
 		propc[2] = _ambiante.getZ();
-		propc[4] = 1; // alpha
+		propc[3] = 1; // alpha
 		glLightfv(source,GL_AMBIENT,propc);
 
 		propc[0] = _couleur.getX();
@@ -71,39 +71,37 @@ void Lumiere::def_sources(GLenum source)
 		propc[2] = _couleur.getZ();
 		glLightfv(source,GL_DIFFUSE,propc);
 		glLightfv(source,GL_SPECULAR,propc);
-
-		Vector3d<GLdouble> vect = getMatrice()->getPosition();
+		Vector3d<GLdouble>* vect = new Vector3d<GLdouble>();
+		*vect = getMatrice()->getPosition();
 		GLfloat propp[4]; 
-		propp[0] = vect.getX();
-		propp[1] = vect.getY();
-		propp[2] = vect.getZ();
-		propp[2] = 1;
+		propp[0] = vect->getX();
+		propp[1] = vect->getY();
+		propp[2] = vect->getZ();
+		propp[3] = 1;
 		glLightfv(source,GL_POSITION,propp);
-
-		vect = getMatrice()->getDirection();
-		propp[0] = vect.getX();
-		propp[1] = vect.getY();
-		propp[2] = vect.getZ();
-		propp[2] = 1;
+		//vect = new Vector3d<GLdouble>();
+		*vect = getMatrice()->getDirection();
+		propp[0] = vect->getX();
+		propp[1] = vect->getY();
+		propp[2] = vect->getZ();
+		propp[3] = 1;
 		glLightfv(source,GL_SPOT_DIRECTION,propp);
-
 		glLightf(source,GL_SPOT_CUTOFF,_allure_faisceau.getAngle());
 		glLightf(source,GL_SPOT_EXPONENT,_allure_faisceau.getCoefK());
-
 		glEnable(source);
+		//TODO : y'a une fuite ici, je ne sais pas trop pourquoi comment, mais le delete fait crash
+		//delete vect;
 
 	}
 	else
 	{
-
 		glDisable(source);
 	}
-
 }
 
 void Lumiere::affiche()
 {
-	if(_afficheSphere)
+	if(_afficheSphere && _active)
 	{
 		glMatrixMode(GL_MODELVIEW);	
 		glDisable(GL_LIGHTING);
@@ -128,6 +126,10 @@ void Lumiere::affiche()
 
 }
 
+void  Lumiere::toggle()
+{
+	_active = !_active;
+}
 
 
 
