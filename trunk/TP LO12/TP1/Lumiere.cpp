@@ -115,6 +115,14 @@ void Lumiere::affiche()
 		glPushMatrix();
 		glMultMatrixd(getMatrice()->getMat());
 		gluSphere(_sphere, 0.1, 10, 10);
+		/*afficher la direction du vecteur*/
+		_vect = getMatrice()->getDirection();
+		glBegin(GL_LINES);
+		glVertex3d(0.0,0.0,0.0);
+		glVertex3d(_vect.getX(),_vect.getY(),_vect.getZ());
+		glColor3f(1,1,1);
+		glEnd();
+
 		glEnable(GL_LIGHTING);
 		//on affiche les objets fils
 		 for (unsigned int i = 0; i < getFils()->size(); ++i)
