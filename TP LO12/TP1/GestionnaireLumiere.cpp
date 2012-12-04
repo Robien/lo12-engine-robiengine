@@ -6,6 +6,7 @@ GestionnaireLumiere::GestionnaireLumiere() : _listLumiere()
 	_lumiereAmbiante[1] = 0.8;
 	_lumiereAmbiante[2] = 0.8;
 	_lumiereAmbiante[3] = 1;
+	Interactions::get()->addEventCallBack(new LumiereInterraction());
 }
 
 Lumiere* GestionnaireLumiere::newLumiere(Vector3d<GLdouble> amb, Vector3d<GLdouble> cou, GLdouble coefk, GLdouble angle, Matrice<GLdouble>* mat , std::string name )
@@ -36,6 +37,7 @@ void GestionnaireLumiere::defAllSources()
 	for (unsigned int i = 0; i < _listLumiere.size(); ++i)
 	{
 		_listLumiere.at(i)->def_sources(lumiere_i(i));
+
 	}
 }
 
@@ -75,7 +77,7 @@ GLenum GestionnaireLumiere::lumiere_i(unsigned int i)
 	}
 	else 
 	{
-		std::cout << "Attention : le nombre de sources lumineuses depassé" << std::endl;
+		std::cout << "Attention : le nombre de sources lumineuses est depassé" << std::endl;
 		return ((GLenum)GL_LIGHT7);
 	}
 }
@@ -86,4 +88,9 @@ void GestionnaireLumiere::setLumiereAmbiante(GLfloat r, GLfloat g, GLfloat b, GL
 	_lumiereAmbiante[1] = g;
 	_lumiereAmbiante[2] = b;
 	_lumiereAmbiante[3] = alpha;
+}
+
+void GestionnaireLumiere::toggleLumiere(unsigned int i)
+{
+	_listLumiere.at(i)->toggle();
 }

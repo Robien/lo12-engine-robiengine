@@ -30,6 +30,7 @@ public:
 	virtual void affiche();
 
 	void setAfficheSphere(bool aff);
+	void  toggle();
 
 private:
 

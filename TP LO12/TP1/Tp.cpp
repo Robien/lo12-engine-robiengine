@@ -39,6 +39,7 @@
 #include "AbstractObjet.h"
 #include "Objet.h"
 #include <vector>
+#include "GestionnaireLumiere.h"
 
 
 
@@ -95,7 +96,7 @@ void Tp::init()
 		
 		glShadeModel(GL_SMOOTH);
 		//glShadeModel(GL_FLAT);
-		_eclairage->def_modele();
+		//_eclairage->def_modele();
 		Interactions::get()->initInteraction(_ob, _scene, _affiche);
 
 		for (int i = 0; i < _scene->nbsource; ++i)
@@ -204,7 +205,18 @@ void Tp::run(char* filename, int verbose)
 		_scene->setRoot(root);
 
 
+		for (int i = 0; i < _scene->nbsource; ++i)
+		{
+			Vector3d<GLdouble> ambiante(_scene->tabsource[i].ambiante.r, _scene->tabsource[i].ambiante.g, _scene->tabsource[i].ambiante.b);
+			Vector3d<GLdouble> couleur(_scene->tabsource[i].couleur.r, _scene->tabsource[i].couleur.g, _scene->tabsource[i].couleur.b);
+			Matrice<GLdouble> *m = new Matrice<GLdouble>();
+			m->translate(_scene->tabsource[i].position.x, _scene->tabsource[i].position.y, _scene->tabsource[i].position.z);
+			
+			root->attache(GestionnaireLumiere::get()->newLumiere(ambiante,couleur, _scene->tabsource[i].allure_faisceau.k, _scene->tabsource[i].allure_faisceau.theta, m));
 
+		}
+
+		GestionnaireLumiere::get()->def_modele();
 		glutMainLoop();
 
 }

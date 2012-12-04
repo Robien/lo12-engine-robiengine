@@ -19,6 +19,7 @@ variables globales
 #include "Skybox.h"
 
 #include "Interactions.h"
+#include "GestionnaireLumiere.h"
 
 class Skybox;
 
@@ -155,6 +156,9 @@ void Scene::setRoot(AbstractObjet* root)
 void Scene::affiche()
 {
 	//	_mainCamera->affiche();
+
+	GestionnaireLumiere::get()->defAllSources();
+
 	if (_root != NULL)
 	{
 		_root->affiche();
