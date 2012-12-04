@@ -39,6 +39,7 @@
 #include "Objet.h"
 #include <vector>
 #include "GestionnaireLumiere.h"
+#include "GestionnaireTexture.h"
 
 
 
@@ -49,7 +50,6 @@ Tp::Tp()
 
 	_scene = new Scene();
 	_ob = new Observateur();
-	Outil::get()->initManager(_scene);
 
 }
 
@@ -94,14 +94,14 @@ void Tp::init()
 		glShadeModel(GL_SMOOTH);
 		//glShadeModel(GL_FLAT);
 		//_eclairage->def_modele();
-		Interactions::get()->initInteraction(_ob, _scene);
+		Interactions::get()->initInteraction(_ob);
 
 		for (int i = 0; i < _scene->nbsource; ++i)
 		{
 			_scene->tabsource[i].allume = true;
 		}
 
-		Outil::get()->addTexture("textures\\bois.png");
+		GestionnaireTexture::get()->addTexture("textures\\bois.png");
 		_scene->_skybox->charger();
 		
 
@@ -161,7 +161,7 @@ void Tp::run(char* filename, int verbose)
 
 				Material* material = new Material();
 				Face* face = new Face(material);
-				face->setTexture(Outil::get()->addTexture("textures\\bois.png"));
+				face->setTexture(GestionnaireTexture::get()->addTexture("textures\\bois.png"));
 				float coordTex[4][2] = {{1,1},{0,1},{0,0},{1,0}} ;
 				for (int k = 0 ; k < _scene->tabface[_scene->tabobj[i].tabface[j]].nbpt ; k++) // boucle sur les points 
 				{

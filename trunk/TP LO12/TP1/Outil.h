@@ -7,14 +7,9 @@
 #include "Vector3d.h"
 #include <math.h>
 
-class Scene;
 
 class Outil : public Singleton<Outil>
 {
-public:
-	void initManager(Scene* scene);
-	GLuint addTexture(char* filename); //TODO DELETE
-
 public:
 	template <typename T>
 	Vector3d<T>* produitVectoriel(Vector3d<T> u, Vector3d<T> v)
@@ -33,9 +28,6 @@ public:
 		return sqrt(u.getX() * u.getX() + u.getY() * u.getY() + u.getZ() * u.getZ());
 	}
 
-
-	private:
-	Scene* _scene;
 };
 
 #endif

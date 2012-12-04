@@ -209,7 +209,7 @@ void Interactions::dessine_scene()
 
 
 
-void Interactions::initInteraction(Observateur* ob, Scene* /*scene*/)
+void Interactions::initInteraction(Observateur* ob)
 {
 
 	_ob = ob;
