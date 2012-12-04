@@ -3,6 +3,7 @@
 #include "const.h"
 #include <iostream>
 #include "Camera.h"
+#include "GestionnaireLumiere.h"
 
 Observateur::Observateur(Eclairage* eclairage)
 {
@@ -47,7 +48,10 @@ void Observateur::maj()
 		glRotated(90-_azimut, 0, 0, 1);
 	}
 	*/
-	_eclairage->defAllSources();
+	GestionnaireLumiere::get()->defAllSources();
+
+
+	//_eclairage->defAllSources();
 }
 
 

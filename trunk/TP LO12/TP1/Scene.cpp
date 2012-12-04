@@ -50,8 +50,6 @@ public:
 		case GLUT_KEY_F5:	_scene->rotateObjetSelectionne(0,1,0,90*mult);	break;
 		case GLUT_KEY_F6:	_scene->rotateObjetSelectionne(0,0,1,90*mult);	break;
 		case GLUT_KEY_F7:	_scene->toggleFilted();	break;
-		case GLUT_KEY_F8:	_scene->tabsource[0].allume = !_scene->tabsource[0].allume;	break;
-		case GLUT_KEY_F9:	_scene->tabsource[1].allume = !_scene->tabsource[1].allume;	break;
 
 		}
 	}
@@ -69,14 +67,14 @@ public:
 	virtual void eventsMotionMouse(int x, int y){}
 	virtual void idle()
 	{
-		Interactions::get()->_affiche->dessine_scene();
+		_scene->affiche();
 	}
 	virtual void reshape(int largeur, int hauteur)
 	{
 	}
 	virtual void dessine_scene()
 	{
-		Interactions::get()->_affiche->dessine_scene();
+		_scene->affiche();
 	}
 };
 
@@ -157,6 +155,12 @@ void Scene::affiche()
 {
 	//	_mainCamera->affiche();
 
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
+
+	_skybox->dessine_box();
+
+	dessine_repere();
+
 	GestionnaireLumiere::get()->defAllSources();
 
 	if (_root != NULL)
@@ -164,28 +168,37 @@ void Scene::affiche()
 		_root->affiche();
 	}
 
-	/*
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	dessine_skybox(Interactions::get()->_ob->getPosition());
-
-	dessine_repere();
-
-
-	_eclairage->defAllSources(); //definition des sources de lumiere
-
-
-	_scene->affiche();
 
 
 	glutSwapBuffers();
 	glutPostRedisplay();
 
-
-	*/
-
 }
 AbstractObjet* Scene::getRoot()
 {
 	return _root;
+}
+
+
+
+void Scene::dessine_repere()
+{
+	glDisable(GL_LIGHTING);
+
+	glBegin(GL_LINES);
+	glColor3f(1.0,0.0,0.0);
+	glVertex3d(0.0,0.0,0.0);
+	glVertex3d(10.0,0,0);
+
+	glColor3f(0.0,1.0,0);
+	glVertex3d(0.0,0,0);
+	glVertex3d(0.0,10,0);
+
+	glColor3f(0.0,0,1);
+	glVertex3d(0.0,0,0);
+	glVertex3d(0.0,0,10);
+
+	glColor3f(1,1,1);
+	glEnd();
+
 }
