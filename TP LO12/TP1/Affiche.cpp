@@ -123,18 +123,18 @@ void Affiche::dessine_objet(Scene::OBJET objet)
 
 void Affiche::dessine_skybox(Scene::MCOORD pos)
 {
-	_scene->_skybox->dessine_box(pos);
+	//_scene->_skybox->dessine_box(pos);
 }
 
 
 void Affiche::dessine_scene()
 {
       //  int i;  /* indice d'objet */
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  /*efface l'ecran */
+		//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  /*efface l'ecran */
 		
-		dessine_skybox(Interactions::get()->_ob->getPosition());
+		//dessine_skybox(Interactions::get()->_ob->getPosition());
 
-        dessine_repere();
+  
 
         //glIndexi(2);		 /* couleur de la scene en mode index */
 		//  glColor3f(1, .5,.5);   /* couleur de la scene en mode RGB   */
@@ -143,7 +143,7 @@ void Affiche::dessine_scene()
 		
 
 		
-		_scene->affiche();
+		//_scene->affiche();
 
    //     for (i = 0 ; i < _scene->nbobj ; i++)     	/* boucle sur les objets */
      //   {
@@ -162,8 +162,8 @@ void Affiche::dessine_scene()
 	//		glPopMatrix();
      //   }
 		
-        glutSwapBuffers();
-		glutPostRedisplay();
+        //glutSwapBuffers();
+		//glutPostRedisplay();
 }
 
 /****************************************************************************/

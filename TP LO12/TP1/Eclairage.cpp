@@ -63,6 +63,8 @@ vecteurs
 
 void Eclairage::prod_vectoriel(Scene::MCOORD u, Scene::MCOORD v, Scene::MCOORD *w)
 {
+std::cout << "pv" << std::endl;
+	getchar();
 	w->x = u.y * v.z - u.z * v.y;
 	w->y = u.z * v.x - v.z * u.x;
 	w->z = u.x * v.y - v.x * u.y;
@@ -73,7 +75,8 @@ void Eclairage::prod_vectoriel(Scene::MCOORD u, Scene::MCOORD v, Scene::MCOORD *
 /*****************************************************************************/
 void Eclairage::calcule_normales()
 {
-	
+	std::cout << "calcul normal" << std::endl;
+		getchar();
 	for (int iface = 0; iface < _scene->nbface; ++iface)
 	{
 		Scene::MCOORD x, y;
@@ -156,7 +159,11 @@ void Eclairage::mcoord2mcoordf(Scene::MCOORD *mcoord,Scene::MCOORDF *mcoordf)
 
 /*****************************************************************************/
 void Eclairage::def_sources(GLint i)
-{             /* indice source */
+{   
+	std::cout << "ds" << std::endl;
+	getchar();
+	
+	/* indice source */
         Scene::RGBAF propc;    /* tableau des proprietes de la source */
         Scene::MCOORDF propp;
         GLenum source;
@@ -198,6 +205,8 @@ void Eclairage::def_sources(GLint i)
 
 void Eclairage::afficherSphereSpot(GLint i)
 {
+	std::cout << "ass" << std::endl;
+		getchar();
 	GLUquadricObj *quadObj = gluNewQuadric();
 	glDisable(GL_LIGHTING);
 	glColor3d(_scene->tabsource[i].couleur.r, _scene->tabsource[i].couleur.g, _scene->tabsource[i].couleur.b);				
@@ -213,6 +222,8 @@ void Eclairage::afficherSphereSpot(GLint i)
 /*****************************************************************************/
 void Eclairage::def_modele()
 {
+	std::cout << "dm" << std::endl;
+		getchar();
         Scene::RGBAF propc;
 
         propc.r = 0.8;
@@ -231,6 +242,8 @@ void Eclairage::def_modele()
 /*****************************************************************************/
 void Eclairage::def_matiere(int i)
 {
+	std::cout << "def mat" << std::endl;
+		getchar();
         Scene::RGBAF propc;
 
 

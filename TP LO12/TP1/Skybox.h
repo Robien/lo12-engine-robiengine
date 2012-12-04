@@ -12,7 +12,7 @@ public:
 	virtual ~Skybox();
 
 	void charger();
-	void dessine_box(Scene::MCOORD coord);
+	void dessine_box();
 
 private:
 	std::vector<GLuint> _tabText;

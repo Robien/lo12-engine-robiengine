@@ -108,7 +108,7 @@ void Tp::init()
 		_scene->_skybox->charger();
 		
 
-		_scene->_skybox->dessine_box(_ob->getPosition());
+//		_scene->_skybox->dessine_box(_ob->getPosition());
 		
 }
 
@@ -132,7 +132,7 @@ void Tp::run(char* filename, int verbose)
                 SceneUtils().print_scene_data(_scene);
         }
 		
-		_eclairage->calcule_normales();
+		//_eclairage->calcule_normales();
 
         glutInitWindowSize(800, 600);   /* taille de la fenetre ecran */
 		glutInitWindowPosition(100, 100);

@@ -29,7 +29,7 @@ void Skybox::charger()
 
 
 //*****************************************************************************************************************************
-void Skybox::dessine_box(Scene::MCOORD /*coord*/)
+void Skybox::dessine_box()
 {
 	float t=1.0;
 	// Désactivation de l'écriture dans le Z-buffer

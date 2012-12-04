@@ -240,6 +240,7 @@ public:
 	void translateObjetSelectionne(GLdouble x,GLdouble y,GLdouble z);
 	void rotateObjetSelectionne(GLdouble x,GLdouble y,GLdouble z, GLdouble angle);
 	AbstractObjet* getRoot();
+	void dessine_repere();
 
 public:
 
