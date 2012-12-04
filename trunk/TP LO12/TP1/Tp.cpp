@@ -13,32 +13,13 @@ Interface OpenGL (GLUT, GLU, GL)
 
 */
 
-//******************//
-//Fichiers inclus : //
-//******************//
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "Import.h"
-
-#if defined(__APPLE__) && defined(__MACH__)
-#include <GLUT/glut.h>
-#include <OpenGL/gl.h>
-#include <OpenGL/glu.h>
-#else
-#include <glut.h>
-#include <GL/gl.h>
-#include <GL/glu.h>
-#endif
-
 #include "Tp.h"
-#include "Interactions.h"
 #include "AbstractObjet.h"
 #include "SystemeParticules.h"
 #include "Objet.h"
 #include <vector>
 #include "GestionnaireLumiere.h"
-#include "GestionnaireTexture.h"
 #include "CameraLookAt.h"
 
 
