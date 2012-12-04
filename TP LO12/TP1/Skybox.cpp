@@ -2,6 +2,7 @@
 #include "Outil.h"
 #include "Skybox.h"
 #include "Matrice.h"
+#include "GestionnaireTexture.h"
 
 //*****************************************************************************************************************************
 Skybox::Skybox()
@@ -19,12 +20,12 @@ Skybox::~Skybox()
 void Skybox::charger()
 {
 	
-	_tabText.push_back(Outil::get()->addTexture("textures/XN.png"));
-    _tabText.push_back(Outil::get()->addTexture("textures/XP.png"));
-    _tabText.push_back(Outil::get()->addTexture("textures/YN.png"));
-    _tabText.push_back(Outil::get()->addTexture("textures/YP.png"));
-    _tabText.push_back(Outil::get()->addTexture("textures/ZN.png"));
-    _tabText.push_back(Outil::get()->addTexture("textures/ZP.png"));
+	_tabText.push_back(GestionnaireTexture::get()->addTexture("textures/XN.png"));
+    _tabText.push_back(GestionnaireTexture::get()->addTexture("textures/XP.png"));
+    _tabText.push_back(GestionnaireTexture::get()->addTexture("textures/YN.png"));
+    _tabText.push_back(GestionnaireTexture::get()->addTexture("textures/YP.png"));
+    _tabText.push_back(GestionnaireTexture::get()->addTexture("textures/ZN.png"));
+    _tabText.push_back(GestionnaireTexture::get()->addTexture("textures/ZP.png"));
 }
 
 

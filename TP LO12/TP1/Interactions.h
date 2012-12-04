@@ -29,7 +29,7 @@ class Interactions : public Singleton<Interactions>
 public:
 	Interactions();
 	virtual ~Interactions();
-	void initInteraction(Observateur* ob, Scene* /*scene*/);
+	void initInteraction(Observateur* ob);
 
 public:
 	void addEventCallBack(CB_Interraction* callBack);
