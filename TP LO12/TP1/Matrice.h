@@ -34,10 +34,11 @@ public:
 	{
 		return _data.data();
 	}
-	const std::vector<T>& getVector16()
+	std::vector<T>& getVector16()
 	{
 		return _data;
 	}
+
 
 public:
 	virtual void print()
