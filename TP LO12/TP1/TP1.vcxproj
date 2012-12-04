@@ -97,7 +97,6 @@
   <ItemGroup>
     <ClCompile Include="AbstractObjet.cpp" />
     <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="DatUtils.cpp" />
     <ClCompile Include="Face.cpp" />
     <ClCompile Include="GestionnaireLumiere.cpp" />
     <ClCompile Include="GestionnaireTexture.cpp" />
@@ -112,7 +111,6 @@
     <ClCompile Include="Outil.cpp" />
     <ClCompile Include="Pngloader.cpp" />
     <ClCompile Include="scene.cpp" />
-    <ClCompile Include="SceneUtils.cpp" />
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Tp.cpp" />
@@ -123,7 +121,6 @@
     <ClInclude Include="AbstractObjet.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="const.h" />
-    <ClInclude Include="DatUtils.h" />
     <ClInclude Include="Face.h" />
     <ClInclude Include="GestionnaireLumiere.h" />
     <ClInclude Include="GestionnaireTexture.h" />
@@ -137,7 +134,6 @@
     <ClInclude Include="Outil.h" />
     <ClInclude Include="Pngloader.h" />
     <ClInclude Include="scene.h" />
-    <ClInclude Include="SceneUtils.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Skybox.h" />
     <ClInclude Include="Texture.h" />
