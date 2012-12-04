@@ -84,7 +84,11 @@ void Tp::run()
 		//listobj->at(i)->
 		root->attache(listobj->at(i));
 	}
-	
+		SystemeParticules* sp = new SystemeParticules(true);
+		sp->matrice().translate(0,0,-2);
+		sp->start();
+		root->attache(sp);
+
 		
 	_scene->setRoot(root);
 
