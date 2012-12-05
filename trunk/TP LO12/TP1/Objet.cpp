@@ -5,7 +5,7 @@
 Objet::Objet(std::string str) : AbstractObjet(str)
 {
 }
-Objet::Objet(Matrice<GLdouble>* matrice):AbstractObjet(matrice)
+Objet::Objet(Matrice<GLdouble>* matrice) : AbstractObjet(matrice)
 {
 }
 
@@ -54,6 +54,7 @@ void Objet::affiche()
 
 void Objet::addFace(Face* face)
 {
+	_collider->addCollider(face->getCollider());
 	_listeFace.push_back(face);
 }
 

@@ -5,7 +5,9 @@
 #include "Matrice.h"
 #include "const.h"
 #include <iostream>
+#include "Collider.h"
 
+class Collider;
 
 class AbstractObjet
 {
@@ -50,14 +52,20 @@ public:
 
 public:
 	std::vector<AbstractObjet*>* getFils();
+	AbstractObjet* getPere();
+	void majCollider();
 
-	protected:
-		bool _isFilted;
+protected:
+	bool _isFilted;
+	Collider* _collider;
+
 private:
 	std::vector<AbstractObjet*> _fils;
+	AbstractObjet* _pere;
 	Matrice<GLdouble>* _matrice;
 	std::string _nom;
 
+	
 
 
 };

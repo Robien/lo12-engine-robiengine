@@ -5,6 +5,7 @@
 #include "Vector3d.h"
 #include "Outil.h"
 #include "Material.h"
+#include "Collider.h"
 
 class Face
 {
@@ -17,6 +18,7 @@ public:
 	void addPoint(Vector3d<GLdouble>* coordonnees, Vector2d<GLdouble>* coordonnneesTexture = NULL);
 	void calculeNormales();
 	void setTexture(GLuint texture);
+	Collider& getCollider();
 
 public:
 	virtual void affiche();
@@ -28,6 +30,8 @@ private:
 	Vector3d<GLdouble>* _normale;
 	Material* _material;
 	bool _isFilted;
+	Collider _collider;
+
 };
 
 #endif

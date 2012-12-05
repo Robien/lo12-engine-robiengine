@@ -4,17 +4,21 @@
 
 AbstractObjet::AbstractObjet(std::string str)
 {
+	_pere = NULL;
 	_isFilted = false;
 	_nom = str;
 	//la matrice par défaut = matrice identitée
 	_matrice = new Matrice<GLdouble>();
+	_collider = new Collider();
 }
 
 AbstractObjet::AbstractObjet(Matrice<GLdouble>* matrice, std::string str)
 {
+	_pere = NULL;
 	_isFilted = false;
 	_nom = str;
 	_matrice = matrice;
+	_collider = new Collider();
 }
 
 
@@ -31,6 +35,8 @@ AbstractObjet::~AbstractObjet()
 void AbstractObjet::addFils(AbstractObjet* fils)
 {
 	_fils.push_back(fils);
+	fils->_pere = this;
+	_collider->addCollider(*fils->_collider);
 }
 
 void AbstractObjet::removeFils(AbstractObjet* fils)
@@ -43,6 +49,7 @@ void AbstractObjet::removeFils(AbstractObjet* fils)
 			getFils()->pop_back();
 		}
 	}
+	fils->_pere = NULL;
 
 }
 
@@ -63,6 +70,16 @@ void AbstractObjet::removeFils(std::vector<AbstractObjet*>* fils)
 
 }
 
+void AbstractObjet::majCollider()
+{
+	_collider->reset();
+	for (unsigned int i = 0; i < getFils()->size(); ++i)
+	{
+		_collider->addCollider(*getFils()->at(i)->_collider);
+
+	}
+
+}
 
 std::vector<AbstractObjet*>* AbstractObjet::getFils()
 {
@@ -118,4 +135,9 @@ void AbstractObjet::toggleFilted()
 	{
 		getFils()->at(i)->toggleFilted();
 	}
+}
+
+AbstractObjet* AbstractObjet::getPere()
+{
+	return _pere;
 }
