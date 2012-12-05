@@ -98,6 +98,7 @@
     <ClCompile Include="AbstractObjet.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CameraLookAt.cpp" />
+    <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Face.cpp" />
     <ClCompile Include="GestionnaireLumiere.cpp" />
     <ClCompile Include="GestionnaireTexture.cpp" />
@@ -123,6 +124,7 @@
     <ClInclude Include="AbstractObjet.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraLookAt.h" />
+    <ClInclude Include="Collider.h" />
     <ClInclude Include="const.h" />
     <ClInclude Include="Face.h" />
     <ClInclude Include="GestionnaireLumiere.h" />

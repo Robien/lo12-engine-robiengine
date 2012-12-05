@@ -12,7 +12,7 @@ GLuint GestionnaireTexture::addTexture(std::string filename)
 	int idexist = exist(&filename);
 	if (idexist != -1)
 	{
-		std::cout << "Texture " << filename << " deja charge avec le numero :\t" <<  _listTexture.at(idexist) << std::endl; 
+		std::cout << "Texture " << filename << " deja charge avec le numero :\t" <<  _listTexture.at(idexist)->getGlnum() << std::endl; 
 		delete texture;
 		return _listTexture.at(idexist)->getGlnum();
 	}

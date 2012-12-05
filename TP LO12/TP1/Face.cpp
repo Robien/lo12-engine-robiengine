@@ -92,6 +92,7 @@ void Face::calculeNormales()
 
 void Face::addPoint(Vector3d<GLdouble>* coordonnees, Vector2d<GLdouble>* coordonnneesTexture)
 {
+	_collider.addPoint(*coordonnees);
 	_listePoints.push_back(coordonnees);
 	_listeCoordonneesTextures.push_back(coordonnneesTexture);
 }
@@ -105,4 +106,9 @@ void Face::setTexture(GLuint texture)
 void Face::toggleFilted()
 {
 	_isFilted = !_isFilted;
+}
+
+Collider& Face::getCollider()
+{
+	return _collider;
 }

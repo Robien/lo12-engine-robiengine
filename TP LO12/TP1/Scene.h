@@ -23,6 +23,8 @@
 #include "Skybox.h"
 
 
+class AbstractObjet;
+
 
 class Scene
 {
