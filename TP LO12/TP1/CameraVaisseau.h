@@ -1,13 +1,18 @@
-#ifndef _CAMERALOOKAT_H	
-#define _CAMERALOOKAT_H
+#ifndef _CAMERAVAISSEAU_H	
+#define _CAMERAVAISSEAU_H
+
 
 #include "Camera.h"
-#include "const.h"
 
 
-class CameraLookAt : public Camera
+class CameraVaisseau : public Camera
 {
 public:
+	CameraVaisseau();
+	virtual ~CameraVaisseau();
+	public:
+	void resetVue();
+
 	struct LookAtParam
 	{
 		double eyex;
@@ -23,12 +28,7 @@ public:
 	};
 
 public:
-	CameraLookAt();
-	virtual ~CameraLookAt();
 
-public:
-
-	void resetVue();
 	void affiche();
 	void rotationZ_obs(double angle);
 	void tourner_tete(int dir, double angle);
@@ -36,15 +36,9 @@ public:
 	void translation_obs(int dir, double pas);
 	void rotation3D(double angle, double* axeVect, double* axePt, double* monPt, double* result);
 
-	virtual void maj(){Camera::maj();}
-
 private:
 
 	LookAtParam _lookAtParam;
-	
-
-
 };
 
-
-#endif;
+#endif

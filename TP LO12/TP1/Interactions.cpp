@@ -62,6 +62,15 @@ void Interactions::eventsMotionMouse(int x, int y)
 
 }
 
+void Interactions::eventsPassiveMotionMouse(int x, int y)
+{
+
+	for (unsigned int i = 0; i < Interactions::get()->_cb.size(); ++i)
+	{
+		Interactions::get()->_cb.at(i)->eventsPassiveMotionMouse(x, y);
+	}
+
+}
 
 
 void Interactions::idle()
@@ -106,6 +115,7 @@ void Interactions::initInteraction()
 	glutMouseFunc(eventsMouse);
 	glutSpecialFunc(eventsSpecialKey);
 	glutMotionFunc(eventsMotionMouse);
+	glutPassiveMotionFunc(eventsPassiveMotionMouse);
 	glutDisplayFunc(dessine_scene);
 	glutReshapeFunc(reshape);
 	glutIdleFunc(idle);

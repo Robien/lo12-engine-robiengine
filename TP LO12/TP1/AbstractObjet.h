@@ -53,7 +53,7 @@ public:
 public:
 	std::vector<AbstractObjet*>* getFils();
 	AbstractObjet* getPere();
-	void majCollider();
+	virtual void majCollider();
 
 protected:
 	bool _isFilted;

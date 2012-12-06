@@ -21,6 +21,7 @@
 #include "Camera.h"
 #include "Interactions.h"
 #include "Skybox.h"
+#include "Vector2d.h"
 
 
 class AbstractObjet;
@@ -48,10 +49,12 @@ public:
 	void rotateObjetSelectionne(GLdouble x,GLdouble y,GLdouble z, GLdouble angle);
 	AbstractObjet* getRoot();
 	void dessine_repere();
+
+	Vector2d<int>* getDimensions();
 	
 public:
 	void run();
-	void createWindows();
+	void createWindows(int hauteur, int largeur);
 
 private:
 
@@ -63,6 +66,7 @@ private:
 	AbstractObjet* _root;
 	Camera* _mainCamera;
 
+	Vector2d<int>* _windowsSize;
 
 
 

@@ -17,7 +17,7 @@ public:
 	{
 		for (unsigned int i = 0; i < _data.size(); ++i)
 		{
-			_data.at(i) = c.getVector16().at(i);
+			_data.at(i) = c._data.at(i);
 		}
 
 	}

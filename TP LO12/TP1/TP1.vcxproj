@@ -97,7 +97,9 @@
   <ItemGroup>
     <ClCompile Include="AbstractObjet.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CameraFPS.cpp" />
     <ClCompile Include="CameraLookAt.cpp" />
+    <ClCompile Include="CameraVaisseau.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Face.cpp" />
     <ClCompile Include="GestionnaireLumiere.cpp" />
@@ -123,7 +125,9 @@
   <ItemGroup>
     <ClInclude Include="AbstractObjet.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CameraFPS.h" />
     <ClInclude Include="CameraLookAt.h" />
+    <ClInclude Include="CameraVaisseau.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="const.h" />
     <ClInclude Include="Face.h" />

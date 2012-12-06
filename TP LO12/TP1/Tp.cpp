@@ -20,6 +20,7 @@ Interface OpenGL (GLUT, GLU, GL)
 #include "Objet.h"
 #include <vector>
 #include "GestionnaireLumiere.h"
+#include "CameraVaisseau.h"
 #include "CameraLookAt.h"
 
 
@@ -28,7 +29,6 @@ Interface OpenGL (GLUT, GLU, GL)
 Tp::Tp()
 {
 	_scene = new Scene(new CameraLookAt());
-
 }
 
 Tp::~Tp()
@@ -42,7 +42,7 @@ Tp::~Tp()
 void Tp::run()
 {
 
-	_scene->createWindows();
+	_scene->createWindows(1024, 768);
 
 	AbstractObjet* root = new AbstractObjet();
 
