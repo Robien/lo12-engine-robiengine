@@ -161,6 +161,9 @@ void Scene::setRoot(AbstractObjet* root)
 
 void Scene::affiche()
 {
+	//_mainCamera->affiche();
+	glLoadIdentity();
+	_root->majPos();
 	_mainCamera->affiche();
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 

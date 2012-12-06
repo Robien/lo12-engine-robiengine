@@ -17,6 +17,7 @@ public:
 	virtual ~AbstractObjet();
 
 	virtual void affiche();
+	virtual void majPos();
 
 public:
 	void addFils(AbstractObjet* fils);
@@ -48,6 +49,10 @@ public:
 	{
 		return *_matrice;
 	}
+	Matrice<GLdouble>& matriceAbsolue()
+	{
+		return *_matriceAbsolue;
+	}
 	virtual void toggleFilted();
 
 public:
@@ -64,7 +69,7 @@ private:
 	AbstractObjet* _pere;
 	Matrice<GLdouble>* _matrice;
 	std::string _nom;
-
+	Matrice<GLdouble>* _matriceAbsolue;
 	
 
 
