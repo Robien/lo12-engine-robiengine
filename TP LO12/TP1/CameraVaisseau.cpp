@@ -172,7 +172,7 @@ public:
 		{
 			_acceleration = 0;
 		}
-		std::cout << _acceleration << std::endl;
+		//std::cout << _acceleration << std::endl;
 		_camera->zoom(-_acceleration/50);
 	}
 

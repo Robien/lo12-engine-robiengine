@@ -34,7 +34,8 @@ void Objet::affiche()
 	}
 		//	glMatrixMode(GL_MODELVIEW);
 		
-	
+	std::cout << matriceAbsolue().getPosition().getX()  << std::endl;
+	//_collider->affiche();
 		//GLdouble* newData = (GLdouble*) malloc(16*sizeof(GLdouble));
 		//glGetDoublev(GL_MODELVIEW_MATRIX, newData);
 		//std::cout << (new Matrice<GLdouble>(newData))->getVector16().size() << std::endl;

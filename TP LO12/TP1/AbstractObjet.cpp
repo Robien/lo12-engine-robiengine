@@ -9,6 +9,7 @@ AbstractObjet::AbstractObjet(std::string str)
 	_nom = str;
 	//la matrice par défaut = matrice identitée
 	_matrice = new Matrice<GLdouble>();
+	_matriceAbsolue = new Matrice<GLdouble>();
 	_collider = new Collider();
 }
 
@@ -18,6 +19,7 @@ AbstractObjet::AbstractObjet(Matrice<GLdouble>* matrice, std::string str)
 	_isFilted = false;
 	_nom = str;
 	_matrice = matrice;
+	_matriceAbsolue = new Matrice<GLdouble>();
 	_collider = new Collider();
 }
 
@@ -140,4 +142,25 @@ void AbstractObjet::toggleFilted()
 AbstractObjet* AbstractObjet::getPere()
 {
 	return _pere;
+}
+
+void AbstractObjet::majPos()
+{
+		glPushMatrix();
+		glMultMatrixd(getMatrice()->getMat());
+
+		GLdouble* mat = (GLdouble*) malloc(16*sizeof(GLdouble));
+		glGetDoublev(GL_MODELVIEW_MATRIX, mat);
+
+		_matriceAbsolue->getVector16().clear();
+		_matriceAbsolue->getVector16().assign(mat, mat + 16);
+
+		//on maj les objets fils
+
+		for (unsigned int i = 0; i < getFils()->size(); ++i)
+		{
+			getFils()->at(i)->majPos();
+		}
+
+		glPopMatrix();
 }
