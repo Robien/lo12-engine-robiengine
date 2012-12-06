@@ -3,6 +3,7 @@
 
 #include "Vector3d.h"
 #include "Outil.h"
+#include "Matrice.h"
 
 class Collider
 {
@@ -21,6 +22,10 @@ public:
 public:
 	Vector3d<GLdouble> getMin();
 	Vector3d<GLdouble> getMax();
+
+public:
+	void affiche();
+	void afficheWithMat(Matrice<GLdouble>* mat, Matrice<GLdouble>* m);
 
 private:
 	Vector3d<GLdouble> _CoordMin;

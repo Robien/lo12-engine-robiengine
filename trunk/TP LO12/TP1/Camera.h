@@ -10,8 +10,16 @@ public:
 	virtual ~Camera();
 
 	virtual void affiche();
+	virtual void maj();
+
+public:
+	Matrice<GLdouble>* getMatrice();
+	Matrice<GLdouble>& matrice();
+
 private:
 	Matrice<GLdouble> _matrice;
+
+
 };
 
 

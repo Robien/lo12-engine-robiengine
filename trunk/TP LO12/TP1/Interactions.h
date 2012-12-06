@@ -16,6 +16,7 @@ public:
 	virtual void eventsKey(unsigned char key, int x, int y){}
 	virtual void eventsMouse(int boutton, int etat, int x, int y){}
 	virtual void eventsMotionMouse(int x, int y){}
+	virtual void eventsPassiveMotionMouse(int x, int y){}
 	virtual void idle(){}
 	virtual void reshape(int largeur, int hauteur){}
 	virtual void dessine_scene(){}
@@ -40,6 +41,7 @@ private:
 	static void eventsKey(unsigned char key, int x, int y);
 	static void eventsMouse(int boutton, int etat, int x, int y);
 	static void eventsMotionMouse(int x, int y);
+	static void eventsPassiveMotionMouse(int x, int y);
 	static void idle();
 	static void reshape(int largeur, int hauteur);
 	static void dessine_scene();

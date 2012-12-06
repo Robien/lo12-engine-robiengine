@@ -211,12 +211,16 @@ void Scene::dessine_repere()
 
 }
 
-
-
-void Scene::createWindows()
+Vector2d<int>* Scene::getDimensions()
 {
-	glutInitWindowSize(800, 600);   /* taille de la fenetre ecran */
-	glutInitWindowPosition(100, 100);
+	return _windowsSize;
+}
+
+void Scene::createWindows(int hauteur, int largeur)
+{
+	_windowsSize = new Vector2d<int>(hauteur, largeur);
+	glutInitWindowSize(hauteur, largeur);   /* taille de la fenetre ecran */
+	glutInitWindowPosition(0, 0);
 	glutInitDisplayMode ( GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);     /* mode rgb et zbuffer*/
 	/*glutInitDisplayMode ( GLUT_RGB | GLUT_DOUBLE);     /* mode rgb */
 	/* glutInitDisplayMode(GLUT_INDEX | GLUT_SINGLE);  /* mode index*/
@@ -270,11 +274,11 @@ void Scene::run()
 	glEnable(GL_LIGHTING);
 	///*Permet d'amelioré pour le rendu
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT,GL_NICEST);
-    glHint(GL_POINT_SMOOTH_HINT,GL_NICEST);
+	glHint(GL_POINT_SMOOTH_HINT,GL_NICEST);
 	// */
 
 
-    
+
 
 	_skybox->charger();
 

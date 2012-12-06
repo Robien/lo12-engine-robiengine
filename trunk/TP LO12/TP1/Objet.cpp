@@ -32,7 +32,14 @@ void Objet::affiche()
 	{
 		_listeFace.at(i)->affiche();
 	}
-
+		//	glMatrixMode(GL_MODELVIEW);
+		
+	
+		//GLdouble* newData = (GLdouble*) malloc(16*sizeof(GLdouble));
+		//glGetDoublev(GL_MODELVIEW_MATRIX, newData);
+		//std::cout << (new Matrice<GLdouble>(newData))->getVector16().size() << std::endl;
+	//	_collider->afficheWithMat(new Matrice<GLdouble>(newData), getMatrice());
+		//delete newData;
 	//on affiche les objets fils
 	for (unsigned int i = 0; i < getFils()->size(); ++i)
 	{

@@ -1,21 +1,21 @@
-#include "CameraLookAt.h"
+#include "CameraVaisseau.h"
 #include "Interactions.h"
 
 
 
 
-class CameraLookAtEvent : public CB_Interraction
+class CameraVaisseauEvent : public CB_Interraction
 {
 public:
-	CameraLookAtEvent(CameraLookAt* camera) : _camera(camera)
+	CameraVaisseauEvent(CameraVaisseau* camera) : _camera(camera)
 	{
 		_mouseState = -1;
 	}
-	virtual ~CameraLookAtEvent(){}
+	virtual ~CameraVaisseauEvent(){}
 public:
 	virtual void eventsSpecialKey(int key, int x, int y)
 	{
-	
+
 		float mult = 0.1;
 		if (glutGetModifiers() == GLUT_ACTIVE_SHIFT)
 		{
@@ -115,6 +115,15 @@ public:
 		_posCurseurY = y;
 		_camera->maj();
 	}
+	virtual void eventsPassiveMotionMouse(int x, int y)
+	{
+
+	
+
+		_posCurseurX = x;
+		_posCurseurY = y;
+		_camera->maj();
+	}
 	virtual void idle(){}
 	virtual void reshape(int largeur, int hauteur)
 	{
@@ -131,10 +140,14 @@ public:
 		_camera->maj();
 
 	}
-	virtual void dessine_scene(){}
+	virtual void dessine_scene()
+	{
+		_camera->tourner_tete(1, ((float)_posCurseurX-300)/50);	
+		_camera->tourner_tete(2, ((float)_posCurseurY-400)/50);
+	}
 
 private:
-	CameraLookAt* _camera;
+	CameraVaisseau* _camera;
 
 private:
 	int _posCurseurX;
@@ -143,25 +156,9 @@ private:
 
 };
 
-
-
-
-CameraLookAt::CameraLookAt()
+void CameraVaisseau::resetVue()
 {
-	Interactions::get()->addEventCallBack(new CameraLookAtEvent(this));
-	resetVue();
-}
-
-
-CameraLookAt::~CameraLookAt()
-{
-}
-
-
-
-void CameraLookAt::resetVue()
-{
-
+	getMatrice()->reset();
 	_lookAtParam.eyex = -4;
 	_lookAtParam.eyey = -4;
 	_lookAtParam.eyez = 0;
@@ -171,13 +168,25 @@ void CameraLookAt::resetVue()
 	_lookAtParam.upx = 0;
 	_lookAtParam.upy = 0;
 	_lookAtParam.upz = 1;
-
-
 }
 
 
+
+CameraVaisseau::CameraVaisseau()
+{
+	Interactions::get()->addEventCallBack(new CameraVaisseauEvent(this));
+	resetVue();
+}
+
+
+CameraVaisseau::~CameraVaisseau()
+{
+}
+
+
+
 /****************************************************************************/
-void CameraLookAt::affiche()						//applique l'observateur en cours //après modification de la variable typ_obs
+void CameraVaisseau::affiche()						//applique l'observateur en cours //après modification de la variable typ_obs
 {
 	glMatrixMode(GL_MODELVIEW);	
 	glLoadIdentity();
@@ -189,7 +198,7 @@ void CameraLookAt::affiche()						//applique l'observateur en cours //après modi
 
 
 /****************************************************************************/
-void CameraLookAt::rotationZ_obs(double angle)   //rotation de l'observateur autour de l'axe Z de la scene
+void CameraVaisseau::rotationZ_obs(double angle)   //rotation de l'observateur autour de l'axe Z de la scene
 {	
 	double x, y;
 	angle=angle*PI/180.0;
@@ -199,7 +208,7 @@ void CameraLookAt::rotationZ_obs(double angle)   //rotation de l'observateur aut
 	_lookAtParam.eyey=x*sin(angle)+y*cos(angle);
 }
 /****************************************************************************/
-void CameraLookAt::tourner_tete(int dir, double angle)
+void CameraVaisseau::tourner_tete(int dir, double angle)
 {
 	double vect[3], vect2[3], vect3[3], Orig[3]={0, 0, 0};
 
@@ -230,7 +239,7 @@ void CameraLookAt::tourner_tete(int dir, double angle)
 
 }
 /****************************************************************************/
-void CameraLookAt::zoom(double pas) //permet d'avancer ou de reculer dans la scene
+void CameraVaisseau::zoom(double pas) //permet d'avancer ou de reculer dans la scene
 {
 	double dx, dy, dz, dist, piover180=PI/180; //vect2[3];
 
@@ -250,7 +259,7 @@ void CameraLookAt::zoom(double pas) //permet d'avancer ou de reculer dans la sce
 
 }
 /****************************************************************************/
-void CameraLookAt::translation_obs(int dir, double pas) //déplace l'observateur vers la droite, la gauche, le bas ou le haut
+void CameraVaisseau::translation_obs(int dir, double pas) //déplace l'observateur vers la droite, la gauche, le bas ou le haut
 {
 	double /*dx, dy, dz,*/ vect[3], piover180=PI/180, d; //vect2[3];
 	switch (dir)
@@ -285,7 +294,7 @@ void CameraLookAt::translation_obs(int dir, double pas) //déplace l'observateur 
 }
 
 /****************************************************************************/
-void CameraLookAt::rotation3D(double angle, double* axeVect, double* axePt, double* monPt, double* result)
+void CameraVaisseau::rotation3D(double angle, double* axeVect, double* axePt, double* monPt, double* result)
 	//effectue la rotation d'angle angle, d'un point de l'espace (monPt) autour d'un axe defini par son vecteur directeur axeVect, 
 	//et un point appartenant (axePt)
 {
