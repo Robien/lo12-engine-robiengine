@@ -22,7 +22,7 @@ Interface OpenGL (GLUT, GLU, GL)
 #include "GestionnaireLumiere.h"
 #include "CameraVaisseau.h"
 #include "CameraLookAt.h"
-
+#include "Brouillard.h"
 
 
 
@@ -76,6 +76,8 @@ void Tp::run()
 		root->attache(GestionnaireLumiere::get()->newLumiere(ambiante,couleur, 2.0, 180.0, m));
 	}
 
+	Brouillard bou;
+	
 
 	_scene->run();
 
