@@ -28,7 +28,7 @@ Interface OpenGL (GLUT, GLU, GL)
 
 Tp::Tp()
 {
-	_scene = new Scene(new CameraLookAt());
+	_scene = new Scene(new CameraVaisseau());
 }
 
 Tp::~Tp()
@@ -42,7 +42,7 @@ Tp::~Tp()
 void Tp::run()
 {
 
-	_scene->createWindows(1024, 768);
+	_scene->createWindows(1024/1.2, 768/1.2);
 
 	AbstractObjet* root = new AbstractObjet();
 

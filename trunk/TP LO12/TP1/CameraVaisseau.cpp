@@ -10,6 +10,7 @@ public:
 	CameraVaisseauEvent(CameraVaisseau* camera) : _camera(camera)
 	{
 		_mouseState = -1;
+		_acceleration = 0;
 	}
 	virtual ~CameraVaisseauEvent(){}
 public:
@@ -88,38 +89,23 @@ public:
 				_posCurseurY = y;
 			}
 		}
-		_mouseState = boutton;
+		if (etat == GLUT_DOWN)
+		{
+			_mouseState = boutton;
+		}
+		else
+		{
+				_mouseState = -1;
+		}
 	}
 	virtual void eventsMotionMouse(int x, int y)
 	{
-
-		switch(_mouseState)
-		{
-		case GLUT_RIGHT_BUTTON:
-			_camera->translation_obs(2, ((float)_posCurseurY-y)/50);
-			_camera->translation_obs(1,((float)_posCurseurX-x)/50);
-			break;
-		case GLUT_LEFT_BUTTON : 
-			_camera->tourner_tete(1, ((float)_posCurseurX-x)/10);	
-			_camera->tourner_tete(2, ((float)_posCurseurY-y)/10);	
-			break;
-		case GLUT_MIDDLE_BUTTON : _camera->rotationZ_obs(((float)_posCurseurX-x)/10); 
-			// Interactions::get()->_ob->translate(0,0, ((float)Interactions::get()->_posCurseurY-y)/50);
-			_camera->zoom(((float)_posCurseurY-y)/50);
-			break;
-		default: ;
-
-		}
-
 		_posCurseurX = x;
 		_posCurseurY = y;
 		_camera->maj();
 	}
 	virtual void eventsPassiveMotionMouse(int x, int y)
 	{
-
-	
-
 		_posCurseurX = x;
 		_posCurseurY = y;
 		_camera->maj();
@@ -142,8 +128,52 @@ public:
 	}
 	virtual void dessine_scene()
 	{
-		_camera->tourner_tete(1, ((float)_posCurseurX-300)/50);	
-		_camera->tourner_tete(2, ((float)_posCurseurY-400)/50);
+
+		GLint m_viewport[4];
+
+		glGetIntegerv( GL_VIEWPORT, m_viewport );
+
+
+		if (((float)_posCurseurX-m_viewport[2]/2)/50 > 1)
+		{
+			_camera->tourner_tete(1, ((float)_posCurseurX-m_viewport[2]/2)/50 - 1);	
+		}
+				if (((float)_posCurseurX-m_viewport[2]/2)/50 < -1)
+		{
+			_camera->tourner_tete(1, ((float)_posCurseurX-m_viewport[2]/2)/50 + 1);	
+		}
+		if ( ((float)_posCurseurY-m_viewport[3]/2)/50 > 1 )
+		{
+			_camera->tourner_tete(2, ((float)_posCurseurY-m_viewport[3]/2)/50 - 1);
+		}
+		if (  ((float)_posCurseurY-m_viewport[3]/2)/50 < -1)
+		{
+			_camera->tourner_tete(2, ((float)_posCurseurY-m_viewport[3]/2)/50 + 1);
+		}
+
+
+		if (_mouseState == GLUT_LEFT_BUTTON)
+		{
+
+			_acceleration += 2;
+			_acceleration *= 0.99;
+		}
+		else if (_mouseState == GLUT_RIGHT_BUTTON)
+		{
+			_acceleration *= 0.93-0.09;
+		}
+		else
+		{
+			_acceleration *= 0.97;
+		}
+		
+		
+		if (_acceleration < 0.01)
+		{
+			_acceleration = 0;
+		}
+		std::cout << _acceleration << std::endl;
+		_camera->zoom(-_acceleration/50);
 	}
 
 private:
@@ -153,6 +183,7 @@ private:
 	int _posCurseurX;
 	int _posCurseurY;
 	int _mouseState;
+	float _acceleration;
 
 };
 
