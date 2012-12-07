@@ -1,0 +1,26 @@
+# Blender MTL File: 'motherShip.blend'
+# Material Count: 2
+newmtl _Anna_V_1stwire_134006006.001
+Ns 1.000000
+Ka 0.300000 0.300000 0.300000
+Kd 0.420400 0.018800 0.018800
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd ship_main.png
+map_Ka ship_main.png
+
+
+newmtl _Anna_V_1stwire_134006006.001_NONE
+Ns 1.000000
+Ka 0.300000 0.300000 0.300000
+Kd 0.420400 0.018800 0.018800
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd ship_main.png
+map_Ka ship_main.png
+
+
