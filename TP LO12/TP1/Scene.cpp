@@ -19,6 +19,7 @@ variables globales
 #include "Skybox.h"
 
 #include "GestionnaireLumiere.h"
+#include <sstream>  
 
 
 
@@ -66,6 +67,11 @@ public:
 	virtual void eventsMotionMouse(int x, int y){}
 	virtual void idle()
 	{
+
+		std::ostringstream oss;
+
+		oss << "FPS : "  << (int) (1/ (Interactions::get()->getDeltaTime()/1000));
+		glutSetWindowTitle( oss.str().c_str());
 		_scene->affiche();
 	}
 	virtual void reshape(int largeur, int hauteur)
