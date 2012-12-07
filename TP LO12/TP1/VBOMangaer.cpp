@@ -1,10 +1,15 @@
 #include "VBOMangaer.h"
 
+void VBOMangaer::init()
+{
+	 glewInit();
+}
+
 
 GLuint VBOMangaer::makeVBO()
 {
-	GLuint buf;
-	glGenBuffers(1, &buf);
+	GLuint buf = 0;
+//	glGenBuffers(1, &buf);
 	return buf;
 }
 
