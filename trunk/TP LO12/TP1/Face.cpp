@@ -1,4 +1,5 @@
 #include "Face.h"
+#include "VBOMangaer.h"
 
 
 Face::Face(Material* material)
@@ -92,6 +93,7 @@ void Face::calculeNormales()
 
 void Face::addPoint(Vector3d<GLdouble>* coordonnees, Vector2d<GLdouble>* coordonnneesTexture)
 {
+	VBOMangaer::get()->makeVBO();
 	_collider.addPoint(*coordonnees);
 	_listePoints.push_back(coordonnees);
 	_listeCoordonneesTextures.push_back(coordonnneesTexture);

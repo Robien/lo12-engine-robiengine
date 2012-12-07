@@ -67,7 +67,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>opengl32.lib;glu32.lib;glut32.lib;lib3ds-2_0.lib;libpngmt.lib;zlib1.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;glut32.lib;lib3ds-2_0.lib;libpngmt.lib;zlib1.lib;glew32.lib;glew32mx.lib;glew32mxs.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
@@ -120,6 +120,7 @@
     <ClCompile Include="SystemeParticules.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Tp.cpp" />
+    <ClCompile Include="VBOMangaer.cpp" />
     <ClCompile Include="Vector2d.cpp" />
     <ClCompile Include="Vector3d.cpp" />
   </ItemGroup>
@@ -150,6 +151,7 @@
     <ClInclude Include="SystemeParticules.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Tp.h" />
+    <ClInclude Include="VBOMangaer.h" />
     <ClInclude Include="Vector2d.h" />
     <ClInclude Include="Vector3d.h" />
   </ItemGroup>

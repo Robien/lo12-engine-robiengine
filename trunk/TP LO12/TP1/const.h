@@ -16,13 +16,17 @@
 	#endif
 
 	#if defined(__APPLE__) && defined(__MACH__)
+			//#include <GLUT/glut.h>
+			//#include <OpenGL/gl.h>
+			//#include <OpenGL/glu.h>
+			#include <GL/glew.h>
 			#include <GLUT/glut.h>
-			#include <OpenGL/gl.h>
-			#include <OpenGL/glu.h>
 	#else
+			
+			#include <GL/glew.h>
 			#include <glut.h>
-			#include <GL/gl.h>
-			#include <GL/glu.h>
+			//#include <GL/gl.h>
+			//#include <GL/glu.h>
 	#endif
 
 	#ifdef TEMPO_UNIX
