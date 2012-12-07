@@ -2,8 +2,7 @@
 #define _VBOMANAGER_H
 
 #include "Singleton.h"
-#include "const.h"
-#include "Outil.h"
+#include "GL/glew.h"
 #include <vector>
 
 

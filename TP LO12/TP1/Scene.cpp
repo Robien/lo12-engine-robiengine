@@ -97,6 +97,7 @@ Scene::~Scene()
 }
 Scene::Scene(Camera* mainCamera) : _mainCamera(mainCamera)
 {
+
 	_skybox = new Skybox();
 	objetSelectionne = 0;
 	_root = new AbstractObjet();
@@ -105,7 +106,7 @@ Scene::Scene(Camera* mainCamera) : _mainCamera(mainCamera)
 		_mainCamera = new Camera();
 	}
 	Interactions::get()->addEventCallBack(new DefautInteraction(this));
-	VBOMangaer::get()->init();
+
 
 }
 Scene::Scene(AbstractObjet* root, Camera* mainCamera) : _root(root), _mainCamera(mainCamera)
@@ -117,7 +118,7 @@ Scene::Scene(AbstractObjet* root, Camera* mainCamera) : _root(root), _mainCamera
 		_mainCamera = new Camera();
 	}
 	Interactions::get()->addEventCallBack(new DefautInteraction(this));
-	VBOMangaer::get()->init();
+
 }
 void Scene::resetObjet()
 {
@@ -243,9 +244,12 @@ void Scene::createWindows(int hauteur, int largeur)
 
 
 	glutCreateWindow("TP1:cube");
-	Interactions::get()->initInteraction();
 
+	VBOMangaer::get()->init();
+
+	Interactions::get()->initInteraction();
 	_mainCamera->affiche();
+
 }
 
 /*******************************************************************************/
@@ -295,6 +299,11 @@ void Scene::run()
 	_skybox->charger();
 
 	GestionnaireLumiere::get()->def_modele();
+
+
+
+
+
 	glutMainLoop();
 }
 
