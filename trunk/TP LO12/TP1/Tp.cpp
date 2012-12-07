@@ -49,6 +49,9 @@ void Tp::run()
 	Import imp;
 	root->attache(imp.importer("models/testExport/RobienSimpleLOP.obj")); // manque un delete ... le faire dans attache ?
 	root->attache(imp.importer("models/testExport/RobienFinal.obj"));
+	std::vector<AbstractObjet* >* vect= imp.importer("models/motherShip/motherShip.obj");
+	vect->at(0)->getMatrice()->rotate(90,1,0,0);
+	root->attache(vect);
 
 		SystemeParticules* sp = new SystemeParticules(true);
 		sp->matrice().translate(0,0,-2);
