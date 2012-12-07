@@ -11,6 +11,9 @@ class VBOMangaer :	public Singleton<VBOMangaer>
 {
 
 public:
+	void init();
+
+public:
 	GLuint makeVBO();
 	std::vector<GLuint>* makeVBO(int quantitee);
 

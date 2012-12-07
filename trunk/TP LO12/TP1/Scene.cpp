@@ -17,6 +17,7 @@ variables globales
 #include <stdlib.h>
 #include "Texture.h"
 #include "Skybox.h"
+#include "VBOMangaer.h"
 
 #include "GestionnaireLumiere.h"
 #include <sstream>  
@@ -104,6 +105,7 @@ Scene::Scene(Camera* mainCamera) : _mainCamera(mainCamera)
 		_mainCamera = new Camera();
 	}
 	Interactions::get()->addEventCallBack(new DefautInteraction(this));
+	VBOMangaer::get()->init();
 
 }
 Scene::Scene(AbstractObjet* root, Camera* mainCamera) : _root(root), _mainCamera(mainCamera)
@@ -115,6 +117,7 @@ Scene::Scene(AbstractObjet* root, Camera* mainCamera) : _root(root), _mainCamera
 		_mainCamera = new Camera();
 	}
 	Interactions::get()->addEventCallBack(new DefautInteraction(this));
+	VBOMangaer::get()->init();
 }
 void Scene::resetObjet()
 {
