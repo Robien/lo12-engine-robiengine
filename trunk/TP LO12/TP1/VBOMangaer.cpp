@@ -1,15 +1,23 @@
 #include "VBOMangaer.h"
+#include <iostream>
 
 void VBOMangaer::init()
 {
-	 glewInit();
+
+	if (GLenum err =  glewInit() != GLEW_OK)
+	{
+			std::cout << "Il y a un probleme, glew mal initialise !" << std::endl  << glewGetErrorString(err);
+			getchar();
+			exit(0);
+	}
+
 }
 
 
 GLuint VBOMangaer::makeVBO()
 {
 	GLuint buf = 0;
-//	glGenBuffers(1, &buf);
+	glGenBuffers(1, &buf);
 	return buf;
 }
 
