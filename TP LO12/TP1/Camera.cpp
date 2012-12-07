@@ -25,7 +25,7 @@ void Camera::affiche()
 
 void Camera::maj()
 {
-	glutPostRedisplay();
+//	glutPostRedisplay();
 }
 
 Matrice<GLdouble>* Camera::getMatrice()

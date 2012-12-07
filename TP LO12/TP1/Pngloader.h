@@ -1,7 +1,7 @@
 #ifndef PNGLOADER_H
 #define PNGLOADER_H
 
-#include "Scene.h"
+
 #include "Texture.h"
 
 
