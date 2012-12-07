@@ -222,7 +222,7 @@ void CameraVaisseau::affiche()						//applique l'observateur en cours //après mo
 	glMatrixMode(GL_MODELVIEW);	
 	glLoadIdentity();
 	gluLookAt(_lookAtParam.eyex,_lookAtParam.eyey,_lookAtParam.eyez, _lookAtParam.centrex, _lookAtParam.centrey, _lookAtParam.centrez, _lookAtParam.upx, _lookAtParam.upy, _lookAtParam.upz);
-	glutSetWindowTitle("View Mode: gluLookAt");
+
 
 	//glutPostRedisplay(); //rafraichit la zone de dessin (appelle dessine_scene)
 }

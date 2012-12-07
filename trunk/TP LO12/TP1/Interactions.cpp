@@ -75,6 +75,9 @@ void Interactions::eventsPassiveMotionMouse(int x, int y)
 
 void Interactions::idle()
 {
+	GLdouble tmp = glutGet(GLUT_ELAPSED_TIME);
+	Interactions::get()->_deltaTime = tmp - Interactions::get()->_previousTime;
+	Interactions::get()->_previousTime = tmp;
 		
 	for (unsigned int i = 0; i < Interactions::get()->_cb.size(); ++i)
 	{
@@ -109,7 +112,8 @@ void Interactions::dessine_scene()
 void Interactions::initInteraction()
 {
 
-	
+	_deltaTime = 0;
+	_previousTime = glutGet(GLUT_ELAPSED_TIME);
 
 	glutKeyboardFunc(eventsKey);
 	glutMouseFunc(eventsMouse);
@@ -123,4 +127,7 @@ void Interactions::initInteraction()
 	
 }
 
-
+GLdouble Interactions::getDeltaTime()
+{
+	return _deltaTime;
+}

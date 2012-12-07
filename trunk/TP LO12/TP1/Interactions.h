@@ -4,6 +4,7 @@
 
 #include <vector>
 #include "Singleton.h"
+#include "const.h"
 
 
 class CB_Interraction
@@ -33,7 +34,7 @@ public:
 
 public:
 	void addEventCallBack(CB_Interraction* callBack);
-
+	GLdouble getDeltaTime();
 
 private:
 
@@ -49,6 +50,8 @@ private:
 
 private:
 	std::vector<CB_Interraction*> _cb;
+	GLdouble _deltaTime;
+	GLdouble _previousTime;
 
 };
 
