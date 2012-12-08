@@ -24,6 +24,7 @@ public:
 public:
 	virtual void affiche();
 	void toggleFilted();
+	void toggleVBO();
 
 private:
 	std::vector<Vector3d<GLdouble>* > _listePoints;
@@ -33,6 +34,7 @@ private:
 	bool _isFilted;
 	Collider _collider;
 	VBO* _vbo;
+	bool _isVboActive;
 
 };
 

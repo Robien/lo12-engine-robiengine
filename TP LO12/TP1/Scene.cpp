@@ -52,7 +52,7 @@ public:
 		case GLUT_KEY_F4:	_scene->rotateObjetSelectionne(1,0,0,90*mult);	break;
 		case GLUT_KEY_F5:	_scene->rotateObjetSelectionne(0,1,0,90*mult);	break;
 		case GLUT_KEY_F6:	_scene->rotateObjetSelectionne(0,0,1,90*mult);	break;
-		case GLUT_KEY_F7:	_scene->toggleFilted();	break;
+		case GLUT_KEY_F7:	/*_scene->toggleFilted();*/	_scene->toggleVBO();break;
 
 		}
 	}
@@ -140,6 +140,10 @@ void Scene::changerObjetSelectionne()
 void Scene::toggleFilted()
 {
 	_root->toggleFilted();
+}
+void Scene::toggleVBO()
+{
+	_root->toggleVBO();
 }
 
 void Scene::translateObjetSelectionne(GLdouble x,GLdouble y,GLdouble z)

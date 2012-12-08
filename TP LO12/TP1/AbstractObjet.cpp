@@ -139,6 +139,15 @@ void AbstractObjet::toggleFilted()
 	}
 }
 
+void AbstractObjet::toggleVBO()
+{
+	_isVboActive = !_isVboActive;
+	for (unsigned int i = 0; i < getFils()->size(); ++i)
+	{
+		getFils()->at(i)->toggleVBO();
+	}
+}
+
 AbstractObjet* AbstractObjet::getPere()
 {
 	return _pere;

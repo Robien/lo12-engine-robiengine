@@ -17,6 +17,7 @@ public:
 	void addFace(Face* face);
 
 	virtual void toggleFilted();
+	virtual void toggleVBO();
 
 private:
 	std::vector<Face*> _listeFace;
