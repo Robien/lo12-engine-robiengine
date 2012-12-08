@@ -6,11 +6,12 @@
 #include "Outil.h"
 #include "Material.h"
 #include "Collider.h"
+#include "VBO.h"
 
 class Face
 {
 public:
-	Face(Material* material);
+	Face(Material* material, bool prepareVBO = true);
 	virtual ~Face();
 
 public:
@@ -31,6 +32,7 @@ private:
 	Material* _material;
 	bool _isFilted;
 	Collider _collider;
+	VBO* _vbo;
 
 };
 

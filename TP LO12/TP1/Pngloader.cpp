@@ -68,7 +68,6 @@
 #include "const.h"
 #include "Pngloader.h"
 
-#include "scene.h" //TODO DELETE
 
 Pngloader::Pngloader()
 {}

@@ -38,6 +38,7 @@
 
 #define PI 3.1415926535
 #include <iostream>
+#define BUFFER_OFFSET(a) ((char*)NULL + (a))
 
 #endif
 

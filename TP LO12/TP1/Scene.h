@@ -15,16 +15,15 @@
 #ifndef SCENE_H
 #define SCENE_H
 
-#include "const.h"
+
 #include <vector>
+#include "const.h"
 #include "AbstractObjet.h"
 #include "Camera.h"
 #include "Interactions.h"
 #include "Skybox.h"
 #include "Vector2d.h"
 
-
-class AbstractObjet;
 
 
 class Scene
@@ -53,8 +52,8 @@ public:
 	Vector2d<int>* getDimensions();
 	
 public:
-	void run();
 	void createWindows(int hauteur, int largeur);
+	void run();
 
 private:
 
