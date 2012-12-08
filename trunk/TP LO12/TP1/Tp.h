@@ -1,9 +1,9 @@
-#pragma once
+#ifndef _TP_H	
+#define _TP_H
 
-#include "Observateur.h"
 #include "Scene.h"
-#include "Outil.h"
 
+// Une classe qui configure le jeu
 class Tp 
 {
 
@@ -15,12 +15,11 @@ public:
 	void run();
 
 private:
-
 	Scene* _scene;/* description de la scene */
 
 };
 
 
-
+#endif
 
 

@@ -154,9 +154,8 @@ void AbstractObjet::majPos()
 
 		_matriceAbsolue->getVector16().clear();
 		_matriceAbsolue->getVector16().assign(mat, mat + 16);
-
+		delete mat;
 		//on maj les objets fils
-
 		for (unsigned int i = 0; i < getFils()->size(); ++i)
 		{
 			getFils()->at(i)->majPos();

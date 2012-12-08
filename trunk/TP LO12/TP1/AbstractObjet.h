@@ -7,7 +7,6 @@
 #include <iostream>
 #include "Collider.h"
 
-class Collider;
 
 class AbstractObjet
 {
