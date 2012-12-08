@@ -182,6 +182,13 @@ void Scene::affiche()
 	//_mainCamera->affiche(); // il ne faut pas afficher la caméra pour bien avoir les valeurs des matrices en absolu
 	glLoadIdentity();
 	_root->majPos();
+
+
+		glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluPerspective(90,1.0,0.01,1000000) ;
+
+
 	_mainCamera->affiche();
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
@@ -271,7 +278,7 @@ void Scene::run()
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	gluPerspective(90,1.0,0.1,100) ;
+	gluPerspective(90,1.0,0.01,1000000) ;
 
 	//Observateur().pilotView(2, 2, 2, -45,0, 15);
 	//ob->polarView(5, 45, 45, 0);
