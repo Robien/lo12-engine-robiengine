@@ -28,7 +28,9 @@ class DefautInteraction : public CB_Interraction
 {
 public:
 	DefautInteraction(Scene* scene):_scene(scene)
-	{}
+	{
+		_lastUpdateWindowsTitle = 1000; // pour afficher le titre dès le début
+	}
 	~DefautInteraction(){}
 private:
 	Scene* _scene;
@@ -68,12 +70,16 @@ public:
 	virtual void eventsMotionMouse(int x, int y){}
 	virtual void idle()
 	{
+		if ((_lastUpdateWindowsTitle += Interactions::get()->getDeltaTime()) > 1000) //1000ms = 1s
+		{
+			_lastUpdateWindowsTitle = 0;
+			std::ostringstream oss;
 
-		std::ostringstream oss;
+			oss << "FPS : "  << (int) (1/ (Interactions::get()->getDeltaTime()/1000));
+			glutSetWindowTitle( oss.str().c_str());
+			_scene->affiche();
 
-		oss << "FPS : "  << (int) (1/ (Interactions::get()->getDeltaTime()/1000));
-		glutSetWindowTitle( oss.str().c_str());
-		_scene->affiche();
+		}
 	}
 	virtual void reshape(int largeur, int hauteur)
 	{
@@ -83,6 +89,8 @@ public:
 		_scene->affiche();
 	}
 
+private:
+	unsigned int _lastUpdateWindowsTitle;
 
 };
 
