@@ -171,7 +171,7 @@ void Scene::setRoot(AbstractObjet* root)
 
 void Scene::affiche()
 {
-	//_mainCamera->affiche();
+	//_mainCamera->affiche(); // il ne faut pas afficher la caméra pour bien avoir les valeurs des matrices en absolu
 	glLoadIdentity();
 	_root->majPos();
 	_mainCamera->affiche();
@@ -226,6 +226,7 @@ void Scene::dessine_repere()
 
 Vector2d<int>* Scene::getDimensions()
 {
+	std::cout << "Attention ne prend pas en compte le resize !" << std::endl;
 	return _windowsSize;
 }
 

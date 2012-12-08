@@ -6,9 +6,9 @@ void VBOMangaer::init()
 
 	if (GLenum err =  glewInit() != GLEW_OK)
 	{
-			std::cout << "Il y a un probleme, glew mal initialise !" << std::endl  << glewGetErrorString(err);
-			getchar();
-			exit(0);
+		std::cout << "Il y a un probleme, glew mal initialise !" << std::endl  << glewGetErrorString(err);
+		getchar();
+		exit(0);
 	}
 
 }
@@ -30,4 +30,9 @@ std::vector<GLuint>* VBOMangaer::makeVBO(int quantitee)
 
 	vect->assign(buf, buf + quantitee);
 	return vect;
+}
+
+void VBOMangaer::deleteVBO(GLuint id)
+{
+	glDeleteBuffers(1, &id);
 }
