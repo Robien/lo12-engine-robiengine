@@ -20,12 +20,12 @@ Skybox::~Skybox()
 void Skybox::charger()
 {
 	
-	_tabText.push_back(GestionnaireTexture::get()->addTexture("textures/XN.png"));
-    _tabText.push_back(GestionnaireTexture::get()->addTexture("textures/XP.png"));
-    _tabText.push_back(GestionnaireTexture::get()->addTexture("textures/YN.png"));
-    _tabText.push_back(GestionnaireTexture::get()->addTexture("textures/YP.png"));
-    _tabText.push_back(GestionnaireTexture::get()->addTexture("textures/ZN.png"));
-    _tabText.push_back(GestionnaireTexture::get()->addTexture("textures/ZP.png"));
+	_tabText.push_back(GestionnaireTexture::get()->addTexture("textures/Space1/space1_back6.png"));
+    _tabText.push_back(GestionnaireTexture::get()->addTexture("textures/Space1/space1_front5.png"));
+    _tabText.push_back(GestionnaireTexture::get()->addTexture("textures/Space1/space1_right1.png"));
+    _tabText.push_back(GestionnaireTexture::get()->addTexture("textures/Space1/space1_left2.png"));
+    _tabText.push_back(GestionnaireTexture::get()->addTexture("textures/Space1/space1_bottom4.png"));
+    _tabText.push_back(GestionnaireTexture::get()->addTexture("textures/Space1/space1_top3.png"));
 }
 
 
@@ -113,10 +113,17 @@ void Skybox::dessine_box()
 
  glBindTexture(GL_TEXTURE_2D, _tabText[4]);
 	glBegin(GL_QUADS);			// Z Négatif		
+		/* backup 
 		glTexCoord2f(0.0, 0.0); glVertex3f(-t,t,-t);
 		glTexCoord2f(1.0, 0.0); glVertex3f(t,t,-t);
 		glTexCoord2f(1.0, 1.0); glVertex3f(t,-t,-t);
-		glTexCoord2f(0.0, 1.0); glVertex3f(-t,-t,-t); 
+		glTexCoord2f(0.0, 1.0); glVertex3f(-t,-t,-t); */
+
+		glTexCoord2f(0.0, 0.0); glVertex3f(-t,t,-t);
+		 glTexCoord2f(0.0, 1.0);glVertex3f(t,t,-t);
+		glTexCoord2f(1.0, 1.0); glVertex3f(t,-t,-t);
+		glTexCoord2f(1.0, 0.0); glVertex3f(-t,-t,-t); 
+
 	glEnd();
 
  glBindTexture(GL_TEXTURE_2D, _tabText[5]);
