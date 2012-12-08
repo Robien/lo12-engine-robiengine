@@ -16,6 +16,7 @@ public:
 	GLuint makeVBO();
 	std::vector<GLuint>* makeVBO(int quantitee);
 
+	void deleteVBO(GLuint id);
 
 };
 
