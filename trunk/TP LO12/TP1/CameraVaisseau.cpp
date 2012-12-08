@@ -129,42 +129,50 @@ public:
 	virtual void dessine_scene()
 	{
 
+		GLdouble deltaTime =  Interactions::get()->getDeltaTime()/1000;
+
 		GLint m_viewport[4];
 
 		glGetIntegerv( GL_VIEWPORT, m_viewport );
 
 
-		if (((float)_posCurseurX-m_viewport[2]/2)/50 > 1)
-		{
-			_camera->tourner_tete(1, ((float)_posCurseurX-m_viewport[2]/2)/50 - 1);	
-		}
-				if (((float)_posCurseurX-m_viewport[2]/2)/50 < -1)
-		{
-			_camera->tourner_tete(1, ((float)_posCurseurX-m_viewport[2]/2)/50 + 1);	
-		}
-		if ( ((float)_posCurseurY-m_viewport[3]/2)/50 > 1 )
-		{
-			_camera->tourner_tete(2, ((float)_posCurseurY-m_viewport[3]/2)/50 - 1);
-		}
-		if (  ((float)_posCurseurY-m_viewport[3]/2)/50 < -1)
-		{
-			_camera->tourner_tete(2, ((float)_posCurseurY-m_viewport[3]/2)/50 + 1);
-		}
+		int toleranceX = 25;
+		int toleranceY = 25;
 
 
+		if (((float)_posCurseurX-m_viewport[2]/2)> toleranceX)
+		{
+			
+			_camera->tourner_tete(1, ((float)_posCurseurX-m_viewport[2]/2)*deltaTime - toleranceX * deltaTime );	
+		}
+		else if (((float)_posCurseurX-m_viewport[2]/2) < -toleranceX)
+		{
+		//	std::cout <<((float)_posCurseurX-m_viewport[2]/2)*deltaTime + toleranceX * deltaTime << std::endl;
+			_camera->tourner_tete(1, ((float)_posCurseurX-m_viewport[2]/2)*deltaTime + toleranceX * deltaTime );	
+		}
+		if ( ((float)_posCurseurY-m_viewport[3]/2) > toleranceY )
+		{
+			_camera->tourner_tete(2, ((float)_posCurseurY-m_viewport[3]/2)*deltaTime - toleranceY * deltaTime );
+		}
+		else if (  ((float)_posCurseurY-m_viewport[3]/2) < -toleranceY)
+		{
+			_camera->tourner_tete(2, ((float)_posCurseurY-m_viewport[3]/2)*deltaTime + toleranceY * deltaTime );
+		}
+
+		//std::cout << ((float)_posCurseurX-m_viewport[2]/2)*deltaTime << std::endl;
 		if (_mouseState == GLUT_LEFT_BUTTON)
 		{
 
-			_acceleration += 2;
-			_acceleration *= 0.99;
+			_acceleration += 80 * deltaTime;
+			_acceleration *= 0.995;
 		}
 		else if (_mouseState == GLUT_RIGHT_BUTTON)
 		{
-			_acceleration *= 0.93-0.09;
+			_acceleration *= 0.98-(0.9 * deltaTime);
 		}
 		else
 		{
-			_acceleration *= 0.97;
+			_acceleration *= 0.99;
 		}
 		
 		
