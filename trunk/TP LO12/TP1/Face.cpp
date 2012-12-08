@@ -10,10 +10,12 @@ Face::Face(Material* material, bool prepareVBO)
 	if (prepareVBO)
 	{
 		_vbo = VBOMangaer::get()->makeVBO();
+		_isVboActive = true;
 	}
 	else
 	{
 		_vbo = NULL;
+		_isVboActive = true;
 	}
 }
 
@@ -46,7 +48,7 @@ Face::~Face()
 void Face::affiche()
 {
 
-	if (_vbo && !_vbo->isInit())
+	if (_vbo && _isVboActive && !_vbo->isInit())
 	{
 		_vbo->init();
 	}
@@ -58,7 +60,7 @@ void Face::affiche()
 	{
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
-	if (_vbo)
+	if (_vbo && _isVboActive)
 	{
 		_vbo->affiche();
 	}
@@ -133,6 +135,10 @@ void Face::setTexture(GLuint texture)
 void Face::toggleFilted()
 {
 	_isFilted = !_isFilted;
+}
+void Face::toggleVBO()
+{
+	_isVboActive = !_isVboActive;
 }
 
 Collider& Face::getCollider()

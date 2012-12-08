@@ -53,6 +53,7 @@ public:
 		return *_matriceAbsolue;
 	}
 	virtual void toggleFilted();
+	virtual void toggleVBO();
 
 public:
 	std::vector<AbstractObjet*>* getFils();
@@ -61,6 +62,7 @@ public:
 
 protected:
 	bool _isFilted;
+	bool _isVboActive;
 	Collider* _collider;
 
 private:

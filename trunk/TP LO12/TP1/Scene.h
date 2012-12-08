@@ -38,6 +38,7 @@ public:
 	void affiche();
 
 	void toggleFilted();
+	void toggleVBO();
 
 public:
 

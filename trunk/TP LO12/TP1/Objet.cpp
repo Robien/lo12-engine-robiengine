@@ -74,3 +74,12 @@ void Objet::toggleFilted()
 		 _listeFace.at(i)->toggleFilted();
 	 }
 }
+
+void Objet::toggleVBO()
+{
+	_isVboActive = !_isVboActive;
+	for (unsigned int i = 0; i < _listeFace.size(); ++i)
+	 {
+		 _listeFace.at(i)->toggleVBO();
+	 }
+}
