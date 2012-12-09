@@ -29,6 +29,7 @@ class DefautInteraction : public CB_Interraction
 public:
 	DefautInteraction(Scene* scene):_scene(scene)
 	{
+		_isVBOactive = true;
 		_lastUpdateWindowsTitle = 1000; // pour afficher le titre dès le début
 	}
 	~DefautInteraction(){}
@@ -52,7 +53,7 @@ public:
 		case GLUT_KEY_F4:	_scene->rotateObjetSelectionne(1,0,0,90*mult);	break;
 		case GLUT_KEY_F5:	_scene->rotateObjetSelectionne(0,1,0,90*mult);	break;
 		case GLUT_KEY_F6:	_scene->rotateObjetSelectionne(0,0,1,90*mult);	break;
-		case GLUT_KEY_F7:	/*_scene->toggleFilted();*/	_scene->toggleVBO();break;
+		case GLUT_KEY_F7:	/*_scene->toggleFilted();*/	_scene->toggleVBO(); _isVBOactive=!_isVBOactive; break;
 
 		}
 	}
@@ -76,6 +77,14 @@ public:
 			std::ostringstream oss;
 
 			oss << "FPS : "  << (int) (1/ (Interactions::get()->getDeltaTime()/1000));
+			if (_isVBOactive)
+			{
+				oss << " VBO activé";
+			}
+			else
+			{
+				oss << " VBO désactivé";
+			}
 			glutSetWindowTitle( oss.str().c_str());
 			_scene->affiche();
 
@@ -91,6 +100,8 @@ public:
 
 private:
 	unsigned int _lastUpdateWindowsTitle;
+	
+	bool _isVBOactive;
 
 };
 
