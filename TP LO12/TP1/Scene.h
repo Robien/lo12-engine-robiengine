@@ -69,7 +69,6 @@ private:
 	Vector2d<int>* _windowsSize;
 
 
-
 };
 
 
