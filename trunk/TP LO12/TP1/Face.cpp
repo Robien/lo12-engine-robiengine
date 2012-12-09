@@ -62,6 +62,16 @@ void Face::affiche()
 	}
 	if (_vbo && _isVboActive)
 	{
+		_material->appliqueMatiere();
+		if (_normale != NULL)
+		{
+			glNormal3d(_normale->getX(), _normale->getY(),_normale->getZ());
+		}
+		else
+		{
+			std::cout << "Les normales n ont pas ete calculees ! Il faut utiliser la methode calculnormales !" << std::endl;
+			calculeNormales();
+		}
 		_vbo->affiche();
 	}
 	else
