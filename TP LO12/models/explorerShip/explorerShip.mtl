@@ -1,0 +1,26 @@
+# Blender MTL File: 'vaiseau.blend'
+# Material Count: 2
+newmtl Vitres
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.085333 0.090050 0.640000
+Ks 0.500000 0.478918 0.485396
+Ni 1.000000
+d 0.200000
+illum 2
+map_Kd diffuse.png
+
+
+newmtl orig_default
+Ns 7.843137
+Ka 0.000000 0.000000 0.000000
+Kd 0.470400 0.470400 0.470400
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd diffuse.png
+map_Ks specular.png
+map_Ka diffuse.png
+
+
