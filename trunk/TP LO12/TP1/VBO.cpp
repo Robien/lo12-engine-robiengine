@@ -30,31 +30,44 @@ void VBO::init()
 {
 
 	VBOMangaer::get()->alloueEtCharge(_id, _listePoints.data(), _listePoints.size() * sizeof(GLdouble), _listeTextures.data(), _listeTextures.size() * sizeof(GLdouble));
-
-
 	_isInit = true;
+
+
 }
 void VBO::affiche()
 {
 
-			
+
 	GLdouble *pos_vbo = NULL;
 
 
-		glBindBuffer(GL_ARRAY_BUFFER, _id);
+	glBindBuffer(GL_ARRAY_BUFFER, _id);
 
-		glVertexPointer(3, GL_DOUBLE, 0, BUFFER_OFFSET(0));
+	glVertexPointer(3, GL_DOUBLE, 0, BUFFER_OFFSET(0));
 	glTexCoordPointer(2, GL_DOUBLE, 0, BUFFER_OFFSET(_listePoints.size() * sizeof(GLdouble)));
-		glEnableClientState(GL_VERTEX_ARRAY);
-		glEnableClientState( GL_TEXTURE_COORD_ARRAY );
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState( GL_TEXTURE_COORD_ARRAY );
+
+	glDrawArrays(GL_POLYGON, 0, _listePoints.size()/3);
 
 
+}
+
+unsigned int VBO::afficheSome(unsigned int first)
+{
 
 
-		glBindBuffer(GL_ARRAY_BUFFER, _id);
+	GLdouble *pos_vbo = NULL;
 
 
-		glDrawArrays(GL_POLYGON, 0, _listePoints.size()/3);
+	glBindBuffer(GL_ARRAY_BUFFER, _id);
 
+	glVertexPointer(3, GL_DOUBLE, 0, BUFFER_OFFSET(first));
+	glTexCoordPointer(2, GL_DOUBLE, 0, BUFFER_OFFSET(first + _listePoints.size() * sizeof(GLdouble)));
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState( GL_TEXTURE_COORD_ARRAY );
 
+	glDrawArrays(GL_POLYGON, first, _listePoints.size()/3);
+
+	return (_listePoints.size() + _listeTextures.size()) * sizeof(GLdouble);
 }

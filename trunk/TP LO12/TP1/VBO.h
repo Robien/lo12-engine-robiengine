@@ -20,6 +20,7 @@ public:
 	void addPoint(Vector3d<GLdouble>* point, Vector2d<GLdouble>* texture);
 	void init();
 	void affiche();
+	unsigned int afficheSome(unsigned int first);
 	bool isInit();
 
 private:

@@ -227,8 +227,7 @@ CameraVaisseau::~CameraVaisseau()
 /****************************************************************************/
 void CameraVaisseau::affiche()						//applique l'observateur en cours //après modification de la variable typ_obs
 {
-	glMatrixMode(GL_MODELVIEW);	
-	glLoadIdentity();
+	Camera::affiche();
 	gluLookAt(_lookAtParam.eyex,_lookAtParam.eyey,_lookAtParam.eyez, _lookAtParam.centrex, _lookAtParam.centrey, _lookAtParam.centrez, _lookAtParam.upx, _lookAtParam.upy, _lookAtParam.upz);
 
 
