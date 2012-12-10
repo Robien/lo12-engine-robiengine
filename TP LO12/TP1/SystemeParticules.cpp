@@ -47,9 +47,10 @@ void SystemeParticules::affiche()
 	glMatrixMode(GL_MODELVIEW);
 	glDisable(GL_LIGHTING);
 	glDisable(GL_TEXTURE_2D);
-	glDisable(GL_DEPTH_TEST); //pour eviter des calculs
+	//glDisable(GL_DEPTH_TEST); //pour eviter des calculs
 	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA,GL_ONE); 
+	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA); 
+	
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	
 	glPushMatrix();
@@ -58,7 +59,16 @@ void SystemeParticules::affiche()
 	{
 		for (std::list<Particules* >::iterator it = _listParticule.begin(); it != _listParticule.end(); ++it)
 		{
-			(*it)->affiche();
+			if (_isFilted)
+			{
+				glBegin(GL_LINE_LOOP); // affichage fils de fer
+			}
+			else
+			{
+				glBegin(GL_TRIANGLE_STRIP);
+			}
+				(*it)->affiche();
+			glEnd();
 			if(!(*it)->update())
 			{
 				if(_boucle)
@@ -82,6 +92,7 @@ void SystemeParticules::affiche()
 	for (unsigned int i = 0; i < getFils()->size(); ++i)
 	{
 		getFils()->at(i)->affiche();
+
 	}
 
 	glPopMatrix();
@@ -107,13 +118,15 @@ Particules::~Particules()
 void Particules::affiche()
 {
 	glColor4d(_couleur.getX(), _couleur.getY(), _couleur.getZ(), _dureeVie);
-	glBegin(GL_TRIANGLE_STRIP);
+	//glBegin(GL_TRIANGLE_STRIP);
 	glVertex3d(_position.getX()+0.1,_position.getY(),_position.getZ()+0.1); // Nord-Ouest
 	glVertex3d(_position.getX()-0.1,_position.getY(),_position.getZ()+0.1); // Nord-Est
 	glVertex3d(_position.getX()+0.1,_position.getY(),_position.getZ()-0.1); // Sud-Ouest
 	glVertex3d(_position.getX()-0.1,_position.getY(),_position.getZ()-0.1); // Sud-Est
-	glEnd();
+	//glEnd();
 }
+
+
 
 void Particules::initParticles()
 {   
