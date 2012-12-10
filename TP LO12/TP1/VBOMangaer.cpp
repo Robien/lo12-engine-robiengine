@@ -46,14 +46,15 @@ void VBOMangaer::alloue(GLuint id, unsigned int size)
 
 }
 
-void VBOMangaer::charge(GLuint id, GLdouble* points, unsigned int sizePoint, GLdouble* textures, unsigned int sizeTexture, unsigned int first)
+void VBOMangaer::charge(GLuint id, GLdouble* points, unsigned int sizePoint, GLdouble* textures, unsigned int sizeTexture, GLdouble* normale, unsigned int sizeNormale, unsigned int first)
 {
-	//std::cout << "LES CHATS C'EST DES CONNARDS" << std::endl;
-		glBindBuffer(GL_ARRAY_BUFFER, id);
-	glBufferSubData(GL_ARRAY_BUFFER,first,sizePoint,points); 
-	glBufferSubData(GL_ARRAY_BUFFER,first + sizePoint,sizeTexture, textures); 
 
 	glBindBuffer(GL_ARRAY_BUFFER, id);
+	glBufferSubData(GL_ARRAY_BUFFER,first,sizePoint,points); 
+	glBufferSubData(GL_ARRAY_BUFFER,first + sizePoint,sizeTexture, textures); 
+	glBufferSubData(GL_ARRAY_BUFFER,first + sizePoint + sizeNormale ,sizeNormale, normale); 
+
+	//glBindBuffer(GL_ARRAY_BUFFER, id);
 
 
 }

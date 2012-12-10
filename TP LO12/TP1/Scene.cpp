@@ -71,12 +71,13 @@ public:
 	virtual void eventsMotionMouse(int x, int y){}
 	virtual void idle()
 	{
+	
 		if ((_lastUpdateWindowsTitle += Interactions::get()->getDeltaTime()) > 1000) //1000ms = 1s
 		{
 			_lastUpdateWindowsTitle = 0;
 			std::ostringstream oss;
 
-			oss << "FPS : "  << (int) (1/ (Interactions::get()->getDeltaTime()/1000));
+			oss << "FPS : "  << nbFrame;
 			if (_isVBOactive)
 			{
 				oss << " VBO activé";
@@ -87,7 +88,7 @@ public:
 			}
 			glutSetWindowTitle( oss.str().c_str());
 			_scene->affiche();
-
+			nbFrame = 0;
 		}
 	}
 	virtual void reshape(int largeur, int hauteur)
@@ -95,11 +96,13 @@ public:
 	}
 	virtual void dessine_scene()
 	{
+		nbFrame++;
 		_scene->affiche();
 	}
 
 private:
 	unsigned int _lastUpdateWindowsTitle;
+	unsigned int nbFrame;
 	
 	bool _isVBOactive;
 

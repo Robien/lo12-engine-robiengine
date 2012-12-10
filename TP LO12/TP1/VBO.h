@@ -5,6 +5,7 @@
 #include "Outil.h"
 #include "Vector3d.h"
 #include "Vector2d.h"
+#include "Material.h"
 
 
 
@@ -15,9 +16,11 @@ private: // il faut utiliser VBO manager pour créer des VBOs
 	friend class VBOMangaer;
 public:
 		virtual ~VBO();
+
+		void setMaterial(Material* material);
 public:
 
-	void addPoint(Vector3d<GLdouble>* point, Vector2d<GLdouble>* texture);
+	void addPoint(Vector3d<GLdouble>* point, Vector2d<GLdouble>* texture, Vector3d<GLdouble>* normale);
 	void init();
 	void affiche();
 	unsigned int afficheSome(unsigned int first);
@@ -26,8 +29,11 @@ public:
 private:
 	std::vector<GLdouble> _listePoints;
 	std::vector<GLdouble> _listeTextures;
+	std::vector<GLdouble> _listeNormales;
 	GLuint _id;
 	bool _isInit;
+
+	Material* _material;
 
 };
 

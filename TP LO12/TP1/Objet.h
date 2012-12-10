@@ -3,6 +3,8 @@
 
 #include "AbstractObjet.h"
 #include "Face.h"
+#include "VBO.h"
+#include <vector>
 
 class Objet : public AbstractObjet
 {
@@ -22,6 +24,10 @@ public:
 private:
 	std::vector<Face*> _listeFace;
 	std::string name;
+	std::vector<VBO*> _vbo;
+
+private:
+	Material* _oldMaterial;
 };
 
 
