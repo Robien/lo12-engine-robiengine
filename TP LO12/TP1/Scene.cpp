@@ -203,12 +203,12 @@ void Scene::affiche()
 	glLoadIdentity();
 	gluPerspective(90,1.0,0.01,1000000) ;
 
+glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	_mainCamera->affiche();
-
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
-
 	_skybox->dessine_box();
+	_mainCamera->afficheFils();
+
 
 	dessine_repere();
 
