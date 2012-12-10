@@ -11,7 +11,7 @@
 class Face
 {
 public:
-	Face(Material* material, bool prepareVBO = true);
+	Face(Material* material);
 	virtual ~Face();
 
 public:
@@ -22,9 +22,15 @@ public:
 	Collider& getCollider();
 
 public:
+	std::vector<Vector3d<GLdouble>* >& getListePoints();
+	std::vector<Vector2d<GLdouble>* >& getListeCoordonneesTextures();
+	Vector3d<GLdouble>* getNormale();
+	Material* getMaterial();
+
+
+public:
 	virtual void affiche();
 	void toggleFilted();
-	void toggleVBO();
 
 private:
 	std::vector<Vector3d<GLdouble>* > _listePoints;
@@ -33,8 +39,6 @@ private:
 	Material* _material;
 	bool _isFilted;
 	Collider _collider;
-	VBO* _vbo;
-	bool _isVboActive;
 
 };
 

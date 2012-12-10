@@ -36,7 +36,7 @@ public:
 	void translation_obs(int dir, double pas);
 	void rotation3D(double angle, double* axeVect, double* axePt, double* monPt, double* result);
 
-private:
+public:
 
 	LookAtParam _lookAtParam;
 };

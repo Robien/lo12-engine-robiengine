@@ -131,6 +131,7 @@
     <ClCompile Include="Tp.cpp" />
     <ClCompile Include="VBO.cpp" />
     <ClCompile Include="VBOMangaer.cpp" />
+    <ClCompile Include="VBOObject.cpp" />
     <ClCompile Include="Vector2d.cpp" />
     <ClCompile Include="Vector3d.cpp" />
   </ItemGroup>
@@ -163,6 +164,7 @@
     <ClInclude Include="Tp.h" />
     <ClInclude Include="VBO.h" />
     <ClInclude Include="VBOMangaer.h" />
+    <ClInclude Include="VBOObject.h" />
     <ClInclude Include="Vector2d.h" />
     <ClInclude Include="Vector3d.h" />
   </ItemGroup>

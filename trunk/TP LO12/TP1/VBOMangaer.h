@@ -20,13 +20,13 @@ public:
 	std::vector<GLuint>* makeVBO(int quantitee);
 
 	void deleteVBO(GLuint id, unsigned int size = 1);
-	void alloueEtCharge(GLuint id, GLdouble* points, unsigned int sizePoint, GLdouble* textures, unsigned int sizeTexture, unsigned int first = 0)
+	void alloueEtCharge(GLuint id, GLdouble* points, unsigned int sizePoint, GLdouble* textures, unsigned int sizeTexture, GLdouble* normale, unsigned int sizeNormale, unsigned int first = 0)
 	{
-		alloue(id, sizePoint + sizeTexture);
-		charge(id, points, sizePoint, textures, sizeTexture, first);
+		alloue(id, sizePoint + sizeTexture + sizeNormale);
+		charge(id, points, sizePoint, textures, sizeTexture, normale, sizeNormale, first);
 	}
 	void alloue(GLuint id, unsigned int size); //size = la taille en octet (utilisez sizeof)
-	void charge(GLuint id, GLdouble* points, unsigned int sizePoint, GLdouble* textures, unsigned int sizeTexture, unsigned int first = 0);
+	void charge(GLuint id, GLdouble* points, unsigned int sizePoint, GLdouble* textures, unsigned int sizeTexture, GLdouble* normale, unsigned int sizeNormale, unsigned int first = 0);
 };
 
 #endif

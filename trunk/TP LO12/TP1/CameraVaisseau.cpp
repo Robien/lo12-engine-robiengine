@@ -73,7 +73,7 @@ public:
 				_posCurseurY = y;
 			}
 		}
-		else if(boutton ==GLUT_RIGHT_BUTTON)
+		else if(boutton == GLUT_RIGHT_BUTTON)
 		{
 			if(etat == GLUT_DOWN)
 			{
@@ -95,7 +95,7 @@ public:
 		}
 		else
 		{
-				_mouseState = -1;
+			_mouseState = -1;
 		}
 	}
 	virtual void eventsMotionMouse(int x, int y)
@@ -142,12 +142,12 @@ public:
 
 		if (((float)_posCurseurX-m_viewport[2]/2)> toleranceX)
 		{
-			
+
 			_camera->tourner_tete(1, ((float)_posCurseurX-m_viewport[2]/2)*deltaTime - toleranceX * deltaTime );	
 		}
 		else if (((float)_posCurseurX-m_viewport[2]/2) < -toleranceX)
 		{
-		//	std::cout <<((float)_posCurseurX-m_viewport[2]/2)*deltaTime + toleranceX * deltaTime << std::endl;
+			//	std::cout <<((float)_posCurseurX-m_viewport[2]/2)*deltaTime + toleranceX * deltaTime << std::endl;
 			_camera->tourner_tete(1, ((float)_posCurseurX-m_viewport[2]/2)*deltaTime + toleranceX * deltaTime );	
 		}
 		if ( ((float)_posCurseurY-m_viewport[3]/2) > toleranceY )
@@ -160,22 +160,28 @@ public:
 		}
 
 		//std::cout << ((float)_posCurseurX-m_viewport[2]/2)*deltaTime << std::endl;
+
 		if (_mouseState == GLUT_LEFT_BUTTON)
 		{
 
 			_acceleration += 80 * deltaTime;
 			_acceleration *= 0.995;
 		}
-		else if (_mouseState == GLUT_RIGHT_BUTTON)
+		else if (_acceleration > 0 && _mouseState == GLUT_RIGHT_BUTTON)
 		{
 			_acceleration *= 0.98-(0.9 * deltaTime);
 		}
-		else
+		else if (_acceleration > 0 )
 		{
 			_acceleration *= 0.99;
 		}
-		
-		
+
+		if (_mouseState == GLUT_MIDDLE_BUTTON)
+		{
+			_camera->_lookAtParam.upy *= 0.98;
+			_camera->_lookAtParam.upx *= 0.98;
+		}
+
 		if (_acceleration < 0.01)
 		{
 			_acceleration = 0;

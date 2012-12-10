@@ -2,21 +2,12 @@
 #include "VBOMangaer.h"
 
 
-Face::Face(Material* material, bool prepareVBO)
+Face::Face(Material* material)
 {
 	_material = material;
 	_normale = NULL;
 	_isFilted = false;
-	if (prepareVBO)
-	{
-		_vbo = VBOMangaer::get()->makeVBO();
-		_isVboActive = true;
-	}
-	else
-	{
-		_vbo = NULL;
-		_isVboActive = true;
-	}
+
 }
 
 
@@ -39,19 +30,12 @@ Face::~Face()
 		delete _normale;
 	}
 	delete _material;
-	if (_vbo != NULL)
-	{
-		delete _vbo;
-	}
+
 }
 
 void Face::affiche()
 {
 
-	if (_vbo && _isVboActive && !_vbo->isInit())
-	{
-		_vbo->init();
-	}
 	if (_listeCoordonneesTextures.at(0) != NULL)
 	{
 		_material->appliqueTexture();
@@ -60,59 +44,44 @@ void Face::affiche()
 	{
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
-	if (_vbo && _isVboActive)
+
+	if (_isFilted)
 	{
-		_material->appliqueMatiere();
-		if (_normale != NULL)
-		{
-			glNormal3d(_normale->getX(), _normale->getY(),_normale->getZ());
-		}
-		else
-		{
-			std::cout << "Les normales n ont pas ete calculees ! Il faut utiliser la methode calculnormales !" << std::endl;
-			calculeNormales();
-		}
-		_vbo->affiche();
+		glBegin(GL_LINE_LOOP); // affichage fils de fer
 	}
 	else
 	{
-		if (_isFilted)
-		{
-			glBegin(GL_LINE_LOOP); // affichage fils de fer
-		}
-		else
-		{
-			glBegin(GL_POLYGON);
-		}
-		//_eclairage->def_matiere(_scene->tabface[iface].imat);
-		_material->appliqueMatiere();
-		if (_normale != NULL)
-		{
-			glNormal3d(_normale->getX(), _normale->getY(),_normale->getZ());
-		}
-		else
-		{
-			std::cout << "Les normales n ont pas ete calculees ! Il faut utiliser la methode calculnormales !" << std::endl;
-			calculeNormales();
-		}
-
-
-
-
-		//glColor3f(scene->tabmat[scene->tabface[iface].imat].ambiante.r,scene->tabmat[scene->tabface[iface].imat].ambiante.g,scene->tabmat[scene->tabface[iface].imat].ambiante.b); 
-		for (unsigned i = 0 ; i < _listePoints.size(); i++)/* boucle sur les points */
-		{
-			//glColor3f(0.0,(i+1.0)/scene->tabface[iface].nbpt,(scene->tabface[iface].nbpt-i+0.0)/scene->tabface[iface].nbpt); 
-			if (_listeCoordonneesTextures.at(i) != NULL)
-			{
-				glTexCoord2d(_listeCoordonneesTextures.at(i)->getX(), _listeCoordonneesTextures.at(i)->getY());
-			}	
-			glVertex3d(_listePoints.at(i)->getX(), _listePoints.at(i)->getY(), _listePoints.at(i)->getZ());
-
-
-		}
-		glEnd();
+		glBegin(GL_POLYGON);
 	}
+	//_eclairage->def_matiere(_scene->tabface[iface].imat);
+	_material->appliqueMatiere();
+	if (_normale != NULL)
+	{
+		glNormal3d(_normale->getX(), _normale->getY(),_normale->getZ());
+	}
+	else
+	{
+		std::cout << "Les normales n ont pas ete calculees ! Il faut utiliser la methode calculnormales !" << std::endl;
+		calculeNormales();
+	}
+
+
+
+
+	//glColor3f(scene->tabmat[scene->tabface[iface].imat].ambiante.r,scene->tabmat[scene->tabface[iface].imat].ambiante.g,scene->tabmat[scene->tabface[iface].imat].ambiante.b); 
+	for (unsigned i = 0 ; i < _listePoints.size(); i++)/* boucle sur les points */
+	{
+		//glColor3f(0.0,(i+1.0)/scene->tabface[iface].nbpt,(scene->tabface[iface].nbpt-i+0.0)/scene->tabface[iface].nbpt); 
+		if (_listeCoordonneesTextures.at(i) != NULL)
+		{
+			glTexCoord2d(_listeCoordonneesTextures.at(i)->getX(), _listeCoordonneesTextures.at(i)->getY());
+		}	
+		glVertex3d(_listePoints.at(i)->getX(), _listePoints.at(i)->getY(), _listePoints.at(i)->getZ());
+
+
+	}
+	glEnd();
+
 
 }
 
@@ -130,10 +99,7 @@ void Face::addPoint(Vector3d<GLdouble>* coordonnees, Vector2d<GLdouble>* coordon
 	_collider.addPoint(*coordonnees);
 	_listePoints.push_back(coordonnees);
 	_listeCoordonneesTextures.push_back(coordonnneesTexture);
-	if (_vbo)
-	{
-		_vbo->addPoint(coordonnees, coordonnneesTexture);
-	}
+
 }
 
 void Face::setTexture(GLuint texture)
@@ -146,12 +112,27 @@ void Face::toggleFilted()
 {
 	_isFilted = !_isFilted;
 }
-void Face::toggleVBO()
-{
-	_isVboActive = !_isVboActive;
-}
 
 Collider& Face::getCollider()
 {
 	return _collider;
+}
+
+std::vector<Vector3d<GLdouble>* >& Face::getListePoints()
+{
+	return _listePoints;
+}
+std::vector<Vector2d<GLdouble>* >& Face::getListeCoordonneesTextures()
+{
+	return _listeCoordonneesTextures;
+}
+
+Vector3d<GLdouble>* Face::getNormale()
+{
+	return _normale;
+}
+
+Material* Face::getMaterial()
+{
+	return _material;
 }

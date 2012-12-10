@@ -49,13 +49,23 @@ void Tp::run()
 	AbstractObjet* root = new AbstractObjet();
 
 	Import imp;
-	root->attache(imp.importer("models/testExport/RobienSimpleLOP.obj")); // manque un delete ... le faire dans attache ?
-	//root->attache(imp.importer("models/testExport/RobienFinal.obj"));
-	AbstractObjet* vaisseau = imp.importer("models/explorerShip/vaiseau.obj")->at(0);
-	vaisseau->matrice().scale(1, 1, 1);
+
+	root->attache(imp.importer("models/robien/RobienSimpleLOD.obj")); // manque un delete ... le faire dans attache ?
+	root->attache(imp.importer("models/robien/RobienSimple.obj"));
+	AbstractObjet* vaisseau = imp.importer("models/explorerShip/vaisseau.obj")->at(0);
+	vaisseau->matrice().scale(1, 1, 0.5);
+	
 	vaisseau->matrice().rotate(180, 0, 1, 0);
-	vaisseau->matrice().translate(0, -4.2, 0);
-	vaisseau->matrice().translate(0, 0, 10.9);
+	//vaisseau->matrice().rotate(180, 0, 0, 0);
+	vaisseau->matrice().rotate(5, 1, 0, 0);
+	//vaisseau->matrice().rotate(180, 1, 0, 1);
+
+	vaisseau->matrice().translate(0, -5, 0);
+	vaisseau->matrice().translate(0, 0, 6);
+
+//	vaisseau->matrice().rotate(180, 0, 1, 0);
+//	vaisseau->matrice().translate(0, -4.2, 0);
+//	vaisseau->matrice().translate(0, 0, 10.9);
 	camera->attache(vaisseau);
 	std::vector<AbstractObjet* >* vect= imp.importer("models/motherShip/motherShip.obj");
 	vect->at(0)->getMatrice()->rotate(90,1,0,0);
