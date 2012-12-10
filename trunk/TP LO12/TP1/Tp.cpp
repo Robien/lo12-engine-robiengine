@@ -62,14 +62,14 @@ void Tp::run()
 	vect->at(0)->matrice().scale(10, 10, 10);
 	root->attache(vect);
 
-	//	SystemeParticules* sp = new SystemeParticules(true);
+	//	SystemeParticules* sp = new SystemeParticules(true, 1000);
 	//	sp->matrice().translate(0,0,-2);
 	//	sp->start();
 	//	root->attache(sp);
 
 		
 	_scene->setRoot(root);
-
+	
 	{
 		Vector3d<GLdouble> ambiante(0.4,0.1, 0.1);
 		Vector3d<GLdouble> couleur(0.1, 0.1, 0.1);
