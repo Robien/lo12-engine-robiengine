@@ -19,6 +19,7 @@ Objet::~Objet()
 
 void Objet::affiche()
 {
+	
 	//if (matrice().getPosition().getZ() < 0)
 	//{
 	//	std::cout << "BOOM : " << AbstractObjet::_nom << std::endl;
@@ -31,7 +32,19 @@ void Objet::affiche()
 	glPushMatrix();
 	glMultMatrixd(getMatrice()->getMat());
 
+	GLdouble* mat = (GLdouble*) (malloc(sizeof(GLdouble)*16));
+	glGetDoublev(GL_MODELVIEW_MATRIX, mat);
+//std::cout << mat[14] / mat[15] << std::endl;
+	_collider->majMatrice(getMatrice());
+	//std::cout << _collider->getDistanceMax() << " - " << (mat[14]/mat[15]) << std::endl;
+	if (mat[14]/mat[15] > _collider->getDistanceMax())
+	{
+		glPopMatrix();
 
+	glDisable(GL_TEXTURE_2D);
+	glDisable(GL_LIGHTING);
+		return;
+	}
 	if (_isVboActive)
 	{
 		for (unsigned int i = 0; i < _vbo.size(); ++i)

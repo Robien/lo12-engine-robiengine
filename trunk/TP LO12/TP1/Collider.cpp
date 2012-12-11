@@ -101,13 +101,13 @@ void Collider::afficheWithMat(Matrice<GLdouble>* mat, Matrice<GLdouble>* m)
 	glPushMatrix();
 	//glLoadIdentity();
 	Collider* coll = new Collider();
-	
+
 	mat->translate(-mat->getPosition().getX(), -mat->getPosition().getY(), -mat->getPosition().getZ());
-	
+
 	std::cout << mat->getPosition().getX() << std::endl;
 
 	coll->addPoint(mult(_CoordMin, *mat));
-	
+
 	coll->addPoint(mult(Vector3d<GLdouble>(_CoordMin.getX(), _CoordMin.getY(), _CoordMax.getZ()), *mat));
 	coll->addPoint(mult(Vector3d<GLdouble>(_CoordMin.getX(), _CoordMax.getY(), _CoordMin.getZ()), *mat));
 	coll->addPoint(mult(Vector3d<GLdouble>(_CoordMin.getX(), _CoordMax.getY(), _CoordMax.getZ()), *mat));
@@ -144,7 +144,7 @@ void Collider::affiche()
 	glVertex3d(_CoordMin.getX(),_CoordMax.getY(),_CoordMin.getZ());
 	glEnd();
 
-		glBegin(GL_LINE_LOOP); // affichage fils de fer
+	glBegin(GL_LINE_LOOP); // affichage fils de fer
 	//glColor3f(scene->tabmat[scene->tabface[iface].imat].ambiante.r,scene->tabmat[scene->tabface[iface].imat].ambiante.g,scene->tabmat[scene->tabface[iface].imat].ambiante.b); 
 	glColor3f(1, 1, 1); 
 	glVertex3d(_CoordMin.getX(),_CoordMin.getY(),_CoordMin.getZ());
@@ -153,7 +153,7 @@ void Collider::affiche()
 	glVertex3d(_CoordMin.getX(),_CoordMin.getY(),_CoordMax.getZ());
 	glEnd();
 
-			glBegin(GL_LINE_LOOP); // affichage fils de fer
+	glBegin(GL_LINE_LOOP); // affichage fils de fer
 	//glColor3f(scene->tabmat[scene->tabface[iface].imat].ambiante.r,scene->tabmat[scene->tabface[iface].imat].ambiante.g,scene->tabmat[scene->tabface[iface].imat].ambiante.b); 
 	glColor3f(1, 1, 1); 
 	glVertex3d(_CoordMax.getX(),_CoordMax.getY(),_CoordMax.getZ());
@@ -162,8 +162,8 @@ void Collider::affiche()
 	glVertex3d(_CoordMax.getX(),_CoordMin.getY(),_CoordMax.getZ());
 	glEnd();
 
-	
-			glBegin(GL_LINE_LOOP); // affichage fils de fer
+
+	glBegin(GL_LINE_LOOP); // affichage fils de fer
 	//glColor3f(scene->tabmat[scene->tabface[iface].imat].ambiante.r,scene->tabmat[scene->tabface[iface].imat].ambiante.g,scene->tabmat[scene->tabface[iface].imat].ambiante.b); 
 	glColor3f(1, 1, 1); 
 	glVertex3d(_CoordMax.getX(),_CoordMax.getY(),_CoordMax.getZ());
@@ -172,7 +172,7 @@ void Collider::affiche()
 	glVertex3d(_CoordMax.getX(),_CoordMax.getY(),_CoordMin.getZ());
 	glEnd();
 
-				glBegin(GL_LINE_LOOP); // affichage fils de fer
+	glBegin(GL_LINE_LOOP); // affichage fils de fer
 	//glColor3f(scene->tabmat[scene->tabface[iface].imat].ambiante.r,scene->tabmat[scene->tabface[iface].imat].ambiante.g,scene->tabmat[scene->tabface[iface].imat].ambiante.b); 
 	glColor3f(1, 1, 1); 
 	glVertex3d(_CoordMax.getX(),_CoordMax.getY(),_CoordMax.getZ());
@@ -182,4 +182,25 @@ void Collider::affiche()
 	glEnd();
 
 
+}
+
+void Collider::majMatrice(Matrice<GLdouble>* mat)
+{
+	if (_matrice.getVector16()[0] != mat->getVector16()[0] || _matrice.getVector16()[5] != mat->getVector16()[5] || _matrice.getVector16()[10] != mat->getVector16()[10])
+	{
+		_matrice = *mat;
+		_distanceMax = sqrt(
+			_matrice.getVector16()[0]*(_CoordMax.getX() - _CoordMin.getX()) * _matrice.getVector16()[0]*(_CoordMax.getX() - _CoordMin.getX())
+			+
+			_matrice.getVector16()[5]*(_CoordMax.getY() - _CoordMin.getY()) * _matrice.getVector16()[5]*(_CoordMax.getY() - _CoordMin.getY())
+			+
+			_matrice.getVector16()[10]*(_CoordMax.getZ() - _CoordMin.getZ()) * _matrice.getVector16()[10]*(_CoordMax.getZ() - _CoordMin.getZ())
+			);
+	}
+
+}
+
+GLdouble Collider::getDistanceMax()
+{
+	return _distanceMax;
 }
