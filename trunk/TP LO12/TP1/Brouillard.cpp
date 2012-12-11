@@ -1,12 +1,12 @@
 #include "Brouillard.h"
 
 
-Brouillard::Brouillard() : _couleur(0.5,0.5,0.5)
+Brouillard::Brouillard() : _couleur(0,0,0)
 {
 	_densite = 0.35;
 	_debut = 1.0;
-	_fin = 5.0;
-	_active = false;
+	_fin = 500.0;
+	_active = true;
 	maj();
 }
 

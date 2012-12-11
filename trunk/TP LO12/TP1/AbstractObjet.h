@@ -64,12 +64,13 @@ protected:
 	bool _isFilted;
 	bool _isVboActive;
 	Collider* _collider;
+	std::string _nom;
 
 private:
 	std::vector<AbstractObjet*> _fils;
 	AbstractObjet* _pere;
 	Matrice<GLdouble>* _matrice;
-	std::string _nom;
+
 	Matrice<GLdouble>* _matriceAbsolue;
 	
 

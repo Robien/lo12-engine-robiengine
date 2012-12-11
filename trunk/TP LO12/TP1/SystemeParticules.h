@@ -16,7 +16,6 @@ public:
 	void initParticles();
 	void affiche();
 	bool update();
-	GLdouble random(GLdouble min, GLdouble max);
 
 
 
