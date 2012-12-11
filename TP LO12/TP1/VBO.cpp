@@ -67,17 +67,7 @@ unsigned int VBO::afficheSome(unsigned int first)
 {
 
 
-	GLdouble *pos_vbo = NULL;
-
-
-	glBindBuffer(GL_ARRAY_BUFFER, _id);
-
-	glVertexPointer(3, GL_DOUBLE, 0, BUFFER_OFFSET(first));
-	glTexCoordPointer(2, GL_DOUBLE, 0, BUFFER_OFFSET(first + _listePoints.size() * sizeof(GLdouble)));
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState( GL_TEXTURE_COORD_ARRAY );
-
-	glDrawArrays(GL_TRIANGLES, first, _listePoints.size()/3);
+std::cout << "Ne pas utiliser cette méthode ! " << std::endl;
 
 	return (_listePoints.size() + _listeTextures.size()) * sizeof(GLdouble);
 }

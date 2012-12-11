@@ -202,11 +202,11 @@ void Scene::affiche()
 	_root->majPos();
 
 
-		glMatrixMode(GL_PROJECTION);
+	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluPerspective(90,1.0,0.01,1000000) ;
 
-glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	_mainCamera->affiche();
 	_skybox->dessine_box();

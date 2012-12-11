@@ -133,10 +133,10 @@ void Particules::initParticles()
 	_active = true;       // On rend la particule active
 	_dureeVie = 1.0;   // Maximum de vie
 
-	_fade = random(0.01,0.05);   // Vitesse de disparition aléatoire
-	_couleur = Vector3d<GLdouble>(random(0.0,1.0),random(0.0,1.0),random(0.0,1.0));
+	_fade = Outil::get()->random<GLdouble>(0.01,0.05);   // Vitesse de disparition aléatoire
+	_couleur = Vector3d<GLdouble>(Outil::get()->random<GLdouble>(0.0,1.0),Outil::get()->random<GLdouble>(0.0,1.0),Outil::get()->random<GLdouble>(0.0,1.0));
 	_position = Vector3d<GLdouble>(0,0,0);
-	_direction = Vector3d<GLdouble>(random(-10.0,10.0),random(-10.0,10.0),random(10.0,20.0));
+	_direction = Vector3d<GLdouble>(Outil::get()->random<GLdouble>(-10.0,10.0),Outil::get()->random<GLdouble>(-10.0,10.0),Outil::get()->random<GLdouble>(10.0,20.0));
 	_gravite = Vector3d<GLdouble>(0,0,-1);
 
 }
@@ -159,8 +159,4 @@ bool Particules::update()
 
 }
 
-GLdouble Particules::random(GLdouble min, GLdouble max)
-{  
-	return (GLdouble) (min + ((GLdouble) rand() / RAND_MAX * (max - min + 1.0)));
-}
 

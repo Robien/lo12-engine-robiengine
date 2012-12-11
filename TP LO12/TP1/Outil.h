@@ -28,6 +28,14 @@ public:
 		return sqrt(u.getX() * u.getX() + u.getY() * u.getY() + u.getZ() * u.getZ());
 	}
 
+
+	template <typename T>
+	T random(T min, T max)
+	{ 
+		return (T) (min + ((float) rand() / RAND_MAX * (max - min + (T) 1.0)));
+	}
+
+
 };
 
 #endif

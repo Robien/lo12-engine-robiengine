@@ -1,6 +1,7 @@
 #include "Objet.h"
 #include "AbstractObjet.h"
 #include "VBOMangaer.h"
+#include <string>
 
 Objet::Objet(std::string str) : AbstractObjet(str)
 {
@@ -18,7 +19,11 @@ Objet::~Objet()
 
 void Objet::affiche()
 {
-
+	//if (matrice().getPosition().getZ() < 0)
+	//{
+	//	std::cout << "BOOM : " << AbstractObjet::_nom << std::endl;
+	//	return;
+	//}
 	glEnable(GL_LIGHTING);
 	glEnable(GL_TEXTURE_2D);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
