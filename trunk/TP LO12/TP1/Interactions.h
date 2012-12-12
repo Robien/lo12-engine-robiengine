@@ -34,6 +34,7 @@ public:
 
 public:
 	void addEventCallBack(CB_Interraction* callBack);
+	void RemoveEventCallBack(CB_Interraction* callBack);
 	GLdouble getDeltaTime();
 
 private:

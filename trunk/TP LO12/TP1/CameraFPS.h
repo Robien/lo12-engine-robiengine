@@ -29,6 +29,8 @@ public:
 public:
 
 	void affiche();
+	virtual void pause(){}
+	virtual void unpause(){}
 	void rotationZ_obs(double angle);
 	void tourner_tete(int dir, double angle);
 	void zoom(double pas); //permet d'avancer ou de reculer dans la scene

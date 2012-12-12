@@ -55,6 +55,8 @@ public:
 public:
 	void createWindows(int hauteur, int largeur);
 	void run();
+	void pause();
+	void unpause();
 
 	unsigned int getNombrePointAffiche();
 

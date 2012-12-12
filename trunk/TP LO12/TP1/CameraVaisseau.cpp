@@ -219,13 +219,15 @@ void CameraVaisseau::resetVue()
 
 CameraVaisseau::CameraVaisseau()
 {
-	Interactions::get()->addEventCallBack(new CameraVaisseauEvent(this));
+	Interactions::get()->addEventCallBack(_cb = new CameraVaisseauEvent(this));
 	resetVue();
 }
 
 
 CameraVaisseau::~CameraVaisseau()
 {
+	Interactions::get()->RemoveEventCallBack(_cb);
+	delete _cb;
 }
 
 
@@ -368,3 +370,12 @@ void CameraVaisseau::rotation3D(double angle, double* axeVect, double* axePt, do
 	result[2]=m31*ux + m32*uy + m33*uz +axePt[2];
 }
 /****************************************************************************/
+
+void CameraVaisseau::pause()
+{
+	Interactions::get()->RemoveEventCallBack(_cb);
+}
+void CameraVaisseau::unpause()
+{
+	Interactions::get()->addEventCallBack(_cb);
+}

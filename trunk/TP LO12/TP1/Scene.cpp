@@ -29,6 +29,7 @@ class DefautInteraction : public CB_Interraction
 public:
 	DefautInteraction(Scene* scene):_scene(scene)
 	{
+		_isOnPause = false;
 		_isVBOactive = true;
 		_lastUpdateWindowsTitle = 1000; // pour afficher le titre dès le début
 	}
@@ -64,6 +65,7 @@ public:
 		case 27:	exit(0);	break;
 		case 32 :	_scene->changerObjetSelectionne();	break;
 		case 105 :  _scene->resetObjet();	break;
+		case 'p' : if (_isOnPause) { _scene->unpause();}else{_scene->pause();} _isOnPause = !_isOnPause;
 
 		}
 	}
@@ -106,6 +108,7 @@ private:
 	unsigned int nbFrame;
 	
 	bool _isVBOactive;
+	bool _isOnPause;
 
 };
 
@@ -348,4 +351,13 @@ void Scene::run()
 unsigned int Scene::getNombrePointAffiche()
 {
 	return _nbPointAffiche;
+}
+
+void Scene::pause()
+{
+	_mainCamera->pause();
+}
+void Scene::unpause()
+{
+	_mainCamera->unpause();
 }
