@@ -28,6 +28,9 @@ private:
 
 private:
 	Material* _oldMaterial;
+
+private:
+	GLdouble* _mat;// pour ne pas a delete a chaque frame
 };
 
 

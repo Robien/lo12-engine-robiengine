@@ -56,7 +56,7 @@ public:
 	void createWindows(int hauteur, int largeur);
 	void run();
 
-	unsigned int _nbPointAffiche;
+	unsigned int getNombrePointAffiche();
 
 private:
 
@@ -70,7 +70,7 @@ private:
 
 	Vector2d<int>* _windowsSize;
 
-
+	unsigned int _nbPointAffiche;
 
 };
 
