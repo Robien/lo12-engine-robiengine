@@ -13,6 +13,8 @@ public:
 	virtual void affiche();
 	virtual unsigned int afficheFils();
 	virtual void maj();
+	virtual void pause(){}
+	virtual void unpause(){}
 
 public:
 	Matrice<GLdouble>* getMatrice();
