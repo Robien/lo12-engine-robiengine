@@ -38,7 +38,7 @@ void VBO::init()
 
 
 }
-void VBO::affiche()
+unsigned int VBO::affiche()
 {
 	if (!_isInit)
 	{
@@ -60,7 +60,7 @@ void VBO::affiche()
 
 	glDrawArrays(GL_TRIANGLES, 0, _listePoints.size()/3);
 
-
+	return  _listePoints.size()/3;
 }
 
 unsigned int VBO::afficheSome(unsigned int first)

@@ -56,6 +56,8 @@ public:
 	void createWindows(int hauteur, int largeur);
 	void run();
 
+	unsigned int _nbPointAffiche;
+
 private:
 
 	int objetSelectionne;
@@ -67,6 +69,7 @@ private:
 	Camera* _mainCamera;
 
 	Vector2d<int>* _windowsSize;
+
 
 
 };

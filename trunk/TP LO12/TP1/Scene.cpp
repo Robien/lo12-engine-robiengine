@@ -86,6 +86,7 @@ public:
 			{
 				oss << " VBO désactivé";
 			}
+			oss << " Faces affiché : " << (_scene->_nbPointAffiche/3);
 			glutSetWindowTitle( oss.str().c_str());
 			_scene->affiche();
 			nbFrame = 0;
@@ -197,6 +198,7 @@ void Scene::setRoot(AbstractObjet* root)
 
 void Scene::affiche()
 {
+	_nbPointAffiche = 0;
 	//_mainCamera->affiche(); // il ne faut pas afficher la caméra pour bien avoir les valeurs des matrices en absolu
 	glLoadIdentity();
 	_root->majPos();
@@ -210,7 +212,7 @@ void Scene::affiche()
 
 	_mainCamera->affiche();
 	_skybox->dessine_box();
-	_mainCamera->afficheFils();
+	_nbPointAffiche += _mainCamera->afficheFils();
 
 
 	dessine_repere();
@@ -219,7 +221,7 @@ void Scene::affiche()
 
 	if (_root != NULL)
 	{
-		_root->affiche();
+		_nbPointAffiche += _root->affiche();
 	}
 
 

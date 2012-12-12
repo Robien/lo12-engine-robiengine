@@ -15,7 +15,7 @@ public:
 	AbstractObjet(Matrice<GLdouble>* matrice, std::string str = "nom_defaut");
 	virtual ~AbstractObjet();
 
-	virtual void affiche();
+	virtual unsigned int affiche();
 	virtual void majPos();
 
 public:

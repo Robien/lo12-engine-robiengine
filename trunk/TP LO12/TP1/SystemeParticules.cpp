@@ -42,8 +42,10 @@ void SystemeParticules::initSysteme()
 	}
 }
 
-void SystemeParticules::affiche()
+unsigned int SystemeParticules::affiche()
 {
+	unsigned int nbPointAffiche = 0;
+
 	glMatrixMode(GL_MODELVIEW);
 	glDisable(GL_LIGHTING);
 	glDisable(GL_TEXTURE_2D);
@@ -59,6 +61,7 @@ void SystemeParticules::affiche()
 	{
 		for (std::list<Particules* >::iterator it = _listParticule.begin(); it != _listParticule.end(); ++it)
 		{
+			nbPointAffiche += 3;
 			if (_isFilted)
 			{
 				glBegin(GL_LINE_LOOP); // affichage fils de fer
@@ -84,14 +87,14 @@ void SystemeParticules::affiche()
 		}
 		if(_listParticule.size() == 0)
 		{
-			_active=false;
+			_active = false;
 		}
 	}
 
 	//on affiche les objets fils
 	for (unsigned int i = 0; i < getFils()->size(); ++i)
 	{
-		getFils()->at(i)->affiche();
+		nbPointAffiche += getFils()->at(i)->affiche();
 
 	}
 
@@ -102,6 +105,7 @@ void SystemeParticules::affiche()
 	glEnable(GL_DEPTH_TEST);
 	glDisable(GL_BLEND);
 
+	return nbPointAffiche;
 }
 
 
