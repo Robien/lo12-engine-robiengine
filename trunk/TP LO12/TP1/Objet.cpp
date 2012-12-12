@@ -6,10 +6,12 @@
 Objet::Objet(std::string str) : AbstractObjet(str)
 {
 	_oldMaterial = NULL;
+	_mat = (GLdouble*) (malloc(sizeof(GLdouble)*16));
 }
 Objet::Objet(Matrice<GLdouble>* matrice) : AbstractObjet(matrice)
 {
 	_oldMaterial = NULL;
+	_mat = (GLdouble*) (malloc(sizeof(GLdouble)*16));
 }
 
 
@@ -19,7 +21,7 @@ Objet::~Objet()
 
 unsigned int Objet::affiche()
 {
-	
+
 	glEnable(GL_LIGHTING);
 	glEnable(GL_TEXTURE_2D);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -27,16 +29,18 @@ unsigned int Objet::affiche()
 	glPushMatrix();
 	glMultMatrixd(getMatrice()->getMat());
 
-	GLdouble* mat = (GLdouble*) (malloc(sizeof(GLdouble)*16));
-	glGetDoublev(GL_MODELVIEW_MATRIX, mat);
-//std::cout << mat[14] / mat[15] << std::endl;
+	//delete _mat;
+	//_mat = (GLdouble*) (malloc(sizeof(GLdouble)*16));
+	//malloc(0);
+	glGetDoublev(GL_MODELVIEW_MATRIX, _mat);
+	//std::cout << mat[14] / mat[15] << std::endl;
 	_collider->majMatrice(getMatrice());
 	//std::cout << _collider->getDistanceMax() << " - " << (mat[14]/mat[15]) << std::endl;
-	if (mat[14]/mat[15] > _collider->getDistanceMax())
+	if (_mat[14]/_mat[15] > _collider->getDistanceMax())
 	{
 		glPopMatrix();
-	glDisable(GL_TEXTURE_2D);
-	glDisable(GL_LIGHTING);
+		glDisable(GL_TEXTURE_2D);
+		glDisable(GL_LIGHTING);
 		return 0;
 	}
 	unsigned int nbPointAffiche = 0;

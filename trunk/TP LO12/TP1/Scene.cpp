@@ -86,7 +86,7 @@ public:
 			{
 				oss << " VBO désactivé";
 			}
-			oss << " Faces affiché : " << (_scene->_nbPointAffiche/3);
+			oss << " Faces affiché : " << (_scene->getNombrePointAffiche()/3);
 			glutSetWindowTitle( oss.str().c_str());
 			_scene->affiche();
 			nbFrame = 0;
@@ -345,3 +345,7 @@ void Scene::run()
 
 
 
+unsigned int Scene::getNombrePointAffiche()
+{
+	return _nbPointAffiche;
+}
