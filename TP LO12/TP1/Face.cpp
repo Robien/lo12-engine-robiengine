@@ -33,7 +33,7 @@ Face::~Face()
 
 }
 
-void Face::affiche()
+unsigned int Face::affiche()
 {
 
 	if (_listeCoordonneesTextures.at(0) != NULL)
@@ -82,6 +82,7 @@ void Face::affiche()
 	}
 	glEnd();
 
+	return (_listePoints.size());
 
 }
 

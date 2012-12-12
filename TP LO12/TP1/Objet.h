@@ -14,7 +14,7 @@ public:
 	virtual ~Objet();
 
 public:
-	virtual void affiche();
+	virtual unsigned int affiche();
 
 	void addFace(Face* face);
 

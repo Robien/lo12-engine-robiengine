@@ -17,14 +17,9 @@ Objet::~Objet()
 {
 }
 
-void Objet::affiche()
+unsigned int Objet::affiche()
 {
 	
-	//if (matrice().getPosition().getZ() < 0)
-	//{
-	//	std::cout << "BOOM : " << AbstractObjet::_nom << std::endl;
-	//	return;
-	//}
 	glEnable(GL_LIGHTING);
 	glEnable(GL_TEXTURE_2D);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -40,16 +35,16 @@ void Objet::affiche()
 	if (mat[14]/mat[15] > _collider->getDistanceMax())
 	{
 		glPopMatrix();
-
 	glDisable(GL_TEXTURE_2D);
 	glDisable(GL_LIGHTING);
-		return;
+		return 0;
 	}
+	unsigned int nbPointAffiche = 0;
 	if (_isVboActive)
 	{
 		for (unsigned int i = 0; i < _vbo.size(); ++i)
 		{
-			_vbo.at(i)->affiche();
+			nbPointAffiche += _vbo.at(i)->affiche();
 		}
 	}
 	else
@@ -58,7 +53,7 @@ void Objet::affiche()
 		//on affiche les faces
 		for (unsigned int i = 0; i < _listeFace.size(); ++i)
 		{
-			_listeFace.at(i)->affiche();
+			nbPointAffiche += _listeFace.at(i)->affiche();
 		}
 	}
 	//	glMatrixMode(GL_MODELVIEW);
@@ -74,7 +69,7 @@ void Objet::affiche()
 	//on affiche les objets fils
 	for (unsigned int i = 0; i < getFils()->size(); ++i)
 	{
-		getFils()->at(i)->affiche();
+		nbPointAffiche += getFils()->at(i)->affiche();
 	}
 
 
@@ -88,6 +83,8 @@ void Objet::affiche()
 	glDisable(GL_TEXTURE_2D);
 	glDisable(GL_LIGHTING);
 
+
+	return nbPointAffiche;
 }
 
 void Objet::addFace(Face* face)

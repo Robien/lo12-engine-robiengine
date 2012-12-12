@@ -99,8 +99,10 @@ void AbstractObjet::setMatrice(Matrice<GLdouble>* matrice)
 }
 
 
-void AbstractObjet::affiche()
+unsigned int AbstractObjet::affiche()
 {
+	unsigned int nbPointAffiche = 0;
+
 	glEnable(GL_LIGHTING);
 	glEnable(GL_TEXTURE_2D);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -108,13 +110,13 @@ void AbstractObjet::affiche()
 	glPushMatrix();
 	glMultMatrixd(getMatrice()->getMat());
 
-
+	
 
 	//on affiche les objets fils
 
 	for (unsigned int i = 0; i < getFils()->size(); ++i)
 	{
-		getFils()->at(i)->affiche();
+		nbPointAffiche += getFils()->at(i)->affiche();
 	}
 
 
@@ -128,6 +130,8 @@ void AbstractObjet::affiche()
 
 	glDisable(GL_TEXTURE_2D);
 	glDisable(GL_LIGHTING);
+
+	return nbPointAffiche;
 }
 
 void AbstractObjet::toggleFilted()

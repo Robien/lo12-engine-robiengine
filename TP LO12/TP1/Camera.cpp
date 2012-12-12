@@ -21,16 +21,19 @@ void Camera::affiche()
 
 
 }
-void Camera::afficheFils()
+unsigned int Camera::afficheFils()
 {
+	unsigned int nbPointAffiche = 0;
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 	glLoadIdentity();
 	for (unsigned int i = 0; i < getFils()->size(); ++i)
 	{
-		getFils()->at(i)->affiche();
+		nbPointAffiche += getFils()->at(i)->affiche();
 	}
 	glPopMatrix();
+
+	return nbPointAffiche;
 }
 
 void Camera::maj()

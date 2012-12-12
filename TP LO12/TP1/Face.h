@@ -29,7 +29,7 @@ public:
 
 
 public:
-	virtual void affiche();
+	virtual unsigned int affiche();
 	void toggleFilted();
 
 private:

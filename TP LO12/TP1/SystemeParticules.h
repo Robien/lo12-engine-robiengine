@@ -39,7 +39,7 @@ public:
 	void restart();
 	void start();
 	void stop();
-	virtual void affiche();
+	virtual unsigned int affiche();
 private:
 	void initSysteme();
 private:

@@ -104,8 +104,9 @@ void Lumiere::def_sources(GLenum source)
 	}
 }
 
-void Lumiere::affiche()
+unsigned int Lumiere::affiche()
 {
+	unsigned int nbPointAffiche = 0;
 	if(_afficheSphere && _active)
 	{
 		glMatrixMode(GL_MODELVIEW);	
@@ -114,6 +115,7 @@ void Lumiere::affiche()
 
 		glPushMatrix();
 		glMultMatrixd(getMatrice()->getMat());
+		nbPointAffiche += 30; //ouais, c'est au hazard
 		gluSphere(_sphere, 0.1, 10, 10);
 		/*afficher la direction du vecteur*/
 		_vect = getMatrice()->getDirection();
@@ -127,16 +129,17 @@ void Lumiere::affiche()
 		//on affiche les objets fils
 		 for (unsigned int i = 0; i < getFils()->size(); ++i)
 		 {
-			 getFils()->at(i)->affiche();
+			 nbPointAffiche += getFils()->at(i)->affiche();
 		 }
 
 		glPopMatrix();
 	}
 	else
 	{
-		AbstractObjet::affiche();
+		nbPointAffiche += AbstractObjet::affiche();
 	}
 
+	return nbPointAffiche;
 }
 
 void  Lumiere::toggle()

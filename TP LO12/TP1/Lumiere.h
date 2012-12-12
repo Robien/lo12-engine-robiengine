@@ -27,7 +27,7 @@ public:
 	virtual ~Lumiere();
 
 	void def_sources(GLenum source);
-	virtual void affiche();
+	virtual unsigned int affiche();
 
 	void setAfficheSphere(bool aff);
 	void  toggle();
