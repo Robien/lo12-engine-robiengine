@@ -14,6 +14,7 @@ public:
 public:
 	void addPoint(Vector3d<GLdouble>& point);
 	void addCollider(Collider& collider);
+	void addColliderWithMatrice(Collider& collider, Matrice<GLdouble>* mat);
 	void reset();
 
 public:

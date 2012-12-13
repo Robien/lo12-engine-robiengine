@@ -204,3 +204,11 @@ GLdouble Collider::getDistanceMax()
 {
 	return _distanceMax;
 }
+
+
+void Collider::addColliderWithMatrice(Collider& collider, Matrice<GLdouble>* mat)
+{
+	addPoint(mult(collider.getMin(), *mat));
+	addPoint(mult(collider.getMax(), *mat));
+	
+}

@@ -51,7 +51,7 @@ void Tp::run()
 	Import imp;
 
 	root->attache(imp.importer("models/robien/RobienSimpleLOD.obj")); // manque un delete ... le faire dans attache ?
-	root->attache(imp.importer("models/robien/RobienSimple.obj"));
+	//root->attache(imp.importer("models/robien/RobienSimple.obj"));
 	AbstractObjet* vaisseau = imp.importer("models/explorerShip/vaisseau.obj")->at(0);
 	vaisseau->matrice().scale(1, 1, 0.5);
 
@@ -67,32 +67,32 @@ void Tp::run()
 	//	vaisseau->matrice().translate(0, -4.2, 0);
 	//	vaisseau->matrice().translate(0, 0, 10.9);
 	camera->attache(vaisseau);
-	std::vector<AbstractObjet* >* vect = imp.importer("models/motherShip/motherShip.obj");
-	vect->at(0)->getMatrice()->rotate(90,1,0,0);
-	vect->at(0)->matrice().scale(10, 10, 10);
-	root->attache(vect);
-	vect = imp.importer("models/asteroides/LotAsteroids.obj");
-	unsigned int l = 5;//pow((float) vect->size(), (float) (1.0/3.0));
-	unsigned int m = 0;
-	for (unsigned int i = 0; i < l; ++i)
-	{
-		for (unsigned int j = 0; j < l; ++j)
-		{
-			for (unsigned int k = 0; k < l; ++k)
-			{
-				std::cout << Outil::get()->random<unsigned int>(0, vect->size() - 1)  << " - " << vect->size() - 1 << std::endl;
-				m = Outil::get()->random<unsigned int>(0, vect->size() - 1) ;
-				AbstractObjet* ab = new AbstractObjet();
-				//ab->matrice().rotate(Outil::get()->random<unsigned int>(0, 360), 0, 0, 1);
-				//ab->matrice().rotate(Outil::get()->random<unsigned int>(0, 360), 0, 1, 0);
-				//ab->matrice().rotate(Outil::get()->random<unsigned int>(0, 360), 1, 0, 0);
-				ab->matrice().translate(200*i + 1000 + Outil::get()->random<unsigned int>(0, 190), 200*j + Outil::get()->random<unsigned int>(0, 190), 200*k + Outil::get()->random<unsigned int>(0, 190));
-				ab->matrice().scale(20+Outil::get()->random<unsigned int>(0, 20), 20+Outil::get()->random<unsigned int>(0, 20), 20+Outil::get()->random<unsigned int>(0, 20));
-				ab->attache(vect->at(m));
-				root->attache(ab);
-			}
-		}
-	}
+	//std::vector<AbstractObjet* >* vect = imp.importer("models/motherShip/motherShip.obj");
+	//vect->at(0)->getMatrice()->rotate(90,1,0,0);
+	//vect->at(0)->matrice().scale(10, 10, 10);
+	//root->attache(vect);
+	//vect = imp.importer("models/asteroides/LotAsteroids.obj");
+	//unsigned int l = 5;//pow((float) vect->size(), (float) (1.0/3.0));
+	//unsigned int m = 0;
+	//for (unsigned int i = 0; i < l; ++i)
+	//{
+	//	for (unsigned int j = 0; j < l; ++j)
+	//	{
+	//		for (unsigned int k = 0; k < l; ++k)
+	//		{
+	//			std::cout << Outil::get()->random<unsigned int>(0, vect->size() - 1)  << " - " << vect->size() - 1 << std::endl;
+	//			m = Outil::get()->random<unsigned int>(0, vect->size() - 1) ;
+	//			AbstractObjet* ab = new AbstractObjet();
+	//			//ab->matrice().rotate(Outil::get()->random<unsigned int>(0, 360), 0, 0, 1);
+	//			//ab->matrice().rotate(Outil::get()->random<unsigned int>(0, 360), 0, 1, 0);
+	//			//ab->matrice().rotate(Outil::get()->random<unsigned int>(0, 360), 1, 0, 0);
+	//			ab->matrice().translate(200*i + 1000 + Outil::get()->random<unsigned int>(0, 190), 200*j + Outil::get()->random<unsigned int>(0, 190), 200*k + Outil::get()->random<unsigned int>(0, 190));
+	//			ab->matrice().scale(20+Outil::get()->random<unsigned int>(0, 20), 20+Outil::get()->random<unsigned int>(0, 20), 20+Outil::get()->random<unsigned int>(0, 20));
+	//			ab->attache(vect->at(m));
+	//			root->attache(ab);
+	//		}
+	//	}
+	//}
 	//root->attache(vect);
 	//	SystemeParticules* sp = new SystemeParticules(true, 1000);
 	//	sp->matrice().translate(0,0,-2);
