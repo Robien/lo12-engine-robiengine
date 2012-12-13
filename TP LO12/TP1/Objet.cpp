@@ -34,40 +34,46 @@ unsigned int Objet::affiche()
 	//malloc(0);
 	glGetDoublev(GL_MODELVIEW_MATRIX, _mat);
 	//std::cout << mat[14] / mat[15] << std::endl;
-	_collider->majMatrice(getMatrice());
+	_collider->majMatrice(getMatrice()); // il ne faudrait pas utiliser _mat plutot ?
 	//std::cout << _collider->getDistanceMax() << " - " << (mat[14]/mat[15]) << std::endl;
-	if (_mat[14]/_mat[15] > _collider->getDistanceMax())
-	{
-		glPopMatrix();
-		glDisable(GL_TEXTURE_2D);
-		glDisable(GL_LIGHTING);
-		return 0;
-	}
 	unsigned int nbPointAffiche = 0;
-	if (_isVboActive)
-	{
-		for (unsigned int i = 0; i < _vbo.size(); ++i)
-		{
-			nbPointAffiche += _vbo.at(i)->affiche();
-		}
-	}
-	else
+
+	if (!(_mat[14]/_mat[15] > _collider->getDistanceMax())) // en dehors du champs de vision ?
 	{
 
-		//on affiche les faces
-		for (unsigned int i = 0; i < _listeFace.size(); ++i)
+		if (_isVboActive)
 		{
-			nbPointAffiche += _listeFace.at(i)->affiche();
+			for (unsigned int i = 0; i < _vbo.size(); ++i)
+			{
+				nbPointAffiche += _vbo.at(i)->affiche();
+			}
+		}
+		else
+		{
+
+			//on affiche les faces
+			for (unsigned int i = 0; i < _listeFace.size(); ++i)
+			{
+				nbPointAffiche += _listeFace.at(i)->affiche();
+			}
 		}
 	}
 	//	glMatrixMode(GL_MODELVIEW);
+
+	Collider* col = new Collider();
+
+	col->addColliderWithMatrice(*_collider, new Matrice<GLdouble>(_mat));
+	std::cout << col->getMin().getX() << std::endl;
+	col->affiche();
+
+	//delete col;
 
 	//std::cout << matriceAbsolue().getPosition().getX()  << std::endl;
 	//_collider->affiche();
 	//GLdouble* newData = (GLdouble*) malloc(16*sizeof(GLdouble));
 	//glGetDoublev(GL_MODELVIEW_MATRIX, newData);
 	//std::cout << (new Matrice<GLdouble>(newData))->getVector16().size() << std::endl;
-	//	_collider->afficheWithMat(new Matrice<GLdouble>(newData), getMatrice());
+		//_collider->afficheWithMat(new Matrice<GLdouble>(_mat), getMatrice());
 	//delete newData;
 
 	//on affiche les objets fils
