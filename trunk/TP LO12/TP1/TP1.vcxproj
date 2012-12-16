@@ -127,6 +127,7 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="SystemeParticules.cpp" />
+    <ClCompile Include="Texte.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Tp.cpp" />
     <ClCompile Include="VBO.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Skybox.h" />
     <ClInclude Include="SystemeParticules.h" />
+    <ClInclude Include="Texte.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Tp.h" />
     <ClInclude Include="VBO.h" />

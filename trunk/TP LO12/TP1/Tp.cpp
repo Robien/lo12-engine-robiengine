@@ -12,7 +12,7 @@ Interface OpenGL (GLUT, GLU, GL)
 
 
 */
-
+#include "const.h"
 #include "Import.h"
 #include "Tp.h"
 #include "AbstractObjet.h"
@@ -23,7 +23,7 @@ Interface OpenGL (GLUT, GLU, GL)
 #include "CameraVaisseau.h"
 #include "CameraLookAt.h"
 #include "Brouillard.h"
-
+#include "Texte.h"
 
 
 Tp::Tp()
@@ -44,7 +44,7 @@ void Tp::run()
 
 	_scene = new Scene(camera);
 
-	_scene->createWindows(1024/1.2, 768/1.2);
+	_scene->createWindows(HAUTEUR_FENETRE , LARGEUR_FENETRE);
 
 	AbstractObjet* root = new AbstractObjet();
 
@@ -121,7 +121,7 @@ void Tp::run()
 	}
 
 	//Brouillard bou;
-
+	_scene->addTexte(new Texte("Mission : Recuperer les robiens", 0.25, 0.1));
 
 	_scene->run();
 
