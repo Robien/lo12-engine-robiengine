@@ -120,6 +120,10 @@ private:
 
 Scene::~Scene()
 {
+	for(unsigned int i = 0; i< _listTexte.size(); ++i)
+	{
+		delete(_listTexte.at(i));
+	}
 }
 Scene::Scene(Camera* mainCamera) : _mainCamera(mainCamera)
 {
@@ -213,6 +217,11 @@ void Scene::affiche()
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+		for(unsigned int i = 0; i< _listTexte.size(); ++i)
+	{
+		_listTexte.at(i)->affiche();
+	}
+
 	_mainCamera->affiche();
 	_skybox->dessine_box();
 	_nbPointAffiche += _mainCamera->afficheFils();
@@ -228,7 +237,6 @@ void Scene::affiche()
 	}
 
 
-
 	glutSwapBuffers();
 	glutPostRedisplay();
 
@@ -238,6 +246,11 @@ AbstractObjet* Scene::getRoot()
 	return _root;
 }
 
+
+void Scene::addTexte(Texte* txt)
+{
+	_listTexte.push_back(txt);
+}
 
 
 void Scene::dessine_repere()
@@ -271,7 +284,7 @@ Vector2d<int>* Scene::getDimensions()
 void Scene::createWindows(int hauteur, int largeur)
 {
 	_windowsSize = new Vector2d<int>(hauteur, largeur);
-	glutInitWindowSize(hauteur, largeur);   /* taille de la fenetre ecran */
+	glutInitWindowSize(largeur,hauteur);   /* taille de la fenetre ecran */
 	glutInitWindowPosition(0, 0);
 	glutInitDisplayMode ( GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);     /* mode rgb et zbuffer*/
 	/*glutInitDisplayMode ( GLUT_RGB | GLUT_DOUBLE);     /* mode rgb */

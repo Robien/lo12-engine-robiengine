@@ -23,6 +23,7 @@
 #include "Interactions.h"
 #include "Skybox.h"
 #include "Vector2d.h"
+#include "Texte.h"
 
 
 
@@ -41,7 +42,7 @@ public:
 	void toggleVBO();
 
 public:
-
+	void addTexte(Texte* txt);
 	void resetObjet();
 	void changerObjetSelectionne();
 
@@ -71,7 +72,7 @@ private:
 	Camera* _mainCamera;
 
 	Vector2d<int>* _windowsSize;
-
+	std::vector<Texte*> _listTexte; 
 	unsigned int _nbPointAffiche;
 
 };
