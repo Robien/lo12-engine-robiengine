@@ -24,7 +24,7 @@
 #include "Skybox.h"
 #include "Vector2d.h"
 #include "Texte.h"
-
+#include "Interface.h"
 
 
 class Scene
@@ -73,6 +73,7 @@ private:
 
 	Vector2d<int>* _windowsSize;
 	std::vector<Texte*> _listTexte; 
+	std::vector<Interface*> _listInterface; 
 	unsigned int _nbPointAffiche;
 
 };

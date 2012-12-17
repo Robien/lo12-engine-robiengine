@@ -217,13 +217,11 @@ void Scene::affiche()
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		for(unsigned int i = 0; i< _listTexte.size(); ++i)
-	{
-		_listTexte.at(i)->affiche();
-	}
+
 
 	_mainCamera->affiche();
 	_skybox->dessine_box();
+
 	_nbPointAffiche += _mainCamera->afficheFils();
 
 
@@ -236,7 +234,13 @@ void Scene::affiche()
 		_nbPointAffiche += _root->affiche();
 	}
 
-
+	Interface inter;
+	inter.afficher();
+	
+	for(unsigned int i = 0; i< _listTexte.size(); ++i)
+	{
+		_listTexte.at(i)->affiche();
+	}
 	glutSwapBuffers();
 	glutPostRedisplay();
 
