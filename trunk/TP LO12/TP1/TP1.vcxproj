@@ -117,6 +117,7 @@
     <ClCompile Include="Import.cpp" />
     <ClCompile Include="Interactions.cpp" />
     <ClCompile Include="Interface.cpp" />
+    <ClCompile Include="InterfaceVitesse.cpp" />
     <ClCompile Include="Lumiere.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Material.cpp" />
@@ -152,6 +153,7 @@
     <ClInclude Include="Import.h" />
     <ClInclude Include="Interactions.h" />
     <ClInclude Include="Interface.h" />
+    <ClInclude Include="InterfaceVitesse.h" />
     <ClInclude Include="Lumiere.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Matrice.h" />

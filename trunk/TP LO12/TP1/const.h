@@ -39,7 +39,7 @@
 #define PI 3.1415926535
 #include <iostream>
 #define BUFFER_OFFSET(a) ((char*)NULL + (a))
-const int HAUTEUR_FENETRE = (768/1.2);
-const int LARGEUR_FENETRE = (1024/1.2);
+const int HAUTEUR_FENETRE = 600;//(768/1.2);
+const int LARGEUR_FENETRE = 800;//(1024/1.2);
 #endif
 

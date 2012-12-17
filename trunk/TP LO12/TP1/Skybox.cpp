@@ -42,24 +42,7 @@ void Skybox::dessine_box()
 	glEnable(GL_TEXTURE_2D);
 	
 	// Réglage de la position de la box
-	
-	/* //test
-	glPushAttrib(GL_ENABLE_BIT);
-    glEnable(GL_TEXTURE_2D);
-    glDisable(GL_DEPTH_TEST);
-    glDisable(GL_LIGHTING);
-    glDisable(GL_BLEND);
-	*/
-	//glPushMatrix();
-	//glLoadIdentity();
-	 // test
-   
 	glPushMatrix();
-	//glLoadIdentity();
-    //gluLookAt(
-     //   0,0,0,
-     //   coord.x, coord.y, coord.z,
-      //  0,1,0);
 	
 	GLdouble* newData = (GLdouble*) malloc(16*sizeof(GLdouble));
 	glGetDoublev(GL_MODELVIEW_MATRIX, newData);
@@ -69,12 +52,6 @@ void Skybox::dessine_box()
 	newData[15] = 1;
 	glLoadMatrixd(newData);
 	delete newData;
-
-	//glTranslated(coord.x, coord.y, coord.z);
-
-		//	
-		
-
 
 
 	glColor4f(1,1,1,1);
