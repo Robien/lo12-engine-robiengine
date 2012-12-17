@@ -1,7 +1,8 @@
 #include "Texte.h"
-#include <stdarg.h>  
+#include <stdarg.h> 
+#include "Outil.h"
 
-Texte::Texte(std::string str, GLdouble x, GLdouble y)
+Texte::Texte(std::string str, GLdouble x, GLdouble y): _couleur(0,0,0)
 {
 	_texte = str;
 	_police = GLUT_BITMAP_TIMES_ROMAN_24;
@@ -24,7 +25,7 @@ void Texte::setPosition(GLdouble x, GLdouble y)
 	{y=0;}
 	if(x < 1)
 	{
-		_x = x * LARGEUR_FENETRE;
+		_x = x * Outil::get()->getLargeurFenetre();
 	}
 	else
 	{
@@ -32,7 +33,7 @@ void Texte::setPosition(GLdouble x, GLdouble y)
 	}
 	if(y < 1)
 	{
-		_y = y * HAUTEUR_FENETRE;
+		_y = y * Outil::get()->getHauteurFenetre();
 	}
 	else
 	{
@@ -49,7 +50,12 @@ void Texte::setPolice(void* font)
 {
 	_police = font;
 }
-
+void Texte::setCouleur(GLfloat r, GLfloat g, GLfloat b)
+{
+	_couleur.setX(r);
+	_couleur.setY(g);
+	_couleur.setZ(b);
+}
 void Texte::affiche()
 {
 	beginTexte();
@@ -62,17 +68,19 @@ void Texte::beginTexte()
 	glMatrixMode(GL_PROJECTION);
 	glPushMatrix();
 	glLoadIdentity();
-	gluOrtho2D(0,768/1.2,0,1024/1.2);
+	gluOrtho2D(0, Outil::get()->getHauteurFenetre(), 0, Outil::get()->getLargeurFenetre());
 	glMatrixMode(GL_MODELVIEW);
-	glColor3f(1,1,0.5);
+	glPushMatrix();
+	glLoadIdentity();
+	glColor3fv(_couleur.getCStyle());
 
 }
 void Texte::endText()
 {
 	glMatrixMode(GL_PROJECTION);
-
 	glPopMatrix();
 	glMatrixMode(GL_MODELVIEW);
+	glPopMatrix();
 }
 void Texte::drawText(float x, float y, std::string str)
 {

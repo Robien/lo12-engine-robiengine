@@ -3,6 +3,7 @@
 
 #include "Outil.h"
 #include <string>
+
 class Texte
 {
 public:
@@ -13,6 +14,7 @@ public:
 	void setTexte(std::string str);
 	void setPolice(void* font);
 	void setPosition(GLdouble x, GLdouble y);
+	void setCouleur(GLfloat r, GLfloat g, GLfloat b);
 private:
 	void beginTexte();
 	void endText();
@@ -23,6 +25,7 @@ private:
 	std::string _texte;
 	GLdouble _x;
 	GLdouble _y;
+	Vector3d<GLfloat> _couleur;
 };
 
 #endif
