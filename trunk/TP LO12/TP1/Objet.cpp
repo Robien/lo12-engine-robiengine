@@ -60,11 +60,11 @@ unsigned int Objet::affiche()
 	}
 	//	glMatrixMode(GL_MODELVIEW);
 
-	Collider* col = new Collider();
+	//Collider* col = new Collider();
 
-	col->addColliderWithMatrice(*_collider, new Matrice<GLdouble>(_mat));
-	std::cout << col->getMin().getX() << std::endl;
-	col->affiche();
+	//col->addColliderWithMatrice(*_collider, new Matrice<GLdouble>(_mat));
+	//std::cout << col->getMin().getX() << std::endl;
+	//col->affiche();
 
 	//delete col;
 
@@ -107,6 +107,8 @@ void Objet::addFace(Face* face)
 	{
 		_vbo.push_back(VBOMangaer::get()->makeVBO());
 		_oldMaterial = face->getMaterial();
+		_vbo.at(_vbo.size() - 1)->setMaterial(_oldMaterial);
+
 	}
 
 	VBO* vbo = _vbo.at(_vbo.size() - 1);
@@ -117,7 +119,7 @@ void Objet::addFace(Face* face)
 	{
 		vbo->addPoint(points.at(i), textures.at(i), face->getNormale());
 	}
-	vbo->setMaterial(_oldMaterial);
+	//vbo->setMaterial(_oldMaterial);
 }
 
 void Objet::toggleFilted()

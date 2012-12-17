@@ -52,7 +52,7 @@ void VBOMangaer::charge(GLuint id, GLdouble* points, unsigned int sizePoint, GLd
 	glBindBuffer(GL_ARRAY_BUFFER, id);
 	glBufferSubData(GL_ARRAY_BUFFER,first,sizePoint,points); 
 	glBufferSubData(GL_ARRAY_BUFFER,first + sizePoint,sizeTexture, textures); 
-	glBufferSubData(GL_ARRAY_BUFFER,first + sizePoint + sizeNormale ,sizeNormale, normale); 
+	glBufferSubData(GL_ARRAY_BUFFER,first + sizePoint + sizeTexture ,sizeNormale, normale); 
 
 	//glBindBuffer(GL_ARRAY_BUFFER, id);
 
