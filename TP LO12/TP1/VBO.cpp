@@ -21,9 +21,13 @@ void VBO::addPoint(Vector3d<GLdouble>* point, Vector2d<GLdouble>* texture, Vecto
 	_listeTextures.push_back(texture->getX());
 	_listeTextures.push_back(texture->getY());
 
+
 	_listeNormales.push_back(normale->getX());
 	_listeNormales.push_back(normale->getY());
 	_listeNormales.push_back(normale->getZ());
+
+	
+
 }
 
 bool VBO::isInit()
@@ -33,7 +37,8 @@ bool VBO::isInit()
 void VBO::init()
 {
 
-	VBOMangaer::get()->alloueEtCharge(_id, _listePoints.data(), _listePoints.size() * sizeof(GLdouble), _listeTextures.data(), _listeTextures.size() * sizeof(GLdouble),_listeNormales.data(), _listeNormales.size() * sizeof(GLdouble) );
+	VBOMangaer::get()->alloueEtCharge(_id, _listePoints.data(), _listePoints.size() * sizeof(GLdouble), _listeTextures.data(), _listeTextures.size() * sizeof(GLdouble),_listeNormales.data(), _listeNormales.size() * sizeof(GLdouble));
+	
 	_isInit = true;
 
 
@@ -46,8 +51,7 @@ unsigned int VBO::affiche()
 	}
 	_material->appliqueTexture();
 	_material->appliqueMatiere();
-	GLdouble *pos_vbo = NULL;
-
+	
 
 	glBindBuffer(GL_ARRAY_BUFFER, _id);
 
