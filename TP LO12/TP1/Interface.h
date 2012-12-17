@@ -10,19 +10,18 @@
 class Interface
 {
 public:
-	Interface(GLuint indTex = 0);
+	Interface(GLfloat x, GLfloat y, GLfloat largeur, GLfloat hauteur,std::string name = "");
 	virtual ~Interface();
 
-	void afficher();
-	void addPoint(Vector3d<GLdouble>* coordonnees, Vector2d<GLdouble>* coordonnneesTexture = NULL);
-private:
-	void beginTexte();
-	void endText();
-	void drawText();
-	void appliqueTexture();
-private:
-	std::vector<Vector3d<GLdouble>* > _listePoints;
-	std::vector<Vector2d<GLdouble>* > _listeCoordonneesTextures;
+	virtual void affiche();
+	virtual void setPosition(GLfloat _x, GLfloat _y, GLfloat _largeur, GLfloat _hauteur);
+protected:
+	 void beginInter();
+	 void endInter();
+	 void drawInter();
+	 void appliqueTexture();
+protected:
+	GLfloat _x, _y, _largeur, _hauteur;
 	GLuint _indiceTex;						/* indice de la texture */
 };
 

@@ -2,7 +2,7 @@
 #include <stdarg.h> 
 #include "Outil.h"
 
-Texte::Texte(std::string str, GLdouble x, GLdouble y): _couleur(0,0,0)
+Texte::Texte(std::string str, GLfloat x, GLfloat y): _couleur(0,0,0)
 {
 	_texte = str;
 	_police = GLUT_BITMAP_TIMES_ROMAN_24;
@@ -17,7 +17,7 @@ Texte::~Texte()
 
 }
 
-void Texte::setPosition(GLdouble x, GLdouble y)
+void Texte::setPosition(GLfloat x, GLfloat y)
 {
 	if(x < 0)
 	{x=0;}
@@ -68,7 +68,7 @@ void Texte::beginTexte()
 	glMatrixMode(GL_PROJECTION);
 	glPushMatrix();
 	glLoadIdentity();
-	gluOrtho2D(0, Outil::get()->getHauteurFenetre(), 0, Outil::get()->getLargeurFenetre());
+	gluOrtho2D(0, Outil::get()->getLargeurFenetre(), 0, Outil::get()->getHauteurFenetre());
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 	glLoadIdentity();

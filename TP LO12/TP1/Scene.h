@@ -42,7 +42,8 @@ public:
 	void toggleVBO();
 
 public:
-	void addTexte(Texte* txt);
+	void add(Texte* txt);
+	void add(Interface* inter);
 	void resetObjet();
 	void changerObjetSelectionne();
 
@@ -72,8 +73,8 @@ private:
 	Camera* _mainCamera;
 
 	Vector2d<int>* _windowsSize;
-	std::vector<Texte*> _listTexte; 
-	std::vector<Interface*> _listInterface; 
+	std::vector<Texte* > _listTexte; 
+	std::vector<Interface* > _listInterface; 
 	unsigned int _nbPointAffiche;
 
 };

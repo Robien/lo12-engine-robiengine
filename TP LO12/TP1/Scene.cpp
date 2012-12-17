@@ -210,13 +210,11 @@ void Scene::affiche()
 	glLoadIdentity();
 	_root->majPos();
 
-
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluPerspective(90,1.0,0.01,1000000) ;
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 
 
 	_mainCamera->affiche();
@@ -234,9 +232,11 @@ void Scene::affiche()
 		_nbPointAffiche += _root->affiche();
 	}
 
-	Interface inter;
-	inter.afficher();
-	
+	for(unsigned int k = 0; k< _listInterface.size(); ++k)
+	{
+		_listInterface.at(k)->affiche();
+	}
+
 	for(unsigned int i = 0; i< _listTexte.size(); ++i)
 	{
 		_listTexte.at(i)->affiche();
@@ -251,10 +251,15 @@ AbstractObjet* Scene::getRoot()
 }
 
 
-void Scene::addTexte(Texte* txt)
+void Scene::add(Texte* txt)
 {
 	_listTexte.push_back(txt);
 }
+void Scene::add(Interface* inter)
+{
+	_listInterface.push_back(inter);
+}
+	
 
 
 void Scene::dessine_repere()
