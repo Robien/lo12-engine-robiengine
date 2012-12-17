@@ -35,6 +35,9 @@ public:
 		return (T) (min + ((float) rand() / RAND_MAX * (max - min + (T) 1.0)));
 	}
 
+	int getHauteurFenetre();
+
+	int getLargeurFenetre();
 
 };
 

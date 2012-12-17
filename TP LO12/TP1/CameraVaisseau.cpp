@@ -131,32 +131,27 @@ public:
 
 		GLdouble deltaTime =  Interactions::get()->getDeltaTime()/1000;
 
-		GLint m_viewport[4];
-
-		glGetIntegerv( GL_VIEWPORT, m_viewport );
-
-
 		int toleranceX = 25;
 		int toleranceY = 25;
 
 
-		if (((float)_posCurseurX-m_viewport[2]/2)> toleranceX)
+		if (((float)_posCurseurX-Outil::get()->getLargeurFenetre()/2)> toleranceX)
 		{
 
-			_camera->tourner_tete(1, ((float)_posCurseurX-m_viewport[2]/2)*deltaTime - toleranceX * deltaTime );	
+			_camera->tourner_tete(1, ((float)_posCurseurX-Outil::get()->getLargeurFenetre()/2)*deltaTime - toleranceX * deltaTime );	
 		}
-		else if (((float)_posCurseurX-m_viewport[2]/2) < -toleranceX)
+		else if (((float)_posCurseurX-Outil::get()->getLargeurFenetre()/2) < -toleranceX)
 		{
 			//	std::cout <<((float)_posCurseurX-m_viewport[2]/2)*deltaTime + toleranceX * deltaTime << std::endl;
-			_camera->tourner_tete(1, ((float)_posCurseurX-m_viewport[2]/2)*deltaTime + toleranceX * deltaTime );	
+			_camera->tourner_tete(1, ((float)_posCurseurX-Outil::get()->getLargeurFenetre()/2)*deltaTime + toleranceX * deltaTime );	
 		}
-		if ( ((float)_posCurseurY-m_viewport[3]/2) > toleranceY )
+		if ( ((float)_posCurseurY-Outil::get()->getHauteurFenetre()/2) > toleranceY )
 		{
-			_camera->tourner_tete(2, ((float)_posCurseurY-m_viewport[3]/2)*deltaTime - toleranceY * deltaTime );
+			_camera->tourner_tete(2, ((float)_posCurseurY-Outil::get()->getHauteurFenetre()/2)*deltaTime - toleranceY * deltaTime );
 		}
-		else if (  ((float)_posCurseurY-m_viewport[3]/2) < -toleranceY)
+		else if (  ((float)_posCurseurY-Outil::get()->getHauteurFenetre()/2) < -toleranceY)
 		{
-			_camera->tourner_tete(2, ((float)_posCurseurY-m_viewport[3]/2)*deltaTime + toleranceY * deltaTime );
+			_camera->tourner_tete(2, ((float)_posCurseurY-Outil::get()->getHauteurFenetre()/2)*deltaTime + toleranceY * deltaTime );
 		}
 
 		//std::cout << ((float)_posCurseurX-m_viewport[2]/2)*deltaTime << std::endl;
