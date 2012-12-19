@@ -1,6 +1,30 @@
 #include "Texte.h"
 #include <stdarg.h> 
 #include "Outil.h"
+#include "Interactions.h"
+
+
+
+class InterractionInterface : public CB_Interraction
+{
+public:
+	InterractionInterface(Texte* texte) : _texte(texte)
+	{}
+	virtual ~InterractionInterface(){}
+public:
+	virtual void reshape(int largeur, int hauteur)
+	{
+		_texte->recalculeSize();
+	}
+private:
+	Texte* _texte;
+
+
+};
+
+
+
+
 
 Texte::Texte(std::string str, GLfloat x, GLfloat y): _couleur(0,0,0)
 {
@@ -19,6 +43,10 @@ Texte::~Texte()
 
 void Texte::setPosition(GLfloat x, GLfloat y)
 {
+	_positon.setX(x);
+	_positon.setY(y);
+
+
 	if(x < 0)
 	{x=0;}
 	if(y < 0)
@@ -90,4 +118,9 @@ void Texte::drawText(float x, float y, std::string str)
 	{
 		glutBitmapCharacter(_police, str.c_str()[i]);
 	}
+}
+
+void Texte::recalculeSize()
+{
+	setPosition(_positon.getX(), _positon.getY());
 }
