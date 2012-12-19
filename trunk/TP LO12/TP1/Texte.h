@@ -1,8 +1,10 @@
 #ifndef _TEXTE_H	
 #define _TEXTE_H
 
-#include "Outil.h"
+
 #include <string>
+#include "Outil.h"
+#include "Vector2d.h"
 
 class Texte
 {
@@ -15,6 +17,9 @@ public:
 	void setPolice(void* font);
 	void setPosition(GLfloat x, GLfloat y);
 	void setCouleur(GLfloat r, GLfloat g, GLfloat b);
+
+	virtual void recalculeSize();
+
 private:
 	void beginTexte();
 	void endText();
@@ -26,6 +31,7 @@ private:
 	GLfloat _x;
 	GLfloat _y;
 	Vector3d<GLfloat> _couleur;
+	Vector2d<GLfloat> _positon;
 };
 
 #endif
