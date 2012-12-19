@@ -2,9 +2,9 @@
 
 GestionnaireLumiere::GestionnaireLumiere() : _listLumiere()
 {
-	_lumiereAmbiante[0] = 0.8;
-	_lumiereAmbiante[1] = 0.8;
-	_lumiereAmbiante[2] = 0.8;
+	_lumiereAmbiante[0] = 0.0;
+	_lumiereAmbiante[1] = 0.0;
+	_lumiereAmbiante[2] = 0.0;
 	_lumiereAmbiante[3] = 1;
 	Interactions::get()->addEventCallBack(new LumiereInterraction());
 }
@@ -14,11 +14,11 @@ Lumiere* GestionnaireLumiere::newLumiere(Vector3d<GLdouble> amb, Vector3d<GLdoub
 	Lumiere* lu;
 	if(mat == NULL)
 	{
-		lu = new Lumiere(amb,cou, AllureFaisceau(coefk, angle),infini,name);
+		lu = new Lumiere(lumiere_i(_listLumiere.size()), amb,cou, AllureFaisceau(coefk, angle),infini,name);
 	}
 	else
 	{
-		lu = new Lumiere(mat,amb,cou,AllureFaisceau(coefk, angle),infini, name);
+		lu = new Lumiere(lumiere_i(_listLumiere.size()), mat,amb,cou,AllureFaisceau(coefk, angle),infini, name);
 	}
 	_listLumiere.push_back(lu);
 	return lu;
@@ -29,6 +29,11 @@ void GestionnaireLumiere::def_modele()
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT,_lumiereAmbiante);
 	glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, GL_TRUE);
 	glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, GL_TRUE);
+	for (unsigned int i = 0; i < _listLumiere.size(); ++i)
+	{
+		_listLumiere.at(i)->init();
+
+	}
 }
 
 
@@ -36,7 +41,7 @@ void GestionnaireLumiere::defAllSources()
 {
 	for (unsigned int i = 0; i < _listLumiere.size(); ++i)
 	{
-		_listLumiere.at(i)->def_sources(lumiere_i(i));
+		_listLumiere.at(i)->def_sources();
 
 	}
 }

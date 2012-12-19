@@ -15,6 +15,9 @@ public:
 
 	virtual void affiche();
 	virtual void setPosition(GLfloat _x, GLfloat _y, GLfloat _largeur, GLfloat _hauteur);
+
+	virtual void recalculeSize();
+
 protected:
 	 void beginInter();
 	 void endInter();
@@ -23,6 +26,8 @@ protected:
 protected:
 	GLfloat _x, _y, _largeur, _hauteur;
 	GLuint _indiceTex;						/* indice de la texture */
+	Vector2d<GLdouble> _position;
+	Vector2d<GLdouble> _proportions;
 };
 
 #endif

@@ -208,6 +208,7 @@ void Scene::affiche()
 	_nbPointAffiche = 0;
 	//_mainCamera->affiche(); // il ne faut pas afficher la caméra pour bien avoir les valeurs des matrices en absolu
 	glLoadIdentity();
+	_mainCamera->majPos();
 	_root->majPos();
 
 	glMatrixMode(GL_PROJECTION);
@@ -220,12 +221,14 @@ void Scene::affiche()
 	_mainCamera->affiche();
 	_skybox->dessine_box();
 
+	GestionnaireLumiere::get()->defAllSources();
+
 	_nbPointAffiche += _mainCamera->afficheFils();
 
 
 	dessine_repere();
 
-	GestionnaireLumiere::get()->defAllSources();
+	
 
 	if (_root != NULL)
 	{
@@ -349,7 +352,7 @@ void Scene::run()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHTING);
-	///*Permet d'amelioré pour le rendu
+	///*Permet d'ameliorer le rendu
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT,GL_NICEST);
 	glHint(GL_POINT_SMOOTH_HINT,GL_NICEST);
 	// */

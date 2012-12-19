@@ -13,6 +13,7 @@ public:
 	virtual void affiche();
 	virtual unsigned int afficheFils();
 	virtual void maj();
+	void majPos();
 	virtual void pause(){}
 	virtual void unpause(){}
 

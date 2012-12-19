@@ -94,3 +94,19 @@ std::vector<AbstractObjet*>* Camera::getFils()
 {
 	return &_fils;
 }
+
+
+void Camera::majPos()
+{
+		glPushMatrix();
+		affiche();
+
+	
+		//on maj les objets fils
+		for (unsigned int i = 0; i < getFils()->size(); ++i)
+		{
+			getFils()->at(i)->majPos();
+		}
+
+		glPopMatrix();
+}

@@ -21,13 +21,14 @@ private:
 class Lumiere : public	AbstractObjet
 {
 public:
-	Lumiere(std::string name = "lumiere_defaut");
-	Lumiere(Matrice<GLdouble>* mat, Vector3d<GLdouble> amb, Vector3d<GLdouble> cou, AllureFaisceau alf, bool infini = false, std::string name = "lumiere_defaut");
-	Lumiere(Vector3d<GLdouble> amb, Vector3d<GLdouble> cou, AllureFaisceau alf, bool infini = false, std::string name = "lumiere_defaut");
+	Lumiere(GLenum id, std::string name = "lumiere_defaut");
+	Lumiere(GLenum id, Matrice<GLdouble>* mat, Vector3d<GLdouble> amb, Vector3d<GLdouble> cou, AllureFaisceau alf, bool infini = false, std::string name = "lumiere_defaut");
+	Lumiere(GLenum id, Vector3d<GLdouble> amb, Vector3d<GLdouble> cou, AllureFaisceau alf, bool infini = false, std::string name = "lumiere_defaut");
 	virtual ~Lumiere();
 
-	void def_sources(GLenum source);
+	void def_sources();
 	virtual unsigned int affiche();
+	virtual void init();
 
 	void setAfficheSphere(bool aff);
 	void  toggle();
@@ -44,6 +45,7 @@ private :
 
 	Vector3d<GLdouble> _vect;			/*utilisé pour la conversion*/
 
+	GLenum _id; // id de la lumière
 };
 
 #endif
