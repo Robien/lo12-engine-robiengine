@@ -49,6 +49,21 @@ void Tp::run()
 
 	AbstractObjet* root = new AbstractObjet();
 
+	
+	{
+		Vector3d<GLdouble> ambiante(1, 1, 1);
+		Vector3d<GLdouble> couleur(1, 1, 1);
+		Matrice<GLdouble> *m = new Matrice<GLdouble>();
+		m->translate(0.3, 0, 0);
+		m->rotate(90, 0, 1, 0);
+		//m->getVector16().at(0) = -1;
+		Lumiere* l = GestionnaireLumiere::get()->newLumiere(ambiante,couleur, 2.0, 25.0, m);
+		l->setAfficheSphere(true);
+		camera->attache(l);
+	}
+
+
+
 	Import imp;
 
 	root->attache(imp.importer("models/robien/RobienSimpleLOD.obj")); // manque un delete ... le faire dans attache ?
@@ -72,28 +87,28 @@ void Tp::run()
 	vect->at(0)->getMatrice()->rotate(90,1,0,0);
 	vect->at(0)->matrice().scale(10, 10, 10);
 	root->attache(vect);
-	vect = imp.importer("models/asteroides/LotAsteroids.obj");
-	unsigned int l = 5;//pow((float) vect->size(), (float) (1.0/3.0));
-	unsigned int m = 0;
-	for (unsigned int i = 0; i < l; ++i)
-	{
-		for (unsigned int j = 0; j < l; ++j)
-		{
-			for (unsigned int k = 0; k < l; ++k)
-			{
-				std::cout << Outil::get()->random<unsigned int>(0, vect->size() - 1)  << " - " << vect->size() - 1 << std::endl;
-				m = Outil::get()->random<unsigned int>(0, vect->size() - 1) ;
-				AbstractObjet* ab = new AbstractObjet();
-				//ab->matrice().rotate(Outil::get()->random<unsigned int>(0, 360), 0, 0, 1);
-				//ab->matrice().rotate(Outil::get()->random<unsigned int>(0, 360), 0, 1, 0);
-				//ab->matrice().rotate(Outil::get()->random<unsigned int>(0, 360), 1, 0, 0);
-				ab->matrice().translate(200*i + 1000 + Outil::get()->random<unsigned int>(0, 190), 200*j + Outil::get()->random<unsigned int>(0, 190), 200*k + Outil::get()->random<unsigned int>(0, 190));
-				ab->matrice().scale(20+Outil::get()->random<unsigned int>(0, 20), 20+Outil::get()->random<unsigned int>(0, 20), 20+Outil::get()->random<unsigned int>(0, 20));
-				ab->attache(vect->at(m));
-				root->attache(ab);
-			}
-		}
-	}
+	//vect = imp.importer("models/asteroides/LotAsteroids.obj");
+	//unsigned int l = 5;//pow((float) vect->size(), (float) (1.0/3.0));
+	//unsigned int m = 0;
+	//for (unsigned int i = 0; i < l; ++i)
+	//{
+	//	for (unsigned int j = 0; j < l; ++j)
+	//	{
+	//		for (unsigned int k = 0; k < l; ++k)
+	//		{
+	//			std::cout << Outil::get()->random<unsigned int>(0, vect->size() - 1)  << " - " << vect->size() - 1 << std::endl;
+	//			m = Outil::get()->random<unsigned int>(0, vect->size() - 1) ;
+	//			AbstractObjet* ab = new AbstractObjet();
+	//			//ab->matrice().rotate(Outil::get()->random<unsigned int>(0, 360), 0, 0, 1);
+	//			//ab->matrice().rotate(Outil::get()->random<unsigned int>(0, 360), 0, 1, 0);
+	//			//ab->matrice().rotate(Outil::get()->random<unsigned int>(0, 360), 1, 0, 0);
+	//			ab->matrice().translate(200*i + 1000 + Outil::get()->random<unsigned int>(0, 190), 200*j + Outil::get()->random<unsigned int>(0, 190), 200*k + Outil::get()->random<unsigned int>(0, 190));
+	//			ab->matrice().scale(20+Outil::get()->random<unsigned int>(0, 20), 20+Outil::get()->random<unsigned int>(0, 20), 20+Outil::get()->random<unsigned int>(0, 20));
+	//			ab->attache(vect->at(m));
+	//			root->attache(ab);
+	//		}
+	//	}
+	//}
 	//root->attache(vect);
 	//	SystemeParticules* sp = new SystemeParticules(true, 1000);
 	//	sp->matrice().translate(0,0,-2);
@@ -103,23 +118,15 @@ void Tp::run()
 
 	_scene->setRoot(root);
 
-	{
-		Vector3d<GLdouble> ambiante(0.4,0.1, 0.1);
-		Vector3d<GLdouble> couleur(0.1, 0.1, 0.1);
-		Matrice<GLdouble> *m = new Matrice<GLdouble>();
-		m->translate(0, 0, 2);
-		m->getVector16().at(10) = -1;
-		root->attache(GestionnaireLumiere::get()->newLumiere(ambiante,couleur, 5.0, 5.0, m));
-	}
+	//{
+	//	Vector3d<GLdouble> ambiante(0.0,0.0, 0.0);
+	//	Vector3d<GLdouble> couleur(0.1, 0.1, 0.1);
+	//	Matrice<GLdouble> *m = new Matrice<GLdouble>();
+	//	m->translate(0, 0, 2);
+	//	//m->getVector16().at(10) = -1;
+	//	vaisseau->attache(GestionnaireLumiere::get()->newLumiere(ambiante,couleur, 5.0, 5.0, m));
+	//}
 
-	{
-		Vector3d<GLdouble> ambiante(0.2, 0.2, 0.2);
-		Vector3d<GLdouble> couleur(0.5, 0.5, 0.5);
-		Matrice<GLdouble> *m = new Matrice<GLdouble>();
-		m->translate(25, 0, 0);
-		m->getVector16().at(0) = -1;
-		root->attache(GestionnaireLumiere::get()->newLumiere(ambiante,couleur, 2.0, 180.0, m));
-	}
 
 	//Brouillard bou;
 	_scene->add(new Texte("Mission : Recuperer les robiens", 0.25, 0.1));

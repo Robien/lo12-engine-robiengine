@@ -1,5 +1,26 @@
 #include "Interface.h"
 #include "GestionnaireTexture.h"
+#include "Interactions.h"
+
+
+class InterractionInterface : public CB_Interraction
+{
+public:
+	InterractionInterface(Interface* gui) : _interface(gui)
+	{}
+	virtual ~InterractionInterface(){}
+public:
+	virtual void reshape(int largeur, int hauteur)
+	{
+		_interface->recalculeSize();
+	}
+private:
+	Interface* _interface;
+
+
+};
+
+
 
 Interface::Interface(GLfloat x, GLfloat y, GLfloat largeur, GLfloat hauteur, std::string name)
 {
@@ -8,15 +29,29 @@ Interface::Interface(GLfloat x, GLfloat y, GLfloat largeur, GLfloat hauteur, std
 		_indiceTex = GestionnaireTexture::get()->addTexture(name);
 	}
 	setPosition(x, y, largeur, hauteur);
+	Interactions::get()->addEventCallBack(new InterractionInterface(this));
+
 }
 
 
 Interface::~Interface()
 {
 }
+void Interface::recalculeSize()
+{
+	setPosition(_position.getX(), _position.getY(), _proportions.getX(), _proportions.getY());
+}
 
 void Interface::setPosition(GLfloat x, GLfloat y, GLfloat largeur, GLfloat hauteur)
 {
+
+	_position.setX(x);
+	_position.setY(y);
+	_proportions.setX(largeur);
+	_proportions.setY(hauteur);
+
+
+
 	if(x < 0)
 	{x=0;}
 	if(y < 0)

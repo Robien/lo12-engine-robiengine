@@ -5,6 +5,7 @@
 #include <vector>
 #include "Singleton.h"
 #include "const.h"
+#include "Vector2d.h"
 
 
 class CB_Interraction
