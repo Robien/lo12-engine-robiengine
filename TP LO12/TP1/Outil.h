@@ -27,7 +27,17 @@ public:
 	{
 		return sqrt(u.getX() * u.getX() + u.getY() * u.getY() + u.getZ() * u.getZ());
 	}
+	template <typename T>
+	Vector3d<T>* centreGravite(Vector3d<T>* u, Vector3d<T>* v, Vector3d<T>* w)
+	{
+		Vector3d<T>* g = new Vector3d<T>();
 
+		g->setX( (u->getX() + v->getX() + w->getX()) / 3.0);
+		g->setY( (u->getY() + v->getY() + w->getY()) / 3.0);
+		g->setZ( (u->getZ() + v->getZ() + w->getZ()) / 3.0);
+
+		return g;
+	}
 
 	template <typename T>
 	T random(T min, T max)

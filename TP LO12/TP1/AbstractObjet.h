@@ -6,6 +6,7 @@
 #include "const.h"
 #include <iostream>
 #include "Collider.h"
+#include "Vector3d.h"
 
 
 class AbstractObjet
@@ -41,6 +42,8 @@ public:
 		removeFils(fils);
 	}
 
+	void addPointCollsion(Vector3d<GLdouble>* pt);
+
 public:
 	Matrice<GLdouble>* getMatrice();
 	void setMatrice(Matrice<GLdouble>* matrice);
@@ -70,7 +73,7 @@ private:
 	std::vector<AbstractObjet*> _fils;
 	AbstractObjet* _pere;
 	Matrice<GLdouble>* _matrice;
-
+	std::vector<Vector3d<GLdouble>* > _listPointsCollision;
 	Matrice<GLdouble>* _matriceAbsolue;
 	
 
