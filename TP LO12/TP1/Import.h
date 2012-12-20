@@ -19,7 +19,8 @@ public:
 	
 private : 
 	std::vector<Material* >* importerMaterial(std::string namefile);
-
+	bool isAxe(std::string nomObjet);
+	std::vector<std::string> extraireNomAxe(std::string s);
 	//fonctions outil
 	void sauterLigne(std::istream& is);
 	bool sauterLigneCommentaire(std::istream& is);
