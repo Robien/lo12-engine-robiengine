@@ -72,6 +72,11 @@ void AbstractObjet::removeFils(std::vector<AbstractObjet*>* fils)
 
 }
 
+void AbstractObjet::addPointCollsion(Vector3d<GLdouble>* pt)
+{
+	_listPointsCollision.push_back(pt);
+}
+
 void AbstractObjet::majCollider()
 {
 	_collider->reset();

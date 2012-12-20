@@ -117,9 +117,16 @@ std::vector<AbstractObjet* >* Import::importer(std::string namefile)
 			}
 			//calcule des normal
 			facette->calculeNormales();
+			
+			//calcul du centre de gravité d'un point
+			if(facette->getListePoints().size() >= 3)
+			{
+				currentObjet->addPointCollsion(Outil::get()->centreGravite(facette->getListePoints().at(0),facette->getListePoints().at(1),facette->getListePoints().at(2)));
+			}
+
 			//Ajout de la face
 			currentObjet->addFace(facette);
-
+			
         }
 		else
 		{	sauterLigne(ifs);	}
