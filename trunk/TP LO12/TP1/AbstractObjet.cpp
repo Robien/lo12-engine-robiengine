@@ -2,7 +2,7 @@
 
 
 
-AbstractObjet::AbstractObjet(std::string str)
+AbstractObjet::AbstractObjet(std::string str): _listPointsCollision()
 {
 	_pere = NULL;
 	_isFilted = false;
@@ -13,7 +13,7 @@ AbstractObjet::AbstractObjet(std::string str)
 	_collider = new Collider();
 }
 
-AbstractObjet::AbstractObjet(Matrice<GLdouble>* matrice, std::string str)
+AbstractObjet::AbstractObjet(Matrice<GLdouble>* matrice, std::string str): _listPointsCollision()
 {
 	_pere = NULL;
 	_isFilted = false;
@@ -30,6 +30,11 @@ AbstractObjet::~AbstractObjet()
 	{
 		delete (_fils.at(i));
 	}
+	for (unsigned int i = 0; i < _listPointsCollision.size(); ++i)
+	{
+		delete (_listPointsCollision.at(i));
+	}
+	
 	_fils.clear();
 }
 
