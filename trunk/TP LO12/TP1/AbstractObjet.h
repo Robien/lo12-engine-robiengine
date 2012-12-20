@@ -7,6 +7,7 @@
 #include <iostream>
 #include "Collider.h"
 #include "Vector3d.h"
+#include "AxeAnimation.h"
 
 
 class AbstractObjet
@@ -18,7 +19,7 @@ public:
 
 	virtual unsigned int affiche();
 	virtual void majPos();
-
+	std::string getNom();
 public:
 	void addFils(AbstractObjet* fils);
 	inline void attache(AbstractObjet* fils)
@@ -43,6 +44,7 @@ public:
 	}
 
 	void addPointCollsion(Vector3d<GLdouble>* pt);
+	void addAxe(AxeAnimation* axe);
 
 public:
 	Matrice<GLdouble>* getMatrice();
@@ -74,6 +76,7 @@ private:
 	AbstractObjet* _pere;
 	Matrice<GLdouble>* _matrice;
 	std::vector<Vector3d<GLdouble>* > _listPointsCollision;
+	std::vector<AxeAnimation* > _listAxes;
 	Matrice<GLdouble>* _matriceAbsolue;
 	
 

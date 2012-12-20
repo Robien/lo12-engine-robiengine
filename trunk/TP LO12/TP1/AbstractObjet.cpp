@@ -34,7 +34,7 @@ AbstractObjet::~AbstractObjet()
 	{
 		delete (_listPointsCollision.at(i));
 	}
-	
+
 	_fils.clear();
 }
 
@@ -82,6 +82,11 @@ void AbstractObjet::addPointCollsion(Vector3d<GLdouble>* pt)
 	_listPointsCollision.push_back(pt);
 }
 
+void AbstractObjet::addAxe(AxeAnimation* axe)
+{
+	_listAxes.push_back(axe);
+}
+
 void AbstractObjet::majCollider()
 {
 	_collider->reset();
@@ -120,7 +125,7 @@ unsigned int AbstractObjet::affiche()
 	glPushMatrix();
 	glMultMatrixd(getMatrice()->getMat());
 
-	
+
 
 	//on affiche les objets fils
 
@@ -166,23 +171,26 @@ AbstractObjet* AbstractObjet::getPere()
 {
 	return _pere;
 }
-
+std::string AbstractObjet::getNom()
+{
+	return _nom;
+}
 void AbstractObjet::majPos()
 {
-		glPushMatrix();
-		glMultMatrixd(getMatrice()->getMat());
+	glPushMatrix();
+	glMultMatrixd(getMatrice()->getMat());
 
-		GLdouble* mat = (GLdouble*) malloc(16*sizeof(GLdouble));
-		glGetDoublev(GL_MODELVIEW_MATRIX, mat);
+	GLdouble* mat = (GLdouble*) malloc(16*sizeof(GLdouble));
+	glGetDoublev(GL_MODELVIEW_MATRIX, mat);
 
-		_matriceAbsolue->getVector16().clear();
-		_matriceAbsolue->getVector16().assign(mat, mat + 16);
-		delete mat;
-		//on maj les objets fils
-		for (unsigned int i = 0; i < getFils()->size(); ++i)
-		{
-			getFils()->at(i)->majPos();
-		}
+	_matriceAbsolue->getVector16().clear();
+	_matriceAbsolue->getVector16().assign(mat, mat + 16);
+	delete mat;
+	//on maj les objets fils
+	for (unsigned int i = 0; i < getFils()->size(); ++i)
+	{
+		getFils()->at(i)->majPos();
+	}
 
-		glPopMatrix();
+	glPopMatrix();
 }
