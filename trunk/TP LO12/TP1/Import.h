@@ -12,8 +12,8 @@
 class Import
 {
 public:
-	Import(void);
-	virtual ~Import(void);
+	Import();
+	virtual ~Import();
 
 	std::vector<AbstractObjet* >* importer(std::string namefile);
 	int sizeOfFile(std::string namefile);

@@ -73,6 +73,7 @@ void Tp::run()
 	}
 
 	Import imp;
+	//permet d'avoir la taille du fichier
 	std::cout << "Taille fichier" << imp.sizeOfFile("models/robien/RobienSimpleLOD.obj") << std::endl;
 	root->attache(imp.importer("models/robien/RobienSimpleLOD.obj")); // manque un delete ... le faire dans attache ?
 	//root->attache(imp.importer("models/robien/RobienSimple.obj"));
@@ -92,8 +93,9 @@ void Tp::run()
 	//	vaisseau->matrice().translate(0, 0, 10.9);
 	camera->attache(vaisseau);
 	std::vector<AbstractObjet* >* vect = imp.importer("models/motherShip/motherShip.obj");
-	vect->at(0)->getMatrice()->rotate(90,1,0,0);
-	vect->at(0)->matrice().scale(10, 10, 10);
+	vect->at(1)->addFils(vect->at(0));
+	vect->at(1)->getMatrice()->rotate(90,1,0,0);
+	vect->at(1)->matrice().scale(10, 10, 10);
 	root->attache(vect);
 	//vect = imp.importer("models/asteroides/LotAsteroids.obj");
 	//unsigned int l = 5;//pow((float) vect->size(), (float) (1.0/3.0));

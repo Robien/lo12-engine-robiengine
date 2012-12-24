@@ -5,12 +5,12 @@
 #include <sstream>
 #include "AxeAnimation.h"
 
-Import::Import(void)
+Import::Import()
 {
 }
 
 
-Import::~Import(void)
+Import::~Import()
 {
 }
 
