@@ -46,8 +46,10 @@ public:
 	}
 
 	int getHauteurFenetre();
-
 	int getLargeurFenetre();
+
+
+	std::string readFile(std::string fileName); //TODO : ne pas faire une copie du string dans le retour
 
 };
 

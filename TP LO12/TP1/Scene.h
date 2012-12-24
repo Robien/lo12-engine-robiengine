@@ -25,6 +25,7 @@
 #include "Vector2d.h"
 #include "Texte.h"
 #include "Interface.h"
+#include "Shader.h"
 
 
 class Scene
@@ -77,6 +78,7 @@ private:
 	std::vector<Interface* > _listInterface; 
 	unsigned int _nbPointAffiche;
 
+	Shader* _shader;
 };
 
 
