@@ -22,6 +22,7 @@ variables globales
 #include "GestionnaireLumiere.h"
 #include <sstream>  
 
+#include "ShaderPhong.h"
 
 
 class DefautInteraction : public CB_Interraction
@@ -205,6 +206,9 @@ void Scene::setRoot(AbstractObjet* root)
 
 void Scene::affiche()
 {
+
+	_shader->setIdTexture(0);
+
 	_nbPointAffiche = 0;
 	//_mainCamera->affiche(); // il ne faut pas afficher la caméra pour bien avoir les valeurs des matrices en absolu
 	glLoadIdentity();
@@ -217,10 +221,10 @@ void Scene::affiche()
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-
+		_shader->desactive();
 	_mainCamera->affiche();
 	_skybox->dessine_box();
-
+		_shader->active();
 	GestionnaireLumiere::get()->defAllSources();
 
 	_nbPointAffiche += _mainCamera->afficheFils();
@@ -342,7 +346,8 @@ void Scene::run()
 	choix de la couleur de fond 
 	glClearIndex(1.0);*/
 
-	glShadeModel(GL_SMOOTH);
+	//glShadeModel(GL_SMOOTH);
+
 	//glShadeModel(GL_FLAT);
 
 	/* mode RGB : choix de la couleur de fond */
@@ -361,6 +366,8 @@ void Scene::run()
 
 
 	_skybox->charger();
+	_shader = new Shader("phong");
+	_shader->init();
 
 	GestionnaireLumiere::get()->def_modele();
 

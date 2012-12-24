@@ -128,6 +128,8 @@
     <ClCompile Include="Outil.cpp" />
     <ClCompile Include="Pngloader.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="ShaderPhong.cpp" />
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="SystemeParticules.cpp" />
     <ClCompile Include="Texte.cpp" />
@@ -164,6 +166,8 @@
     <ClInclude Include="Outil.h" />
     <ClInclude Include="Pngloader.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="Shader.h" />
+    <ClInclude Include="ShaderPhong.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Skybox.h" />
     <ClInclude Include="SystemeParticules.h" />

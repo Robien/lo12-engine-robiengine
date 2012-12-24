@@ -26,6 +26,7 @@ Interface OpenGL (GLUT, GLU, GL)
 #include "Texte.h"
 #include "Interface.h"
 #include "InterfaceVitesse.h"
+#include "ShaderPhong.h"
 
 Tp::Tp()
 {
@@ -50,9 +51,11 @@ void Tp::run()
 	AbstractObjet* root = new AbstractObjet();
 
 	
+
+
 	{
-		Vector3d<GLdouble> ambiante(1, 1, 1);
-		Vector3d<GLdouble> couleur(1, 1, 1);
+		Vector3d<GLdouble> ambiante(0.2, 0.2, 0.2);
+		Vector3d<GLdouble> couleur(0.1, 0.1, 0.1);
 		Matrice<GLdouble> *m = new Matrice<GLdouble>();
 		m->translate(0.3, 0, 0);
 		m->rotate(90, 0, 1, 0);
@@ -61,7 +64,6 @@ void Tp::run()
 		l->setAfficheSphere(true);
 		camera->attache(l);
 	}
-
 
 
 	Import imp;
@@ -133,6 +135,8 @@ void Tp::run()
 	_scene->add(new Interface(0.45,0.45,0.1,0.1, "textures/center.png"));
 	_scene->add(new InterfaceVitesse(0.15,0.01,0.08,0.08, "textures/power_Front.png", "textures/power_Back.png"));
 	
+
+
 	_scene->run();
 
 
