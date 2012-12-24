@@ -1,4 +1,5 @@
-varying vec3 normal, lightDir, eyeVec;
+#define nbLumiere 2
+varying vec3 normal, lightDir[nbLumiere], eyeVec;
 
 void main()
 {	
@@ -6,7 +7,10 @@ void main()
 
 	vec3 vVertex = vec3(gl_ModelViewMatrix * gl_Vertex);
 
-	lightDir = vec3(gl_LightSource[0].position.xyz - vVertex);
+	for (int i = 0; i < nbLumiere; ++i)
+	{
+		lightDir[i] = vec3(gl_LightSource[i].position.xyz - vVertex);
+	}
 	eyeVec = -vVertex;
 
 	gl_Position = ftransform();		

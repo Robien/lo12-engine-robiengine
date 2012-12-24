@@ -64,7 +64,17 @@ void Tp::run()
 		l->setAfficheSphere(true);
 		camera->attache(l);
 	}
-
+		{
+		Vector3d<GLdouble> ambiante(0.2, 0.2, 0.2);
+		Vector3d<GLdouble> couleur(0.1, 0.1, 0.1);
+		Matrice<GLdouble> *m = new Matrice<GLdouble>();
+		m->translate(0.3, 0, 0);
+		//m->rotate(90, 0, 1, 0);
+		//m->getVector16().at(0) = -1;
+		Lumiere* l = GestionnaireLumiere::get()->newLumiere(ambiante,couleur, 2.0, 25.0, m);
+		l->setAfficheSphere(true);
+		root->attache(l);
+	}
 
 	Import imp;
 
