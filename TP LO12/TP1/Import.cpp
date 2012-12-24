@@ -14,6 +14,31 @@ Import::~Import(void)
 {
 }
 
+int Import::sizeOfFile(std::string namefile)
+{	
+	//ouverture du fichier
+	int fileSize;
+	std::ifstream ifs(namefile.c_str(), std::ios::in | std::ios::ate);
+	if (!ifs)
+	{
+		std::cerr << "Erreur dans l'ouverture du fichier : " << namefile << std::endl;
+		return 0;
+	}
+	fileSize = ifs.tellg();
+	//positionne au debut du fichier
+	ifs.seekg(0, std::ios::beg);
+	//fermeture du fichier
+	ifs.close();
+	return fileSize;
+}
+
+void Import::setAvancement(int avan)
+{
+	int progression  = avan - avancement;
+	avancement = avan;
+	//appeler le callback de chenillard en envoyant progression
+}
+
 std::vector<AbstractObjet* >* Import::importer(std::string namefile)
 {
 	std::vector<AbstractObjet* >* listObjet = new std::vector<AbstractObjet* >();
@@ -40,7 +65,7 @@ std::vector<AbstractObjet* >* Import::importer(std::string namefile)
 
 	while(sauterLigneCommentaire(ifs) && (ifs >> ele_id))
 	{
-
+		setAvancement(ifs.tellg());
 		if ("mtllib" == ele_id) //nom du fichier de texture .MTL
 		{
 			std::string pathFileName;
@@ -137,7 +162,7 @@ std::vector<AbstractObjet* >* Import::importer(std::string namefile)
 							int indice = atoi(listCoord.at(0).c_str()) -1;
 							listAxes.at(listAxes.size()-1)->setPointB(listSommet.at(indice));
 						}
-						
+
 					}
 
 				}
@@ -427,7 +452,7 @@ std::vector<std::string> Import::extraireNomAxe(std::string s)
 	{
 		if(s[i]=='@'||i==s.size()-1)
 		{
-			if(i==s.size()-1)
+			if(i==s.size()-1 && s[i]!='@')
 			{ s1+=s[i]; }
 			if(s1=="_")
 			{ 
