@@ -16,8 +16,10 @@ public:
 	virtual ~Import(void);
 
 	std::vector<AbstractObjet* >* importer(std::string namefile);
+	int sizeOfFile(std::string namefile);
 	
 private : 
+	void setAvancement(int avan);
 	std::vector<Material* >* importerMaterial(std::string namefile);
 	bool isAxe(std::string nomObjet);
 	std::vector<std::string> extraireNomAxe(std::string s);
@@ -29,6 +31,9 @@ private :
 	std::string remplacerSlash(std::string s);
 	std::vector<std::string> splitEspace(std::string s);
 	std::string supprimerEspaceAvant(std::string s);
+
+private : 
+	int avancement;
 
 };
 

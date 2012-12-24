@@ -7,10 +7,9 @@ UV: LO12
 FICHIER: tp1.c
 
 COMMENTAIRE:
-Fichier principal
+Fichier principal projet LO12
 Interface OpenGL (GLUT, GLU, GL)
-
-
+Auteurs : Guyard Romain, Louison Céphise
 */
 #include "const.h"
 #include "Import.h"
@@ -50,9 +49,6 @@ void Tp::run()
 
 	AbstractObjet* root = new AbstractObjet();
 
-	
-
-
 	{
 		Vector3d<GLdouble> ambiante(0.2, 0.2, 0.2);
 		Vector3d<GLdouble> couleur(0.1, 0.1, 0.1);
@@ -77,7 +73,7 @@ void Tp::run()
 	}
 
 	Import imp;
-
+	std::cout << "Taille fichier" << imp.sizeOfFile("models/robien/RobienSimpleLOD.obj") << std::endl;
 	root->attache(imp.importer("models/robien/RobienSimpleLOD.obj")); // manque un delete ... le faire dans attache ?
 	//root->attache(imp.importer("models/robien/RobienSimple.obj"));
 	AbstractObjet* vaisseau = imp.importer("models/explorerShip/vaisseau.obj")->at(0);
