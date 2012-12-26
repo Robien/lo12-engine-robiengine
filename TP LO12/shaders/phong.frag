@@ -1,4 +1,4 @@
-#define nbLumiere 2
+#define nbLumiere 4
 varying vec3 normal, lightDir[nbLumiere], eyeVec;
 
 const float cos_outer_cone_angle = 0.8; // 36 degrees
@@ -27,10 +27,14 @@ void main (void)
 
 		vec3 N = normalize(normal);
 
-		float lambertTerm =  max(dot(N,L), 0.0);
-	//if (lambertTerm < 0.0){lambertTerm = - lambertTerm;}
-		if(lambertTerm > 0.0)
-		{
+		float lambertTerm =  dot(N,L);
+		lambertTerm = max(lambertTerm, -lambertTerm);
+	
+	// final_color = vec4(1.0, 0.0, 0.0, 0.0);}
+	// else
+	// {
+	//	if(lambertTerm > 0.0)
+		//{
 			final_color += gl_LightSource[i].diffuse *
 				texture2D(tex,gl_TexCoord[0].st) *
 				lambertTerm * spot;
@@ -44,7 +48,8 @@ void main (void)
 			final_color += gl_LightSource[i].specular *
 				gl_FrontMaterial.specular *
 				specular * spot;
-		}
+		//}
+	//}
 	}
 	gl_FragColor = final_color;
 // gl_FragColor = texture2D(tex,gl_TexCoord[0].st) * final_color;

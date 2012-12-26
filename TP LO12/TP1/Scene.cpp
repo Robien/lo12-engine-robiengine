@@ -239,10 +239,14 @@ void Scene::affiche()
 		_nbPointAffiche += _root->affiche();
 	}
 
+	_shader->desactive();
+
 	for(unsigned int k = 0; k< _listInterface.size(); ++k)
 	{
 		_listInterface.at(k)->affiche();
 	}
+
+	_shader->active();
 
 	for(unsigned int i = 0; i< _listTexte.size(); ++i)
 	{

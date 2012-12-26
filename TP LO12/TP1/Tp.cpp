@@ -45,13 +45,14 @@ void Tp::run()
 
 	_scene = new Scene(camera);
 
+
 	_scene->createWindows(HAUTEUR_FENETRE , LARGEUR_FENETRE);
 
 	AbstractObjet* root = new AbstractObjet();
 
 	{
-		Vector3d<GLdouble> ambiante(0.2, 0.2, 0.2);
-		Vector3d<GLdouble> couleur(0.1, 0.1, 0.1);
+		Vector3d<GLdouble> ambiante(0.8, 0.8, 0.8);
+		Vector3d<GLdouble> couleur(0.3, 0.3, 0.3);
 		Matrice<GLdouble> *m = new Matrice<GLdouble>();
 		m->translate(0.3, 0, 0);
 		m->rotate(90, 0, 1, 0);
@@ -60,9 +61,10 @@ void Tp::run()
 		l->setAfficheSphere(true);
 		camera->attache(l);
 	}
-		{
+
+	{
 		Vector3d<GLdouble> ambiante(0.2, 0.2, 0.2);
-		Vector3d<GLdouble> couleur(0.1, 0.1, 0.1);
+		Vector3d<GLdouble> couleur(0.8, 0.1, 0.1);
 		Matrice<GLdouble> *m = new Matrice<GLdouble>();
 		m->translate(0.3, 0, 0);
 		//m->rotate(90, 0, 1, 0);
@@ -71,6 +73,30 @@ void Tp::run()
 		l->setAfficheSphere(true);
 		root->attache(l);
 	}
+
+	{
+		Vector3d<GLdouble> ambiante(0.2, 0.2, 0.2);
+		Vector3d<GLdouble> couleur(0.1, 0.8, 0.1);
+		Matrice<GLdouble> *m = new Matrice<GLdouble>();
+		m->translate(0.3, 0, 0);
+		m->rotate(180, 0, 1, 0);
+		//m->getVector16().at(0) = -1;
+		Lumiere* l = GestionnaireLumiere::get()->newLumiere(ambiante,couleur, 2.0, 25.0, m);
+		l->setAfficheSphere(true);
+		root->attache(l);
+	}
+		{
+		Vector3d<GLdouble> ambiante(0.2, 0.2, 0.2);
+		Vector3d<GLdouble> couleur(0.1, 0.1, 0.8);
+		Matrice<GLdouble> *m = new Matrice<GLdouble>();
+		m->translate(0.3, 0, 0);
+		m->rotate(270, 0, 1, 0);
+		//m->getVector16().at(0) = -1;
+		Lumiere* l = GestionnaireLumiere::get()->newLumiere(ambiante,couleur, 2.0, 25.0, m);
+		l->setAfficheSphere(true);
+		root->attache(l);
+	}
+
 
 	Import imp;
 	//permet d'avoir la taille du fichier

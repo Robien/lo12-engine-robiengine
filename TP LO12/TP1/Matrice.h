@@ -9,12 +9,13 @@ template <typename T>
 class Matrice
 {
 public:
-	Matrice()
+	Matrice() : _testScale(1, 1, 1)
 	{
 		reset();
 	}
-	Matrice(const Matrice<T>& c)
+	Matrice(const Matrice<T>& c) : _testScale(1, 1, 1)
 	{
+		_testScale = 1;
 		for (unsigned int i = 0; i < _data.size(); ++i)
 		{
 			_data.at(i) = c._data.at(i);
@@ -113,6 +114,10 @@ public:
 
 	void scale(GLdouble x, GLdouble y, GLdouble z)
 	{
+		_testScale.setX(_testScale.getX() * x);
+		_testScale.setY(_testScale.getX() * x);
+		_testScale.setZ(_testScale.getX() * x);
+
 		glMatrixMode(GL_MODELVIEW);
 		glPushMatrix();
 		//glLoadIdentity();
@@ -125,6 +130,11 @@ public:
 		glPopMatrix();
 
 	}
+	Vector3d<T>& getScale()
+	{
+		return _testScale;
+	}
+
 	void reset()
 	{
 		_data.clear();
@@ -143,6 +153,7 @@ public:
 
 private:
 	std::vector<T> _data;
+	Vector3d<T> _testScale;
 
 };
 
