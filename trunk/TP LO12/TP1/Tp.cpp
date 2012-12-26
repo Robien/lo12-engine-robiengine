@@ -96,7 +96,7 @@ void Tp::run()
 	vect->at(1)->addFils(vect->at(0));
 	vect->at(1)->getMatrice()->rotate(90,1,0,0);
 	vect->at(1)->matrice().scale(10, 10, 10);
-	root->attache(vect);
+	root->attache(vect->at(1));
 	//vect = imp.importer("models/asteroides/LotAsteroids.obj");
 	//unsigned int l = 5;//pow((float) vect->size(), (float) (1.0/3.0));
 	//unsigned int m = 0;
