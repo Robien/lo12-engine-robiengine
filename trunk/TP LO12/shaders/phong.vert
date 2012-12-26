@@ -1,4 +1,4 @@
-#define nbLumiere 2
+#define nbLumiere 4
 varying vec3 normal, lightDir[nbLumiere], eyeVec;
 
 void main()

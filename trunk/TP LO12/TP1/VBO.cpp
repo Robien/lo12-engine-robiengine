@@ -18,9 +18,11 @@ void VBO::addPoint(Vector3d<GLdouble>* point, Vector2d<GLdouble>* texture, Vecto
 	_listePoints.push_back(point->getY());
 	_listePoints.push_back(point->getZ());
 
-	_listeTextures.push_back(texture->getX());
-	_listeTextures.push_back(texture->getY());
-
+	if (texture != NULL)
+	{
+		_listeTextures.push_back(texture->getX());
+		_listeTextures.push_back(texture->getY());
+	}
 
 	_listeNormales.push_back(normale->getX());
 	_listeNormales.push_back(normale->getY());
@@ -56,28 +58,28 @@ unsigned int VBO::affiche()
 	glBindBuffer(GL_ARRAY_BUFFER, _id);
 
 	glVertexPointer(3, GL_DOUBLE, 0, BUFFER_OFFSET(0));
-	glTexCoordPointer(2, GL_DOUBLE, 0, BUFFER_OFFSET(_listePoints.size() * sizeof(GLdouble)));
+	if (_material->isTextured())
+	{
+		glTexCoordPointer(2, GL_DOUBLE, 0, BUFFER_OFFSET(_listePoints.size() * sizeof(GLdouble)));
+		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	}
+	else
+	{
+		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+		glColor3f(1.0,0.0,0.0);
+	}
 	glNormalPointer(GL_DOUBLE, 0, BUFFER_OFFSET(_listePoints.size() * sizeof(GLdouble) + _listeTextures.size() * sizeof(GLdouble)));
 	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState( GL_TEXTURE_COORD_ARRAY );
-	glEnableClientState( GL_NORMAL_ARRAY );
+	
+	glEnableClientState(GL_NORMAL_ARRAY);
 
 	glDrawArrays(GL_TRIANGLES, 0, _listePoints.size()/3);
 
 	return  _listePoints.size()/3;
 }
 
-unsigned int VBO::afficheSome(unsigned int first)
-{
-
-
-std::cout << "Ne pas utiliser cette méthode ! " << std::endl;
-
-	return (_listePoints.size() + _listeTextures.size()) * sizeof(GLdouble);
-}
 
 void VBO::setMaterial(Material* material)
 {
-
 	_material = material;
 }

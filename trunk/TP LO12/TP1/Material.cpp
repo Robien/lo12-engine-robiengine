@@ -12,7 +12,7 @@ Material::Material()
 	_emission = new Vector3d<GLfloat>(0, 0, 0);
 	_speculaire = new Vector3d<GLfloat>(0.8, 0.8, 0.8);
 	_brillance = 0;
-	_indiceTex =0;		
+	_indiceTex = 0;		
 }
 
 Material::Material(std::string nom)
@@ -25,7 +25,7 @@ Material::Material(std::string nom)
 	_emission = new Vector3d<GLfloat>(0, 0, 0);
 	_speculaire = new Vector3d<GLfloat>(0.8, 0.8, 0.8);
 	_brillance = 0;
-	_indiceTex =0;		
+	_indiceTex = 0;		
 }
 
 Material::Material(Material const& c)
@@ -150,6 +150,14 @@ void Material::setBrillance(GLfloat br)
 void Material::setIndiceTex(GLuint num)
 {
 	_indiceTex = num;
+	if (_indiceTex != 0)
+	{
+		_textured = true;
+	}
+	else
+	{
+		_textured = false;
+	}
 
 }
 

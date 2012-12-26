@@ -34,7 +34,7 @@ unsigned int Objet::affiche()
 	//malloc(0);
 	glGetDoublev(GL_MODELVIEW_MATRIX, _mat);
 	//std::cout << mat[14] / mat[15] << std::endl;
-	_collider->majMatrice(getMatrice()); // il ne faudrait pas utiliser _mat plutot ?
+	_collider->majMatrice(&matriceAbsolue()); // il ne faudrait pas utiliser _mat plutot ?
 	//std::cout << _collider->getDistanceMax() << " - " << (mat[14]/mat[15]) << std::endl;
 	unsigned int nbPointAffiche = 0;
 
