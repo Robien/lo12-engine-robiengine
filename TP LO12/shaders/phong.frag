@@ -28,8 +28,11 @@ void main (void)
 		vec3 N = normalize(normal);
 
 		float lambertTerm =  dot(N,L);
-		lambertTerm = max(lambertTerm, -lambertTerm);
-	
+		if (lambertTerm < 0)
+		{
+			lambertTerm = max(lambertTerm, -lambertTerm); 
+			N = -N;
+		}
 	// final_color = vec4(1.0, 0.0, 0.0, 0.0);}
 	// else
 	// {
@@ -39,15 +42,15 @@ void main (void)
 				texture2D(tex,gl_TexCoord[0].st) *
 				lambertTerm * spot;
 
-			vec3 E = normalize(eyeVec);
-			vec3 R = reflect(-L, N);
+			//vec3 E = normalize(eyeVec);
+			//vec3 R = reflect(-L, N);
 
-			float specular = pow( max(dot(R, E), 0.0),
-				gl_FrontMaterial.shininess );
+			//float specular = pow( max(dot(R, E), 0.0),
+			//	gl_FrontMaterial.shininess );
 
-			final_color += gl_LightSource[i].specular *
-				gl_FrontMaterial.specular *
-				specular * spot;
+			//final_color += gl_LightSource[i].specular *
+			//	gl_FrontMaterial.specular *
+			//	specular * spot;
 		//}
 	//}
 	}
