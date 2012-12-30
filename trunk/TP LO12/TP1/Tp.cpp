@@ -103,7 +103,7 @@ void Tp::run()
 	std::cout << "Taille fichier" << imp.sizeOfFile("models/robien/RobienSimpleLOD.obj") << std::endl;
 	root->attache(imp.importer("models/robien/RobienSimpleLOD.obj")); // manque un delete ... le faire dans attache ?
 	//root->attache(imp.importer("models/robien/RobienSimple.obj"));
-	AbstractObjet* vaisseau = imp.importer("models/explorerShip/vaisseau.obj")->at(0);
+	AbstractObjet* vaisseau = imp.importer("models/explorerShip/vaisseau3.obj")->at(0);
 	vaisseau->matrice().scale(1, 1, 0.5);
 
 	vaisseau->matrice().rotate(180, 0, 1, 0);
