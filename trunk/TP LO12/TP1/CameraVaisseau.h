@@ -4,12 +4,14 @@
 
 #include "Camera.h"
 #include "Interactions.h"
+#include "InterfaceVitesse.h"
 
 
 class CameraVaisseau : public Camera
 {
 public:
 	CameraVaisseau();
+	void setInterfaceVitesse(InterfaceVitesse* interfaceVitesse);
 	virtual ~CameraVaisseau();
 	public:
 	void resetVue();
@@ -43,6 +45,7 @@ public:
 
 	LookAtParam _lookAtParam;
 	CB_Interraction* _cb;
+	InterfaceVitesse* _interfaceVitesse;
 };
 
 #endif

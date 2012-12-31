@@ -221,10 +221,11 @@ void Scene::affiche()
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		_shader->desactive();
+	_shader->desactive();
 	_mainCamera->affiche();
 	_skybox->dessine_box();
-		_shader->active();
+	_shader->active();
+
 	GestionnaireLumiere::get()->defAllSources();
 
 	_nbPointAffiche += _mainCamera->afficheFils();

@@ -7,12 +7,17 @@
 class CameraVaisseauEvent : public CB_Interraction
 {
 public:
-	CameraVaisseauEvent(CameraVaisseau* camera) : _camera(camera)
+	CameraVaisseauEvent(CameraVaisseau* camera) : _camera(camera), _interfaceVitesse(NULL)
 	{
 		_mouseState = -1;
 		_acceleration = 0;
 	}
 	virtual ~CameraVaisseauEvent(){}
+	void setInterfaceVitesse(InterfaceVitesse* interfaceVitesse)
+	{
+		_interfaceVitesse = interfaceVitesse;
+	}
+
 public:
 	virtual void eventsSpecialKey(int key, int x, int y)
 	{
@@ -181,12 +186,17 @@ public:
 		{
 			_acceleration = 0;
 		}
-		//std::cout << _acceleration << std::endl;
+		if (_interfaceVitesse != NULL)
+		{
+			_interfaceVitesse->setPourcentage(_acceleration/270);
+		}
+		//std::cout << _acceleration << std::endl; 270
 		_camera->zoom(-_acceleration/50);
 	}
 
 private:
 	CameraVaisseau* _camera;
+	InterfaceVitesse* _interfaceVitesse;
 
 private:
 	int _posCurseurX;
@@ -214,6 +224,7 @@ void CameraVaisseau::resetVue()
 
 CameraVaisseau::CameraVaisseau()
 {
+	_interfaceVitesse = NULL;
 	Interactions::get()->addEventCallBack(_cb = new CameraVaisseauEvent(this));
 	resetVue();
 }
@@ -225,6 +236,11 @@ CameraVaisseau::~CameraVaisseau()
 	delete _cb;
 }
 
+void CameraVaisseau::setInterfaceVitesse(InterfaceVitesse* interfaceVitesse)
+{
+	_interfaceVitesse = interfaceVitesse;
+	((CameraVaisseauEvent*) _cb)->setInterfaceVitesse(interfaceVitesse);
+}
 
 
 /****************************************************************************/
