@@ -41,7 +41,8 @@ Tp::~Tp()
 /* ========================================================================= */
 void Tp::run()
 {
-	Camera* camera = new CameraVaisseau();
+	
+	CameraVaisseau* camera = new CameraVaisseau();
 
 	_scene = new Scene(camera);
 
@@ -123,33 +124,33 @@ void Tp::run()
 	vect->at(1)->getMatrice()->rotate(90,1,0,0);
 	vect->at(1)->matrice().scale(10, 10, 10);
 	root->attache(vect->at(1));
-	//vect = imp.importer("models/asteroides/LotAsteroids.obj");
-	//unsigned int l = 5;//pow((float) vect->size(), (float) (1.0/3.0));
-	//unsigned int m = 0;
-	//for (unsigned int i = 0; i < l; ++i)
-	//{
-	//	for (unsigned int j = 0; j < l; ++j)
-	//	{
-	//		for (unsigned int k = 0; k < l; ++k)
-	//		{
-	//			std::cout << Outil::get()->random<unsigned int>(0, vect->size() - 1)  << " - " << vect->size() - 1 << std::endl;
-	//			m = Outil::get()->random<unsigned int>(0, vect->size() - 1) ;
-	//			AbstractObjet* ab = new AbstractObjet();
-	//			//ab->matrice().rotate(Outil::get()->random<unsigned int>(0, 360), 0, 0, 1);
-	//			//ab->matrice().rotate(Outil::get()->random<unsigned int>(0, 360), 0, 1, 0);
-	//			//ab->matrice().rotate(Outil::get()->random<unsigned int>(0, 360), 1, 0, 0);
-	//			ab->matrice().translate(200*i + 1000 + Outil::get()->random<unsigned int>(0, 190), 200*j + Outil::get()->random<unsigned int>(0, 190), 200*k + Outil::get()->random<unsigned int>(0, 190));
-	//			ab->matrice().scale(20+Outil::get()->random<unsigned int>(0, 20), 20+Outil::get()->random<unsigned int>(0, 20), 20+Outil::get()->random<unsigned int>(0, 20));
-	//			ab->attache(vect->at(m));
-	//			root->attache(ab);
-	//		}
-	//	}
-	//}
-	//root->attache(vect);
-	//	SystemeParticules* sp = new SystemeParticules(true, 1000);
-	//	sp->matrice().translate(0,0,-2);
-	//	sp->start();
-	//	root->attache(sp);
+	vect = imp.importer("models/asteroides/LotAsteroids.obj");
+	unsigned int l = 3;//pow((float) vect->size(), (float) (1.0/3.0));
+	unsigned int m = 0;
+	for (unsigned int i = 0; i < l; ++i)
+	{
+		for (unsigned int j = 0; j < l; ++j)
+		{
+			for (unsigned int k = 0; k < l; ++k)
+			{
+				std::cout << Outil::get()->random<unsigned int>(0, vect->size() - 1)  << " - " << vect->size() - 1 << std::endl;
+				m = Outil::get()->random<unsigned int>(0, vect->size() - 1) ;
+				AbstractObjet* ab = new AbstractObjet();
+				//ab->matrice().rotate(Outil::get()->random<unsigned int>(0, 360), 0, 0, 1);
+				//ab->matrice().rotate(Outil::get()->random<unsigned int>(0, 360), 0, 1, 0);
+				//ab->matrice().rotate(Outil::get()->random<unsigned int>(0, 360), 1, 0, 0);
+				ab->matrice().translate(200*i + 1000 + Outil::get()->random<unsigned int>(0, 190), 200*j + Outil::get()->random<unsigned int>(0, 190), 200*k + Outil::get()->random<unsigned int>(0, 190));
+				ab->matrice().scale(20+Outil::get()->random<unsigned int>(0, 20), 20+Outil::get()->random<unsigned int>(0, 20), 20+Outil::get()->random<unsigned int>(0, 20));
+				ab->attache(vect->at(m));
+				root->attache(ab);
+			}
+		}
+	}
+	root->attache(vect);
+		SystemeParticules* sp = new SystemeParticules(true, 1000);
+		sp->matrice().translate(0,0,-2);
+		sp->start();
+		root->attache(sp);
 
 
 	_scene->setRoot(root);
@@ -167,7 +168,9 @@ void Tp::run()
 	//Brouillard bou;
 	_scene->add(new Texte("Mission : Recuperer les robiens", 0.25, 0.1));
 	_scene->add(new Interface(0.45,0.45,0.1,0.1, "textures/center.png"));
-	_scene->add(new InterfaceVitesse(0.15,0.01,0.08,0.08, "textures/power_Front.png", "textures/power_Back.png"));
+	InterfaceVitesse* interfaceVitesse = new InterfaceVitesse(0.15,0.01,0.08,0.08, "textures/power_Front.png", "textures/power_Back.png");
+	camera->setInterfaceVitesse(interfaceVitesse);
+	_scene->add(interfaceVitesse);
 	
 
 
