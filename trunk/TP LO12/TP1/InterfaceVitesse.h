@@ -8,7 +8,7 @@
 class InterfaceVitesse : public Interface
 {
 public:
-	InterfaceVitesse(GLfloat x, GLfloat y, GLfloat largeur, GLfloat hauteur,std::string nameFront = "",  std::string nameBack = "");
+	InterfaceVitesse(GLfloat x, GLfloat y, GLfloat largeur, GLfloat hauteur,std::string nameFront = "");
 	virtual ~InterfaceVitesse();
 
 	virtual void affiche();
@@ -18,7 +18,6 @@ private:
 	void appliqueTexture();
 
 private:
-	GLuint _indiceTexFront;
 	float _pourcentage;
 
 };
