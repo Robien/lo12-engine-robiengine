@@ -168,7 +168,7 @@ void Tp::run()
 	//Brouillard bou;
 	_scene->add(new Texte("Mission : Recuperer les robiens", 0.25, 0.1));
 	_scene->add(new Interface(0.45,0.45,0.1,0.1, "textures/center.png"));
-	InterfaceVitesse* interfaceVitesse = new InterfaceVitesse(0.15,0.01,0.08,0.08, "textures/power_Front.png", "textures/power_Back.png");
+	InterfaceVitesse* interfaceVitesse = new InterfaceVitesse(0.15,0.01,0.08,0.08, "textures/power_Front.png");
 	camera->setInterfaceVitesse(interfaceVitesse);
 	_scene->add(interfaceVitesse);
 	
