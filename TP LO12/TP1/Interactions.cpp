@@ -10,7 +10,7 @@ Interactions::Interactions()
 	glutMouseFunc(eventsMouse);
 	glutSpecialFunc(eventsSpecialKey)
 	*/
-
+	_deltaTimePeriodicEvent = 0;
 
 }
 
@@ -115,6 +115,16 @@ void Interactions::dessine_scene()
 	for (unsigned int i = 0; i < Interactions::get()->_cb.size(); ++i)
 	{
 		Interactions::get()->_cb.at(i)->dessine_scene();
+	}
+
+	Interactions::get()->_deltaTimePeriodicEvent += Interactions::get()->_deltaTime;
+
+	if (Interactions::get()->_deltaTimePeriodicEvent > 0.1)
+	{
+		for (unsigned int i = 0; i < Interactions::get()->_cb.size(); ++i)
+		{
+			Interactions::get()->_cb.at(i)->periodicEvent();
+		}
 	}
 
 }
