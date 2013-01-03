@@ -2,6 +2,7 @@
 #define _SHADER_H
 
 #include "const.h"
+#include "Singleton.h"
 
 class Shader
 {
@@ -30,6 +31,18 @@ private:
 	GLuint _idVertex;
 	GLuint _idPixel;
 	GLuint _idProgram;
+};
+
+class ShaderEtat : public Singleton<ShaderEtat>
+{
+public:
+	ShaderEtat();
+	void active();
+	void desactive();
+	void setShader(Shader* shad);
+	void setIdTexture(GLuint id);
+private:
+	Shader* _shaderCourant;
 };
 
 #endif

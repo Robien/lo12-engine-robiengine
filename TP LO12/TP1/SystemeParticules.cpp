@@ -1,5 +1,5 @@
 #include "SystemeParticules.h"
-
+#include "Shader.h"
 
 SystemeParticules::SystemeParticules(bool boucle,int nombreParticules, std::string name) : AbstractObjet(name), _listParticule()
 {
@@ -45,7 +45,7 @@ void SystemeParticules::initSysteme()
 unsigned int SystemeParticules::affiche()
 {
 	unsigned int nbPointAffiche = 0;
-
+	ShaderEtat::get()->desactive(); //désactiver le shader
 	glMatrixMode(GL_MODELVIEW);
 	glDisable(GL_LIGHTING);
 	glDisable(GL_TEXTURE_2D);
@@ -101,10 +101,10 @@ unsigned int SystemeParticules::affiche()
 	glPopMatrix();
 
 	
-	glDisable(GL_LIGHTING);
+	glEnable(GL_LIGHTING);
 	glEnable(GL_DEPTH_TEST);
 	glDisable(GL_BLEND);
-
+	ShaderEtat::get()->active(); //activer le shader
 	return nbPointAffiche;
 }
 

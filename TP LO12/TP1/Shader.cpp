@@ -45,7 +45,7 @@ Shader::~Shader()
 	{
 		glDeleteProgram(_idProgram);
 	}
-	
+
 }
 
 GLboolean Shader::isValide()
@@ -64,21 +64,21 @@ void Shader::loadSource(const GLchar** source, bool isVertex)
 		if(compile_status != GL_TRUE)
 		{
 			/* erreur a la compilation recuperation du log d'erreur */
-        
+
 			/* on recupere la taille du message d'erreur */
 			GLsizei logsize;
 			glGetShaderiv(_idVertex, GL_INFO_LOG_LENGTH, &logsize);
-        
+
 			/* on alloue un espace memoire dans lequel OpenGL ecrira le message */
 			char *log = NULL;
 			log = (char*) malloc(logsize + 1);
 			/* initialisation du contenu */
 			memset(log, '\0', logsize + 1);
-        
+
 			glGetShaderInfoLog(_idVertex, logsize, &logsize, log);
 			std::cout << "impossible de compiler le shader" << log <<  std::endl;
-                
-        
+
+
 			/* ne pas oublier de liberer la memoire et notre shader */
 			free(log);
 			glDeleteShader(_idVertex);
@@ -97,21 +97,21 @@ void Shader::loadSource(const GLchar** source, bool isVertex)
 		if(compile_status != GL_TRUE)
 		{
 			/* erreur a la compilation recuperation du log d'erreur */
-        
+
 			/* on recupere la taille du message d'erreur */
 			GLsizei logsize;
 			glGetShaderiv(_idPixel, GL_INFO_LOG_LENGTH, &logsize);
-        
+
 			/* on alloue un espace memoire dans lequel OpenGL ecrira le message */
 			char *log = NULL;
 			log = (char*) malloc(logsize + 1);
 			/* initialisation du contenu */
 			memset(log, '\0', logsize + 1);
-        
+
 			glGetShaderInfoLog(_idPixel, logsize, &logsize, log);
 			std::cout << "impossible de compiler le shader" << log <<  std::endl;
-                
-        
+
+
 			/* ne pas oublier de liberer la memoire et notre shader */
 			free(log);
 			glDeleteShader(_idPixel);
@@ -120,7 +120,7 @@ void Shader::loadSource(const GLchar** source, bool isVertex)
 		}
 
 		glAttachShader(_idProgram, _idPixel);
-	//	std::cout << "Pixel shader loaded" << std::endl;
+		//	std::cout << "Pixel shader loaded" << std::endl;
 	}
 
 
@@ -130,32 +130,32 @@ void Shader::link()
 {
 	glLinkProgram(_idProgram);
 	//std::cout << "programme compilé " << std::endl;
-			GLint compile_status;
-			glGetProgramiv(_idProgram, GL_LINK_STATUS, &compile_status);
-		if(compile_status != GL_TRUE)
-		{
-			/* erreur a la compilation recuperation du log d'erreur */
-        
-			/* on recupere la taille du message d'erreur */
-			GLsizei logsize;
-			glGetProgramiv(_idProgram, GL_INFO_LOG_LENGTH, &logsize);
-        
+	GLint compile_status;
+	glGetProgramiv(_idProgram, GL_LINK_STATUS, &compile_status);
+	if(compile_status != GL_TRUE)
+	{
+		/* erreur a la compilation recuperation du log d'erreur */
 
-			/* on alloue un espace memoire dans lequel OpenGL ecrira le message */
-			char *log = NULL;
-			log = (char*) malloc(logsize + 1);
-			/* initialisation du contenu */
-			memset(log, '\0', logsize + 1);
-        
-			glGetProgramInfoLog(_idProgram, logsize, &logsize, log);
-			std::cout << "impossible de link les shader : " << log <<  std::endl;
-                
-        
-			/* ne pas oublier de liberer la memoire et notre shader */
-			free(log);
-			getchar();
-			exit(0);
-		}
+		/* on recupere la taille du message d'erreur */
+		GLsizei logsize;
+		glGetProgramiv(_idProgram, GL_INFO_LOG_LENGTH, &logsize);
+
+
+		/* on alloue un espace memoire dans lequel OpenGL ecrira le message */
+		char *log = NULL;
+		log = (char*) malloc(logsize + 1);
+		/* initialisation du contenu */
+		memset(log, '\0', logsize + 1);
+
+		glGetProgramInfoLog(_idProgram, logsize, &logsize, log);
+		std::cout << "impossible de link les shader : " << log <<  std::endl;
+
+
+		/* ne pas oublier de liberer la memoire et notre shader */
+		free(log);
+		getchar();
+		exit(0);
+	}
 
 
 }
@@ -169,21 +169,22 @@ void Shader::desactive()
 {
 	glUseProgram(0);
 }
+
 void Shader::init()
 {
 	if (_vertex != NULL)
 	{
-			loadSource(&_vertex, true);
+		loadSource(&_vertex, true);
 	}
 
 	if (_pixel != NULL)
 	{
-			loadSource(&_pixel, false);
+		loadSource(&_pixel, false);
 	}
 	link();
 
 
-	
+
 
 
 }
@@ -192,4 +193,51 @@ void Shader::setIdTexture(GLuint id)
 {
 	int my_sampler_uniform_location = glGetUniformLocation(_idProgram, "tex");
 	glUniform1i(my_sampler_uniform_location,id);
+}
+
+
+
+
+
+///------------------------ShaderEtat--------------------//
+ShaderEtat::ShaderEtat()
+{
+	_shaderCourant = NULL;
+}
+
+void ShaderEtat::active()
+{
+	if(_shaderCourant != NULL)
+	{
+		_shaderCourant->active();
+	}
+	else
+	{
+		glShadeModel(GL_SMOOTH);
+		glEnable(GL_LIGHTING);
+	}
+}
+void ShaderEtat::desactive()
+{
+	if(_shaderCourant != NULL)
+	{
+		_shaderCourant->desactive();
+		glShadeModel(GL_SMOOTH);
+		glEnable(GL_LIGHTING);
+	}	
+}
+
+void ShaderEtat::setShader(Shader* shad)
+{
+	desactive();
+	_shaderCourant = shad;
+	active();
+}
+
+void ShaderEtat::setIdTexture(GLuint id)
+{
+	if(_shaderCourant != NULL)
+	{
+		_shaderCourant->setIdTexture(id);
+	}
 }

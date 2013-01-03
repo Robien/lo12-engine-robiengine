@@ -207,7 +207,7 @@ void Scene::setRoot(AbstractObjet* root)
 void Scene::affiche()
 {
 
-	_shader->setIdTexture(0);
+	ShaderEtat::get()->setIdTexture(0);
 
 	_nbPointAffiche = 0;
 	//_mainCamera->affiche(); // il ne faut pas afficher la caméra pour bien avoir les valeurs des matrices en absolu
@@ -221,10 +221,10 @@ void Scene::affiche()
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	_shader->desactive();
+	ShaderEtat::get()->desactive();
 	_mainCamera->affiche();
 	_skybox->dessine_box();
-	_shader->active();
+	ShaderEtat::get()->active();
 
 	GestionnaireLumiere::get()->defAllSources();
 
@@ -240,14 +240,14 @@ void Scene::affiche()
 		_nbPointAffiche += _root->affiche();
 	}
 
-	_shader->desactive();
+	ShaderEtat::get()->desactive();
 
 	for(unsigned int k = 0; k< _listInterface.size(); ++k)
 	{
 		_listInterface.at(k)->affiche();
 	}
 
-	_shader->active();
+	ShaderEtat::get()->active();
 
 	for(unsigned int i = 0; i< _listTexte.size(); ++i)
 	{
@@ -351,7 +351,7 @@ void Scene::run()
 	choix de la couleur de fond 
 	glClearIndex(1.0);*/
 
-	//glShadeModel(GL_SMOOTH);
+	glShadeModel(GL_SMOOTH);
 
 	//glShadeModel(GL_FLAT);
 
@@ -373,7 +373,8 @@ void Scene::run()
 	_skybox->charger();
 	_shader = new Shader("phong");
 	_shader->init();
-
+	ShaderEtat::get()->setShader(_shader);
+	//ShaderEtat::get()->setShader(NULL); //désactiver le shader de phong
 	GestionnaireLumiere::get()->def_modele();
 
 
