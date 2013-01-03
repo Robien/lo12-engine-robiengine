@@ -1,36 +1,35 @@
-# Blender MTL File: 'motherShip.blend'
+# Blender MTL File: 'motherShip2.blend'
 # Material Count: 3
-newmtl Material
+
+newmtl MaterialInterieur
 Ns 390.196078
-Ka 0.100000 0.100000 0.100000
-Kd 0.01 0.01 0.01
-Ks 0.01 0.01 0.01
+Ka 0.200000 0.200000 0.200000
+Kd 0.512085 0.578424 0.512085
+Ks 0.361515 0.361515 0.361515
 Ni 1.000000
 d 1.000000
 illum 2
+map_Kd motherShipInterieur.png
 
-
-newmtl _Anna_V_1stwire_134006006.001
-Ns 0.000000
-Ka 0.300000 0.300000 0.300000
-Kd 0.420400 0.018800 0.018800
-Ks 0.000000 0.000000 0.000000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd ship_main.png
-map_Ka ship_main.png
-
-
-newmtl _Anna_V_1stwire_134006006.001_NONE
-Ns 0.000000
-Ka 0.300000 0.300000 0.300000
-Kd 0.420400 0.018800 0.018800
-Ks 0.000000 0.000000 0.000000
+newmtl MaterialVaisseau
+Ns 390.196078
+Ka 0.200000 0.200000 0.200000
+Kd 0.577428 0.561024 0.578424
+Ks 0.253529 0.253529 0.253529
 Ni 1.000000
 d 1.000000
 illum 2
 map_Kd ship_main.png
 map_Ka ship_main.png
+
+newmtl materialPorte
+Ns 390.196078
+Ka 0.200000 0.200000 0.200000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd motherShipPorte.png
 
 
