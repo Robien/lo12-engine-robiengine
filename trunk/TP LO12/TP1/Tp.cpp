@@ -41,7 +41,7 @@ Tp::~Tp()
 /* ========================================================================= */
 void Tp::run()
 {
-	
+
 	CameraVaisseau* camera = new CameraVaisseau();
 
 	_scene = new Scene(camera);
@@ -86,7 +86,7 @@ void Tp::run()
 		l->setAfficheSphere(true);
 		root->attache(l);
 	}
-		{
+	{
 		Vector3d<GLdouble> ambiante(0.2, 0.2, 0.2);
 		Vector3d<GLdouble> couleur(0.1, 0.1, 0.8);
 		Matrice<GLdouble> *m = new Matrice<GLdouble>();
@@ -120,10 +120,13 @@ void Tp::run()
 	//	vaisseau->matrice().translate(0, 0, 10.9);
 	camera->attache(vaisseau);
 	std::vector<AbstractObjet* >* vect = imp.importer("models/motherShip/motherShip.obj");
+	vect->at(0)->getMatrice()->translate(-38.66924,3.40688,-5.26819);
 	vect->at(1)->addFils(vect->at(0));
 	vect->at(1)->getMatrice()->rotate(90,1,0,0);
 	vect->at(1)->matrice().scale(10, 10, 10);
 	root->attache(vect->at(1));
+
+
 	vect = imp.importer("models/asteroides/LotAsteroids.obj");
 	unsigned int l = 3;//pow((float) vect->size(), (float) (1.0/3.0));
 	unsigned int m = 0;
@@ -147,10 +150,10 @@ void Tp::run()
 		}
 	}
 	root->attache(vect);
-		SystemeParticules* sp = new SystemeParticules(true, 1000);
-		sp->matrice().translate(0,0,-2);
-		sp->start();
-		root->attache(sp);
+	SystemeParticules* sp = new SystemeParticules(true, 1000);
+	sp->matrice().translate(0,0,-2);
+	sp->start();
+	root->attache(sp);
 
 
 	_scene->setRoot(root);
@@ -171,7 +174,7 @@ void Tp::run()
 	InterfaceVitesse* interfaceVitesse = new InterfaceVitesse(0.15,0.01,0.08,0.08, "textures/power_Front.png");
 	camera->setInterfaceVitesse(interfaceVitesse);
 	_scene->add(interfaceVitesse);
-	
+
 
 
 	_scene->run();
