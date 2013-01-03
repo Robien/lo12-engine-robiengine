@@ -22,6 +22,7 @@ public:
 	virtual void idle(){}
 	virtual void reshape(int largeur, int hauteur){}
 	virtual void dessine_scene(){}
+	virtual void periodicEvent(){} //appellé toutes les 0.1s
 
 };
 
@@ -54,6 +55,7 @@ private:
 	std::vector<CB_Interraction*> _cb;
 	GLdouble _deltaTime;
 	GLdouble _previousTime;
+	GLdouble _deltaTimePeriodicEvent;
 
 };
 
