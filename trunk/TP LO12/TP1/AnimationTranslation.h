@@ -10,12 +10,12 @@ public:
 	AnimationTranslation(AbstractObjet* objlie);
 	virtual ~AnimationTranslation();
 	virtual void update();
-	void setLimite(float min,float max);
+	void setLimite(GLdouble min,GLdouble max);
 
 private:
 	Vector3d<GLdouble> _direction;
-	float _limiteMax;
-	float _limiteMin;
+	GLdouble _limiteMax;
+	GLdouble _limiteMin;
 };
 
 #endif
