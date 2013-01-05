@@ -1,11 +1,20 @@
 #include "SystemeParticules.h"
 #include "Shader.h"
+#include "GestionnaireTexture.h"
 
-SystemeParticules::SystemeParticules(bool boucle,int nombreParticules, std::string name) : AbstractObjet(name), _listParticule()
+SystemeParticules::SystemeParticules(bool boucle, int nombreParticules, std::string texture, std::string name) : AbstractObjet(name), _listParticule()
 {
 	_densite = nombreParticules;
 	_boucle=boucle;
 	_active = false;
+	if(texture != "" )
+	{
+		_texture = GestionnaireTexture::get()->addTexture(texture);
+	}
+	else
+	{
+		_texture = 0;
+	}
 	initSysteme();
 }
 
@@ -14,6 +23,7 @@ SystemeParticules::~SystemeParticules()
 {
 	_listParticule.clear();
 }
+
 void SystemeParticules::start()
 {
 	if(_listParticule.size() == 0)
@@ -22,11 +32,13 @@ void SystemeParticules::start()
 	}
 	_active = true;
 }
+
 void SystemeParticules::restart()
 {
 	initSysteme();
 	_active = true;
 }
+
 void SystemeParticules::stop()
 {
 	_active = false;
@@ -47,16 +59,29 @@ unsigned int SystemeParticules::affiche()
 	unsigned int nbPointAffiche = 0;
 	ShaderEtat::get()->desactive(); //désactiver le shader
 	glMatrixMode(GL_MODELVIEW);
+	
+		
+	if(_texture == 0)
+	{
+		glDisable(GL_TEXTURE_2D);
+	}
+	else
+	{
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, _texture);
+	}
 	glDisable(GL_LIGHTING);
-	glDisable(GL_TEXTURE_2D);
 	//glDisable(GL_DEPTH_TEST); //pour eviter des calculs
+	glDepthMask( GL_FALSE );
+
 	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA); 
-	
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); 
+
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	
+
 	glPushMatrix();
 	glMultMatrixd(getMatrice()->getMat());
+
 	if(_active)
 	{
 		for (std::list<Particules* >::iterator it = _listParticule.begin(); it != _listParticule.end(); ++it)
@@ -70,8 +95,9 @@ unsigned int SystemeParticules::affiche()
 			{
 				glBegin(GL_TRIANGLE_STRIP);
 			}
-				(*it)->affiche();
+			(*it)->affiche();
 			glEnd();
+
 			if(!(*it)->update())
 			{
 				if(_boucle)
@@ -100,9 +126,9 @@ unsigned int SystemeParticules::affiche()
 
 	glPopMatrix();
 
-	
 	glEnable(GL_LIGHTING);
-	glEnable(GL_DEPTH_TEST);
+	//glEnable(GL_DEPTH_TEST);
+	glDepthMask( GL_TRUE ); 
 	glDisable(GL_BLEND);
 	ShaderEtat::get()->active(); //activer le shader
 	return nbPointAffiche;

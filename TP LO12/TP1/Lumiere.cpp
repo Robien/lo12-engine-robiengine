@@ -1,4 +1,5 @@
 #include "Lumiere.h"
+#include "Shader.h"
 
 /*----------------------Definition Allure Faisceau-----------------------------*/
 AllureFaisceau::AllureFaisceau(GLdouble k, GLdouble theta)
@@ -123,21 +124,23 @@ unsigned int Lumiere::affiche()
 	if(_afficheSphere && _active)
 	{
 		glMatrixMode(GL_MODELVIEW);	
+		ShaderEtat::get()->desactive(); //désactiver le shader
 		glDisable(GL_LIGHTING);
 		glColor3d(_couleur.getX(), _couleur.getY(), _couleur.getZ());				
 
 		glPushMatrix();
 		glMultMatrixd(getMatrice()->getMat());
 		nbPointAffiche += 30; //ouais, c'est au hazard
-		gluSphere(_sphere, 0.1, 10, 10);
+		gluSphere(_sphere, 0.2, 10, 10);
+
 		/*afficher la direction du vecteur*/
 		glBegin(GL_LINES);
 		glVertex3d(0.0,0.0,0.0);
 		glVertex3d(1,0,0);
 		glColor3f(1,1,1);
 		glEnd();
-
-				GLfloat propp[4]; 
+		ShaderEtat::get()->active(); //activer le shader
+		GLfloat propp[4]; 
 		propp[0] = 0;
 		propp[1] =0;
 		propp[2] = 0;
