@@ -66,7 +66,7 @@ public:
 		case 27:	exit(0);	break;
 		case 32 :	_scene->changerObjetSelectionne();	break;
 		case 105 :  _scene->resetObjet();	break;
-		case 'p' : if (_isOnPause) { _scene->unpause();}else{_scene->pause();} _isOnPause = !_isOnPause;
+		case 'p' : if (_isOnPause) { _scene->unpause();}else{_scene->pause();} _isOnPause = !_isOnPause; break;
 
 		}
 	}
@@ -276,6 +276,7 @@ void Scene::add(Interface* inter)
 
 void Scene::dessine_repere()
 {
+	ShaderEtat::get()->desactive(); //désactiver le shader
 	glDisable(GL_LIGHTING);
 
 	glBegin(GL_LINES);
@@ -293,6 +294,7 @@ void Scene::dessine_repere()
 
 	glColor3f(1,1,1);
 	glEnd();
+	ShaderEtat::get()->active(); //désactiver le shader
 
 }
 

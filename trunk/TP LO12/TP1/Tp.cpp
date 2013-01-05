@@ -26,6 +26,8 @@ Auteurs : Guyard Romain, Louison Céphise
 #include "Interface.h"
 #include "InterfaceVitesse.h"
 #include "ShaderPhong.h"
+#include "AnimationRotation.h"
+#include "AnimationTranslation.h"
 
 Tp::Tp()
 {
@@ -63,16 +65,18 @@ void Tp::run()
 		camera->attache(l);
 	}
 
+		//gyrophare
 	{
 		Vector3d<GLdouble> ambiante(0.2, 0.2, 0.2);
 		Vector3d<GLdouble> couleur(0.8, 0.1, 0.1);
 		Matrice<GLdouble> *m = new Matrice<GLdouble>();
-		m->translate(0.3, 0, 0);
+		m->translate(-420,50,100);
 		//m->rotate(90, 0, 1, 0);
 		//m->getVector16().at(0) = -1;
 		Lumiere* l = GestionnaireLumiere::get()->newLumiere(ambiante,couleur, 2.0, 25.0, m);
 		l->setAfficheSphere(true);
 		root->attache(l);
+		new AnimationRotation(l);
 	}
 
 	{
@@ -101,8 +105,10 @@ void Tp::run()
 
 	Import imp;
 	//permet d'avoir la taille du fichier
-	std::cout << "Taille fichier" << imp.sizeOfFile("models/robien/RobienSimpleLOD.obj") << std::endl;
-	root->attache(imp.importer("models/robien/RobienSimpleLOD.obj")); // manque un delete ... le faire dans attache ?
+	std::cout << "Taille fichier : " << imp.sizeOfFile("models/robien/RobienSimpleLOD.obj") << std::endl;
+	std::vector<AbstractObjet* >* vect2 = imp.importer("models/robien/RobienSimpleLOD.obj");
+	root->attache(vect2); // manque un delete ... le faire dans attache ?
+		new AnimationTranslation(vect2->at(0));
 	//root->attache(imp.importer("models/robien/RobienSimple.obj"));
 	AbstractObjet* vaisseau = imp.importer("models/explorerShip/vaisseau3.obj")->at(0);
 	vaisseau->matrice().scale(1, 1, 0.5);
@@ -127,6 +133,8 @@ void Tp::run()
 	root->attache(vect->at(1));
 
 
+
+
 	vect = imp.importer("models/asteroides/LotAsteroids.obj");
 	unsigned int l = 3;//pow((float) vect->size(), (float) (1.0/3.0));
 	unsigned int m = 0;
@@ -149,9 +157,10 @@ void Tp::run()
 			}
 		}
 	}
-	root->attache(vect);
+	//root->attache(vect);
+	//vect->at(0)->getMatrice()->translate(10,0,0);
 	SystemeParticules* sp = new SystemeParticules(true, 1000);
-	sp->matrice().translate(0,0,-2);
+	sp->matrice().translate(0,0,-4);
 	sp->start();
 	root->attache(sp);
 

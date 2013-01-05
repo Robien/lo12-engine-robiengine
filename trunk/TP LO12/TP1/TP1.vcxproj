@@ -105,6 +105,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AbstractObjet.cpp" />
+    <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="AnimationRotation.cpp" />
+    <ClCompile Include="AnimationTranslation.cpp" />
     <ClCompile Include="AxeAnimation.cpp" />
     <ClCompile Include="Brouillard.cpp" />
     <ClCompile Include="Camera.cpp" />
@@ -143,6 +146,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractObjet.h" />
+    <ClInclude Include="Animation.h" />
+    <ClInclude Include="AnimationRotation.h" />
+    <ClInclude Include="AnimationTranslation.h" />
     <ClInclude Include="AxeAnimation.h" />
     <ClInclude Include="Brouillard.h" />
     <ClInclude Include="Camera.h" />

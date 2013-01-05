@@ -34,7 +34,7 @@ class SystemeParticules : public AbstractObjet
 
 
 public:
-	SystemeParticules(bool boucle = true, int nombreParticules = 1000,  std::string name = "systeme_particule_defaut");
+	SystemeParticules(bool boucle = true, int nombreParticules = 1000, std::string texture = "",  std::string name = "systeme_particule_defaut");
 	virtual ~SystemeParticules();
 	void restart();
 	void start();
@@ -43,6 +43,7 @@ public:
 private:
 	void initSysteme();
 private:
+	GLuint _texture;
 	int _densite;
 	bool _active;
 	bool _boucle;
