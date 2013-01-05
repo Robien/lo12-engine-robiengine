@@ -108,6 +108,7 @@ void Tp::run()
 	std::cout << "Taille fichier : " << imp.sizeOfFile("models/robien/RobienSimpleLOD.obj") << std::endl;
 	std::vector<AbstractObjet* >* vect2 = imp.importer("models/robien/RobienSimpleLOD.obj");
 	root->attache(vect2); // manque un delete ... le faire dans attache ?
+	vect2->at(0)->getMatrice()->scale(2,2,2);
 		new AnimationTranslation(vect2->at(0));
 	//root->attache(imp.importer("models/robien/RobienSimple.obj"));
 	AbstractObjet* vaisseau = imp.importer("models/explorerShip/vaisseau3.obj")->at(0);
