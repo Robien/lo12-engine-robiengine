@@ -17,8 +17,8 @@ public:
 	virtual ~Import();
 
 	std::vector<AbstractObjet* >* importer(std::string namefile);
-	int sizeOfFile(std::string namefile);
-	
+	int addSizeOfFile(std::string namefile);
+	void endImport();
 private : 
 	void setAvancement(int avan);
 	std::vector<Material* >* importerMaterial(std::string namefile);
@@ -34,7 +34,9 @@ private :
 	std::string supprimerEspaceAvant(std::string s);
 
 private : 
-	int avancement;
+	bool _chargementCree;
+	int _tailleFichierTotal;
+	int _avancement;
 	Percent* _pourcent;
 
 };
