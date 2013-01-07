@@ -115,8 +115,8 @@ public:
 	void scale(GLdouble x, GLdouble y, GLdouble z)
 	{
 		_testScale.setX(_testScale.getX() * x);
-		_testScale.setY(_testScale.getX() * x);
-		_testScale.setZ(_testScale.getX() * x);
+		_testScale.setY(_testScale.getY() * y);
+		_testScale.setZ(_testScale.getZ() * z);
 
 		glMatrixMode(GL_MODELVIEW);
 		glPushMatrix();
@@ -132,7 +132,17 @@ public:
 	}
 	Vector3d<T>& getScale()
 	{
+		//_testScale.setX(_data.at(0)/_data.at(15));
+		//_testScale.setX(_data.at(5)/_data.at(15));
+		//_testScale.setX(_data.at(10)/_data.at(15));
 		return _testScale;
+	}
+
+	void setSaveScale(Vector3d<T>& scale) //attention a cette méthode ! moi je l'utilise, mais c'est juste parce que je suis super intéligent
+	{
+		_testScale.setX(scale.getX());
+		_testScale.setY(scale.getY());
+		_testScale.setZ(scale.getZ());
 	}
 
 	void reset()

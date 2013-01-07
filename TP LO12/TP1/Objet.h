@@ -29,6 +29,8 @@ private:
 private:
 	Material* _oldMaterial;
 
+	virtual bool isInCollisionWithFace(AbstractObjet* objet);
+
 private:
 	GLdouble* _mat;// pour ne pas a delete a chaque frame
 };

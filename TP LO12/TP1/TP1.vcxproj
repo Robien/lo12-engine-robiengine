@@ -129,6 +129,7 @@
     <ClCompile Include="Objet.cpp" />
     <ClCompile Include="Observateur.cpp" />
     <ClCompile Include="Outil.cpp" />
+    <ClCompile Include="Percent.cpp" />
     <ClCompile Include="Pngloader.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Shader.cpp" />
@@ -165,11 +166,13 @@
     <ClInclude Include="Interface.h" />
     <ClInclude Include="InterfaceVitesse.h" />
     <ClInclude Include="Lumiere.h" />
+    <ClInclude Include="macroTools.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Matrice.h" />
     <ClInclude Include="Objet.h" />
     <ClInclude Include="Observateur.h" />
     <ClInclude Include="Outil.h" />
+    <ClInclude Include="Percent.h" />
     <ClInclude Include="Pngloader.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Shader.h" />

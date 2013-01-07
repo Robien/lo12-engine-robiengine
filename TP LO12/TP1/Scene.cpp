@@ -215,6 +215,15 @@ void Scene::affiche()
 	_mainCamera->majPos();
 	_root->majPos();
 
+
+	if (_root->isInCollisionWith(_mainCamera->getFils()->at(0)))
+	{
+		std::cout << "collision !" << std::endl;
+	}
+
+
+
+
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluPerspective(90,1.0,0.01,1000000) ;
