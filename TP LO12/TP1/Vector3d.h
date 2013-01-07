@@ -77,6 +77,11 @@ public:
 		return sqrt((getX() * getX() + getY() * getY() + getZ() * getZ()));
 	}
 
+	T lengthScare()
+	{
+		return (getX() * getX() + getY() * getY() + getZ() * getZ());
+	}
+
 public:
 	virtual void print()
 	{

@@ -11,6 +11,7 @@ public:
 	virtual ~AnimationTranslation();
 	virtual void update();
 	void setLimite(GLdouble min,GLdouble max);
+	virtual void proxEvent(GLdouble distance);
 
 private:
 	Vector3d<GLdouble> _direction;

@@ -1,8 +1,9 @@
 #include "AbstractObjet.h"
+#include "Animation.h"
 
 
 
-AbstractObjet::AbstractObjet(std::string str): _listPointsCollision()
+AbstractObjet::AbstractObjet(std::string str): _listPointsCollision(), _animation(NULL)
 {
 	_pere = NULL;
 	_isFilted = false;
@@ -13,7 +14,7 @@ AbstractObjet::AbstractObjet(std::string str): _listPointsCollision()
 	_collider = new Collider();
 }
 
-AbstractObjet::AbstractObjet(Matrice<GLdouble>* matrice, std::string str): _listPointsCollision()
+AbstractObjet::AbstractObjet(Matrice<GLdouble>* matrice, std::string str): _listPointsCollision(), _animation(NULL)
 {
 	_pere = NULL;
 	_isFilted = false;
@@ -266,4 +267,9 @@ bool AbstractObjet::isInCollisionWithFace(AbstractObjet* objet)
 std::vector<Vector3d<GLdouble>* >& AbstractObjet::getListePointsCollision()
 {
 	return _listPointsCollision;
+}
+
+void AbstractObjet::setAnimation(Animation* anim)
+{
+	_animation = anim;
 }

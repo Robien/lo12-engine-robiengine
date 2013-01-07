@@ -41,6 +41,7 @@ private:
 Animation::Animation(AbstractObjet* objlie): _acteur(objlie)
 {
 	Interactions::get()->addEventCallBack(new AnimInteraction(this));
+	objlie->setAnimation(this);
 }
 
 
@@ -58,4 +59,8 @@ void Animation::update()
 AbstractObjet* Animation::getActeur()
 {
 	return _acteur;
+}
+
+void Animation::proxEvent(GLdouble distance)
+{
 }

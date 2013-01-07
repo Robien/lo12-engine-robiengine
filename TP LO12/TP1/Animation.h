@@ -10,7 +10,9 @@ public:
 	Animation(AbstractObjet* objlie);
 	virtual ~Animation();
 	virtual void update();
+	virtual void proxEvent(GLdouble distance);
 	AbstractObjet* getActeur();
+
 private: 
 	AbstractObjet* _acteur; //objet qui effectue l'action
 };

@@ -9,6 +9,7 @@
 #include "Vector3d.h"
 #include "AxeAnimation.h"
 
+class Animation;
 
 class AbstractObjet
 {
@@ -71,6 +72,9 @@ public:
 	virtual void majCollider();
 	Vector3d<GLdouble>* getScale();
 
+public:
+	void setAnimation(Animation* anim);
+
 protected:
 	bool _isFilted;
 	bool _isVboActive;
@@ -87,6 +91,8 @@ private:
 	Matrice<GLdouble>* _matriceAbsolue;
 	virtual bool isInCollisionWithFace(AbstractObjet* objet);
 
+protected:
+	Animation* _animation;
 
 };
 

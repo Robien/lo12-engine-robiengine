@@ -1,7 +1,8 @@
 #include "Objet.h"
+#include <string>
 #include "AbstractObjet.h"
 #include "VBOMangaer.h"
-#include <string>
+#include "Animation.h"
 
 Objet::Objet(std::string str) : AbstractObjet(str)
 {
@@ -37,6 +38,12 @@ unsigned int Objet::affiche()
 	_collider->majMatrice(&matriceAbsolue()); // il ne faudrait pas utiliser _mat plutot ?
 	//std::cout << _collider->getDistanceMax() << " - " << (mat[14]/mat[15]) << std::endl;
 	unsigned int nbPointAffiche = 0;
+
+	if(_animation != NULL)
+	{
+		//std::cout << matriceAbsolue().getPosition().getX() << std::endl;
+		_animation->proxEvent((_mat[12] * _mat[12] + _mat[13] * _mat[13]  + _mat[14] * _mat[14])/_mat[15]);
+	}
 
 	if (!(_mat[14]/_mat[15] > _collider->getDistanceMax())) // en dehors du champs de vision ?
 	{

@@ -196,7 +196,7 @@ void Percent::majIfNeeded(unsigned int valCurrent)
     {
         std::cout << "\r";
 		std::cout << "[";
-		unsigned int TAILLE_PROGRESS_BAR = 20;
+		unsigned int TAILLE_PROGRESS_BAR = 50;
 		for (unsigned int i = 0; i < TAILLE_PROGRESS_BAR; ++i)
 		{
 			if ((valCurrent *TAILLE_PROGRESS_BAR / _valMax) > i)
@@ -216,7 +216,7 @@ void Percent::majIfNeeded(unsigned int valCurrent)
         {
             _currentTimeS = (unsigned int) (elapsed / (((float) valCurrent) / ((float) _valMax)) - elapsed);
             printTime((unsigned int) (elapsed / (((float) valCurrent) / ((float) _valMax)) - elapsed));
-            std::cout << "                                            ";
+            std::cout << "                  ";
 //            std::cout << (unsigned int) (elapsed / (((float) valCurrent) / ((float) _valMax)) - elapsed) << "s          ";
         }
         _currentTime = elapsed;
