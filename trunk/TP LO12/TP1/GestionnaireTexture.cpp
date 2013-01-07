@@ -12,7 +12,7 @@ GLuint GestionnaireTexture::addTexture(std::string filename)
 	int idexist = exist(&filename);
 	if (idexist != -1)
 	{
-		std::cout << "Texture " << filename << " deja charge avec le numero :\t" <<  _listTexture.at(idexist)->getGlnum() << std::endl; 
+		//std::cout << "Texture " << filename << " deja charge avec le numero :\t" <<  _listTexture.at(idexist)->getGlnum() << std::endl; 
 		delete texture;
 		return _listTexture.at(idexist)->getGlnum();
 	}
@@ -25,7 +25,7 @@ GLuint GestionnaireTexture::addTexture(std::string filename)
 
 	glGenTextures(1, texture->getPtGlnum());
 
-	std::cout << "Nouvelle texture : "<< filename << " numero :\t" << texture->getGlnum() << std::endl; 
+	//std::cout << "Nouvelle texture : "<< filename << " numero :\t" << texture->getGlnum() << std::endl; 
 	glBindTexture(GL_TEXTURE_2D,texture->getGlnum());
 	glTexImage2D(GL_TEXTURE_2D, 0,texture->getInternalFormat(), texture->getWidth(), texture->getHeight(), 0, texture->getFormat(), GL_UNSIGNED_BYTE, texture->getTexels());
 	/* filtre normal

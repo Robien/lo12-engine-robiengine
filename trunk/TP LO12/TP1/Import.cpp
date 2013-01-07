@@ -7,6 +7,9 @@
 
 Import::Import()
 {
+	_chargementCree = false;
+	_tailleFichierTotal = 0;
+	_avancement = 0;
 }
 
 
@@ -14,7 +17,7 @@ Import::~Import()
 {
 }
 
-int Import::sizeOfFile(std::string namefile)
+int Import::addSizeOfFile(std::string namefile)
 {	
 	//ouverture du fichier
 	int fileSize;
@@ -29,20 +32,26 @@ int Import::sizeOfFile(std::string namefile)
 	ifs.seekg(0, std::ios::beg);
 	//fermeture du fichier
 	ifs.close();
+	if(!_chargementCree)
+	{_tailleFichierTotal += fileSize;}
 	return fileSize;
 }
 
 void Import::setAvancement(int avan)
-{
-	int progression  = avan - avancement;
-	avancement = avan;
-	_pourcent->majIfNeeded(avan);
+{	
 	//appeler le callback de chenillard en envoyant progression
+	_pourcent->majIfNeeded(avan + _avancement);
+
 }
 
 std::vector<AbstractObjet* >* Import::importer(std::string namefile)
 {
-	_pourcent = new Percent(sizeOfFile(namefile));
+	int lastAvancement = 0;
+	if(!_chargementCree)
+	{	
+		_pourcent = new Percent(_tailleFichierTotal);
+		_chargementCree = true;
+	}
 	std::vector<AbstractObjet* >* listObjet = new std::vector<AbstractObjet* >();
 	std::vector<Material* >* listmat = NULL;
 	std::vector<Vector2d<GLdouble>* > listPointUV;
@@ -67,7 +76,8 @@ std::vector<AbstractObjet* >* Import::importer(std::string namefile)
 
 	while(sauterLigneCommentaire(ifs) && (ifs >> ele_id))
 	{
-		setAvancement(ifs.tellg());
+		lastAvancement = ifs.tellg();
+		setAvancement(lastAvancement);
 		if ("mtllib" == ele_id) //nom du fichier de texture .MTL
 		{
 			std::string pathFileName;
@@ -218,6 +228,7 @@ std::vector<AbstractObjet* >* Import::importer(std::string namefile)
 	}
 
 	//fermeture du fichier
+	_avancement += lastAvancement;
 	ifs.close();
 
 	for(unsigned int i = 0; i < listObjet->size(); ++i)
@@ -230,6 +241,7 @@ std::vector<AbstractObjet* >* Import::importer(std::string namefile)
 			}
 		}
 	}
+
 
 	return listObjet;
 
@@ -470,4 +482,10 @@ std::vector<std::string> Import::extraireNomAxe(std::string s)
 		{  s1+=s[i]; }
 	}
 	return ret;
+}
+
+//nettoyage de l'écran
+void Import::endImport()
+{
+	 system("cls");
 }

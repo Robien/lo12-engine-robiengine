@@ -1,21 +1,25 @@
-#include "AnimationTranslation.h"
+#include "AnimationPesanteur.h"
 #include "Outil.h"
 
 
-AnimationTranslation::AnimationTranslation(AbstractObjet* objlie): Animation(objlie), _direction()
+AnimationPesanteur::AnimationPesanteur(AbstractObjet* objlie): Animation(objlie), _direction(), _rotation()
 {
-	setLimite(-100,100);
+	setLimite(-50,50);
 	_direction.setX(Outil::get()->random<GLdouble>(-2,2)/100);
 	_direction.setY( Outil::get()->random<GLdouble>(-2,2)/100);
 	_direction.setZ( Outil::get()->random<GLdouble>(-2,2)/100);
+	_rotation.setX(Outil::get()->random<GLdouble>(-1,1));
+	_rotation.setY( Outil::get()->random<GLdouble>(-1,1));
+	_rotation.setZ( Outil::get()->random<GLdouble>(-1,1));
+	_vitesseRotation = Outil::get()->random<GLdouble>(-2,2);
 }
 
 
-AnimationTranslation::~AnimationTranslation()
+AnimationPesanteur::~AnimationPesanteur()
 {
 }
 
-void AnimationTranslation::update()
+void AnimationPesanteur::update()
 {
 	Vector3d<GLdouble> position = getActeur()->getMatrice()->getPosition();
 	if(position.getX() > _limiteMax || position.getX() < _limiteMin)
@@ -31,10 +35,11 @@ void AnimationTranslation::update()
 		_direction.setZ(-_direction.getZ());
 	}
 	getActeur()->getMatrice()->translate(_direction.getX(),_direction.getY(),_direction.getZ());
+	getActeur()->getMatrice()->rotate(_vitesseRotation, _direction.getX(),_direction.getY(),_direction.getZ());
 
 }
 
-void AnimationTranslation::setLimite(GLdouble min,GLdouble max)
+void AnimationPesanteur::setLimite(GLdouble min,GLdouble max)
 {
 	_limiteMax = max;
 	_limiteMin = min;

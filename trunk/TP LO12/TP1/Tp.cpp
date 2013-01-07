@@ -28,6 +28,7 @@ Auteurs : Guyard Romain, Louison Céphise
 #include "ShaderPhong.h"
 #include "AnimationRotation.h"
 #include "AnimationTranslation.h"
+#include "AnimationPesanteur.h"
 
 Tp::Tp()
 {
@@ -42,10 +43,18 @@ Tp::~Tp()
 
 /* ========================================================================= */
 void Tp::run()
-{
+{	
+	Import imp;
+	{//ajout des tailles de tous les fichiers à importer
+		std::cout << "Importation des fichiers des modeles 3D..." << std::endl;
+		imp.addSizeOfFile("models/robien/RobienSimpleLOD.obj");
+		imp.addSizeOfFile("models/explorerShip/vaisseau3.obj");
+		imp.addSizeOfFile("models/motherShip/motherShip.obj");
+		imp.addSizeOfFile("models/asteroides/LotAsteroids.obj");
+	}
+
 
 	CameraVaisseau* camera = new CameraVaisseau();
-
 	_scene = new Scene(camera);
 
 
@@ -103,13 +112,12 @@ void Tp::run()
 	}
 
 
-	Import imp;
+
 	//permet d'avoir la taille du fichier
-	std::cout << "Taille fichier : " << imp.sizeOfFile("models/robien/RobienSimpleLOD.obj") << std::endl;
 	std::vector<AbstractObjet* >* vect2 = imp.importer("models/robien/RobienSimpleLOD.obj");
 	root->attache(vect2); // manque un delete ... le faire dans attache ?
 	vect2->at(0)->getMatrice()->scale(2,2,2);
-		new AnimationTranslation(vect2->at(0));
+		new AnimationPesanteur(vect2->at(0));
 	//root->attache(imp.importer("models/robien/RobienSimple.obj"));
 	AbstractObjet* vaisseau = imp.importer("models/explorerShip/vaisseau3.obj")->at(0);
 	vaisseau->matrice().scale(1, 1, 0.5);
@@ -153,7 +161,10 @@ void Tp::run()
 				//ab->matrice().rotate(Outil::get()->random<unsigned int>(0, 360), 1, 0, 0);
 				ab->matrice().translate(200*i + 1000 + Outil::get()->random<unsigned int>(0, 190), 200*j + Outil::get()->random<unsigned int>(0, 190), 200*k + Outil::get()->random<unsigned int>(0, 190));
 				ab->matrice().scale(20+Outil::get()->random<unsigned int>(0, 20), 20+Outil::get()->random<unsigned int>(0, 20), 20+Outil::get()->random<unsigned int>(0, 20));
-				ab->attache(vect->at(m));
+				AbstractObjet* ab2 = new AbstractObjet();
+				ab2->attache(vect->at(m));
+				new AnimationPesanteur(ab2);
+				ab->attache(ab2);
 				root->attache(ab);
 			}
 		}
@@ -186,7 +197,7 @@ void Tp::run()
 	_scene->add(interfaceVitesse);
 
 
-
+	imp.endImport();
 	_scene->run();
 
 
