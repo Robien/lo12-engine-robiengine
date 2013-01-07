@@ -39,3 +39,8 @@ void AnimationTranslation::setLimite(GLdouble min,GLdouble max)
 	_limiteMax = max;
 	_limiteMin = min;
 }
+
+void AnimationTranslation::proxEvent(GLdouble distance)
+{
+	std::cout << "distance : " << distance << std::endl;
+}
