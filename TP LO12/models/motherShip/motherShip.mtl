@@ -22,6 +22,16 @@ illum 2
 map_Kd ship_main.png
 map_Ka ship_main.png
 
+newmtl gyro
+Ns 92.156863
+Ka 0.200000 0.200000 0.200000
+Kd 0.512000 0.512000 0.512000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd texturegyro.png
+
 newmtl materialPorte
 Ns 390.196078
 Ka 0.200000 0.200000 0.200000

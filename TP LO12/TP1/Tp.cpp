@@ -12,6 +12,7 @@ Interface OpenGL (GLUT, GLU, GL)
 Auteurs : Guyard Romain, Louison Céphise
 */
 #include "const.h"
+#include <string>
 #include "Import.h"
 #include "Tp.h"
 #include "AbstractObjet.h"
@@ -136,12 +137,20 @@ void Tp::run()
 	//	vaisseau->matrice().translate(0, 0, 10.9);
 	camera->attache(vaisseau);
 	std::vector<AbstractObjet* >* vect = imp.importer("models/motherShip/motherShip.obj");
-	vect->at(0)->getMatrice()->translate(-38.66924,3.40688,-5.26819);
-	new AnimationPorte(vect->at(0));
-	vect->at(1)->addFils(vect->at(0));
-	vect->at(1)->getMatrice()->rotate(90,1,0,0);
-	vect->at(1)->matrice().scale(10, 10, 10);
-	root->attache(vect->at(1));
+	std::cout << "name : " << vect->at(0)->getNom() << std::endl;
+	std::cout << "name : " << vect->at(1)->getNom() << std::endl;
+	std::cout << "name : " << vect->size() << std::endl;
+	//Gyrophare
+	vect->at(0)->getMatrice()->translate(-40.58082,14.11398,-5.30275);
+	vect->at(3)->addFils(vect->at(0));
+	//Porte
+	vect->at(2)->getMatrice()->translate(-38.66924,3.40688,-5.26819);
+	new AnimationPorte(vect->at(2));
+	vect->at(3)->addFils(vect->at(2));
+	//vaisseauMere
+	vect->at(3)->getMatrice()->rotate(90,1,0,0);
+	vect->at(3)->matrice().scale(10, 10, 10);
+	root->attache(vect->at(3));
 
 
 
