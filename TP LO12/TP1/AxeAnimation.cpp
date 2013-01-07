@@ -38,3 +38,7 @@ Vector3d<GLdouble> AxeAnimation::getDirection()
 {
 	return *_pointB-*_pointA;
 }
+Vector3d<GLdouble>* AxeAnimation::getA()
+{
+	return _pointA;
+}

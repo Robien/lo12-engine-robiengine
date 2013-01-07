@@ -273,3 +273,7 @@ void AbstractObjet::setAnimation(Animation* anim)
 {
 	_animation = anim;
 }
+std::vector<AxeAnimation*>& AbstractObjet::getAxes()
+{
+	return _listAxes;
+}

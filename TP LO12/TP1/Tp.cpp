@@ -29,6 +29,7 @@ Auteurs : Guyard Romain, Louison Céphise
 #include "AnimationRotation.h"
 #include "AnimationTranslation.h"
 #include "AnimationPesanteur.h"
+#include "AnimationPorte.h"
 
 Tp::Tp()
 {
@@ -136,6 +137,7 @@ void Tp::run()
 	camera->attache(vaisseau);
 	std::vector<AbstractObjet* >* vect = imp.importer("models/motherShip/motherShip.obj");
 	vect->at(0)->getMatrice()->translate(-38.66924,3.40688,-5.26819);
+	new AnimationPorte(vect->at(0));
 	vect->at(1)->addFils(vect->at(0));
 	vect->at(1)->getMatrice()->rotate(90,1,0,0);
 	vect->at(1)->matrice().scale(10, 10, 10);

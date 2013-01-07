@@ -17,6 +17,7 @@ public:
 	void setPointA(Vector3d<GLdouble>* a);
 	void setPointB( Vector3d<GLdouble>* b);
 	Vector3d<GLdouble> getDirection();
+	Vector3d<GLdouble>* getA();
 
 private:
 	std::string _nomObjet;

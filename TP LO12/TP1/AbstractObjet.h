@@ -47,6 +47,7 @@ public:
 public:
 	void addPointCollsion(Vector3d<GLdouble>* pt);
 	void addAxe(AxeAnimation* axe);
+	std::vector<AxeAnimation*>& getAxes();
 	bool isInCollisionWith(AbstractObjet* objet);
 	Collider* getCollider();
 

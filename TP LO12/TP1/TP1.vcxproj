@@ -107,6 +107,7 @@
     <ClCompile Include="AbstractObjet.cpp" />
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="AnimationPesanteur.cpp" />
+    <ClCompile Include="AnimationPorte.cpp" />
     <ClCompile Include="AnimationRotation.cpp" />
     <ClCompile Include="AnimationTranslation.cpp" />
     <ClCompile Include="AxeAnimation.cpp" />
@@ -150,6 +151,7 @@
     <ClInclude Include="AbstractObjet.h" />
     <ClInclude Include="Animation.h" />
     <ClInclude Include="AnimationPesanteur.h" />
+    <ClInclude Include="AnimationPorte.h" />
     <ClInclude Include="AnimationRotation.h" />
     <ClInclude Include="AnimationTranslation.h" />
     <ClInclude Include="AxeAnimation.h" />
