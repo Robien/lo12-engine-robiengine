@@ -5,7 +5,9 @@
 #include "Pngloader.h"
 #include "Singleton.h"
 #include "Vector3d.h"
+#include "Matrice.h"
 #include <math.h>
+
 
 
 class Outil : public Singleton<Outil>
@@ -50,6 +52,10 @@ public:
 
 
 	std::string readFile(std::string fileName); //TODO : ne pas faire une copie du string dans le retour
+
+Vector3d<GLdouble> mult(Vector3d<GLdouble>& vect, Matrice<GLdouble>& mat); //copie ?
+
+
 
 };
 

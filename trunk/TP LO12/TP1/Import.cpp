@@ -36,11 +36,13 @@ void Import::setAvancement(int avan)
 {
 	int progression  = avan - avancement;
 	avancement = avan;
+	_pourcent->majIfNeeded(avan);
 	//appeler le callback de chenillard en envoyant progression
 }
 
 std::vector<AbstractObjet* >* Import::importer(std::string namefile)
 {
+	_pourcent = new Percent(sizeOfFile(namefile));
 	std::vector<AbstractObjet* >* listObjet = new std::vector<AbstractObjet* >();
 	std::vector<Material* >* listmat = NULL;
 	std::vector<Vector2d<GLdouble>* > listPointUV;

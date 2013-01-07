@@ -3,6 +3,7 @@
 
 Collider::Collider()
 {
+	_distanceMax = 0;
 	_isSet = false;
 }
 
@@ -186,16 +187,27 @@ void Collider::affiche()
 
 void Collider::majMatrice(Matrice<GLdouble>* mat)
 {
+	if (mat->getScale().getX() != mat->getScale().getY())
+	{
+		//mat->getScale().println();
+	}
 	if (_matrice.getVector16()[0] != mat->getVector16()[0] || _matrice.getVector16()[5] != mat->getVector16()[5] || _matrice.getVector16()[10] != mat->getVector16()[10])
 	{
 		_matrice = *mat;
-		_distanceMax = sqrt(
+		Vector3d<GLdouble> distance(
+			(_CoordMax.getX() - _CoordMin.getX()) *  mat->getScale().getX(),
+			(_CoordMax.getY() - _CoordMin.getY()) *  mat->getScale().getY(),
+			(_CoordMax.getZ() - _CoordMin.getZ()) *  mat->getScale().getZ()
+			);
+		
+		_distanceMax =  distance.length();
+		/*_distanceMax = sqrt(
 			_matrice.getVector16()[0]*(_CoordMax.getX() - _CoordMin.getX()) * _matrice.getVector16()[0]*(_CoordMax.getX() - _CoordMin.getX())
 			+
 			_matrice.getVector16()[5]*(_CoordMax.getY() - _CoordMin.getY()) * _matrice.getVector16()[5]*(_CoordMax.getY() - _CoordMin.getY())
 			+
 			_matrice.getVector16()[10]*(_CoordMax.getZ() - _CoordMin.getZ()) * _matrice.getVector16()[10]*(_CoordMax.getZ() - _CoordMin.getZ())
-			);
+			);*/
 	}
 
 }

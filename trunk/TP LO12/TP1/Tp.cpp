@@ -145,7 +145,7 @@ void Tp::run()
 		{
 			for (unsigned int k = 0; k < l; ++k)
 			{
-				std::cout << Outil::get()->random<unsigned int>(0, vect->size() - 1)  << " - " << vect->size() - 1 << std::endl;
+				//std::cout << Outil::get()->random<unsigned int>(0, vect->size() - 1)  << " - " << vect->size() - 1 << std::endl;
 				m = Outil::get()->random<unsigned int>(0, vect->size() - 1) ;
 				AbstractObjet* ab = new AbstractObjet();
 				//ab->matrice().rotate(Outil::get()->random<unsigned int>(0, 360), 0, 0, 1);

@@ -136,3 +136,20 @@ void Objet::toggleVBO()
 	_isVboActive = !_isVboActive;
 
 }
+bool Objet::isInCollisionWithFace(AbstractObjet* objet)
+{
+	return false;
+	for (unsigned int i = 0; i < getListePointsCollision().size(); ++i)
+	{
+		Vector3d<GLdouble> point = Outil::get()->mult(*getListePointsCollision().at(i), matriceAbsolue());
+		Vector3d<GLdouble> distance(objet->matriceAbsolue().getPosition().getX() - point.getX(), 
+			objet->matriceAbsolue().getPosition().getY() - point.getY(),
+			objet->matriceAbsolue().getPosition().getZ() - point.getZ() );
+		if (distance.length() < 2)
+		{
+			std::cout << distance.length() << std::endl;
+			return true;
+		}
+	}
+	return false;
+}

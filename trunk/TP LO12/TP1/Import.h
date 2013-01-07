@@ -8,6 +8,7 @@
 #include <vector>
 #include "Objet.h"
 #include "Material.h"
+#include "Percent.h"
 
 class Import
 {
@@ -34,6 +35,7 @@ private :
 
 private : 
 	int avancement;
+	Percent* _pourcent;
 
 };
 

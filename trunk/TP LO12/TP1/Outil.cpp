@@ -41,3 +41,15 @@ std::string Outil::readFile(std::string fileName)
 
 	 return oss.str();
 }
+
+
+Vector3d<GLdouble> Outil::mult(Vector3d<GLdouble>& vect, Matrice<GLdouble>& mat)
+{
+	Vector3d<GLdouble> res;
+
+	res.setX(vect.getX() * mat.getVector16().at(0) + vect.getY() * mat.getVector16().at(1) + vect.getZ() * mat.getVector16().at(2));
+	res.setY(vect.getX() * mat.getVector16().at(3) + vect.getY() * mat.getVector16().at(4) + vect.getZ() * mat.getVector16().at(5));
+	res.setZ(vect.getX() * mat.getVector16().at(6) + vect.getY() * mat.getVector16().at(7) + vect.getZ() * mat.getVector16().at(8));
+
+	return res;
+}

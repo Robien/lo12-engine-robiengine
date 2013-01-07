@@ -43,8 +43,11 @@ public:
 		removeFils(fils);
 	}
 
+public:
 	void addPointCollsion(Vector3d<GLdouble>* pt);
 	void addAxe(AxeAnimation* axe);
+	bool isInCollisionWith(AbstractObjet* objet);
+	Collider* getCollider();
 
 public:
 	Matrice<GLdouble>* getMatrice();
@@ -57,6 +60,8 @@ public:
 	{
 		return *_matriceAbsolue;
 	}
+
+public:
 	virtual void toggleFilted();
 	virtual void toggleVBO();
 
@@ -64,12 +69,14 @@ public:
 	std::vector<AbstractObjet*>* getFils();
 	AbstractObjet* getPere();
 	virtual void majCollider();
+	Vector3d<GLdouble>* getScale();
 
 protected:
 	bool _isFilted;
 	bool _isVboActive;
 	Collider* _collider;
 	std::string _nom;
+	std::vector<Vector3d<GLdouble>* >& getListePointsCollision();
 
 private:
 	std::vector<AbstractObjet*> _fils;
@@ -78,7 +85,7 @@ private:
 	std::vector<Vector3d<GLdouble>* > _listPointsCollision;
 	std::vector<AxeAnimation* > _listAxes;
 	Matrice<GLdouble>* _matriceAbsolue;
-	
+	virtual bool isInCollisionWithFace(AbstractObjet* objet);
 
 
 };

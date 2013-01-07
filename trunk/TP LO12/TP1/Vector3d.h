@@ -72,6 +72,10 @@ public:
 		_test[2] = _z;
 		return _test;
 	}
+	T length()
+	{
+		return sqrt((getX() * getX() + getY() * getY() + getZ() * getZ()));
+	}
 
 public:
 	virtual void print()

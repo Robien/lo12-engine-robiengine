@@ -185,6 +185,13 @@ void AbstractObjet::majPos()
 
 	_matriceAbsolue->getVector16().clear();
 	_matriceAbsolue->getVector16().assign(mat, mat + 16);
+	Vector3d<GLdouble>* vect = getScale();
+	if (vect->getX() != vect->getY())
+	{
+		//vect->println();
+	}
+	_matriceAbsolue->setSaveScale(*vect);
+	delete vect;
 	delete mat;
 	//on maj les objets fils
 	for (unsigned int i = 0; i < getFils()->size(); ++i)
@@ -193,4 +200,70 @@ void AbstractObjet::majPos()
 	}
 
 	glPopMatrix();
+}
+
+bool AbstractObjet::isInCollisionWith(AbstractObjet* objet)
+{
+	if (_collider->getDistanceMax() != 0)
+	{
+		Vector3d<GLdouble> distance(objet->matriceAbsolue().getPosition().getX() - matriceAbsolue().getPosition().getX(), 
+			objet->matriceAbsolue().getPosition().getY() - matriceAbsolue().getPosition().getY(),
+			objet->matriceAbsolue().getPosition().getZ() - matriceAbsolue().getPosition().getZ() );
+		if (distance.length() <= abs(_collider->getDistanceMax() + objet->getCollider()->getDistanceMax()) && isInCollisionWithFace(objet))
+		{
+			//std::cout << "cas 1 : " << distance.length() << " - " << _collider->getDistanceMax() << " - " << objet->getCollider()->getDistanceMax() << std::endl;
+			//objet->matriceAbsolue().print();
+
+			return true;
+		}
+		else
+		{
+			for (unsigned int i = 0; i < getFils()->size(); ++i)
+			{
+				if (getFils()->at(i)->isInCollisionWith(objet))
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	for (unsigned int i = 0; i < getFils()->size(); ++i)
+		{
+			if (getFils()->at(i)->isInCollisionWith(objet))
+			{
+				return true;
+			}
+		}
+		
+	return false;
+}
+
+Collider* AbstractObjet::getCollider()
+{
+	return _collider;
+}
+
+Vector3d<GLdouble>* AbstractObjet::getScale()
+{
+	Vector3d<GLdouble>* vec = new Vector3d<GLdouble>(matrice().getScale());
+	if (getPere() != NULL)
+	{
+		Vector3d<GLdouble>* vecPere = getPere()->getScale();
+		vec->setX(vecPere->getX() * vec->getX());
+		vec->setY(vecPere->getY() * vec->getY());
+		vec->setZ(vecPere->getZ() * vec->getZ());
+		delete vecPere;
+	}
+	return vec;
+}
+
+bool AbstractObjet::isInCollisionWithFace(AbstractObjet* objet)
+{
+	return false;
+}
+
+std::vector<Vector3d<GLdouble>* >& AbstractObjet::getListePointsCollision()
+{
+	return _listPointsCollision;
 }
