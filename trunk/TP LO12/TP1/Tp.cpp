@@ -58,7 +58,7 @@ void Tp::run()
 
 	CameraVaisseau* camera = new CameraVaisseau();
 	_scene = new Scene(camera);
-
+	_scene->addCam(new CameraLookAt());
 
 	_scene->createWindows(HAUTEUR_FENETRE , LARGEUR_FENETRE);
 
@@ -156,7 +156,7 @@ void Tp::run()
 
 
 	vect = imp.importer("models/asteroides/LotAsteroids.obj");
-	unsigned int l = 3;//pow((float) vect->size(), (float) (1.0/3.0));
+	unsigned int l = 4;//pow((float) vect->size(), (float) (1.0/3.0));
 	unsigned int m = 0;
 	for (unsigned int i = 0; i < l; ++i)
 	{
