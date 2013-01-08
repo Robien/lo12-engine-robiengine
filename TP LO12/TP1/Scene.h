@@ -60,6 +60,8 @@ public:
 	void run();
 	void pause();
 	void unpause();
+	void changeCam();
+	void addCam(Camera* cam);
 
 	unsigned int getNombrePointAffiche();
 
@@ -79,26 +81,12 @@ private:
 	unsigned int _nbPointAffiche;
 
 	Shader* _shader;
+
+	unsigned int _currentCam;
+	std::vector<Camera*> _listeCam;
 };
 
 
 
 
 #endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

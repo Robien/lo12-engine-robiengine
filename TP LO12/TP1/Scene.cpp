@@ -67,6 +67,7 @@ public:
 		case 32 :	_scene->changerObjetSelectionne();	break;
 		case 105 :  _scene->resetObjet();	break;
 		case 'p' : if (_isOnPause) { _scene->unpause();}else{_scene->pause();} _isOnPause = !_isOnPause; break;
+		case 9 : _scene->changeCam(); // 9 -> tab
 
 		}
 	}
@@ -137,6 +138,8 @@ Scene::Scene(Camera* mainCamera) : _mainCamera(mainCamera)
 		_mainCamera = new Camera();
 	}
 	Interactions::get()->addEventCallBack(new DefautInteraction(this));
+	_currentCam = 0;
+	_listeCam.push_back(_mainCamera);
 
 
 }
@@ -149,6 +152,8 @@ Scene::Scene(AbstractObjet* root, Camera* mainCamera) : _root(root), _mainCamera
 		_mainCamera = new Camera();
 	}
 	Interactions::get()->addEventCallBack(new DefautInteraction(this));
+	_currentCam = 0;
+	_listeCam.push_back(_mainCamera);
 
 }
 void Scene::resetObjet()
@@ -216,10 +221,10 @@ void Scene::affiche()
 	_root->majPos();
 
 
-	if (_root->isInCollisionWith(_mainCamera->getFils()->at(0)))
+	/*if (_root->isInCollisionWith(_mainCamera->getFils()->at(0)))
 	{
 		std::cout << "collision !" << std::endl;
-	}
+	}*/
 
 
 
@@ -409,4 +414,14 @@ void Scene::pause()
 void Scene::unpause()
 {
 	_mainCamera->unpause();
+}
+void Scene::changeCam()
+{
+	_currentCam = (_currentCam+1) % _listeCam.size();
+	_mainCamera = _listeCam.at(_currentCam);
+}
+
+void Scene::addCam(Camera* cam)
+{
+	_listeCam.push_back(cam);
 }
