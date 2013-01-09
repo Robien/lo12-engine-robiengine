@@ -31,6 +31,7 @@ Auteurs : Guyard Romain, Louison Céphise
 #include "AnimationTranslation.h"
 #include "AnimationPesanteur.h"
 #include "AnimationPorte.h"
+#include "AnimationSurchauffe.h"
 
 Tp::Tp()
 {
@@ -72,7 +73,7 @@ void Tp::run()
 		m->rotate(90, 0, 1, 0);
 		//m->getVector16().at(0) = -1;
 		Lumiere* l = GestionnaireLumiere::get()->newLumiere(ambiante,couleur, 2.0, 25.0, m);
-		l->setAfficheSphere(true);
+		l->setAfficheSphere(false);
 		camera->attache(l);
 	}
 
@@ -114,28 +115,33 @@ void Tp::run()
 	}
 
 
-
+	//Robien
 	//permet d'avoir la taille du fichier
 	std::vector<AbstractObjet* >* vect2 = imp.importer("models/robien/RobienSimpleLOD.obj");
 	root->attache(vect2); // manque un delete ... le faire dans attache ?
 	vect2->at(0)->getMatrice()->scale(2,2,2);
 		new AnimationPesanteur(vect2->at(0));
 	//root->attache(imp.importer("models/robien/RobienSimple.obj"));
-	AbstractObjet* vaisseau = imp.importer("models/explorerShip/vaisseau3.obj")->at(0);
-	vaisseau->matrice().scale(1, 1, 0.5);
 
+	
+	
+	//Vaisseau
+	AbstractObjet* vaisseau = imp.importer("models/explorerShip/vaisseau3.obj")->at(0);
+	
+	vaisseau->matrice().scale(1, 1, 0.5);
 	vaisseau->matrice().rotate(180, 0, 1, 0);
 	//vaisseau->matrice().rotate(180, 0, 0, 0);
 	vaisseau->matrice().rotate(5, 1, 0, 0);
 	//vaisseau->matrice().rotate(180, 1, 0, 1);
-
 	vaisseau->matrice().translate(0, -5, 0);
 	vaisseau->matrice().translate(0, 0, 6);
-
 	//	vaisseau->matrice().rotate(180, 0, 1, 0);
 	//	vaisseau->matrice().translate(0, -4.2, 0);
 	//	vaisseau->matrice().translate(0, 0, 10.9);
 	camera->attache(vaisseau);
+
+
+	//vaisseau mere
 	std::vector<AbstractObjet* >* vect = imp.importer("models/motherShip/motherShip.obj");
 	//Gyrophare
 	vect->at(0)->getMatrice()->translate(-40.58082,14.11398,-5.30275);
@@ -151,7 +157,7 @@ void Tp::run()
 
 
 
-
+	//Asteroides
 	vect = imp.importer("models/asteroides/LotAsteroids.obj");
 	unsigned int l = 4;//pow((float) vect->size(), (float) (1.0/3.0));
 	unsigned int m = 0;
@@ -179,11 +185,13 @@ void Tp::run()
 	}
 	//root->attache(vect);
 	//vect->at(0)->getMatrice()->translate(10,0,0);
-	SystemeParticules* sp = new SystemeParticules(true, 1000);
-	sp->matrice().translate(0,0,-4);
-	sp->start();
-	root->attache(sp);
 
+
+	SystemeParticules* sp = new SystemeParticules(true, 2000);
+	sp->matrice().translate(0,3,0);
+	sp->matrice().rotate(-90,1,0,0);
+	sp->start();
+	vaisseau->attache(sp); 
 
 	_scene->setRoot(root);
 
@@ -198,9 +206,15 @@ void Tp::run()
 
 
 	//Brouillard bou;
-	_scene->add(new Texte("Mission : Recuperer les robiens", 0.25, 0.1));
+	Interface* inter = new Interface(0.31,0.1,0.38,0.05);
+	inter->setCouleur(1.0,1.0,0,0.5);
+	Texte* texte  = new Texte(" !!! Surchauffe des moteurs !!!", 0.31, 0.1);
+	texte->setCouleur(1.0,0,0);
+	AnimationSurchauffe* anim = new AnimationSurchauffe(sp,texte,inter);
+	_scene->add(inter);
+	_scene->add(texte);
 	_scene->add(new Interface(0.45,0.45,0.1,0.1, "textures/center.png"));
-	InterfaceVitesse* interfaceVitesse = new InterfaceVitesse(0.15,0.01,0.08,0.08, "textures/power_Front.png");
+	InterfaceVitesse* interfaceVitesse = new InterfaceVitesse(0.15,0.01,0.08,0.08, "textures/power_Front.png",anim);
 	camera->setInterfaceVitesse(interfaceVitesse);
 	_scene->add(interfaceVitesse);
 

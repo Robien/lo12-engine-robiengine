@@ -2,7 +2,7 @@
 #include <stdarg.h> 
 #include "Outil.h"
 #include "Interactions.h"
-
+#include "Shader.h"
 
 
 class InterractionInterface : public CB_Interraction
@@ -26,13 +26,13 @@ private:
 
 
 
-Texte::Texte(std::string str, GLfloat x, GLfloat y): _couleur(0,0,0)
+Texte::Texte(std::string str, GLfloat x, GLfloat y): _couleur(1,1,1)
 {
 	_texte = str;
 	_police = GLUT_BITMAP_TIMES_ROMAN_24;
-	
+	_actif = true;
 	setPosition(x,y);
-	
+
 }
 
 
@@ -93,6 +93,7 @@ void Texte::affiche()
 
 void Texte::beginTexte()
 {
+	glDisable(GL_LIGHTING);
 	glMatrixMode(GL_PROJECTION);
 	glPushMatrix();
 	glLoadIdentity();
@@ -102,6 +103,7 @@ void Texte::beginTexte()
 	glLoadIdentity();
 	glColor3fv(_couleur.getCStyle());
 
+
 }
 void Texte::endText()
 {
@@ -109,11 +111,11 @@ void Texte::endText()
 	glPopMatrix();
 	glMatrixMode(GL_MODELVIEW);
 	glPopMatrix();
+	glEnable(GL_LIGHTING);
 }
 void Texte::drawText(float x, float y, std::string str)
 {
 	glRasterPos2f(x,y);
-
 	for(unsigned int i=0; i < str.size();++i)
 	{
 		glutBitmapCharacter(_police, str.c_str()[i]);
@@ -123,4 +125,14 @@ void Texte::drawText(float x, float y, std::string str)
 void Texte::recalculeSize()
 {
 	setPosition(_positon.getX(), _positon.getY());
+}
+
+void Texte::setActif(bool act)
+{
+	_actif = act;
+}
+
+bool Texte::getActif()
+{
+	return _actif;
 }

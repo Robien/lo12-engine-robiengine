@@ -129,7 +129,7 @@ Scene::~Scene()
 }
 Scene::Scene(Camera* mainCamera) : _mainCamera(mainCamera)
 {
-
+	_interfaceVisible = true;
 	_skybox = new Skybox();
 	objetSelectionne = 0;
 	_root = new AbstractObjet();
@@ -145,6 +145,7 @@ Scene::Scene(Camera* mainCamera) : _mainCamera(mainCamera)
 }
 Scene::Scene(AbstractObjet* root, Camera* mainCamera) : _root(root), _mainCamera(mainCamera)
 {
+	_interfaceVisible = true;
 	_skybox = new Skybox();
 	objetSelectionne = 0;
 	if (_mainCamera == NULL)
@@ -242,11 +243,7 @@ void Scene::affiche()
 
 	GestionnaireLumiere::get()->defAllSources();
 
-	_nbPointAffiche += _mainCamera->afficheFils();
-
-
-	dessine_repere();
-
+	
 	
 
 	if (_root != NULL)
@@ -254,18 +251,24 @@ void Scene::affiche()
 		_nbPointAffiche += _root->affiche();
 	}
 
-	ShaderEtat::get()->desactive();
+	_nbPointAffiche += _mainCamera->afficheFils();
 
-	for(unsigned int k = 0; k< _listInterface.size(); ++k)
+	dessine_repere();
+
+	if(_interfaceVisible)
 	{
-		_listInterface.at(k)->affiche();
-	}
-
-	ShaderEtat::get()->active();
-
-	for(unsigned int i = 0; i< _listTexte.size(); ++i)
-	{
-		_listTexte.at(i)->affiche();
+		ShaderEtat::get()->desactive();
+		for(unsigned int k = 0; k< _listInterface.size(); ++k)
+		{
+			if(_listInterface.at(k)->getActif())
+			{_listInterface.at(k)->affiche();}
+		}
+		for(unsigned int i = 0; i< _listTexte.size(); ++i)
+		{
+			if(_listTexte.at(i)->getActif())
+			{_listTexte.at(i)->affiche();}
+		}
+		ShaderEtat::get()->active();
 	}
 	glutSwapBuffers();
 	glutPostRedisplay();
@@ -417,8 +420,11 @@ void Scene::unpause()
 }
 void Scene::changeCam()
 {
+	
 	_currentCam = (_currentCam+1) % _listeCam.size();
 	_mainCamera = _listeCam.at(_currentCam);
+
+	_interfaceVisible = _currentCam==0;
 }
 
 void Scene::addCam(Camera* cam)

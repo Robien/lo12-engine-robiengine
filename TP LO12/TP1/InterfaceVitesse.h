@@ -4,11 +4,12 @@
 
 #include "Interface.h"
 #include "Outil.h"
+#include "Animation.h"
 
 class InterfaceVitesse : public Interface
 {
 public:
-	InterfaceVitesse(GLfloat x, GLfloat y, GLfloat largeur, GLfloat hauteur,std::string nameFront = "");
+	InterfaceVitesse(GLfloat x, GLfloat y, GLfloat largeur, GLfloat hauteur,std::string nameFront = "", Animation* anim = NULL);
 	virtual ~InterfaceVitesse();
 
 	virtual void affiche();
@@ -19,6 +20,7 @@ private:
 
 private:
 	float _pourcentage;
+	Animation* _animation;
 
 };
 

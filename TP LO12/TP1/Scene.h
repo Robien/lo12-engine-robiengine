@@ -70,7 +70,7 @@ private:
 	int objetSelectionne;
 	std::vector<GLuint> _tabTexture;
 	Skybox* _skybox;
-	
+	bool _interfaceVisible;
 
 	AbstractObjet* _root;
 	Camera* _mainCamera;

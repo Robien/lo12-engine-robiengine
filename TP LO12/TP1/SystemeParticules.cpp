@@ -70,9 +70,10 @@ unsigned int SystemeParticules::affiche()
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D, _texture);
 	}
+
 	glDisable(GL_LIGHTING);
 	//glDisable(GL_DEPTH_TEST); //pour eviter des calculs
-	glDepthMask( GL_FALSE );
+	//glDepthMask( GL_FALSE );
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); 
@@ -117,6 +118,12 @@ unsigned int SystemeParticules::affiche()
 		}
 	}
 
+	glEnable(GL_LIGHTING);
+	//glEnable(GL_DEPTH_TEST);
+	//glDepthMask( GL_TRUE ); 
+	glDisable(GL_BLEND);
+	ShaderEtat::get()->active(); //activer le shader
+
 	//on affiche les objets fils
 	for (unsigned int i = 0; i < getFils()->size(); ++i)
 	{
@@ -126,11 +133,7 @@ unsigned int SystemeParticules::affiche()
 
 	glPopMatrix();
 
-	glEnable(GL_LIGHTING);
-	//glEnable(GL_DEPTH_TEST);
-	glDepthMask( GL_TRUE ); 
-	glDisable(GL_BLEND);
-	ShaderEtat::get()->active(); //activer le shader
+	
 	return nbPointAffiche;
 }
 
@@ -164,10 +167,11 @@ void Particules::initParticles()
 	_dureeVie = 1.0;   // Maximum de vie
 
 	_fade = Outil::get()->random<GLdouble>(0.01,0.05);   // Vitesse de disparition aléatoire
-	_couleur = Vector3d<GLdouble>(Outil::get()->random<GLdouble>(0.0,1.0),Outil::get()->random<GLdouble>(0.0,1.0),Outil::get()->random<GLdouble>(0.0,1.0));
+	GLdouble niveaudegris = Outil::get()->random<GLdouble>(0,2)/10;
+	_couleur = Vector3d<GLdouble>(niveaudegris,niveaudegris,niveaudegris);
 	_position = Vector3d<GLdouble>(0,0,0);
-	_direction = Vector3d<GLdouble>(Outil::get()->random<GLdouble>(-10.0,10.0),Outil::get()->random<GLdouble>(-10.0,10.0),Outil::get()->random<GLdouble>(10.0,20.0));
-	_gravite = Vector3d<GLdouble>(0,0,-1);
+	_direction = Vector3d<GLdouble>(Outil::get()->random<GLdouble>(-10.0,10.0),Outil::get()->random<GLdouble>(-10.0,10.0),Outil::get()->random<GLdouble>(-10.0,10.0));
+	_gravite = Vector3d<GLdouble>(0,0,1);
 
 }
 

@@ -10,6 +10,7 @@ AllureFaisceau::AllureFaisceau(GLdouble k, GLdouble theta)
 AllureFaisceau::~AllureFaisceau()
 {
 }
+
 GLdouble AllureFaisceau::getCoefK()
 {
 	return _k;
@@ -62,7 +63,7 @@ void Lumiere::setAfficheSphere(bool aff)
 
 void Lumiere::def_sources()
 {            
-	
+
 	if(_active)
 	{
 		glPushMatrix();
@@ -86,26 +87,26 @@ void Lumiere::def_sources()
 		/*GLdouble* newData = (GLdouble*) malloc(16*sizeof(GLdouble));
 		glGetDoublev(GL_MODELVIEW_MATRIX, newData);
 		Matrice<GLdouble> m(newData);
-*/
+		*/
 		//m.print();
 		//std::cout <<  m.getPosition().getX() << std::endl;
-	//	GLfloat propp[4]; 
-	//	propp[0] = 0;
-	//	propp[1] =0;
-	//	propp[2] = 0;
-	////	std::cout <<  _vect.getZ() << std::endl;
-	//	if(_infini)
-	//	{propp[3] = 0;}
-	//	else
-	//	{propp[3] = 1;}
-	//	
-	//	glLightfv(_id,GL_POSITION,propp);
-	//	//_vect = matriceAbsolue().getDirection();
-	//	propp[0] = 1;
-	//	propp[1] = 0;
-	//	propp[2] = 0;
-	//	propp[3] = 1;
-	//	glLightfv(_id,GL_SPOT_DIRECTION,propp);
+		//	GLfloat propp[4]; 
+		//	propp[0] = 0;
+		//	propp[1] =0;
+		//	propp[2] = 0;
+		////	std::cout <<  _vect.getZ() << std::endl;
+		//	if(_infini)
+		//	{propp[3] = 0;}
+		//	else
+		//	{propp[3] = 1;}
+		//	
+		//	glLightfv(_id,GL_POSITION,propp);
+		//	//_vect = matriceAbsolue().getDirection();
+		//	propp[0] = 1;
+		//	propp[1] = 0;
+		//	propp[2] = 0;
+		//	propp[3] = 1;
+		//	glLightfv(_id,GL_SPOT_DIRECTION,propp);
 		glLightf(_id,GL_SPOT_CUTOFF,_allure_faisceau.getAngle());
 		glLightf(_id,GL_SPOT_EXPONENT,_allure_faisceau.getCoefK());
 		glEnable(_id);
@@ -121,54 +122,91 @@ void Lumiere::def_sources()
 unsigned int Lumiere::affiche()
 {
 	unsigned int nbPointAffiche = 0;
-	if(_afficheSphere && _active)
+	if( _active)
 	{
-		glMatrixMode(GL_MODELVIEW);	
-		ShaderEtat::get()->desactive(); //désactiver le shader
-		glDisable(GL_LIGHTING);
-		glColor3d(_couleur.getX(), _couleur.getY(), _couleur.getZ());				
+		if(_afficheSphere)
+		{
+			glMatrixMode(GL_MODELVIEW);	
+			ShaderEtat::get()->desactive(); //désactiver le shader
+			glDisable(GL_LIGHTING);
+			glColor3d(_couleur.getX(), _couleur.getY(), _couleur.getZ());				
 
-		glPushMatrix();
-		glMultMatrixd(getMatrice()->getMat());
-		nbPointAffiche += 30; //ouais, c'est au hazard
-		gluSphere(_sphere, 0.2, 10, 10);
+			glPushMatrix();
+			glMultMatrixd(getMatrice()->getMat());
+			nbPointAffiche += 30; //ouais, c'est au hazard
+			gluSphere(_sphere, 0.2, 10, 10);
 
-		/*afficher la direction du vecteur*/
-		glBegin(GL_LINES);
-		glVertex3d(0.0,0.0,0.0);
-		glVertex3d(1,0,0);
-		glColor3f(1,1,1);
-		glEnd();
-		ShaderEtat::get()->active(); //activer le shader
-		GLfloat propp[4]; 
-		propp[0] = 0;
-		propp[1] =0;
-		propp[2] = 0;
-	//	std::cout <<  _vect.getZ() << std::endl;
-		if(_infini)
-		{propp[3] = 0;}
+			/*afficher la direction du vecteur*/
+			glBegin(GL_LINES);
+			glVertex3d(0.0,0.0,0.0);
+			glVertex3d(1,0,0);
+			glColor3f(1,1,1);
+			glEnd();
+			ShaderEtat::get()->active(); //activer le shader
+			GLfloat propp[4]; 
+			propp[0] = 0;
+			propp[1] =0;
+			propp[2] = 0;
+			//	std::cout <<  _vect.getZ() << std::endl;
+			if(_infini)
+			{propp[3] = 0;}
+			else
+			{propp[3] = 1;}
+
+			glLightfv(_id,GL_POSITION,propp);
+			//_vect = matriceAbsolue().getDirection();
+			propp[0] = 1;
+			propp[1] = 0;
+			propp[2] = 0;
+			propp[3] = 1;
+			glLightfv(_id,GL_SPOT_DIRECTION,propp);
+
+
+
+
+			glEnable(GL_LIGHTING);
+			//on affiche les objets fils
+			for (unsigned int i = 0; i < getFils()->size(); ++i)
+			{
+				nbPointAffiche += getFils()->at(i)->affiche();
+			}
+
+			glPopMatrix();
+
+		}
 		else
-		{propp[3] = 1;}
+		{
+			glMatrixMode(GL_MODELVIEW);	
+			glPushMatrix();
+			glMultMatrixd(getMatrice()->getMat());
+			ShaderEtat::get()->active(); //activer le shader
+			GLfloat propp[4]; 
+			propp[0] = 0;
+			propp[1] =0;
+			propp[2] = 0;
+			if(_infini)
+			{propp[3] = 0;}
+			else
+			{propp[3] = 1;}
+
+			glLightfv(_id,GL_POSITION,propp);
+			//_vect = matriceAbsolue().getDirection();
+			propp[0] = 1;
+			propp[1] = 0;
+			propp[2] = 0;
+			propp[3] = 1;
+			glLightfv(_id,GL_SPOT_DIRECTION,propp);
+
+			glEnable(GL_LIGHTING);
+			//on affiche les objets fils
+			for (unsigned int i = 0; i < getFils()->size(); ++i)
+			{
+				nbPointAffiche += getFils()->at(i)->affiche();
+			}
+
+			glPopMatrix();
 		
-		glLightfv(_id,GL_POSITION,propp);
-		//_vect = matriceAbsolue().getDirection();
-		propp[0] = 1;
-		propp[1] = 0;
-		propp[2] = 0;
-		propp[3] = 1;
-		glLightfv(_id,GL_SPOT_DIRECTION,propp);
-
-
-
-
-		glEnable(GL_LIGHTING);
-		//on affiche les objets fils
-		 for (unsigned int i = 0; i < getFils()->size(); ++i)
-		 {
-			 nbPointAffiche += getFils()->at(i)->affiche();
-		 }
-
-		glPopMatrix();
+		}
 	}
 	else
 	{
@@ -183,26 +221,26 @@ void  Lumiere::toggle()
 	_active = !_active;
 }
 
- void Lumiere::init()
+void Lumiere::init()
 {
 	glPushMatrix();
-		glLoadMatrixd(matrice().getMat());
-		GLfloat propp[4]; 
-		propp[0] = 0;
-		propp[1] = 0;
-		propp[2] = 0;
-		if(_infini)
-		{propp[3] = 0;}
-		else
-		{propp[3] = 1;}
-		
-		glLightfv(_id,GL_POSITION,propp);
-		propp[0] = 1;
-		propp[1] = 0;
-		propp[2] = 0;
-		propp[3] = 1;
-		glLightfv(_id,GL_SPOT_DIRECTION,propp);
-	
-		glPopMatrix();
+	glLoadMatrixd(matrice().getMat());
+	GLfloat propp[4]; 
+	propp[0] = 0;
+	propp[1] = 0;
+	propp[2] = 0;
+	if(_infini)
+	{propp[3] = 0;}
+	else
+	{propp[3] = 1;}
+
+	glLightfv(_id,GL_POSITION,propp);
+	propp[0] = 1;
+	propp[1] = 0;
+	propp[2] = 0;
+	propp[3] = 1;
+	glLightfv(_id,GL_SPOT_DIRECTION,propp);
+
+	glPopMatrix();
 }
 
