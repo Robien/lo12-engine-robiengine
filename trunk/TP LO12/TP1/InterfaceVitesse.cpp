@@ -1,8 +1,10 @@
 #include "InterfaceVitesse.h"
 #include "GestionnaireTexture.h"
+#include "AnimationSurchauffe.h"
 
-InterfaceVitesse::InterfaceVitesse(GLfloat x, GLfloat y, GLfloat largeur, GLfloat hauteur, std::string nameFront) : Interface(x, y, largeur, hauteur,nameFront)
+InterfaceVitesse::InterfaceVitesse(GLfloat x, GLfloat y, GLfloat largeur, GLfloat hauteur, std::string nameFront, Animation* anim) : Interface(x, y, largeur, hauteur,nameFront), _animation(anim)
 {
+
 	_pourcentage = 0;
 }
 
@@ -17,6 +19,17 @@ void InterfaceVitesse::setPourcentage(float p)
 	{p=0;}
 	if(p>1)
 	{p=1;}
+	if(getActif() && _animation != NULL)
+	{
+		if(p>0.8)
+		{
+			((AnimationSurchauffe*)_animation)->setActif(true);
+		}
+		else
+		{
+			((AnimationSurchauffe*)_animation)->setActif(false);
+		}
+	}
 	_pourcentage = p;
 }
 

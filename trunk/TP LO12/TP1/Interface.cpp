@@ -22,15 +22,16 @@ private:
 
 
 
-Interface::Interface(GLfloat x, GLfloat y, GLfloat largeur, GLfloat hauteur, std::string name)
+Interface::Interface(GLfloat x, GLfloat y, GLfloat largeur, GLfloat hauteur, std::string name):_couleur(1,1,1)
 {
+		_actif = true;
 	if(name != "")
 	{
 		_indiceTex = GestionnaireTexture::get()->addTexture(name);
 	}
 	setPosition(x, y, largeur, hauteur);
 	Interactions::get()->addEventCallBack(new InterractionInterface(this));
-
+	_transparence = 0.5f;
 }
 
 
@@ -49,8 +50,6 @@ void Interface::setPosition(GLfloat x, GLfloat y, GLfloat largeur, GLfloat haute
 	_position.setY(y);
 	_proportions.setX(largeur);
 	_proportions.setY(hauteur);
-
-
 
 	if(x < 0)
 	{x=0;}
@@ -98,6 +97,14 @@ void Interface::setPosition(GLfloat x, GLfloat y, GLfloat largeur, GLfloat haute
 	}
 }
 
+void Interface::setCouleur(GLfloat r, GLfloat g, GLfloat b, GLfloat a)
+{
+	_couleur.setX(r);
+	_couleur.setY(g);
+	_couleur.setZ(b);
+	_transparence = a;
+}
+
 void Interface::affiche()
 {
 
@@ -136,7 +143,7 @@ void Interface::beginInter()
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA); 
 
-	glColor4f(1,1,1,0.5);
+	glColor4f(_couleur.getX(),_couleur.getY(),_couleur.getZ(),_transparence);
 
 }
 void Interface::endInter()
@@ -159,4 +166,14 @@ void Interface::drawInter()
 	glTexCoord2f(1.0, 1.0); glVertex2f( _x+_largeur, _y+_hauteur);
 	glTexCoord2f(0, 1.0); glVertex2f( _x, _y+_hauteur);
 	glEnd();
+}
+
+void Interface::setActif(bool act)
+{
+	_actif = act;
+}
+
+bool Interface::getActif()
+{
+	return _actif;
 }

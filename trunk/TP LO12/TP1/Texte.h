@@ -17,7 +17,8 @@ public:
 	void setPolice(void* font);
 	void setPosition(GLfloat x, GLfloat y);
 	void setCouleur(GLfloat r, GLfloat g, GLfloat b);
-
+	void setActif(bool act);
+	bool getActif();
 	virtual void recalculeSize();
 
 private:
@@ -26,6 +27,7 @@ private:
 	void drawText(float x, float y, std::string str);
 
 private:
+	bool _actif;
 	void* _police;
 	std::string _texte;
 	GLfloat _x;
