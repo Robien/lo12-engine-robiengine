@@ -9,16 +9,17 @@ template <typename T>
 class Matrice
 {
 public:
-	Matrice() : _testScale(1, 1, 1)
+	Matrice() : _testScale(1, 1, 1), _data()
 	{
 		reset();
 	}
-	Matrice(const Matrice<T>& c) : _testScale(1, 1, 1)
+	Matrice(const Matrice<T>& c) : _testScale(1, 1, 1), _data()
 	{
-		_testScale = 1;
-		for (unsigned int i = 0; i < _data.size(); ++i)
+		_data.clear();
+		//_testScale = 1;
+		for (unsigned int i = 0; i < c._data.size(); ++i)
 		{
-			_data.at(i) = c._data.at(i);
+			_data.push_back(c._data.at(i));
 		}
 
 	}

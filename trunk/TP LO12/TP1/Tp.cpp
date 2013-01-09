@@ -32,6 +32,7 @@ Auteurs : Guyard Romain, Louison Céphise
 #include "AnimationPesanteur.h"
 #include "AnimationPorte.h"
 #include "AnimationSurchauffe.h"
+#include "AnimationSuivre.h"
 
 Tp::Tp()
 {
@@ -102,26 +103,33 @@ void Tp::run()
 		l->setAfficheSphere(true);
 		root->attache(l);
 	}
-	{
-		Vector3d<GLdouble> ambiante(0.2, 0.2, 0.2);
-		Vector3d<GLdouble> couleur(0.1, 0.1, 0.8);
-		Matrice<GLdouble> *m = new Matrice<GLdouble>();
-		m->translate(0.3, 0, 0);
-		m->rotate(270, 0, 1, 0);
-		//m->getVector16().at(0) = -1;
-		Lumiere* l = GestionnaireLumiere::get()->newLumiere(ambiante,couleur, 2.0, 25.0, m);
-		l->setAfficheSphere(true);
-		root->attache(l);
-	}
-
 
 	//Robien
 	//permet d'avoir la taille du fichier
 	std::vector<AbstractObjet* >* vect2 = imp.importer("models/robien/RobienSimpleLOD.obj");
 	root->attache(vect2); // manque un delete ... le faire dans attache ?
 	vect2->at(0)->getMatrice()->scale(2,2,2);
-		new AnimationPesanteur(vect2->at(0));
+	new AnimationPesanteur(vect2->at(0));
 	//root->attache(imp.importer("models/robien/RobienSimple.obj"));
+	{
+		Vector3d<GLdouble> ambiante(0.2, 0.2, 0.2);
+		Vector3d<GLdouble> couleur(0.1, 0.1, 0.8);
+		Matrice<GLdouble> *m = new Matrice<GLdouble>();
+		m->translate(0.3, 0, 0);
+		//m->rotate(270, 0, 1, 0);
+		//m->getVector16().at(0) = -1;
+		Lumiere* l = GestionnaireLumiere::get()->newLumiere(ambiante,couleur, 2.0, 25.0, m);
+		l->setAfficheSphere(true);
+		
+		AbstractObjet* objvid = new AbstractObjet();
+		objvid->attache(l);
+		new AnimationSuivre(objvid,vect2->at(0)); //suit robien
+		root->attache(objvid); //attaché au graph de scene mais suit robien
+		
+	}
+
+
+	
 
 	
 	
@@ -185,12 +193,16 @@ void Tp::run()
 	}
 	//root->attache(vect);
 	//vect->at(0)->getMatrice()->translate(10,0,0);
-
+	SystemeParticules* sp2 = new SystemeParticules(true, 4000);
+	sp2->start();
+	sp2->matrice().translate(0,4,0);
+	root->attache(sp2); 
 
 	SystemeParticules* sp = new SystemeParticules(true, 2000);
 	sp->matrice().translate(0,3,0);
 	sp->matrice().rotate(-90,1,0,0);
 	sp->start();
+
 	vaisseau->attache(sp); 
 
 	_scene->setRoot(root);
