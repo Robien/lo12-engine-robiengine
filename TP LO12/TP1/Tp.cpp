@@ -137,9 +137,6 @@ void Tp::run()
 	//	vaisseau->matrice().translate(0, 0, 10.9);
 	camera->attache(vaisseau);
 	std::vector<AbstractObjet* >* vect = imp.importer("models/motherShip/motherShip.obj");
-	std::cout << "name : " << vect->at(0)->getNom() << std::endl;
-	std::cout << "name : " << vect->at(1)->getNom() << std::endl;
-	std::cout << "name : " << vect->size() << std::endl;
 	//Gyrophare
 	vect->at(0)->getMatrice()->translate(-40.58082,14.11398,-5.30275);
 	vect->at(3)->addFils(vect->at(0));
