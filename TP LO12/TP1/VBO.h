@@ -23,6 +23,7 @@ public:
 	void addPoint(Vector3d<GLdouble>* point, Vector2d<GLdouble>* texture, Vector3d<GLdouble>* normale);
 	void init();
 	unsigned int affiche();
+	unsigned int afficheFilted();
 	bool isInit();
 
 private:

@@ -67,7 +67,9 @@ public:
 		case 32 :	_scene->changerObjetSelectionne();	break;
 		case 105 :  _scene->resetObjet();	break;
 		case 'p' : if (_isOnPause) { _scene->unpause();}else{_scene->pause();} _isOnPause = !_isOnPause; break;
-		case 9 : _scene->changeCam(); // 9 -> tab
+		case 9 : _scene->changeCam();break; // 9 -> tab
+		case 's' : _scene->toggleShader();break;
+		case 'f' : _scene->toggleFilted();break;
 
 		}
 	}
@@ -173,6 +175,18 @@ void Scene::toggleFilted()
 void Scene::toggleVBO()
 {
 	_root->toggleVBO();
+}
+void Scene::toggleShader()
+{
+	_isPhongUsed = !_isPhongUsed;
+	if (_isPhongUsed)
+	{
+		ShaderEtat::get()->active();
+	}
+	else
+	{
+		ShaderEtat::get()->desactive();
+	}
 }
 
 void Scene::translateObjetSelectionne(GLdouble x,GLdouble y,GLdouble z)
