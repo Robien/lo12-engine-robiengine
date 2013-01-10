@@ -9,7 +9,14 @@ void main()
 
 	for (int i = 0; i < nbLumiere; ++i)
 	{
-		lightDir[i] = vec3(gl_LightSource[i].position.xyz - vVertex);
+		if (gl_LightSource[i].spotCosCutoff != 0)
+		{
+			lightDir[i] = vec3(gl_LightSource[i].position.xyz - vVertex);
+		}
+		else
+		{
+			lightDir[i] = gl_LightSource[i].position.xyz;
+		}
 	}
 	eyeVec = -vVertex;
 

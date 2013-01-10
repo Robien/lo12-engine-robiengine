@@ -193,10 +193,10 @@ void Tp::run()
 	}
 	//root->attache(vect);
 	//vect->at(0)->getMatrice()->translate(10,0,0);
-	SystemeParticules* sp2 = new SystemeParticules(true, 4000);
+/*	SystemeParticules* sp2 = new SystemeParticules(true, 4000);
 	sp2->start();
 	sp2->matrice().translate(0,4,0);
-	root->attache(sp2); 
+	root->attache(sp2);*/ 
 
 	SystemeParticules* sp = new SystemeParticules(true, 2000);
 	sp->matrice().translate(0,3,0);

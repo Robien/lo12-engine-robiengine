@@ -33,6 +33,7 @@ public:
 public:
 
 	void affiche();
+	void testaffiche();
 	virtual void pause();
 	virtual void unpause();
 	void rotationZ_obs(double angle);

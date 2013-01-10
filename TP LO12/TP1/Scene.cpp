@@ -242,6 +242,36 @@ void Scene::affiche()
 	ShaderEtat::get()->active();
 
 	GestionnaireLumiere::get()->defAllSources();
+	glPushMatrix();
+	glLoadIdentity();
+_nbPointAffiche += _mainCamera->afficheFils();
+glPopMatrix();
+//Matrice<GLdouble> mat;
+//mat.getVector16().at(0) = 1;
+//mat.getVector16().at(5) = -1;
+//mat.getVector16().at(10) = -1;
+
+	for (unsigned int i = 0; i < _listeCam.size(); ++i)
+	{	
+		//glLoadIdentity();
+		if (_currentCam != i)
+		{
+			glPushMatrix();
+			_listeCam.at(i)->testaffiche();
+			//glMultMatrixd(mat.getMat());
+			_nbPointAffiche += _listeCam.at(i)->afficheFils();
+			//_listeCam.at(i)->pause();
+			glPopMatrix();
+		}
+	//
+	//glLoadIdentity();
+	
+	
+	//_mainCamera->unpause();
+	}
+
+
+	dessine_repere();
 
 	
 	
@@ -420,10 +450,10 @@ void Scene::unpause()
 }
 void Scene::changeCam()
 {
-	
+	_mainCamera->pause();
 	_currentCam = (_currentCam+1) % _listeCam.size();
 	_mainCamera = _listeCam.at(_currentCam);
-
+	_mainCamera->unpause();
 	_interfaceVisible = _currentCam==0;
 }
 
