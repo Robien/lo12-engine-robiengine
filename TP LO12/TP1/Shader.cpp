@@ -204,6 +204,7 @@ ShaderEtat::ShaderEtat()
 {
 	_shaderCourant = NULL;
 	_isActived = true;
+	_isNoLightActived = false;
 }
 
 void ShaderEtat::active()
@@ -214,8 +215,15 @@ void ShaderEtat::active()
 	}
 	else
 	{
-		glShadeModel(GL_SMOOTH);
-		glEnable(GL_LIGHTING);
+		if (!_isNoLightActived)
+		{
+			glShadeModel(GL_SMOOTH);
+			glEnable(GL_LIGHTING);
+		}
+		else
+		{
+			glDisable(GL_LIGHTING);
+		}
 	}
 }
 void ShaderEtat::desactive()
@@ -223,8 +231,15 @@ void ShaderEtat::desactive()
 	if(_shaderCourant != NULL)
 	{
 		_shaderCourant->desactive();
-		glShadeModel(GL_SMOOTH);
-		glEnable(GL_LIGHTING);
+		if (!_isNoLightActived)
+		{
+			glShadeModel(GL_SMOOTH);
+			glEnable(GL_LIGHTING);
+		}
+		else
+		{
+			glDisable(GL_LIGHTING);
+		}
 	}	
 }
 void ShaderEtat::activeTotal()
@@ -249,5 +264,27 @@ void ShaderEtat::setIdTexture(GLuint id)
 	if(_shaderCourant != NULL)
 	{
 		_shaderCourant->setIdTexture(id);
+	}
+}
+
+
+void ShaderEtat::activeNoLight()
+{
+	_isNoLightActived = true;
+}
+void ShaderEtat::desactiveNoLight()
+{
+	_isNoLightActived = false;
+}
+
+void ShaderEtat::toggleNoLight()
+{
+	if (_isNoLightActived)
+	{
+		desactiveNoLight();
+	}
+	else
+	{
+		activeNoLight();
 	}
 }

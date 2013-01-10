@@ -3,6 +3,7 @@
 #include "AbstractObjet.h"
 #include "VBOMangaer.h"
 #include "Animation.h"
+#include "Shader.h"
 
 Objet::Objet(std::string str) : AbstractObjet(str)
 {
@@ -22,8 +23,8 @@ Objet::~Objet()
 
 unsigned int Objet::affiche()
 {
-
-	glEnable(GL_LIGHTING);
+	ShaderEtat::get()->active();
+	//glEnable(GL_LIGHTING);
 	glEnable(GL_TEXTURE_2D);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
