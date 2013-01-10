@@ -115,7 +115,24 @@ void Lumiere::def_sources()
 	}
 	else
 	{
-		glDisable(_id);
+		glDisable(_id); // pour le pipe line classique
+
+		//pour le shader, le disable n'a aucun effet, on désactive donc la lumière a la main
+	
+		GLfloat propc[4];
+		propc[0] = 0;
+		propc[1] = 0;
+		propc[2] = 0;
+		propc[3] = 1; // alpha
+		glLightfv(_id,GL_AMBIENT,propc);
+
+		propc[0] = 0;
+		propc[1] = 0;
+		propc[2] = 0;
+		glLightfv(_id,GL_DIFFUSE,propc);
+		glLightfv(_id,GL_SPECULAR,propc);
+
+
 	}
 }
 
