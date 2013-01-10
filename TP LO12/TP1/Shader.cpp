@@ -203,11 +203,12 @@ void Shader::setIdTexture(GLuint id)
 ShaderEtat::ShaderEtat()
 {
 	_shaderCourant = NULL;
+	_isActived = true;
 }
 
 void ShaderEtat::active()
 {
-	if(_shaderCourant != NULL)
+	if(_shaderCourant != NULL && _isActived)
 	{
 		_shaderCourant->active();
 	}
@@ -226,7 +227,16 @@ void ShaderEtat::desactive()
 		glEnable(GL_LIGHTING);
 	}	
 }
-
+void ShaderEtat::activeTotal()
+{
+	active();
+	_isActived = true;
+}
+void ShaderEtat::desactiveTotal()
+{
+	desactive();
+	_isActived = false;
+}
 void ShaderEtat::setShader(Shader* shad)
 {
 	desactive();
