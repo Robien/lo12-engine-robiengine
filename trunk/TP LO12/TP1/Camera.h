@@ -11,6 +11,7 @@ public:
 	virtual ~Camera();
 
 	virtual void affiche();
+	virtual void testaffiche();
 	virtual unsigned int afficheFils();
 	virtual void maj();
 	void majPos();

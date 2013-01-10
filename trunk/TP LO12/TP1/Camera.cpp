@@ -16,22 +16,31 @@ Camera::~Camera()
 void Camera::affiche()
 {
 	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	glLoadMatrixd(_matrice.getMat());
+	//glLoadIdentity();
+	glMultMatrixd(_matrice.getMat());
 
 
 }
+void Camera::testaffiche()
+{
+	glMatrixMode(GL_MODELVIEW);
+	//glLoadIdentity();
+	glMultMatrixd(_matrice.getMat());
+
+
+}
+
+
 unsigned int Camera::afficheFils()
 {
 	unsigned int nbPointAffiche = 0;
 	glMatrixMode(GL_MODELVIEW);
-	glPushMatrix();
-	glLoadIdentity();
+
 	for (unsigned int i = 0; i < getFils()->size(); ++i)
 	{
 		nbPointAffiche += getFils()->at(i)->affiche();
 	}
-	glPopMatrix();
+
 
 	return nbPointAffiche;
 }

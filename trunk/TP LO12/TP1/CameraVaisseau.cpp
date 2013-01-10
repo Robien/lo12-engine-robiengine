@@ -252,7 +252,14 @@ void CameraVaisseau::affiche()						//applique l'observateur en cours //après mo
 
 	//glutPostRedisplay(); //rafraichit la zone de dessin (appelle dessine_scene)
 }
+/****************************************************************************/
+void CameraVaisseau::testaffiche()						//applique l'observateur en cours //après modification de la variable typ_obs
+{
+	Camera::affiche();
+	gluLookAt(_lookAtParam.eyex,_lookAtParam.eyey,_lookAtParam.eyez, _lookAtParam.centrex, _lookAtParam.centrey, _lookAtParam.centrez, _lookAtParam.upx, _lookAtParam.upy, _lookAtParam.upz);
 
+	//glutPostRedisplay(); //rafraichit la zone de dessin (appelle dessine_scene)
+}
 
 /****************************************************************************/
 void CameraVaisseau::rotationZ_obs(double angle)   //rotation de l'observateur autour de l'axe Z de la scene

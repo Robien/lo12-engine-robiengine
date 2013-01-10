@@ -148,13 +148,15 @@ private:
 
 CameraLookAt::CameraLookAt()
 {
-	Interactions::get()->addEventCallBack(new CameraLookAtEvent(this));
+	_interraction = new CameraLookAtEvent(this);
+	Interactions::get()->addEventCallBack(_interraction);
 	resetVue();
 }
 
 
 CameraLookAt::~CameraLookAt()
 {
+	Interactions::get()->RemoveEventCallBack(_interraction);
 }
 
 
@@ -179,8 +181,9 @@ void CameraLookAt::resetVue()
 /****************************************************************************/
 void CameraLookAt::affiche()						//applique l'observateur en cours //après modification de la variable typ_obs
 {
-	glMatrixMode(GL_MODELVIEW);	
-	glLoadIdentity();
+	Camera::affiche();
+	//glMatrixMode(GL_MODELVIEW);	
+	//glLoadIdentity();
 	gluLookAt(_lookAtParam.eyex,_lookAtParam.eyey,_lookAtParam.eyez, _lookAtParam.centrex, _lookAtParam.centrey, _lookAtParam.centrez, _lookAtParam.upx, _lookAtParam.upy, _lookAtParam.upz);
 
 
@@ -232,6 +235,7 @@ void CameraLookAt::tourner_tete(int dir, double angle)
 /****************************************************************************/
 void CameraLookAt::zoom(double pas) //permet d'avancer ou de reculer dans la scene
 {
+	pas *= 20;
 	double dx, dy, dz, dist, piover180=PI/180; //vect2[3];
 
 	dx=_lookAtParam.eyex-_lookAtParam.centrex;				//détermination du vecteur directeur de l'axe
@@ -315,3 +319,12 @@ void CameraLookAt::rotation3D(double angle, double* axeVect, double* axePt, doub
 	result[2]=m31*ux + m32*uy + m33*uz +axePt[2];
 }
 /****************************************************************************/
+void CameraLookAt::pause()
+{
+	Interactions::get()->RemoveEventCallBack(_interraction);
+}
+
+void CameraLookAt::unpause()
+{
+	Interactions::get()->addEventCallBack(_interraction);
+}
