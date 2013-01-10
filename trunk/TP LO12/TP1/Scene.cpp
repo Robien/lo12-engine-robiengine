@@ -70,6 +70,7 @@ public:
 		case 9 : _scene->changeCam();break; // 9 -> tab
 		case 's' : _scene->toggleShader();break;
 		case 'f' : _scene->toggleFilted();break;
+		case 'l' : ShaderEtat::get()->toggleNoLight();break;
 
 		}
 	}

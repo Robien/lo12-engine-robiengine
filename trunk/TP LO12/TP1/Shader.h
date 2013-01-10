@@ -43,11 +43,16 @@ public:
 	void activeTotal();
 	void desactiveTotal();
 
+	void activeNoLight();
+	void desactiveNoLight();
+	void toggleNoLight();
+
 	void setShader(Shader* shad);
 	void setIdTexture(GLuint id);
 private:
 	Shader* _shaderCourant;
 	bool _isActived;
+	bool _isNoLightActived;
 };
 
 #endif
