@@ -78,6 +78,40 @@ unsigned int VBO::affiche()
 	return  _listePoints.size()/3;
 }
 
+unsigned int VBO::afficheFilted()
+{
+	if (!_isInit)
+	{
+		init();
+	}
+	_material->appliqueTexture();
+	_material->appliqueMatiere();
+	
+
+	glBindBuffer(GL_ARRAY_BUFFER, _id);
+
+	glVertexPointer(3, GL_DOUBLE, 0, BUFFER_OFFSET(0));
+	if (_material->isTextured())
+	{
+		glTexCoordPointer(2, GL_DOUBLE, 0, BUFFER_OFFSET(_listePoints.size() * sizeof(GLdouble)));
+		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	}
+	else
+	{
+		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+		glColor3f(1.0,0.0,0.0);
+	}
+	glNormalPointer(GL_DOUBLE, 0, BUFFER_OFFSET(_listePoints.size() * sizeof(GLdouble) + _listeTextures.size() * sizeof(GLdouble)));
+	glEnableClientState(GL_VERTEX_ARRAY);
+	
+	glEnableClientState(GL_NORMAL_ARRAY);
+
+	glDrawArrays(GL_LINES, 0, _listePoints.size()/3);
+
+	return  _listePoints.size()/3;
+
+}
+
 
 void VBO::setMaterial(Material* material)
 {

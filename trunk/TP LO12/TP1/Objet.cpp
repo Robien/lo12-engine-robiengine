@@ -50,9 +50,19 @@ unsigned int Objet::affiche()
 
 		if (_isVboActive)
 		{
-			for (unsigned int i = 0; i < _vbo.size(); ++i)
+			if (_isFilted)
 			{
-				nbPointAffiche += _vbo.at(i)->affiche();
+				for (unsigned int i = 0; i < _vbo.size(); ++i)
+				{
+					nbPointAffiche += _vbo.at(i)->afficheFilted();
+				}
+			}
+			else
+			{
+				for (unsigned int i = 0; i < _vbo.size(); ++i)
+				{
+					nbPointAffiche += _vbo.at(i)->affiche();
+				}
 			}
 		}
 		else

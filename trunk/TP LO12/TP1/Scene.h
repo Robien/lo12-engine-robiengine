@@ -41,6 +41,7 @@ public:
 
 	void toggleFilted();
 	void toggleVBO();
+	void toggleShader();
 
 public:
 	void add(Texte* txt);
@@ -84,6 +85,10 @@ private:
 
 	unsigned int _currentCam;
 	std::vector<Camera*> _listeCam;
+
+private:
+	bool _isPhongUsed;
+
 };
 
 
