@@ -216,7 +216,7 @@ void Percent::majIfNeeded(unsigned int valCurrent)
         {
             _currentTimeS = (unsigned int) (elapsed / (((float) valCurrent) / ((float) _valMax)) - elapsed);
             printTime((unsigned int) (elapsed / (((float) valCurrent) / ((float) _valMax)) - elapsed));
-            std::cout << "                  ";
+            std::cout << "              ";
 //            std::cout << (unsigned int) (elapsed / (((float) valCurrent) / ((float) _valMax)) - elapsed) << "s          ";
         }
         _currentTime = elapsed;

@@ -117,6 +117,8 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CameraFPS.cpp" />
     <ClCompile Include="CameraLookAt.cpp" />
+    <ClCompile Include="CameraPilotView.cpp" />
+    <ClCompile Include="CameraPolarView.cpp" />
     <ClCompile Include="CameraVaisseau.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Face.cpp" />
@@ -131,7 +133,6 @@
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="Matrice.cpp" />
     <ClCompile Include="Objet.cpp" />
-    <ClCompile Include="Observateur.cpp" />
     <ClCompile Include="Outil.cpp" />
     <ClCompile Include="Percent.cpp" />
     <ClCompile Include="Pngloader.cpp" />
@@ -163,6 +164,8 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraFPS.h" />
     <ClInclude Include="CameraLookAt.h" />
+    <ClInclude Include="CameraPilotView.h" />
+    <ClInclude Include="CameraPolarView.h" />
     <ClInclude Include="CameraVaisseau.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="const.h" />
@@ -178,7 +181,6 @@
     <ClInclude Include="Material.h" />
     <ClInclude Include="Matrice.h" />
     <ClInclude Include="Objet.h" />
-    <ClInclude Include="Observateur.h" />
     <ClInclude Include="Outil.h" />
     <ClInclude Include="Percent.h" />
     <ClInclude Include="Pngloader.h" />
