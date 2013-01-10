@@ -258,10 +258,7 @@ void Scene::affiche()
 	ShaderEtat::get()->active();
 
 	GestionnaireLumiere::get()->defAllSources();
-	glPushMatrix();
-	glLoadIdentity();
-_nbPointAffiche += _mainCamera->afficheFils();
-glPopMatrix();
+
 //Matrice<GLdouble> mat;
 //mat.getVector16().at(0) = 1;
 //mat.getVector16().at(5) = -1;
@@ -300,6 +297,15 @@ glPopMatrix();
 	_nbPointAffiche += _mainCamera->afficheFils();
 
 	dessine_repere();
+
+
+	glClear(GL_DEPTH_BUFFER_BIT);
+	glPushMatrix();
+	glLoadIdentity();
+	_nbPointAffiche += _mainCamera->afficheFils();
+	glPopMatrix();
+
+
 
 	if(_interfaceVisible)
 	{
