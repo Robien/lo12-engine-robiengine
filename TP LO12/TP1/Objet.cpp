@@ -147,6 +147,10 @@ void Objet::toggleFilted()
 	{
 		_listeFace.at(i)->toggleFilted();
 	}
+	for (unsigned int i = 0; i < getFils()->size(); ++i)
+	{
+		getFils()->at(i)->toggleFilted();
+	}
 }
 
 void Objet::toggleVBO()

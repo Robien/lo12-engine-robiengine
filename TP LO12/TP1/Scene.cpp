@@ -295,7 +295,6 @@ void Scene::affiche()
 		_nbPointAffiche += _root->affiche();
 	}
 
-	_nbPointAffiche += _mainCamera->afficheFils();
 
 	dessine_repere();
 
