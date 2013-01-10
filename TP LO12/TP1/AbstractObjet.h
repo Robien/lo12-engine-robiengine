@@ -75,6 +75,7 @@ public:
 
 public:
 	void setAnimation(Animation* anim);
+	void setAnimationActive(bool active);
 
 protected:
 	bool _isFilted;

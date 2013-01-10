@@ -18,6 +18,10 @@ public:
 		{
 		case 'p' :  _isOnPause = !_isOnPause;
 		break;
+		default : 
+			if(!_isOnPause)
+			{_animation->keyEvent(key);}
+		break;
 		}
 	}
 	virtual void eventsMouse(int boutton, int etat, int x, int y){}
@@ -40,6 +44,7 @@ private:
 
 Animation::Animation(AbstractObjet* objlie): _acteur(objlie)
 {
+	_actif = true;
 	Interactions::get()->addEventCallBack(new AnimInteraction(this));
 	objlie->setAnimation(this);
 }
@@ -55,6 +60,10 @@ void Animation::update()
 
 }
 
+void Animation::keyEvent(unsigned char key)
+{
+
+}
 
 AbstractObjet* Animation::getActeur()
 {
@@ -63,4 +72,12 @@ AbstractObjet* Animation::getActeur()
 
 void Animation::proxEvent(GLdouble distance)
 {
+}
+
+void Animation::setActif(bool ac)
+{
+	if(ac != _actif)
+	{
+		_actif = ac;
+	}
 }
