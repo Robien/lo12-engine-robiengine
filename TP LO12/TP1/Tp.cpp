@@ -22,6 +22,8 @@ Auteurs : Guyard Romain, Louison Céphise
 #include "GestionnaireLumiere.h"
 #include "CameraVaisseau.h"
 #include "CameraLookAt.h"
+#include "CameraPilotView.h"
+#include "CameraPolarView.h"
 #include "Brouillard.h"
 #include "Texte.h"
 #include "Interface.h"
@@ -61,6 +63,8 @@ void Tp::run()
 	CameraVaisseau* camera = new CameraVaisseau();
 	_scene = new Scene(camera);
 	_scene->addCam(new CameraLookAt());
+	_scene->addCam(new CameraPilotView());
+	_scene->addCam(new CameraPolarView());
 
 	_scene->createWindows(HAUTEUR_FENETRE , LARGEUR_FENETRE);
 
