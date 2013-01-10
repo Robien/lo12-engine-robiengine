@@ -89,28 +89,41 @@ void Tp::run()
 		camera->attache(l);
 	}
 
+	AbstractObjet* gyro = new AbstractObjet();
+	//gyro->getMatrice()->translate(-420,50,100);
 		//gyrophare
 	{
 		Vector3d<GLdouble> ambiante(0.2, 0.2, 0.2);
 		Vector3d<GLdouble> couleur(0.8, 0.1, 0.1);
 		Matrice<GLdouble> *m = new Matrice<GLdouble>();
-		m->translate(-420,50,100);
+		
 		//m->rotate(90, 0, 1, 0);
 		//m->getVector16().at(0) = -1;
 		Lumiere* l = GestionnaireLumiere::get()->newLumiere(ambiante,couleur, 2.0, 25.0, m);
 		l->setAfficheSphere(true);
-		root->attache(l);
-		new AnimationRotation(l);
+		gyro->attache(l);
 	}
-
 	{
 		Vector3d<GLdouble> ambiante(0.2, 0.2, 0.2);
-		Vector3d<GLdouble> couleur(0.1, 0.8, 0.1);
+		Vector3d<GLdouble> couleur(0.1, 0.1, 0.8);
+		Matrice<GLdouble> *m = new Matrice<GLdouble>();
+		//m->translate(-420,50,100);
+		m->rotate(180, 0, 1, 0);
+		//m->getVector16().at(0) = -1;
+		Lumiere* l = GestionnaireLumiere::get()->newLumiere(ambiante,couleur, 2.0, 25.0, m);
+		l->setAfficheSphere(true);
+		gyro->attache(l);
+	}
+	
+	root->attache(gyro);
+	{
+		Vector3d<GLdouble> ambiante(0.2, 0.2, 0.2);
+		Vector3d<GLdouble> couleur(0.8, 0.8, 0.8);
 		Matrice<GLdouble> *m = new Matrice<GLdouble>();
 		m->translate(0.3, 0, 0);
 		m->rotate(180, 0, 1, 0);
 		//m->getVector16().at(0) = -1;
-		Lumiere* l = GestionnaireLumiere::get()->newLumiere(ambiante,couleur, 2.0, 25.0, m);
+		Lumiere* l = GestionnaireLumiere::get()->newLumiere(ambiante,couleur, 2.0, 0.0, m);
 		l->setAfficheSphere(true);
 		root->attache(l);
 	}
@@ -165,9 +178,10 @@ void Tp::run()
 	//Gyrophare
 	vect->at(0)->getMatrice()->translate(-40.58082,14.11398,-5.30275);
 	vect->at(3)->addFils(vect->at(0));
+	vect->at(0)->attache(gyro);
 	//Porte
 	vect->at(2)->getMatrice()->translate(-38.66924,3.40688,-5.26819);
-	new AnimationPorte(vect->at(2));
+	new AnimationPorte(vect->at(2), new AnimationRotation(vect->at(0), new Vector3d<int>(0, 1, 0), 8, false));
 	vect->at(3)->addFils(vect->at(2));
 	//vaisseauMere
 	vect->at(3)->getMatrice()->rotate(90,1,0,0);

@@ -3,12 +3,13 @@
 
 #include "const.h"
 #include "animation.h"
+#include "AnimationRotation.h"
 
 
 class AnimationPorte : public Animation
 {
 public:
-	AnimationPorte(AbstractObjet* objlie);
+	AnimationPorte(AbstractObjet* objlie, AnimationRotation* gyro);
 	virtual ~AnimationPorte();
 	virtual void update();
 	virtual void proxEvent(GLdouble distance);
@@ -19,6 +20,7 @@ private:
 	bool _isClose;
 	bool _isOpen;
 	GLdouble _angle;
+	AnimationRotation* _gyro;
 };
 
 #endif
