@@ -131,6 +131,7 @@ Scene::~Scene()
 }
 Scene::Scene(Camera* mainCamera) : _mainCamera(mainCamera)
 {
+	_isPhongUsed = true;
 	_interfaceVisible = true;
 	_skybox = new Skybox();
 	objetSelectionne = 0;
@@ -147,6 +148,7 @@ Scene::Scene(Camera* mainCamera) : _mainCamera(mainCamera)
 }
 Scene::Scene(AbstractObjet* root, Camera* mainCamera) : _root(root), _mainCamera(mainCamera)
 {
+	_isPhongUsed = true;
 	_interfaceVisible = true;
 	_skybox = new Skybox();
 	objetSelectionne = 0;
@@ -181,11 +183,11 @@ void Scene::toggleShader()
 	_isPhongUsed = !_isPhongUsed;
 	if (_isPhongUsed)
 	{
-		ShaderEtat::get()->active();
+		ShaderEtat::get()->activeTotal();
 	}
 	else
 	{
-		ShaderEtat::get()->desactive();
+		ShaderEtat::get()->desactiveTotal();
 	}
 }
 

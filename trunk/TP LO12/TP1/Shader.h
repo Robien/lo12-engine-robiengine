@@ -39,10 +39,15 @@ public:
 	ShaderEtat();
 	void active();
 	void desactive();
+
+	void activeTotal();
+	void desactiveTotal();
+
 	void setShader(Shader* shad);
 	void setIdTexture(GLuint id);
 private:
 	Shader* _shaderCourant;
+	bool _isActived;
 };
 
 #endif
