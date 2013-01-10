@@ -17,6 +17,8 @@ AnimationPorte::~AnimationPorte()
 
 void AnimationPorte::update()
 {
+	if(_actif)
+	{
 	if (_isOpening)
 	{
 		_isOpen = false;
@@ -56,6 +58,7 @@ void AnimationPorte::update()
 			_isClosing = false;
 			_isClose = true;
 		}
+	}
 	}
 }
 

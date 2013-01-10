@@ -111,6 +111,7 @@
     <ClCompile Include="AnimationRotation.cpp" />
     <ClCompile Include="AnimationSuivre.cpp" />
     <ClCompile Include="AnimationSurchauffe.cpp" />
+    <ClCompile Include="AnimationTracter.cpp" />
     <ClCompile Include="AnimationTranslation.cpp" />
     <ClCompile Include="AxeAnimation.cpp" />
     <ClCompile Include="Brouillard.cpp" />
@@ -158,6 +159,7 @@
     <ClInclude Include="AnimationRotation.h" />
     <ClInclude Include="AnimationSuivre.h" />
     <ClInclude Include="AnimationSurchauffe.h" />
+    <ClInclude Include="AnimationTracter.h" />
     <ClInclude Include="AnimationTranslation.h" />
     <ClInclude Include="AxeAnimation.h" />
     <ClInclude Include="Brouillard.h" />

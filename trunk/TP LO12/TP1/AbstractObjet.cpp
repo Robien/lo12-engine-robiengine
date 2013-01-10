@@ -277,3 +277,11 @@ std::vector<AxeAnimation*>& AbstractObjet::getAxes()
 {
 	return _listAxes;
 }
+
+void AbstractObjet::setAnimationActive(bool active)
+{
+	if(_animation != NULL)
+	{
+		_animation->setActif(active);
+	}
+}

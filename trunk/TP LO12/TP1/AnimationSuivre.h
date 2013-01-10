@@ -10,10 +10,10 @@ public:
 	AnimationSuivre(AbstractObjet* objlie, AbstractObjet* objetSuivi);
 	virtual ~AnimationSuivre();
 	virtual void update();
-	void setActif(bool ac);
+	virtual void setActif(bool ac);
 private:
 	AbstractObjet* _objetSuivi;
-	bool _actif;
+
 };
 
 #endif

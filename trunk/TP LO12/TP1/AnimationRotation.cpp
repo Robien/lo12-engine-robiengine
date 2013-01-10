@@ -12,5 +12,8 @@ AnimationRotation::~AnimationRotation()
 
 void AnimationRotation::update()
 {
-	getActeur()->getMatrice()->rotate(2,0,0,1);
+	if(_actif)
+	{
+		getActeur()->getMatrice()->rotate(2,0,0,1);
+	}
 }
