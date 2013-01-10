@@ -2,7 +2,7 @@
 
 AnimationTracter::AnimationTracter(AbstractObjet* objlie, AbstractObjet* objetSuivi): Animation(objlie), _objetSuivi(objetSuivi)
 {
-	getActeur()->setMatrice(_objetSuivi->getMatrice());
+	_actif =false;
 }
 
 
@@ -28,11 +28,11 @@ void AnimationTracter::proxEvent(GLdouble distance)
 
 void AnimationTracter::keyEvent(unsigned char key)
 {
-	switch(key)
+	/*switch(key)
 		{
 		case 'c' :  setActif(!_actif);
 		break;
-		}
+		}*/
 }
 
 void AnimationTracter::setActif(bool ac)
@@ -42,22 +42,25 @@ void AnimationTracter::setActif(bool ac)
 		_actif = ac;
 		if(_actif)
 		{
+			std::cout << "active" << std::endl;
+			getActeur()->setAnimationActive(false);
 			std::vector<AbstractObjet*>* fils = getActeur()->getFils();
 			for(unsigned int i=0 ; i<fils->size(); ++i)
 			{
 				fils->at(i)->setAnimationActive(false);
-				
 			}
 			getActeur()->setMatrice(_objetSuivi->getMatrice());
 		}
 		else
 		{
-			Matrice<GLdouble>* mat = new Matrice<GLdouble>(*_objetSuivi->getMatrice());
+			std::cout << "desactive" << std::endl;
+			getActeur()->setAnimationActive(true);
 			std::vector<AbstractObjet*>* fils = getActeur()->getFils();
 			for(unsigned int i=0 ; i<fils->size(); ++i)
 			{
 				fils->at(i)->setAnimationActive(true);
 			}
+			Matrice<GLdouble>* mat = new Matrice<GLdouble>(*_objetSuivi->getMatrice());
 			getActeur()->setMatrice(mat);
 		}
 

@@ -42,6 +42,7 @@ Auteurs : Guyard Romain, Louison Céphise
 #include "AnimationPorte.h"
 #include "AnimationSurchauffe.h"
 #include "AnimationSuivre.h"
+#include "AnimationTracter.h"
 
 Tp::Tp()
 {
@@ -131,9 +132,12 @@ void Tp::run()
 	//Robien
 	//permet d'avoir la taille du fichier
 	std::vector<AbstractObjet* >* vect2 = imp.importer("models/robien/RobienSimpleLOD.obj");
-	root->attache(vect2); // manque un delete ... le faire dans attache ?
 	vect2->at(0)->getMatrice()->scale(2,2,2);
 	new AnimationPesanteur(vect2->at(0));
+	AbstractObjet* objvid1 = new AbstractObjet();
+	objvid1->attache(vect2->at(0));
+
+
 	//root->attache(imp.importer("models/robien/RobienSimple.obj"));
 	{
 		Vector3d<GLdouble> ambiante(0.2, 0.2, 0.2);
@@ -144,12 +148,7 @@ void Tp::run()
 		//m->getVector16().at(0) = -1;
 		Lumiere* l = GestionnaireLumiere::get()->newLumiere(ambiante,couleur, 2.0, 25.0, m);
 		l->setAfficheSphere(true);
-		
-		AbstractObjet* objvid = new AbstractObjet();
-		objvid->attache(l);
-		new AnimationSuivre(objvid,vect2->at(0)); //suit robien
-		root->attache(objvid); //attaché au graph de scene mais suit robien
-		
+		vect2->at(0)->attache(l); 
 	}
 
 
@@ -159,7 +158,8 @@ void Tp::run()
 	
 	//Vaisseau
 	AbstractObjet* vaisseau = imp.importer("models/explorerShip/vaisseau3.obj")->at(0);
-	
+	//new AnimationTracter(objvid1,vaisseau); 
+	root->attache(objvid1); 
 	vaisseau->matrice().scale(1, 1, 0.5);
 	vaisseau->matrice().rotate(180, 0, 1, 0);
 	//vaisseau->matrice().rotate(180, 0, 0, 0);
@@ -192,7 +192,7 @@ void Tp::run()
 
 	//Asteroides
 	vect = imp.importer("models/asteroides/LotAsteroids.obj");
-	unsigned int l = 4;//pow((float) vect->size(), (float) (1.0/3.0));
+	unsigned int l = 5;//pow((float) vect->size(), (float) (1.0/3.0));
 	unsigned int m = 0;
 	for (unsigned int i = 0; i < l; ++i)
 	{
