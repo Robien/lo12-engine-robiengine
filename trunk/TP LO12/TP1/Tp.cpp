@@ -11,24 +11,31 @@ Fichier principal projet LO12
 Interface OpenGL (GLUT, GLU, GL)
 Auteurs : Guyard Romain, Louison Céphise
 */
-#include "const.h"
 #include <string>
-#include "Import.h"
-#include "Tp.h"
-#include "AbstractObjet.h"
-#include "SystemeParticules.h"
-#include "Objet.h"
 #include <vector>
-#include "GestionnaireLumiere.h"
-#include "CameraVaisseau.h"
-#include "CameraLookAt.h"
-#include "CameraPilotView.h"
-#include "CameraPolarView.h"
+#include "const.h"
+
+#include "Tp.h"
+#include "Import.h"
+
+#include "AbstractObjet.h"
+#include "Objet.h"
+
+#include "SystemeParticules.h"
 #include "Brouillard.h"
 #include "Texte.h"
 #include "Interface.h"
 #include "InterfaceVitesse.h"
+
+#include "GestionnaireLumiere.h"
 #include "ShaderPhong.h"
+
+#include "CameraVaisseau.h"
+#include "CameraLookAt.h"
+#include "CameraPilotView.h"
+#include "CameraPolarView.h"
+
+
 #include "AnimationRotation.h"
 #include "AnimationTranslation.h"
 #include "AnimationPesanteur.h"
